@@ -2,12 +2,16 @@ import Foundation
 
 enum UsagePreviewScenario: String, CaseIterable {
     case normal, stale, unavailable, signedOut, error, refreshError, zero, largeValues, remoteUnavailable, longList
-    case codexClaudeOnly, withoutCursor
+    case oneService, codexClaudeOnly, withoutCursor
 
     /// Service switches for layouts with fewer than four services.
     var providerSettings: ProviderSettings {
         var settings = ProviderSettings.default
         switch self {
+        case .oneService:
+            settings[.codex] = .hidden
+            settings[.cursor] = .hidden
+            settings[.deepseek] = .hidden
         case .codexClaudeOnly:
             settings[.cursor] = .hidden
             settings[.deepseek] = .hidden
@@ -23,7 +27,7 @@ enum UsagePreviewScenario: String, CaseIterable {
         let base = UsageSnapshot.preview
         let now = UsageSnapshot.previewDate
         switch self {
-        case .normal, .codexClaudeOnly, .withoutCursor: return base
+        case .normal, .oneService, .codexClaudeOnly, .withoutCursor: return base
         case .refreshError: return base
         case .stale: return .widgetStalePreview
         case .signedOut: return .widgetDeepSeekSignedOutPreview

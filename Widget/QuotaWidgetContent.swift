@@ -27,14 +27,20 @@ struct QuotaWidgetContent: View {
                 let roomy = providers.count <= 2
                 VStack(spacing: roomy ? 6 : 4) {
                     ForEach(providers, id: \.self) { provider in
-                        item(provider, quota: roomy ? .compact : .strip, deepSeek: roomy ? .regular : .strip)
+                        item(provider,
+                             quota: providers.count == 1 ? .hero : roomy ? .compact : .strip,
+                             deepSeek: providers.count == 1 ? .tall : roomy ? .regular : .strip)
                     }
                 }
+            case .systemMedium where providers.count == 1:
+                grid([providers], spacing: 7, quota: .hero, deepSeek: .regular)
             case .systemMedium:
                 grid(ProviderGridLayout.rows(providers), spacing: 7, quota: .compact, deepSeek: .regular)
             case .systemLarge where providers.count <= 2:
                 // A square tile reads better as full-width rows than as two tall columns.
-                grid(providers.map { [$0] }, spacing: 12, quota: .regular, deepSeek: .regular)
+                grid(providers.map { [$0] }, spacing: 12, quota: .hero, deepSeek: .tall)
+            case .systemExtraLarge where providers.count <= 2:
+                grid([providers], spacing: 12, quota: .hero, deepSeek: .tall)
             default:
                 grid(ProviderGridLayout.rows(providers), spacing: 12, quota: .regular, deepSeek: .tall)
             }

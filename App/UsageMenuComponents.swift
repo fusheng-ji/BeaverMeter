@@ -183,9 +183,15 @@ struct QuotaLabel: View {
 /// Auto shows a service once it has data on this Mac; On and Off override that.
 struct ServiceSettingsSection: View {
     @ObservedObject var store: UsageStore
+    @State private var isExpanded: Bool
+
+    init(store: UsageStore, initiallyExpanded: Bool = false) {
+        self.store = store
+        _isExpanded = State(initialValue: initiallyExpanded)
+    }
 
     var body: some View {
-        DisclosureGroup {
+        DisclosureGroup(isExpanded: $isExpanded) {
             VStack(spacing: 6) {
                 ForEach(MeterProvider.allCases, id: \.self) { provider in
                     HStack {
@@ -197,17 +203,11 @@ struct ServiceSettingsSection: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Picker(provider.displayName, selection: Binding(
+                        VisibilityControl(selection: Binding(
                             get: { store.providerSettings[provider] },
                             set: { store.setVisibility($0, for: provider) }
-                        )) {
-                            Text("Auto").tag(ProviderVisibility.auto)
-                            Text("On").tag(ProviderVisibility.shown)
-                            Text("Off").tag(ProviderVisibility.hidden)
-                        }
-                        .pickerStyle(.segmented)
-                        .labelsHidden()
-                        .fixedSize()
+                        ))
+                        .accessibilityLabel("\(provider.displayName) visibility")
                     }
                 }
             }
@@ -216,6 +216,40 @@ struct ServiceSettingsSection: View {
             Label("Services", systemImage: "slider.horizontal.3")
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(.secondary)
+        }
+    }
+}
+
+/// SwiftUI-drawn segmented control, so screenshots render it like the App does.
+private struct VisibilityControl: View {
+    @Binding var selection: ProviderVisibility
+
+    var body: some View {
+        HStack(spacing: 2) {
+            ForEach(ProviderVisibility.allCases, id: \.self) { option in
+                Button { selection = option } label: {
+                    Text(title(option))
+                        .font(.caption.weight(selection == option ? .semibold : .regular))
+                        .frame(width: 42, height: 20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .fill(selection == option ? Color.accentColor.opacity(0.85) : .clear)
+                        )
+                        .foregroundStyle(selection == option ? Color.white : Color.primary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityAddTraits(selection == option ? .isSelected : [])
+            }
+        }
+        .padding(2)
+        .background(Color.primary.opacity(0.08), in: RoundedRectangle(cornerRadius: 7, style: .continuous))
+    }
+
+    private func title(_ option: ProviderVisibility) -> String {
+        switch option {
+        case .auto: "Auto"
+        case .shown: "On"
+        case .hidden: "Off"
         }
     }
 }

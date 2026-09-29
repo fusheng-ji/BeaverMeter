@@ -10,6 +10,23 @@ struct PreviewRenderer {
         let outputDirectory = URL(fileURLWithPath: arguments.count > 1 ? arguments[1] : "screenshots", isDirectory: true)
         try FileManager.default.createDirectory(at: outputDirectory, withIntermediateDirectories: true)
 
+        let servicesSnapshot = UsageSnapshot.preview
+        let servicesHeight = UsageMenuView.fittedHeight(
+            for: MeterProvider.allCases, maxHeight: 1_300, servicesExpanded: true
+        )
+        let servicesMenu = UsageMenuView(
+            store: UsageStore(snapshot: servicesSnapshot, providerSettings: .default, observesSnapshotChanges: false),
+            automaticRefresh: false,
+            scrollsContent: false,
+            updatedDescriptionOverride: "from demo data",
+            viewHeight: servicesHeight,
+            referenceDate: UsageSnapshot.previewDate,
+            servicesExpanded: true
+        )
+        .background(Color(nsColor: .windowBackgroundColor))
+        render(servicesMenu, size: CGSize(width: 410, height: servicesHeight), colorScheme: .dark,
+               to: outputDirectory.appendingPathComponent("menu-popover-services.png"))
+
         for scenario in UsagePreviewScenario.allCases {
             let suffix = scenario == .normal ? "" : "-\(scenario.rawValue)"
             let snapshot = scenario.snapshot

@@ -35,12 +35,15 @@ enum QuotaPanelDensity {
     case strip
     case compact
     case regular
+    /// A service with a tile or full row to itself.
+    case hero
 
     var padding: CGFloat {
         switch self {
         case .strip: 6
         case .compact: 6
         case .regular: 12
+        case .hero: 16
         }
     }
 
@@ -49,6 +52,7 @@ enum QuotaPanelDensity {
         case .strip: 2
         case .compact: 2
         case .regular: 6
+        case .hero: 8
         }
     }
 
@@ -57,6 +61,7 @@ enum QuotaPanelDensity {
         case .strip: 17
         case .compact: 20
         case .regular: 30
+        case .hero: 52
         }
     }
 }
@@ -220,6 +225,8 @@ struct QuotaProviderPanel: View {
                 QuotaProgressBar(percent: remainingPercent, tint: progressColor)
                     .frame(height: 4)
             }
+            // Keeps today's tokens at the bottom when the panel has spare height.
+            Spacer(minLength: 0)
             dailyTokenLine
         }
     }
@@ -243,6 +250,14 @@ struct QuotaProviderPanel: View {
     }
 
     private var value: some View {
+        // Drops the "remaining" suffix rather than truncating when space runs out.
+        ViewThatFits(in: .horizontal) {
+            valueRow(showsSuffix: density != .regular)
+            valueRow(showsSuffix: false)
+        }
+    }
+
+    private func valueRow(showsSuffix: Bool) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: 6) {
             Text(valueText)
                 .font(.system(size: density.valueSize, weight: .bold, design: .rounded))
@@ -250,14 +265,16 @@ struct QuotaProviderPanel: View {
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
-            if density != .regular {
+            if showsSuffix {
                 Text("remaining")
                     .font(.system(size: 9, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white.opacity(0.52))
+                    .fixedSize()
             }
             Spacer(minLength: 0)
         }
     }
+
 
     private var resetLine: some View {
         HStack(spacing: 5) {

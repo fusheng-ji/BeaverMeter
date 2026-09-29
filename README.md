@@ -126,46 +126,49 @@ balance, current-month cost, tokens and requests.
 | Extra Large | Large layout with wider panels |
 
 <details>
-<summary><b>All Widget sizes and layouts</b></summary>
+<summary><b>All Widget sizes × number of services</b></summary>
 
 <table>
   <tr>
-    <th>Small Widget</th>
-    <th>Medium Widget</th>
+    <th></th>
+    <th>4 services</th>
+    <th>3 services</th>
+    <th>2 services</th>
+    <th>1 service</th>
   </tr>
   <tr>
-    <td align="center">
-      <img src="screenshots/widget-small.png" alt="BeaverMeter Small Widget with Demo data" width="174">
-    </td>
-    <td align="center">
-      <img src="screenshots/widget-medium.png" alt="BeaverMeter Medium Widget with Demo data" width="352">
-    </td>
+    <th>Small</th>
+    <td align="center"><img src="screenshots/widget-small.png" alt="Small Widget with four services" width="120"></td>
+    <td align="center"><img src="screenshots/widget-small-3-services.png" alt="Small Widget with three services" width="120"></td>
+    <td align="center"><img src="screenshots/widget-small-2-services.png" alt="Small Widget with two services" width="120"></td>
+    <td align="center"><img src="screenshots/widget-small-1-service.png" alt="Small Widget with one services" width="120"></td>
   </tr>
   <tr>
-    <th>Large Widget</th>
-    <th>Extra Large Widget</th>
+    <th>Medium</th>
+    <td align="center"><img src="screenshots/widget-medium.png" alt="Medium Widget with four services" width="200"></td>
+    <td align="center"><img src="screenshots/widget-medium-3-services.png" alt="Medium Widget with three services" width="200"></td>
+    <td align="center"><img src="screenshots/widget-medium-2-services.png" alt="Medium Widget with two services" width="200"></td>
+    <td align="center"><img src="screenshots/widget-medium-1-service.png" alt="Medium Widget with one services" width="200"></td>
   </tr>
   <tr>
-    <td align="center">
-      <img src="screenshots/widget-large.png" alt="BeaverMeter Large Widget with Demo data" width="352">
-    </td>
-    <td align="center">
-      <img src="screenshots/widget-extra-large.png" alt="BeaverMeter Extra Large Widget with Demo data" width="430">
-    </td>
+    <th>Large</th>
+    <td align="center"><img src="screenshots/widget-large.png" alt="Large Widget with four services" width="200"></td>
+    <td align="center"><img src="screenshots/widget-large-3-services.png" alt="Large Widget with three services" width="200"></td>
+    <td align="center"><img src="screenshots/widget-large-2-services.png" alt="Large Widget with two services" width="200"></td>
+    <td align="center"><img src="screenshots/widget-large-1-service.png" alt="Large Widget with one services" width="200"></td>
   </tr>
   <tr>
-    <th>Three services, Medium</th>
-    <th>Two services, Large</th>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="screenshots/widget-medium-three-services.png" alt="Medium Widget with three services" width="352">
-    </td>
-    <td align="center">
-      <img src="screenshots/widget-large-two-services.png" alt="Large Widget with two services" width="352">
-    </td>
+    <th>Extra Large</th>
+    <td align="center"><img src="screenshots/widget-extra-large.png" alt="Extra Large Widget with four services" width="260"></td>
+    <td align="center"><img src="screenshots/widget-extra-large-3-services.png" alt="Extra Large Widget with three services" width="260"></td>
+    <td align="center"><img src="screenshots/widget-extra-large-2-services.png" alt="Extra Large Widget with two services" width="260"></td>
+    <td align="center"><img src="screenshots/widget-extra-large-1-service.png" alt="Extra Large Widget with one services" width="260"></td>
   </tr>
 </table>
+
+Columns use Codex + Claude + Cursor + DeepSeek, then without Cursor, then
+Codex + Claude, then Claude alone. A service with a tile or full row to itself
+gets a larger panel.
 
 Every screenshot is generated from the bundled preview snapshot; none contains
 live account values or private Cursor activity.
@@ -201,6 +204,10 @@ panel. Open **Services** at the bottom of the popover to force a service
 not contacted at all. The switches are stored in
 `~/Library/Application Support/BeaverMeter/beaver-meter-settings.json`, which
 the Widget and collector read too.
+
+<p align="center">
+  <img src="screenshots/menu-popover-services.png" alt="BeaverMeter popover with the Services switches expanded" width="320">
+</p>
 
 ## 📊 Data sources
 

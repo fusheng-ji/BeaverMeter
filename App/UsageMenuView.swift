@@ -9,6 +9,7 @@ struct UsageMenuView: View {
     var viewHeight: CGFloat = 700
     var referenceDate: Date?
     var refreshErrorOverride: String?
+    var servicesExpanded = false
     private var presentationDate: Date { referenceDate ?? .now }
     private let timer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
 
@@ -40,12 +41,14 @@ struct UsageMenuView: View {
     }
 
     private var fittedHeight: CGFloat {
-        Self.fittedHeight(for: store.visibleProviders, maxHeight: viewHeight)
+        Self.fittedHeight(for: store.visibleProviders, maxHeight: viewHeight, servicesExpanded: servicesExpanded)
     }
 
     /// Fewer services shrink the popover instead of leaving an empty scroll area;
     /// larger content keeps the requested height and scrolls.
-    static func fittedHeight(for providers: [MeterProvider], maxHeight: CGFloat) -> CGFloat {
+    static func fittedHeight(
+        for providers: [MeterProvider], maxHeight: CGFloat, servicesExpanded: Bool = false
+    ) -> CGFloat {
         let sections = providers.reduce(CGFloat(0)) { total, provider in
             switch provider {
             case .codex, .claude: total + 135
@@ -53,7 +56,7 @@ struct UsageMenuView: View {
             case .deepseek: total + 270
             }
         }
-        return min(maxHeight, 235 + sections)
+        return min(maxHeight, 235 + sections + (servicesExpanded ? 125 : 0))
     }
 
     @ViewBuilder
@@ -72,7 +75,7 @@ struct UsageMenuView: View {
                 section(for: provider)
             }
             Divider()
-            ServiceSettingsSection(store: store)
+            ServiceSettingsSection(store: store, initiallyExpanded: servicesExpanded)
         }
         .padding(16)
         .frame(maxHeight: .infinity, alignment: .top)
