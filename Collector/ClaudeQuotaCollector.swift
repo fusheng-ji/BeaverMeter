@@ -112,8 +112,9 @@ enum ClaudeQuotaCollector {
         }
     }
 
-    /// The tightest window, carrying every window in display order: five hours,
-    /// the all-models week, then model-scoped weeks (for example Fable).
+    /// The five-hour window (the tightest one when there is none), carrying every
+    /// window in display order: five hours, the all-models week, then
+    /// model-scoped weeks (for example Fable).
     static func quota(from response: ClaudeOAuthUsageResponse) -> CompactQuota? {
         let limits = response.limits ?? []
         func limit(_ kind: String) -> ClaudeOAuthUsageResponse.Window? {
@@ -138,11 +139,11 @@ enum ClaudeQuotaCollector {
             else { continue }
             windows.append(quota)
         }
-        guard var tightest = windows.min(by: { ($0.remainingPercent ?? 101) < ($1.remainingPercent ?? 101) }) else {
-            return nil
-        }
-        tightest.windows = windows.count > 1 ? windows : nil
-        return tightest
+        guard var headline = windows.first(where: { $0.windowSeconds == 18_000 })
+                ?? windows.min(by: { ($0.remainingPercent ?? 101) < ($1.remainingPercent ?? 101) })
+        else { return nil }
+        headline.windows = windows.count > 1 ? windows : nil
+        return headline
     }
 
     static func accessToken(fromCredentials data: Data, now: Date) throws -> String {

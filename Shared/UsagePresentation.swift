@@ -125,6 +125,16 @@ extension CompactQuota {
         remainingPercent.map { "\(Int(UsageFormatting.clampedPercent($0)!.rounded()))%" } ?? "—"
     }
 
+    /// "Weekly 88% · Fable 95%" for the windows other than this one; `short`
+    /// abbreviates the all-models week to "Wk" for narrow layouts.
+    func otherWindowsSummary(short: Bool = false) -> String {
+        otherWindows.map { window in
+            let name = window.windowSeconds == 604_800 && window.modelScope == nil
+                ? (short ? "Wk" : "Weekly") : window.shortWindowName
+            return "\(name) \(window.percentLeftText)"
+        }.joined(separator: " · ")
+    }
+
     /// The windows other than this summary one, in display order.
     var otherWindows: [CompactQuota] {
         (windows ?? []).filter { $0.label != label }

@@ -117,16 +117,14 @@ struct QuotaProviderPanel: View {
 
     private var otherWindows: [CompactQuota] { quota?.otherWindows ?? [] }
 
-    private func windowColor(_ window: CompactQuota) -> Color {
-        guard let percent = UsageFormatting.clampedPercent(window.remainingPercent) else { return provider.accent }
-        if percent < 20 { return Color(red: 1.00, green: 0.31, blue: 0.31) }
-        if percent < 50 { return Color(red: 1.00, green: 0.68, blue: 0.20) }
-        return provider.accent
+    /// Names the headline window when the detail line is about the others.
+    private var valueSuffix: String {
+        otherWindows.isEmpty ? "remaining" : "\(quota?.shortWindowName ?? "") left"
     }
 
-    /// "Wk 88% · Fable 95%" for layouts without room for window rows.
-    private var otherWindowsSummary: String {
-        otherWindows.map { "\($0.shortWindowName) \($0.percentLeftText)" }.joined(separator: " · ")
+    /// "Weekly 88% · Fable 95%", falling back to "Wk" where space is short.
+    private func windowsSummary(short: Bool) -> String {
+        quota?.otherWindowsSummary(short: short) ?? ""
     }
 
     private var status: UsageStatusPresentation { UsageStatusPresentation(data, relativeTo: referenceDate) }
@@ -181,7 +179,8 @@ struct QuotaProviderPanel: View {
                 Image(systemName: stripStatus.icon)
                 ViewThatFits(in: .horizontal) {
                     if !otherWindows.isEmpty, status.severity == .normal {
-                        Text("\(quota?.shortWindowName ?? "") · \(otherWindowsSummary)").lineLimit(1)
+                        Text(windowsSummary(short: false)).lineLimit(1)
+                        Text(windowsSummary(short: true)).lineLimit(1)
                     }
                     Text(stripDetailText)
                         .lineLimit(1)
@@ -218,31 +217,20 @@ struct QuotaProviderPanel: View {
         return "\(period) · \(dailyTokens.value) tok today"
     }
 
-    @ViewBuilder
     private var standardBody: some View {
-        if otherWindows.isEmpty || density == .compact {
-            standardContent(showsWindowRows: false)
-        } else {
-            // Window rows when the panel is tall enough, otherwise a one-line summary.
-            ViewThatFits(in: .vertical) {
-                standardContent(showsWindowRows: true)
-                standardContent(showsWindowRows: false)
-            }
-        }
-    }
-
-    private func standardContent(showsWindowRows: Bool) -> some View {
         VStack(alignment: .leading, spacing: density.spacing) {
             header
             value
 
             if density != .compact {
                 ViewThatFits(in: .horizontal) {
-                    if showsWindowRows || otherWindows.isEmpty {
+                    // With several windows the value is the five-hour one and this line
+                    // carries the rest, for example "Weekly 88% · Fable 95%".
+                    if otherWindows.isEmpty {
                         detailLine(detailText)
                     } else {
-                        detailLine("\(detailText) · \(otherWindowsSummary)")
-                        detailLine("\(quota?.shortWindowName ?? detailText) · \(otherWindowsSummary)")
+                        detailLine(windowsSummary(short: false))
+                        detailLine(windowsSummary(short: true))
                     }
                 }
             }
@@ -258,11 +246,6 @@ struct QuotaProviderPanel: View {
                 resetLine
                 QuotaProgressBar(percent: remainingPercent, tint: progressColor)
                     .frame(height: 4)
-                if showsWindowRows {
-                    ForEach(otherWindows, id: \.label) { window in
-                        windowRow(window)
-                    }
-                }
             }
             // Keeps today's tokens at the bottom when the panel has spare height.
             Spacer(minLength: 0)
@@ -292,12 +275,13 @@ struct QuotaProviderPanel: View {
     private var value: some View {
         // Drops the "remaining" suffix rather than truncating when space runs out.
         ViewThatFits(in: .horizontal) {
-            // Medium panels have no room for window rows, so the other windows sit beside the value.
+            // Medium panels have no detail line, so the other windows sit beside the value.
             if density == .compact, !otherWindows.isEmpty, status.severity == .normal {
-                valueRow(suffix: otherWindowsSummary)
+                valueRow(suffix: windowsSummary(short: false))
+                valueRow(suffix: windowsSummary(short: true))
             }
-            if density != .regular {
-                valueRow(suffix: "remaining")
+            if density != .regular || !otherWindows.isEmpty {
+                valueRow(suffix: valueSuffix)
             }
             valueRow(suffix: nil)
         }
@@ -328,23 +312,6 @@ struct QuotaProviderPanel: View {
             .foregroundStyle(.white.opacity(0.62))
             .lineLimit(1)
             .minimumScaleFactor(0.8)
-    }
-
-    private func windowRow(_ window: CompactQuota) -> some View {
-        HStack(spacing: 5) {
-            Text(window.windowTitle)
-                .foregroundStyle(.white.opacity(0.62))
-            Spacer(minLength: 4)
-            Text(window.percentLeftText)
-                .fontWeight(.semibold)
-                .monospacedDigit()
-                .foregroundStyle(.white.opacity(0.85))
-            QuotaProgressBar(percent: UsageFormatting.clampedPercent(window.remainingPercent), tint: windowColor(window))
-                .frame(width: density == .hero ? 60 : 40, height: 3)
-        }
-        .font(.system(size: density == .hero ? 11 : 9, weight: .medium, design: .rounded))
-        .lineLimit(1)
-        .accessibilityElement(children: .combine)
     }
 
     private var resetLine: some View {

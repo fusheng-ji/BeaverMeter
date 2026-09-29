@@ -6,6 +6,14 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [5.3.1] - 2026-09-29
+
+### Changed
+
+- The Claude Widget panel always headlines the five-hour limit and shows the
+  other windows as one line, `Weekly 88% · Fable 95%`, in every Widget size
+  (replacing the separate window rows on Large panels).
+
 ## [5.3.0] - 2026-09-29
 
 ### Added

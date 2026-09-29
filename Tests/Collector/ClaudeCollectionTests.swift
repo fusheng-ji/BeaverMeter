@@ -18,7 +18,7 @@ final class ClaudeCollectionTests: XCTestCase {
         try JSONDecoder().decode(ClaudeOAuthUsageResponse.self, from: Data(json.utf8))
     }
 
-    func testTightestWindowWinsIncludingModelScopedWeeks() throws {
+    func testFiveHourWindowIsTheHeadlineEvenWhenAWeekIsTighter() throws {
         let response = try usage("""
         {"five_hour":{"utilization":38,"resets_at":"2026-09-23T15:00:00.000000+00:00"},
          "seven_day":{"utilization":12.5,"resets_at":"2026-09-27T00:00:00Z"},
@@ -26,10 +26,15 @@ final class ClaudeCollectionTests: XCTestCase {
          "seven_day_sonnet":null}
         """)
         let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: response))
-        XCTAssertEqual(quota.label, "Claude Opus Week")
-        XCTAssertEqual(quota.remainingPercent, 29)
-        XCTAssertEqual(quota.windowSeconds, 604_800)
-        XCTAssertEqual(quota.resetAt, ISO8601DateFormatter().date(from: "2026-09-27T00:00:00Z"))
+        XCTAssertEqual(quota.label, "Claude 5h")
+        XCTAssertEqual(quota.remainingPercent, 62)
+        XCTAssertEqual(quota.windowSeconds, 18_000)
+        let opus = try XCTUnwrap(quota.windows?.last)
+        XCTAssertEqual(opus.label, "Claude Opus Week")
+        XCTAssertEqual(opus.remainingPercent, 29)
+        XCTAssertEqual(opus.resetAt, ISO8601DateFormatter().date(from: "2026-09-27T00:00:00Z"))
+        XCTAssertEqual(quota.otherWindowsSummary(), "Weekly 88% · Opus 29%")
+        XCTAssertEqual(quota.otherWindowsSummary(short: true), "Wk 88% · Opus 29%")
     }
 
     func testScopedWeeklyLimitsAddFableAndKeepDisplayOrder() throws {
@@ -70,6 +75,13 @@ final class ClaudeCollectionTests: XCTestCase {
         """)
         let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: response))
         XCTAssertEqual(quota.windows?.map(\.label), ["Claude 5h", "Claude Week", "Claude Opus Week"])
+        XCTAssertEqual(quota.label, "Claude 5h")
+    }
+
+    func testTightestWindowIsTheHeadlineWithoutAFiveHourWindow() throws {
+        let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: usage("""
+        {"seven_day":{"utilization":20},"seven_day_opus":{"utilization":60}}
+        """)))
         XCTAssertEqual(quota.label, "Claude Opus Week")
     }
 
