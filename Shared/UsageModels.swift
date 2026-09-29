@@ -44,13 +44,35 @@ struct UsageValue<Value: Codable & Hashable & Sendable>: Codable, Hashable, Send
     }
 }
 
-struct CodexTokenTotals: Codable, Hashable, Sendable {
+/// Daily token totals shown with the "hide values from a previous day" policy.
+protocol DailyTokenTotals: Codable, Hashable, Sendable {
+    static var providerName: String { get }
+    var totalTokens: Int { get }
+}
+
+struct CodexTokenTotals: DailyTokenTotals {
+    static let providerName = "Codex"
+
     let totalTokens: Int
     let inputTokens: Int
     let cachedInputTokens: Int
     let outputTokens: Int
     let reasoningTokens: Int
     let sessionCount: Int
+}
+
+/// Claude's `input_tokens` excludes cache traffic, so the total adds both cache
+/// counters to match Codex's "input including cached + output" semantics.
+struct ClaudeTokenTotals: DailyTokenTotals {
+    static let providerName = "Claude"
+
+    let totalTokens: Int
+    let inputTokens: Int
+    let cacheCreationTokens: Int
+    let cacheReadTokens: Int
+    let outputTokens: Int
+    /// Estimated at API list prices; subscription plans are not billed per token.
+    let costUSD: Double?
 }
 
 struct CursorCostEvent: Codable, Hashable, Identifiable, Sendable {

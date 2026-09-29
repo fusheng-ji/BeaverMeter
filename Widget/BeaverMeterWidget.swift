@@ -4,6 +4,9 @@ import WidgetKit
 struct BeaverMeterEntry: TimelineEntry {
     let date: Date
     let snapshot: UsageSnapshot
+    var settings: ProviderSettings = .default
+
+    var providers: [MeterProvider] { settings.visibleProviders(in: snapshot) }
 }
 
 struct BeaverMeterProvider: TimelineProvider {
@@ -13,11 +16,12 @@ struct BeaverMeterProvider: TimelineProvider {
 
     func getSnapshot(in context: Context, completion: @escaping (BeaverMeterEntry) -> Void) {
         completion(BeaverMeterEntry(date: context.isPreview ? UsageSnapshot.previewDate : .now,
-                                   snapshot: context.isPreview ? .preview : .load()))
+                                   snapshot: context.isPreview ? .preview : .load(),
+                                   settings: context.isPreview ? .default : .load()))
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<BeaverMeterEntry>) -> Void) {
-        let entry = BeaverMeterEntry(date: .now, snapshot: .load())
+        let entry = BeaverMeterEntry(date: .now, snapshot: .load(), settings: .load())
         completion(Timeline(entries: [entry], policy: .after(.now.addingTimeInterval(5 * 60))))
     }
 }
@@ -31,7 +35,7 @@ struct BeaverMeterWidget: Widget {
             BeaverMeterWidgetView(entry: entry)
         }
         .configurationDisplayName("BeaverMeter")
-        .description("Codex, Cursor and DeepSeek usage at a glance.")
+        .description("AI coding usage and quotas at a glance.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
         .contentMarginsDisabled()
     }

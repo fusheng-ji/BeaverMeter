@@ -28,6 +28,31 @@ extension UsageSnapshot {
            snapshot.schemaVersion == Self.currentSchemaVersion {
             return snapshot
         }
+        // Version 5 had no Claude fields; keep its provider values as the
+        // stale fallback for the first refresh after an upgrade.
+        if let legacy = try? decoder.decode(SchemaV5.self, from: data), legacy.schemaVersion == 5 {
+            return UsageSnapshot(
+                schemaVersion: Self.currentSchemaVersion,
+                generatedAt: legacy.generatedAt,
+                codexTokens: legacy.codexTokens,
+                cursorCosts: legacy.cursorCosts,
+                cursorQuota: legacy.cursorQuota,
+                codexQuota: legacy.codexQuota,
+                claudeTokens: Self.unavailable.claudeTokens,
+                claudeQuota: Self.unavailable.claudeQuota,
+                deepseekUsage: legacy.deepseekUsage
+            )
+        }
         return nil
+    }
+
+    private struct SchemaV5: Decodable {
+        let schemaVersion: Int
+        let generatedAt: Date
+        let codexTokens: UsageValue<CodexTokenTotals>
+        let cursorCosts: UsageValue<CursorCostTotals>
+        let cursorQuota: UsageValue<CompactQuota>
+        let codexQuota: UsageValue<CompactQuota>
+        let deepseekUsage: UsageValue<DeepSeekUsageTotals>
     }
 }

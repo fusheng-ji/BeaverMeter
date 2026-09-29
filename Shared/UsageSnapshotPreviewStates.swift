@@ -2,12 +2,28 @@ import Foundation
 
 enum UsagePreviewScenario: String, CaseIterable {
     case normal, stale, unavailable, signedOut, error, refreshError, zero, largeValues, remoteUnavailable, longList
+    case codexClaudeOnly, withoutCursor
+
+    /// Service switches for layouts with fewer than four services.
+    var providerSettings: ProviderSettings {
+        var settings = ProviderSettings.default
+        switch self {
+        case .codexClaudeOnly:
+            settings[.cursor] = .hidden
+            settings[.deepseek] = .hidden
+        case .withoutCursor:
+            settings[.cursor] = .hidden
+        default:
+            break
+        }
+        return settings
+    }
 
     var snapshot: UsageSnapshot {
         let base = UsageSnapshot.preview
         let now = UsageSnapshot.previewDate
         switch self {
-        case .normal: return base
+        case .normal, .codexClaudeOnly, .withoutCursor: return base
         case .refreshError: return base
         case .stale: return .widgetStalePreview
         case .signedOut: return .widgetDeepSeekSignedOutPreview
@@ -18,6 +34,7 @@ enum UsagePreviewScenario: String, CaseIterable {
                 schemaVersion: UsageSnapshot.currentSchemaVersion, generatedAt: now,
                 codexTokens: empty(status, message: message), cursorCosts: empty(status, message: message),
                 cursorQuota: empty(status, message: message), codexQuota: empty(status, message: message),
+                claudeTokens: empty(status, message: message), claudeQuota: empty(status, message: message),
                 deepseekUsage: empty(status, message: message)
             )
         case .remoteUnavailable:
@@ -61,7 +78,9 @@ enum UsagePreviewScenario: String, CaseIterable {
                            cursorCosts: UsageValue<CursorCostTotals>? = nil) -> UsageSnapshot {
         UsageSnapshot(schemaVersion: base.schemaVersion, generatedAt: base.generatedAt,
                       codexTokens: codexTokens ?? base.codexTokens, cursorCosts: cursorCosts ?? base.cursorCosts,
-                      cursorQuota: base.cursorQuota, codexQuota: base.codexQuota, deepseekUsage: base.deepseekUsage)
+                      cursorQuota: base.cursorQuota, codexQuota: base.codexQuota,
+                      claudeTokens: base.claudeTokens, claudeQuota: base.claudeQuota,
+                      deepseekUsage: base.deepseekUsage)
     }
 }
 
@@ -91,6 +110,19 @@ extension UsageSnapshot {
                 lastAttemptAt: previewDate,
                 message: "Network unavailable.",
                 value: preview.codexQuota.value
+            ),
+            claudeTokens: UsageValue(
+                status: .stale, source: .cache, measuredAt: measuredAt, lastAttemptAt: previewDate,
+                message: "Indexing Claude sessions; today's total may increase on the next refresh.",
+                value: preview.claudeTokens.value
+            ),
+            claudeQuota: UsageValue(
+                status: .stale,
+                source: .cache,
+                measuredAt: measuredAt,
+                lastAttemptAt: previewDate,
+                message: "Network unavailable.",
+                value: preview.claudeQuota.value
             ),
             deepseekUsage: UsageValue(
                 status: .stale,
@@ -137,6 +169,26 @@ extension UsageSnapshot {
                 lastAttemptAt: previewDate,
                 message: nil,
                 value: codex.map {
+                    CompactQuota(
+                        label: $0.label,
+                        used: $0.used,
+                        limit: $0.limit,
+                        remaining: $0.remaining,
+                        remainingPercent: $0.remainingPercent,
+                        resetAt: nil,
+                        windowSeconds: $0.windowSeconds,
+                        detail: $0.detail
+                    )
+                }
+            ),
+            claudeTokens: preview.claudeTokens,
+            claudeQuota: UsageValue(
+                status: .ready,
+                source: .accountAPI,
+                measuredAt: previewDate,
+                lastAttemptAt: previewDate,
+                message: nil,
+                value: preview.claudeQuota.value.map {
                     CompactQuota(
                         label: $0.label,
                         used: $0.used,
@@ -208,6 +260,8 @@ extension UsageSnapshot {
             cursorCosts: base.cursorCosts,
             cursorQuota: base.cursorQuota,
             codexQuota: base.codexQuota,
+            claudeTokens: base.claudeTokens,
+            claudeQuota: base.claudeQuota,
             deepseekUsage: value
         )
     }

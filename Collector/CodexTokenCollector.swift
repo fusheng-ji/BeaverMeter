@@ -28,6 +28,16 @@ enum CodexTokenCollector {
             if let fixture = environment["CODEX_TOKEN_FIXTURE"] {
                 return value(try readTotalsFixture(fixture), now: now, complete: true, messages: [])
             }
+            // Without a local home or remote source, report no data rather than a
+            // zero that would make an absent Codex look installed.
+            guard FileManager.default.fileExists(atPath: CodexUsageSupport.homeURL(environment["CODEX_HOME"]).path)
+                    || CodexUsageSupport.nonempty(environment["CODEX_REMOTE_SSH_HOST"]) != nil
+            else {
+                return UsageValue(
+                    status: .unavailable, source: .none, measuredAt: nil, lastAttemptAt: now,
+                    message: "Run Codex once so local session logs are available.", value: nil
+                )
+            }
             let locations = CodexCacheLocations(snapshotURL: scanCacheURL ?? UsageSnapshot.snapshotURL)
             let aggregation = try CodexTokenAggregation.collect(
                 now: now,

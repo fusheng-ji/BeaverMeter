@@ -7,7 +7,9 @@ This project links `CodexBarCore` 0.56.5 from
 `07f2a670229bca1a34bb7eda5284c89657b8df9a`. Portions of Cursor
 authentication, usage-event decoding, pagination, and boundary reconciliation
 remain adapted from CodexBar commit
-`5d7c1f29fd11ecbf697b3532340f75b25319f811`.
+`5d7c1f29fd11ecbf697b3532340f75b25319f811`. Claude Code transcript scanning
+uses CodexBarCore directly, and the Claude quota request follows CodexBar's
+OAuth usage endpoint, headers and window mapping.
 
 DeepSeek browser-session import uses `ChromiumLocalStorageReader` from
 [SweetCookieKit](https://github.com/steipete/SweetCookieKit) commit

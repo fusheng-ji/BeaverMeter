@@ -179,3 +179,43 @@ struct QuotaLabel: View {
         .accessibilityElement(children: .combine)
     }
 }
+
+/// Auto shows a service once it has data on this Mac; On and Off override that.
+struct ServiceSettingsSection: View {
+    @ObservedObject var store: UsageStore
+
+    var body: some View {
+        DisclosureGroup {
+            VStack(spacing: 6) {
+                ForEach(MeterProvider.allCases, id: \.self) { provider in
+                    HStack {
+                        Text(provider.displayName)
+                            .font(.callout)
+                        if store.providerSettings[provider] == .auto, !store.snapshot.isDetected(provider) {
+                            Text("not detected")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Picker(provider.displayName, selection: Binding(
+                            get: { store.providerSettings[provider] },
+                            set: { store.setVisibility($0, for: provider) }
+                        )) {
+                            Text("Auto").tag(ProviderVisibility.auto)
+                            Text("On").tag(ProviderVisibility.shown)
+                            Text("Off").tag(ProviderVisibility.hidden)
+                        }
+                        .pickerStyle(.segmented)
+                        .labelsHidden()
+                        .fixedSize()
+                    }
+                }
+            }
+            .padding(.top, 6)
+        } label: {
+            Label("Services", systemImage: "slider.horizontal.3")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(.secondary)
+        }
+    }
+}

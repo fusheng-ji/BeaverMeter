@@ -4,6 +4,7 @@ import WidgetKit
 struct QuotaWidgetContent: View {
     let snapshot: UsageSnapshot
     let family: WidgetFamily
+    var providers: [MeterProvider] = MeterProvider.allCases
     var referenceDate: Date = .now
 
     var body: some View {
@@ -13,38 +14,54 @@ struct QuotaWidgetContent: View {
 
     @ViewBuilder
     private var layout: some View {
-        switch family {
-        case .systemSmall:
-            VStack(spacing: 5) {
-                panel(.codex, density: .strip)
-                    .frame(height: 56)
-                panel(.cursor, density: .strip)
-                deepSeekPanel(density: .strip)
-            }
-        case .systemMedium:
-            VStack(spacing: 7) {
-                HStack(spacing: 7) {
-                    panel(.codex, density: .compact)
-                    panel(.cursor, density: .compact)
+        if providers.isEmpty {
+            Text("No services are switched on. Choose Services in the BeaverMeter menu.")
+                .font(.system(size: 11, weight: .medium, design: .rounded))
+                .foregroundStyle(.white.opacity(0.62))
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            switch family {
+            case .systemSmall:
+                // Strips only when three or four services must share the tile.
+                let roomy = providers.count <= 2
+                VStack(spacing: roomy ? 6 : 4) {
+                    ForEach(providers, id: \.self) { provider in
+                        item(provider, quota: roomy ? .compact : .strip, deepSeek: roomy ? .regular : .strip)
+                    }
                 }
-                deepSeekPanel(density: .regular)
+            case .systemMedium:
+                grid(ProviderGridLayout.rows(providers), spacing: 7, quota: .compact, deepSeek: .regular)
+            case .systemLarge where providers.count <= 2:
+                // A square tile reads better as full-width rows than as two tall columns.
+                grid(providers.map { [$0] }, spacing: 12, quota: .regular, deepSeek: .regular)
+            default:
+                grid(ProviderGridLayout.rows(providers), spacing: 12, quota: .regular, deepSeek: .tall)
             }
-        case .systemLarge:
-            VStack(spacing: 12) {
-                HStack(spacing: 12) {
-                    panel(.codex, density: .regular)
-                    panel(.cursor, density: .regular)
+        }
+    }
+
+    private func grid(
+        _ rows: [[MeterProvider]], spacing: CGFloat, quota: QuotaPanelDensity, deepSeek: DeepSeekPanelDensity
+    ) -> some View {
+        VStack(spacing: spacing) {
+            ForEach(rows, id: \.self) { row in
+                HStack(spacing: spacing) {
+                    ForEach(row, id: \.self) { provider in
+                        item(provider, quota: quota, deepSeek: deepSeek)
+                    }
                 }
-                deepSeekPanel(density: .expanded)
             }
-        default:
-            VStack(spacing: 12) {
-                HStack(spacing: 12) {
-                    panel(.codex, density: .expanded)
-                    panel(.cursor, density: .expanded)
-                }
-                deepSeekPanel(density: .expanded)
-            }
+        }
+    }
+
+    @ViewBuilder
+    private func item(_ provider: MeterProvider, quota: QuotaPanelDensity, deepSeek: DeepSeekPanelDensity) -> some View {
+        switch provider {
+        case .codex: panel(.codex, density: quota)
+        case .claude: panel(.claude, density: quota)
+        case .cursor: panel(.cursor, density: quota)
+        case .deepseek: deepSeekPanel(density: deepSeek)
         }
     }
 
@@ -57,11 +74,24 @@ struct QuotaWidgetContent: View {
     }
 
     private func panel(_ provider: QuotaProviderKind, density: QuotaPanelDensity) -> some View {
-        QuotaProviderPanel(
+        let data: UsageValue<CompactQuota>
+        let dailyTokens: DailyTokenSummary?
+        switch provider {
+        case .codex:
+            data = snapshot.codexQuota
+            dailyTokens = CodexDailyTokenPresentation(snapshot.codexTokens, relativeTo: referenceDate).summary
+        case .claude:
+            data = snapshot.claudeQuota
+            dailyTokens = ClaudeDailyTokenPresentation(snapshot.claudeTokens, relativeTo: referenceDate).summary
+        case .cursor:
+            data = snapshot.cursorQuota
+            dailyTokens = nil
+        }
+        return QuotaProviderPanel(
             provider: provider,
-            data: provider == .codex ? snapshot.codexQuota : snapshot.cursorQuota,
+            data: data,
             density: density,
-            dailyTokens: provider == .codex ? snapshot.codexTokens : nil,
+            dailyTokens: dailyTokens,
             referenceDate: referenceDate
         )
     }

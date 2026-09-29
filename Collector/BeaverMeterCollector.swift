@@ -17,8 +17,9 @@ struct BeaverMeterCollector {
         do {
             let lock = try SnapshotWriter.lock(for: outputURL)
             defer { lock.unlock() }
-            if CommandLine.arguments.contains("--codex-only") {
-                try await refreshCodexOnly(outputURL: outputURL)
+            // `--codex-only` predates Claude support; installed apps still pass it.
+            if CommandLine.arguments.contains("--codex-only") || CommandLine.arguments.contains("--local-tokens") {
+                try await refreshLocalTokens(outputURL: outputURL)
             } else {
                 try await refreshAll(outputURL: outputURL)
             }
@@ -31,22 +32,31 @@ struct BeaverMeterCollector {
         let previous = SnapshotWriter.loadPrevious(from: outputURL)
         let now = Date()
         let scanCacheURL = codexScanCacheURL(for: outputURL)
+        let settings = providerSettings(for: outputURL)
 
-        async let codexTokens = CodexTokenCollector.collect(
-            previous: previous.codexTokens,
-            now: now,
-            scanCacheURL: scanCacheURL
-        )
-        async let codexQuota = CodexQuotaCollector.collect(previous: previous.codexQuota, now: now)
-        async let cursor = CursorUsageCollector.collect(
-            previousCosts: previous.cursorCosts,
-            previousQuota: previous.cursorQuota,
-            now: now
-        )
-        async let deepseekUsage = DeepSeekUsageCollector.collect(
-            previous: previous.deepseekUsage,
-            now: now
-        )
+        // Services switched off keep their previous values and are never contacted.
+        async let codexTokens = settings.collects(.codex)
+            ? await CodexTokenCollector.collect(previous: previous.codexTokens, now: now, scanCacheURL: scanCacheURL)
+            : previous.codexTokens
+        async let codexQuota = settings.collects(.codex)
+            ? await CodexQuotaCollector.collect(previous: previous.codexQuota, now: now)
+            : previous.codexQuota
+        async let claudeTokens = settings.collects(.claude)
+            ? await ClaudeTokenCollector.collect(
+                previous: previous.claudeTokens, now: now, cacheRoot: claudeCostCacheRoot(for: outputURL)
+            )
+            : previous.claudeTokens
+        async let claudeQuota = settings.collects(.claude)
+            ? await ClaudeQuotaCollector.collect(previous: previous.claudeQuota, now: now)
+            : previous.claudeQuota
+        async let cursor = settings.collects(.cursor)
+            ? await CursorUsageCollector.collect(
+                previousCosts: previous.cursorCosts, previousQuota: previous.cursorQuota, now: now
+            )
+            : (costs: previous.cursorCosts, quota: previous.cursorQuota)
+        async let deepseekUsage = settings.collects(.deepseek)
+            ? await DeepSeekUsageCollector.collect(previous: previous.deepseekUsage, now: now)
+            : previous.deepseekUsage
 
         let (resolvedCodexTokens, resolvedCodexQuota, resolvedCursor, resolvedDeepSeek) = await (
             codexTokens,
@@ -54,6 +64,7 @@ struct BeaverMeterCollector {
             cursor,
             deepseekUsage
         )
+        let (resolvedClaudeTokens, resolvedClaudeQuota) = await (claudeTokens, claudeQuota)
         let snapshot = UsageSnapshot(
             schemaVersion: UsageSnapshot.currentSchemaVersion,
             generatedAt: now,
@@ -61,6 +72,8 @@ struct BeaverMeterCollector {
             cursorCosts: resolvedCursor.costs,
             cursorQuota: resolvedCursor.quota,
             codexQuota: resolvedCodexQuota,
+            claudeTokens: resolvedClaudeTokens,
+            claudeQuota: resolvedClaudeQuota,
             deepseekUsage: resolvedDeepSeek
         )
 
@@ -68,19 +81,24 @@ struct BeaverMeterCollector {
         print(outputURL.path)
     }
 
-    private static func refreshCodexOnly(outputURL: URL) async throws {
+    /// The App's frequent refresh: only the local token scans, never account APIs.
+    private static func refreshLocalTokens(outputURL: URL) async throws {
         let previous = SnapshotWriter.loadPrevious(from: outputURL)
         let now = Date()
-        let codexTokens = await CodexTokenCollector.collect(
-            previous: previous.codexTokens,
-            now: now,
-            scanCacheURL: codexScanCacheURL(for: outputURL)
-        )
-        let sameDay = previous.codexTokens.measuredAt.map { Calendar.current.isDate($0, inSameDayAs: now) } ?? false
-        guard !sameDay
-                || previous.codexTokens.status != codexTokens.status
-                || previous.codexTokens.message != codexTokens.message
-                || previous.codexTokens.value != codexTokens.value
+        let settings = providerSettings(for: outputURL)
+        async let codexTokens = settings.collects(.codex)
+            ? await CodexTokenCollector.collect(
+                previous: previous.codexTokens, now: now, scanCacheURL: codexScanCacheURL(for: outputURL)
+            )
+            : previous.codexTokens
+        async let claudeTokens = settings.collects(.claude)
+            ? await ClaudeTokenCollector.collect(
+                previous: previous.claudeTokens, now: now, cacheRoot: claudeCostCacheRoot(for: outputURL)
+            )
+            : previous.claudeTokens
+        let (resolvedCodexTokens, resolvedClaudeTokens) = await (codexTokens, claudeTokens)
+        guard isChanged(previous.codexTokens, resolvedCodexTokens, now: now)
+                || isChanged(previous.claudeTokens, resolvedClaudeTokens, now: now)
         else {
             print(outputURL.path)
             return
@@ -89,18 +107,43 @@ struct BeaverMeterCollector {
         let snapshot = UsageSnapshot(
             schemaVersion: UsageSnapshot.currentSchemaVersion,
             generatedAt: now,
-            codexTokens: codexTokens,
+            codexTokens: resolvedCodexTokens,
             cursorCosts: previous.cursorCosts,
             cursorQuota: previous.cursorQuota,
             codexQuota: previous.codexQuota,
+            claudeTokens: resolvedClaudeTokens,
+            claudeQuota: previous.claudeQuota,
             deepseekUsage: previous.deepseekUsage
         )
         try SnapshotWriter.write(snapshot, to: outputURL)
         print(outputURL.path)
     }
 
+    /// A same-day identical reading is not rewritten, so widgets are not reloaded needlessly.
+    private static func isChanged<Value>(_ previous: UsageValue<Value>, _ current: UsageValue<Value>, now: Date) -> Bool {
+        let sameDay = previous.measuredAt.map { Calendar.current.isDate($0, inSameDayAs: now) }
+            ?? (current.measuredAt == nil)
+        return !sameDay
+            || previous.status != current.status
+            || previous.message != current.message
+            || previous.value != current.value
+    }
+
+    /// Settings live beside the snapshot, so test outputs use their own switches.
+    private static func providerSettings(for outputURL: URL) -> ProviderSettings {
+        ProviderSettings.load(
+            from: outputURL.deletingLastPathComponent().appendingPathComponent(ProviderSettings.settingsURL.lastPathComponent)
+        )
+    }
+
     private static func codexScanCacheURL(for outputURL: URL) -> URL {
         CodexCacheLocations(snapshotURL: outputURL).local
+    }
+
+    /// BeaverMeter keeps its own CodexBarCore index instead of sharing CodexBar.app's cache.
+    private static func claudeCostCacheRoot(for outputURL: URL) -> URL {
+        ProcessInfo.processInfo.environment["CLAUDE_TOKEN_CACHE_ROOT"].map { URL(fileURLWithPath: $0) }
+            ?? outputURL.deletingLastPathComponent().appendingPathComponent("claude-cost-usage", isDirectory: true)
     }
 
     private static func importDeepSeekBrowserSession() async {

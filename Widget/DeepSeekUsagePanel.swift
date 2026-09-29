@@ -3,7 +3,23 @@ import SwiftUI
 enum DeepSeekPanelDensity {
     case strip
     case regular
-    case expanded
+    /// Half of a Large widget: matches the regular quota panels beside it.
+    case tall
+
+    var padding: CGFloat {
+        switch self {
+        case .strip, .regular: 6
+        case .tall: 12
+        }
+    }
+
+    var valueSize: CGFloat {
+        switch self {
+        case .strip: 17
+        case .regular: 20
+        case .tall: 30
+        }
+    }
 }
 
 struct DeepSeekUsagePanel: View {
@@ -28,7 +44,7 @@ struct DeepSeekUsagePanel: View {
                 standardBody
             }
         }
-        .padding(density == .expanded ? 16 : 6)
+        .padding(density.padding)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background {
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
@@ -74,28 +90,42 @@ struct DeepSeekUsagePanel: View {
     }
 
     private var standardBody: some View {
-        VStack(alignment: .leading, spacing: density == .expanded ? 9 : 2) {
+        VStack(alignment: .leading, spacing: density == .tall ? 6 : 2) {
             header
             HStack(alignment: .firstTextBaseline, spacing: 6) {
                 Text(UsageFormatting.money(primaryBalance))
-                    .font(.system(size: density == .expanded ? 40 : 20, weight: .bold, design: .rounded))
+                    .font(.system(size: density.valueSize, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .foregroundStyle(.white)
                     .lineLimit(1)
                     .minimumScaleFactor(0.62)
-                Text("balance")
-                    .font(.system(size: density == .expanded ? 13 : 9, weight: .semibold, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.52))
+                if density != .tall {
+                    Text("balance")
+                        .font(.system(size: 9, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.52))
+                }
                 Spacer(minLength: 0)
             }
 
-            HStack(spacing: density == .expanded ? 18 : 10) {
-                metric("MONTH COST", UsageFormatting.moneyList(usage?.monthCosts ?? []))
-                metric("TOKENS", UsageFormatting.tokens(usage?.monthTokens))
-                metric("REQUESTS", usage?.monthRequests?.formatted() ?? "—")
+            if density == .tall {
+                VStack(spacing: 5) {
+                    Text("Balance")
+                        .font(.system(size: 10, weight: .medium, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.62))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    metricRow("Month cost", UsageFormatting.moneyList(usage?.monthCosts ?? []))
+                    metricRow("Tokens", UsageFormatting.tokens(usage?.monthTokens))
+                    metricRow("Requests", usage?.monthRequests?.formatted() ?? "—")
+                }
+            } else {
+                HStack(spacing: 10) {
+                    metric("MONTH COST", UsageFormatting.moneyList(usage?.monthCosts ?? []))
+                    metric("TOKENS", UsageFormatting.tokens(usage?.monthTokens))
+                    metric("REQUESTS", usage?.monthRequests?.formatted() ?? "—")
+                }
             }
 
-            if density == .expanded {
+            if density == .tall {
                 additionalBalances
             }
         }
@@ -104,15 +134,15 @@ struct DeepSeekUsagePanel: View {
     private var header: some View {
         HStack(spacing: 6) {
             Image(systemName: "waveform.path.ecg.rectangle")
-                .font(.system(size: density == .expanded ? 13 : 10, weight: .bold))
+                .font(.system(size: 10, weight: .bold))
                 .foregroundStyle(accent)
             Text("DEEPSEEK")
-                .font(.system(size: density == .expanded ? 12 : 9, weight: .bold, design: .rounded))
+                .font(.system(size: 9, weight: .bold, design: .rounded))
                 .tracking(0.8)
                 .foregroundStyle(.white.opacity(0.88))
             Spacer(minLength: 4)
             Label(status.label, systemImage: status.icon)
-                .font(.system(size: density == .expanded ? 10 : 8, weight: .semibold, design: .rounded))
+                .font(.system(size: 8, weight: .semibold, design: .rounded))
                 .foregroundStyle(status.widgetColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
@@ -122,16 +152,32 @@ struct DeepSeekUsagePanel: View {
     private func metric(_ label: String, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 1) {
             Text(label)
-                .font(.system(size: density == .expanded ? 9 : 7, weight: .bold, design: .rounded))
+                .font(.system(size: 7, weight: .bold, design: .rounded))
                 .foregroundStyle(.white.opacity(0.45))
             Text(value)
-                .font(.system(size: density == .expanded ? 13 : 10, weight: .semibold, design: .rounded))
+                .font(.system(size: 10, weight: .semibold, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(.white.opacity(0.82))
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func metricRow(_ label: String, _ value: String) -> some View {
+        HStack(spacing: 6) {
+            Text(label)
+                .foregroundStyle(.white.opacity(0.52))
+                .lineLimit(1)
+            Spacer(minLength: 4)
+            Text(value)
+                .fontWeight(.semibold)
+                .monospacedDigit()
+                .foregroundStyle(.white.opacity(0.82))
+                .lineLimit(1)
+                .fixedSize()
+        }
+        .font(.system(size: 10, weight: .medium, design: .rounded))
     }
 
     @ViewBuilder

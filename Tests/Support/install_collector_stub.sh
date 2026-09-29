@@ -5,5 +5,5 @@ if [[ "${BM_TEST_FAIL:-}" == collector ]]; then
   print -r -- changed-by-failed-collection > "${1:h}/new-scan-cache.json"
   exit 16
 fi
-printf '{"schemaVersion":5}\n' > "$1"
+printf '{"schemaVersion":6}\n' > "$1"
 chmod 600 "$1"

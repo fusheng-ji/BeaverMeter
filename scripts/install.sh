@@ -160,6 +160,9 @@ chmod 700 "$config_dir"
   printf 'BEAVERMETER_DEVELOPMENT_TEAM=%q\n' "$team_id"
   printf 'BEAVERMETER_BUNDLE_PREFIX=%q\n' "$bundle_prefix"
   printf 'BEAVERMETER_REFRESH_MINUTES=%q\n' "$refresh_minutes"
+  # Optional Claude overrides are edited by hand and kept across upgrades.
+  [[ -z "${CLAUDE_CONFIG_DIR:-}" ]] || printf 'CLAUDE_CONFIG_DIR=%q\n' "$CLAUDE_CONFIG_DIR"
+  [[ -z "${CLAUDE_KEYCHAIN_ACCESS:-}" ]] || printf 'CLAUDE_KEYCHAIN_ACCESS=%q\n' "$CLAUDE_KEYCHAIN_ACCESS"
 } > "$config_path"
 chmod 600 "$config_path"
 
@@ -177,8 +180,8 @@ bm_unregister_other_apps
 bm_register_app "$installed_app"
 "$installed_app/Contents/Resources/collect_beaver_meter.sh" "$snapshot_path" >/dev/null
 schema_version="$(/usr/bin/plutil -extract schemaVersion raw -o - "$snapshot_path" 2>/dev/null || true)"
-if [[ "$schema_version" != "5" ]]; then
-  print -u2 "BeaverMeter did not produce a schema v5 snapshot."
+if [[ "$schema_version" != "6" ]]; then
+  print -u2 "BeaverMeter did not produce a schema v6 snapshot."
   exit 1
 fi
 bm_run codesign --verify --deep --strict "$installed_app"

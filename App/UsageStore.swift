@@ -33,6 +33,7 @@ enum DeepSeekConnectionState: Equatable {
 @MainActor
 final class UsageStore: ObservableObject {
     @Published private(set) var snapshot: UsageSnapshot
+    @Published private(set) var providerSettings: ProviderSettings
     @Published private var refreshSchedule = RefreshSchedule()
     @Published private(set) var refreshError: String?
     @Published private(set) var deepSeekConnectionState: DeepSeekConnectionState = .idle
@@ -46,8 +47,13 @@ final class UsageStore: ObservableObject {
 
     var isRefreshing: Bool { refreshSchedule.showsFullRefresh }
 
-    init(snapshot: UsageSnapshot = .load(), observesSnapshotChanges: Bool = true) {
+    init(
+        snapshot: UsageSnapshot = .load(),
+        providerSettings: ProviderSettings = .load(),
+        observesSnapshotChanges: Bool = true
+    ) {
         self.snapshot = snapshot
+        self.providerSettings = providerSettings
         allowsLiveUpdates = observesSnapshotChanges
         if observesSnapshotChanges {
             snapshotObservationTask = Task { @MainActor [weak self] in
@@ -90,30 +96,55 @@ final class UsageStore: ObservableObject {
         WidgetCenter.shared.reloadAllTimelines()
     }
 
+    var visibleProviders: [MeterProvider] {
+        providerSettings.visibleProviders(in: snapshot)
+    }
+
+    func setVisibility(_ visibility: ProviderVisibility, for provider: MeterProvider) {
+        let wasCollected = providerSettings.collects(provider)
+        providerSettings[provider] = visibility
+        guard allowsLiveUpdates else { return }
+        do {
+            try providerSettings.save()
+        } catch {
+            refreshError = "Could not save service settings: \(error.localizedDescription)"
+        }
+        WidgetCenter.shared.reloadAllTimelines()
+        // A service switched back on has no fresh value until it is collected.
+        if !wasCollected, providerSettings.collects(provider) { refresh() }
+    }
+
     var menuBarText: String {
-        let values = menuBarValues
-        return "\(values.tokens) · C \(values.latestCost) · D \(values.deepSeekBalance)"
+        let text = visibleProviders.map(menuBarSegment).joined(separator: " · ")
+        return text.isEmpty ? "BeaverMeter" : text
     }
 
     var menuBarAccessibilityText: String {
-        let values = menuBarValues
-        let codex = CodexDailyTokenPresentation(snapshot.codexTokens)
-        return "\(codex.accessibilityText), Cursor latest call \(values.latestCost), " +
-            "DeepSeek balance \(values.deepSeekBalance)"
+        visibleProviders.map { provider in
+            switch provider {
+            case .codex: CodexDailyTokenPresentation(snapshot.codexTokens).accessibilityText
+            case .claude: ClaudeDailyTokenPresentation(snapshot.claudeTokens).accessibilityText
+            case .cursor: "Cursor latest call \(cursorLatestCost)"
+            case .deepseek: "DeepSeek balance \(deepSeekBalance)"
+            }
+        }.joined(separator: ", ")
     }
 
-    private var menuBarValues: (tokens: String, latestCost: String, deepSeekBalance: String) {
-        (
-            CodexDailyTokenPresentation(snapshot.codexTokens).value,
-            UsageFormatting.usd(
-                snapshot.cursorCosts.value?.latestEvent?.costUSD,
-                minimumDigits: 2,
-                maximumDigits: 3
-            ),
-            UsageFormatting.money(
-                UsageFormatting.firstValidMoney(snapshot.deepseekUsage.value?.balances ?? [])
-            )
-        )
+    private func menuBarSegment(_ provider: MeterProvider) -> String {
+        switch provider {
+        case .codex: CodexDailyTokenPresentation(snapshot.codexTokens).value
+        case .claude: "✳︎ " + ClaudeDailyTokenPresentation(snapshot.claudeTokens).value
+        case .cursor: "C " + cursorLatestCost
+        case .deepseek: "D " + deepSeekBalance
+        }
+    }
+
+    private var cursorLatestCost: String {
+        UsageFormatting.usd(snapshot.cursorCosts.value?.latestEvent?.costUSD, minimumDigits: 2, maximumDigits: 3)
+    }
+
+    private var deepSeekBalance: String {
+        UsageFormatting.money(UsageFormatting.firstValidMoney(snapshot.deepseekUsage.value?.balances ?? []))
     }
 
     var isConnectingDeepSeek: Bool {

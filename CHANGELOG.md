@@ -6,6 +6,23 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [5.2.0] - 2026-09-29
+
+### Added
+
+- **Services** switches (Auto / On / Off) in the popover. Auto shows a service
+  once it has data on this Mac; Off stops collecting it entirely. The menu bar,
+  popover and every Widget family adapt to the visible services, and the
+  popover shrinks to fit. Codex without a local home now reports no data
+  instead of a zero total.
+- Claude Code usage beside Codex, modelled on CodexBar: today's tokens from
+  local Claude transcripts (via CodexBarCore, with cache write/read and an
+  API-rate cost estimate) and the tightest five-hour or weekly quota window
+  from Claude Code's own sign-in. The menu bar, popover and every Widget family
+  show Claude; medium and larger Widgets now use a 2×2 layout.
+- Snapshot schema v6 adds `claudeTokens` and `claudeQuota`; schema v5 snapshots
+  are upgraded in place so other providers keep their stale fallback.
+
 ### Changed
 
 - Local Codex logs now scan in bounded chunks and remote logs stream line by

@@ -13,10 +13,14 @@ struct PreviewRenderer {
         for scenario in UsagePreviewScenario.allCases {
             let suffix = scenario == .normal ? "" : "-\(scenario.rawValue)"
             let snapshot = scenario.snapshot
-            let height: CGFloat = scenario == .longList ? 1_550 : scenario == .refreshError ? 960 : 820
+            let height = UsageMenuView.fittedHeight(
+                for: scenario.providerSettings.visibleProviders(in: snapshot),
+                maxHeight: scenario == .longList ? 1_850 : scenario == .refreshError ? 1_260 : 1_120
+            )
             for scheme in [ColorScheme.dark, .light] {
                 let menu = UsageMenuView(
-                    store: UsageStore(snapshot: snapshot, observesSnapshotChanges: false),
+                    store: UsageStore(snapshot: snapshot, providerSettings: scenario.providerSettings,
+                                      observesSnapshotChanges: false),
                     automaticRefresh: false,
                     scrollsContent: false,
                     updatedDescriptionOverride: "from demo data",
@@ -35,7 +39,9 @@ struct PreviewRenderer {
                 (.systemLarge, CGSize(width: 352, height: 352), "large"),
                 (.systemExtraLarge, CGSize(width: 710, height: 352), "extra-large")
             ] {
-                let view = QuotaWidgetContent(snapshot: snapshot, family: family, referenceDate: UsageSnapshot.previewDate)
+                let view = QuotaWidgetContent(snapshot: snapshot, family: family,
+                                              providers: scenario.providerSettings.visibleProviders(in: snapshot),
+                                              referenceDate: UsageSnapshot.previewDate)
                     .background(QuotaWidgetBackground())
                     .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                 render(view, size: size, colorScheme: .dark,

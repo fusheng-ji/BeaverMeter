@@ -93,6 +93,38 @@ extension UsageSnapshot {
                     detail: "Demo data · 60% left"
                 )
             ),
+            claudeTokens: UsageValue(
+                status: .ready,
+                source: .preview,
+                measuredAt: now,
+                lastAttemptAt: now,
+                message: nil,
+                value: ClaudeTokenTotals(
+                    totalTokens: 250_000,
+                    inputTokens: 20_000,
+                    cacheCreationTokens: 30_000,
+                    cacheReadTokens: 190_000,
+                    outputTokens: 10_000,
+                    costUSD: 0.42
+                )
+            ),
+            claudeQuota: UsageValue(
+                status: .ready,
+                source: .preview,
+                measuredAt: now,
+                lastAttemptAt: now,
+                message: nil,
+                value: CompactQuota(
+                    label: "Claude 5h",
+                    used: nil,
+                    limit: nil,
+                    remaining: nil,
+                    remainingPercent: 72,
+                    resetAt: now.addingTimeInterval(2 * 3_600 + 15 * 60),
+                    windowSeconds: 18_000,
+                    detail: "Demo data · 72% left"
+                )
+            ),
             deepseekUsage: UsageValue(
                 status: .ready,
                 source: .preview,

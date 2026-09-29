@@ -119,14 +119,16 @@ run_installer
 (
   source "$task_data/config.env"
   [[ -z "$CODEX_REMOTE_SSH_HOST" && -z "$CODEX_REMOTE_ROOT" && -z "$CODEX_REMOTE_PYTHON" ]]
+  [[ -z "${CLAUDE_CONFIG_DIR:-}" && -z "${CLAUDE_KEYCHAIN_ACCESS:-}" ]]
 )
 
 prepare_case enabled
-print -r -- 'CODEX_REMOTE_SSH_HOST=remote-box' >> "$task_data/config.env"
+print -r -- 'CODEX_REMOTE_SSH_HOST=remote-box' 'CLAUDE_CONFIG_DIR=/custom/claude' 'CLAUDE_KEYCHAIN_ACCESS=0' >> "$task_data/config.env"
 run_installer
 (
   source "$task_data/config.env"
   [[ "$CODEX_REMOTE_SSH_HOST" == remote-box && "$CODEX_REMOTE_ROOT" == /saved/codex && "$CODEX_REMOTE_PYTHON" == /saved/python3 ]]
+  [[ "$CLAUDE_CONFIG_DIR" == /custom/claude && "$CLAUDE_KEYCHAIN_ACCESS" == 0 ]]
 )
 
 # Repair and uninstall use the same isolated lifecycle operations.

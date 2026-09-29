@@ -2,16 +2,36 @@ import Foundation
 import XCTest
 
 final class UsageSnapshotTests: XCTestCase {
-    func testVersionFiveSnapshotRoundTrips() throws {
+    func testVersionSixSnapshotRoundTrips() throws {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let decoded = try XCTUnwrap(UsageSnapshot.decode(encoder.encode(UsageSnapshot.preview)))
 
-        XCTAssertEqual(decoded.schemaVersion, 5)
+        XCTAssertEqual(decoded.schemaVersion, 6)
         XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
+        XCTAssertEqual(decoded.claudeTokens.value?.cacheReadTokens, 190_000)
+        XCTAssertEqual(decoded.claudeQuota.value?.windowSeconds, 18_000)
         XCTAssertEqual(decoded.cursorCosts.value?.recentEvents.count, 3)
         XCTAssertNil(decoded.cursorQuota.value?.used)
         XCTAssertEqual(decoded.deepseekUsage.value?.monthTokens, 2_400_000)
+    }
+
+    func testVersionFiveSnapshotKeepsProviderValuesWithoutClaude() throws {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        var object = try XCTUnwrap(
+            JSONSerialization.jsonObject(with: encoder.encode(UsageSnapshot.preview)) as? [String: Any]
+        )
+        object["schemaVersion"] = 5
+        object["claudeTokens"] = nil
+        object["claudeQuota"] = nil
+
+        let decoded = try XCTUnwrap(UsageSnapshot.decode(JSONSerialization.data(withJSONObject: object)))
+        XCTAssertEqual(decoded.schemaVersion, 6)
+        XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
+        XCTAssertEqual(decoded.deepseekUsage.value?.monthTokens, 2_400_000)
+        XCTAssertEqual(decoded.claudeTokens.status, .unavailable)
+        XCTAssertNil(decoded.claudeQuota.value)
     }
 
     func testLegacySnapshotVersionsAreRejected() throws {

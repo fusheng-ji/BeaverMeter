@@ -17,7 +17,6 @@ struct UsageMenuView: View {
             header
             Divider()
             content
-            Divider()
             quotaFooter
             if let error = refreshErrorOverride ?? store.refreshError {
                 Label(error, systemImage: "exclamationmark.triangle.fill")
@@ -31,13 +30,30 @@ struct UsageMenuView: View {
             Divider()
             actions
         }
-        .frame(width: 410, height: viewHeight)
+        .frame(width: 410, height: fittedHeight)
         .onAppear {
             if automaticRefresh { store.refreshIfNeeded() }
         }
         .onReceive(timer) { _ in
             if automaticRefresh { store.refreshIfNeeded(force: true) }
         }
+    }
+
+    private var fittedHeight: CGFloat {
+        Self.fittedHeight(for: store.visibleProviders, maxHeight: viewHeight)
+    }
+
+    /// Fewer services shrink the popover instead of leaving an empty scroll area;
+    /// larger content keeps the requested height and scrolls.
+    static func fittedHeight(for providers: [MeterProvider], maxHeight: CGFloat) -> CGFloat {
+        let sections = providers.reduce(CGFloat(0)) { total, provider in
+            switch provider {
+            case .codex, .claude: total + 135
+            case .cursor: total + 340
+            case .deepseek: total + 270
+            }
+        }
+        return min(maxHeight, 235 + sections)
     }
 
     @ViewBuilder
@@ -51,14 +67,25 @@ struct UsageMenuView: View {
 
     private var sections: some View {
         VStack(spacing: 14) {
-            codexSection
+            ForEach(Array(store.visibleProviders.enumerated()), id: \.element) { index, provider in
+                if index > 0 { Divider() }
+                section(for: provider)
+            }
             Divider()
-            cursorSection
-            Divider()
-            deepseekSection
+            ServiceSettingsSection(store: store)
         }
         .padding(16)
         .frame(maxHeight: .infinity, alignment: .top)
+    }
+
+    @ViewBuilder
+    private func section(for provider: MeterProvider) -> some View {
+        switch provider {
+        case .codex: codexSection
+        case .claude: claudeSection
+        case .cursor: cursorSection
+        case .deepseek: deepseekSection
+        }
     }
 
     private var header: some View {
@@ -118,6 +145,45 @@ struct UsageMenuView: View {
                 SectionMessage(message: dailyCodexTokens.message, status: dailyCodexTokens.status)
             } else {
                 EmptyState(message: dailyCodexTokens.message ?? "No Codex token data yet.")
+            }
+        }
+    }
+
+    private var dailyClaudeTokens: UsageValue<ClaudeTokenTotals> {
+        ClaudeDailyTokenPresentation(store.snapshot.claudeTokens, relativeTo: presentationDate).data
+    }
+
+    private var claudeSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            UsageSectionHeader(title: "Claude today", systemImage: "asterisk", tint: .orange,
+                               value: dailyClaudeTokens, referenceDate: presentationDate)
+            if let tokens = dailyClaudeTokens.value {
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text(UsageFormatting.tokens(tokens.totalTokens))
+                        .font(.system(size: 36, weight: .semibold, design: .rounded))
+                        .monospacedDigit()
+                        .accessibilityLabel("\(tokens.totalTokens.formatted()) tokens today")
+                    Text("tokens")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    // Unpriced models (newer than CodexBarCore's table) leave the estimate out.
+                    if let cost = tokens.costUSD {
+                        Text("≈ \(UsageFormatting.usd(cost, minimumDigits: 2, maximumDigits: 2)) at API rates")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
+                    }
+                }
+                HStack(spacing: 10) {
+                    TokenMetric(label: "Input", value: tokens.inputTokens)
+                    TokenMetric(label: "Cache write", value: tokens.cacheCreationTokens)
+                    TokenMetric(label: "Cache read", value: tokens.cacheReadTokens)
+                    TokenMetric(label: "Output", value: tokens.outputTokens)
+                }
+                SectionMessage(message: dailyClaudeTokens.message, status: dailyClaudeTokens.status)
+            } else {
+                EmptyState(message: dailyClaudeTokens.message ?? "No Claude token data yet.")
             }
         }
     }
@@ -250,14 +316,38 @@ struct UsageMenuView: View {
         }
     }
 
+    /// DeepSeek has a balance rather than a quota window, so it has no footer entry.
+    private var quotaProviders: [MeterProvider] {
+        store.visibleProviders.filter { $0 != .deepseek }
+    }
+
+    @ViewBuilder
     private var quotaFooter: some View {
-        HStack(spacing: 12) {
-            QuotaLabel(systemImage: "cursorarrow", tint: .indigo, value: store.snapshot.cursorQuota, referenceDate: presentationDate)
-            Divider().frame(height: 28)
-            QuotaLabel(systemImage: "sparkles", tint: .teal, value: store.snapshot.codexQuota, referenceDate: presentationDate)
+        if !quotaProviders.isEmpty {
+            Divider()
+            HStack(spacing: 12) {
+                ForEach(Array(quotaProviders.enumerated()), id: \.element) { index, provider in
+                    if index > 0 { Divider().frame(height: 28) }
+                    quotaLabel(for: provider)
+                }
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 10)
+    }
+
+    @ViewBuilder
+    private func quotaLabel(for provider: MeterProvider) -> some View {
+        switch provider {
+        case .codex:
+            QuotaLabel(systemImage: "sparkles", tint: .teal, value: store.snapshot.codexQuota, referenceDate: presentationDate)
+        case .claude:
+            QuotaLabel(systemImage: "asterisk", tint: .orange, value: store.snapshot.claudeQuota, referenceDate: presentationDate)
+        case .cursor:
+            QuotaLabel(systemImage: "cursorarrow", tint: .indigo, value: store.snapshot.cursorQuota, referenceDate: presentationDate)
+        case .deepseek:
+            EmptyView()
+        }
     }
 
     private var actions: some View {
@@ -276,7 +366,7 @@ struct UsageMenuView: View {
 
 #Preview("Menu popover") {
     UsageMenuView(
-        store: UsageStore(snapshot: .preview, observesSnapshotChanges: false),
+        store: UsageStore(snapshot: .preview, providerSettings: .default, observesSnapshotChanges: false),
         automaticRefresh: false,
         scrollsContent: false,
         updatedDescriptionOverride: "from demo data",

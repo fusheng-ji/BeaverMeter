@@ -52,14 +52,18 @@ struct UsageStatusPresentation: Equatable {
     }
 }
 
-struct CodexDailyTokenPresentation {
-    let data: UsageValue<CodexTokenTotals>
+typealias CodexDailyTokenPresentation = DailyTokenPresentation<CodexTokenTotals>
+typealias ClaudeDailyTokenPresentation = DailyTokenPresentation<ClaudeTokenTotals>
+
+/// Today's token total, with values measured on a previous day hidden.
+struct DailyTokenPresentation<Totals: DailyTokenTotals> {
+    let data: UsageValue<Totals>
     let value: String
     let accessibilityText: String
     let status: UsageStatusPresentation
     let warningLabel: String
 
-    init(_ original: UsageValue<CodexTokenTotals>, relativeTo now: Date = .now, calendar: Calendar = .current) {
+    init(_ original: UsageValue<Totals>, relativeTo now: Date = .now, calendar: Calendar = .current) {
         if original.source != .preview,
            let measuredAt = original.measuredAt,
            !calendar.isDate(measuredAt, inSameDayAs: now) {
@@ -74,6 +78,19 @@ struct CodexDailyTokenPresentation {
         warningLabel = data.message?.localizedCaseInsensitiveContains("remote") == true
             ? "Remote" : status.label
         let count = data.value.map { "\($0.totalTokens.formatted()) tokens" } ?? "unavailable"
-        accessibilityText = "Codex today, \(count), \(status.detail)"
+        accessibilityText = "\(Totals.providerName) today, \(count), \(status.detail)"
     }
+
+    var summary: DailyTokenSummary {
+        DailyTokenSummary(value: value, accessibilityText: accessibilityText,
+                          status: status, warningLabel: warningLabel)
+    }
+}
+
+/// Provider-independent daily token line for compact widget panels.
+struct DailyTokenSummary: Equatable {
+    let value: String
+    let accessibilityText: String
+    let status: UsageStatusPresentation
+    let warningLabel: String
 }

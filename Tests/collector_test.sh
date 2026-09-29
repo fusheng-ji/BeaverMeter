@@ -12,7 +12,11 @@ test_dir="$(mktemp -d "${TMPDIR:-/tmp}/cursor-codex-tests.XXXXXX")"
 # missing database/file in the individual case below.
 unset CODEX_REMOTE_SSH_HOST CODEX_REMOTE_ROOT CODEX_REMOTE_PYTHON CODEX_REMOTE_RESPONSE_FIXTURE BEAVERMETER_SSH
 unset DEEPSEEK_PLATFORM_TOKEN CODEX_HOME CODEX_TOKEN_FIXTURE CODEX_LEGACY_TOKEN_FIXTURE CURSOR_STATE_DB
+unset CLAUDE_TOKEN_FIXTURE CLAUDE_TOKEN_CACHE_ROOT CLAUDE_KEYCHAIN_ACCESS
 export CODEX_USAGE_FIXTURE="$fixtures/codex-pro-week.json"
+export CLAUDE_USAGE_FIXTURE="$fixtures/claude-usage.json"
+# A missing Claude home keeps every case away from the real ~/.claude logs.
+export CLAUDE_CONFIG_DIR="$test_dir/missing-claude-home"
 export DEEPSEEK_SUMMARY_FIXTURE="$fixtures/deepseek-summary.json"
 export DEEPSEEK_USAGE_FIXTURE="$fixtures/deepseek-usage.json"
 
@@ -36,12 +40,20 @@ CURSOR_EVENTS_FIXTURE="$fixtures/cursor-events-v3.json" \
 CURSOR_SUMMARY_FIXTURE="$fixtures/cursor-summary-v3.json" \
 CODEX_TOKEN_FIXTURE="$fixtures/codex-token-totals.json" \
 CODEX_USAGE_FIXTURE="$fixtures/codex-pro-week.json" \
+CLAUDE_TOKEN_FIXTURE="$fixtures/claude-token-totals.json" \
 DEEPSEEK_SUMMARY_FIXTURE="$fixtures/deepseek-summary.json" \
 DEEPSEEK_USAGE_FIXTURE="$fixtures/deepseek-usage.json" \
   "$collector" --output "$snapshot" >/dev/null
 
 jq -e '
-  .schemaVersion == 5 and
+  .schemaVersion == 6 and
+  .claudeTokens.status == "ready" and
+  .claudeTokens.value.totalTokens == 2500 and
+  .claudeTokens.value.cacheReadTokens == 1900 and
+  .claudeQuota.status == "ready" and
+  .claudeQuota.value.label == "Claude Opus Week" and
+  .claudeQuota.value.remainingPercent == 29 and
+  .claudeQuota.value.windowSeconds == 604800 and
   .codexTokens.status == "ready" and
   .codexTokens.value.totalTokens == 1000 and
   .codexTokens.value.inputTokens == 900 and
@@ -189,14 +201,14 @@ jq '
   }
 ' "$live_snapshot" > "$test_dir/live-zero-snapshot.json"
 mv "$test_dir/live-zero-snapshot.json" "$live_snapshot"
-jq '{cursorCosts,cursorQuota,codexQuota,deepseekUsage}' "$live_snapshot" > "$test_dir/providers-before.json"
+jq '{cursorCosts,cursorQuota,codexQuota,claudeQuota,deepseekUsage}' "$live_snapshot" > "$test_dir/providers-before.json"
 
 print -r -- \
   "{\"type\":\"token_usage_record\",\"timestamp\":\"$timestamp\",\"payload\":{\"response_id\":\"private-response-one\",\"session_id\":\"private-session\",\"usage\":{\"input_tokens\":100,\"cached_input_tokens\":20,\"output_tokens\":10,\"reasoning_output_tokens\":3,\"total_tokens\":110}}}" \
   > "$live_file"
 CODEX_HOME="$live_home" "$collector" --codex-only --output "$live_snapshot" >/dev/null
 jq -e '.codexTokens.value.totalTokens == 110 and .codexTokens.value.sessionCount == 1' "$live_snapshot" >/dev/null
-jq '{cursorCosts,cursorQuota,codexQuota,deepseekUsage}' "$live_snapshot" > "$test_dir/providers-after.json"
+jq '{cursorCosts,cursorQuota,codexQuota,claudeQuota,deepseekUsage}' "$live_snapshot" > "$test_dir/providers-after.json"
 cmp "$test_dir/providers-before.json" "$test_dir/providers-after.json"
 [[ "$(stat -f '%Lp' "$live_cache")" == "600" ]]
 if rg -q 'private-response|private-session|rollout-live-only|codex-home' "$live_cache"; then
@@ -332,7 +344,7 @@ for index in 1 2 3; do
   full_pid=$!
   wait "$codex_pid" "$full_pid"
   jq -e '
-    .schemaVersion == 5 and
+    .schemaVersion == 6 and
     .cursorCosts.status == "ready" and
     .cursorQuota.status == "ready" and
     .codexQuota.status == "ready" and
@@ -387,5 +399,52 @@ jq -e '
   .deepseekUsage.value.monthTokens == 1400000 and
   (.deepseekUsage.message | contains("changed format"))
 ' "$snapshot" >/dev/null
+
+# Claude transcripts are scanned by CodexBarCore on the local-token refresh.
+# Streamed chunks of one message are counted once, cache traffic is part of
+# the total, and a home without transcripts reports no data instead of zero.
+claude_home="$test_dir/claude-home"
+claude_snapshot="$test_dir/claude-snapshot.json"
+claude_file="$claude_home/projects/-private-project/private-session.jsonl"
+mkdir -p "${claude_file:h}" "$test_dir/claude-codex-home/sessions"
+print -rl -- \
+  "{\"type\":\"assistant\",\"timestamp\":\"$timestamp\",\"requestId\":\"req_one\",\"sessionId\":\"private-session\",\"message\":{\"id\":\"msg_one\",\"model\":\"claude-sonnet-4-5-20250929\",\"stop_reason\":null,\"usage\":{\"input_tokens\":10,\"cache_creation_input_tokens\":20,\"cache_read_input_tokens\":300,\"output_tokens\":2}}}" \
+  "{\"type\":\"assistant\",\"timestamp\":\"$timestamp\",\"requestId\":\"req_one\",\"sessionId\":\"private-session\",\"message\":{\"id\":\"msg_one\",\"model\":\"claude-sonnet-4-5-20250929\",\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":10,\"cache_creation_input_tokens\":20,\"cache_read_input_tokens\":300,\"output_tokens\":5}}}" \
+  "{\"type\":\"assistant\",\"timestamp\":\"$timestamp\",\"requestId\":\"req_two\",\"sessionId\":\"private-session\",\"message\":{\"id\":\"msg_two\",\"model\":\"claude-sonnet-4-5-20250929\",\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":1,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":100,\"output_tokens\":4}}}" \
+  > "$claude_file"
+CLAUDE_CONFIG_DIR="$claude_home" \
+CODEX_HOME="$test_dir/claude-codex-home" \
+  "$collector" --local-tokens --output "$claude_snapshot" >/dev/null
+jq -e '
+  .schemaVersion == 6 and
+  .claudeTokens.status == "ready" and
+  .claudeTokens.value.totalTokens == 440 and
+  .claudeTokens.value.inputTokens == 11 and
+  .claudeTokens.value.cacheCreationTokens == 20 and
+  .claudeTokens.value.cacheReadTokens == 400 and
+  .claudeTokens.value.outputTokens == 9 and
+  .claudeTokens.value.costUSD > 0
+' "$claude_snapshot" >/dev/null
+if rg -q 'private-session|private-project|msg_one|req_one' "$claude_snapshot"; then
+  print -u2 "Snapshot leaked a Claude transcript identifier."
+  exit 1
+fi
+CODEX_HOME="$test_dir/claude-codex-home" "$collector" --local-tokens --output "$claude_snapshot" >/dev/null
+jq -e '.claudeTokens.status == "unavailable" and .claudeTokens.value == null' "$claude_snapshot" >/dev/null
+
+# Services switched off in the App are not contacted and keep their values:
+# the missing Cursor database and DeepSeek fixture would otherwise mark them stale.
+hidden_dir="$test_dir/hidden-services"
+mkdir -p "$hidden_dir"
+cp "$snapshot" "$hidden_dir/snapshot.json"
+print -r -- '{"visibility":{"cursor":"hidden","deepseek":"hidden"}}' > "$hidden_dir/beaver-meter-settings.json"
+jq '{cursorCosts,cursorQuota,deepseekUsage}' "$hidden_dir/snapshot.json" > "$hidden_dir/before.json"
+CURSOR_STATE_DB="$test_dir/missing-cursor.vscdb" \
+CODEX_TOKEN_FIXTURE="$fixtures/codex-token-totals.json" \
+DEEPSEEK_USAGE_FIXTURE="$test_dir/missing-deepseek-usage.json" \
+  "$collector" --output "$hidden_dir/snapshot.json" >/dev/null
+jq '{cursorCosts,cursorQuota,deepseekUsage}' "$hidden_dir/snapshot.json" > "$hidden_dir/after.json"
+cmp "$hidden_dir/before.json" "$hidden_dir/after.json"
+jq -e '.codexTokens.status == "ready" and .claudeQuota.status == "ready"' "$hidden_dir/snapshot.json" >/dev/null
 
 print "Collector fixture tests passed."

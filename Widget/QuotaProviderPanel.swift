@@ -2,11 +2,13 @@ import SwiftUI
 
 enum QuotaProviderKind {
     case codex
+    case claude
     case cursor
 
     var name: String {
         switch self {
         case .codex: "CODEX"
+        case .claude: "CLAUDE"
         case .cursor: "CURSOR"
         }
     }
@@ -14,6 +16,7 @@ enum QuotaProviderKind {
     var icon: String {
         switch self {
         case .codex: "sparkles"
+        case .claude: "asterisk"
         case .cursor: "cursorarrow"
         }
     }
@@ -21,6 +24,7 @@ enum QuotaProviderKind {
     var accent: Color {
         switch self {
         case .codex: Color(red: 0.20, green: 0.88, blue: 0.75)
+        case .claude: Color(red: 0.93, green: 0.51, blue: 0.36)
         case .cursor: Color(red: 0.48, green: 0.42, blue: 1.00)
         }
     }
@@ -31,14 +35,12 @@ enum QuotaPanelDensity {
     case strip
     case compact
     case regular
-    case expanded
 
     var padding: CGFloat {
         switch self {
         case .strip: 6
         case .compact: 6
         case .regular: 12
-        case .expanded: 16
         }
     }
 
@@ -47,7 +49,6 @@ enum QuotaPanelDensity {
         case .strip: 2
         case .compact: 2
         case .regular: 6
-        case .expanded: 8
         }
     }
 
@@ -56,7 +57,6 @@ enum QuotaPanelDensity {
         case .strip: 17
         case .compact: 20
         case .regular: 30
-        case .expanded: 42
         }
     }
 }
@@ -65,7 +65,7 @@ struct QuotaProviderPanel: View {
     let provider: QuotaProviderKind
     let data: UsageValue<CompactQuota>
     let density: QuotaPanelDensity
-    var dailyTokens: UsageValue<CodexTokenTotals>?
+    var dailyTokens: DailyTokenSummary?
     var referenceDate: Date = .now
 
     private var quota: CompactQuota? { data.value }
@@ -83,7 +83,7 @@ struct QuotaProviderPanel: View {
 
     private var valueText: String {
         switch provider {
-        case .codex:
+        case .codex, .claude:
             guard let remainingPercent else { return "—" }
             return "\(Int(remainingPercent.rounded()))%"
         case .cursor:
@@ -96,12 +96,21 @@ struct QuotaProviderPanel: View {
         switch provider {
         case .codex:
             return quotaPeriod(windowSeconds: quota.windowSeconds)
+        case .claude:
+            let period = quotaPeriod(windowSeconds: quota.windowSeconds)
+            return modelScope.map { "\($0) \(period.lowercased())" } ?? period
         case .cursor:
             if let used = quota.used, let limit = quota.limit {
                 return "\(UsageFormatting.usdCode(used)) / \(UsageFormatting.usdCode(limit))"
             }
             return quota.detail.isEmpty ? "Monthly quota" : quota.detail
         }
+    }
+
+    /// Claude's model-scoped weekly lanes share the 7-day window with the overall lane.
+    private var modelScope: String? {
+        guard provider == .claude, let label = quota?.label else { return nil }
+        return ["Opus", "Sonnet"].first { label.contains($0) }
     }
 
     private var status: UsageStatusPresentation { UsageStatusPresentation(data, relativeTo: referenceDate) }
@@ -128,7 +137,7 @@ struct QuotaProviderPanel: View {
         .accessibilityLabel(
             "\(provider.name), \(valueText) remaining, \(detailText), " +
                 "\(UsageFormatting.resetCountdown(quota?.resetAt, relativeTo: referenceDate)), \(status.detail)" +
-                (dailyTokens.map { ", " + CodexDailyTokenPresentation($0, relativeTo: referenceDate).accessibilityText } ?? "")
+                (dailyTokens.map { ", " + $0.accessibilityText } ?? "")
         )
         .help(status.detail)
     }
@@ -152,8 +161,8 @@ struct QuotaProviderPanel: View {
                     .minimumScaleFactor(0.65)
             }
             HStack(spacing: 4) {
-                Image(systemName: status.icon)
-                Text(status.severity == .normal ? detailText : status.label)
+                Image(systemName: stripStatus.icon)
+                Text(stripDetailText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.65)
                 Spacer(minLength: 2)
@@ -161,9 +170,30 @@ struct QuotaProviderPanel: View {
                     .frame(width: 42, height: 3)
             }
             .font(.system(size: 7, weight: .semibold, design: .rounded))
-            .foregroundStyle(status.widgetColor)
-            dailyTokenLine
+            .foregroundStyle(stripStatus.widgetColor)
         }
+    }
+
+    /// Strips fold today's tokens into the detail line so four providers fit a Small widget.
+    private var stripStatus: UsageStatusPresentation {
+        if status.severity == .normal, let dailyTokens, dailyTokens.status.severity != .normal {
+            return dailyTokens.status
+        }
+        return status
+    }
+
+    private var stripDetailText: String {
+        guard status.severity == .normal else { return status.label }
+        guard let dailyTokens else { return detailText }
+        guard dailyTokens.status.severity == .normal else {
+            return "\(dailyTokens.value) tok · \(dailyTokens.warningLabel)"
+        }
+        let period = switch quota?.windowSeconds {
+        case 18_000: "5h"
+        case 604_800: modelScope.map { "\($0) week" } ?? "Week"
+        default: detailText
+        }
+        return "\(period) · \(dailyTokens.value) tok today"
     }
 
     private var standardBody: some View {
@@ -173,7 +203,7 @@ struct QuotaProviderPanel: View {
 
             if density != .compact {
                 Text(detailText)
-                    .font(.system(size: density == .expanded ? 12 : 10, weight: .medium, design: .rounded))
+                    .font(.system(size: 10, weight: .medium, design: .rounded))
                     .foregroundStyle(.white.opacity(0.62))
                     .lineLimit(1)
             }
@@ -188,7 +218,7 @@ struct QuotaProviderPanel: View {
             } else {
                 resetLine
                 QuotaProgressBar(percent: remainingPercent, tint: progressColor)
-                    .frame(height: density == .expanded ? 6 : 4)
+                    .frame(height: 4)
             }
             dailyTokenLine
         }
@@ -197,15 +227,15 @@ struct QuotaProviderPanel: View {
     private var header: some View {
         HStack(spacing: 6) {
             Image(systemName: provider.icon)
-                .font(.system(size: density == .expanded ? 13 : 10, weight: .bold))
+                .font(.system(size: 10, weight: .bold))
                 .foregroundStyle(provider.accent)
             Text(provider.name)
-                .font(.system(size: density == .expanded ? 12 : 9, weight: .bold, design: .rounded))
+                .font(.system(size: 9, weight: .bold, design: .rounded))
                 .tracking(0.8)
                 .foregroundStyle(.white.opacity(0.88))
             Spacer(minLength: 4)
             Label(status.label, systemImage: status.icon)
-                .font(.system(size: density == .expanded ? 10 : 8, weight: .semibold, design: .rounded))
+                .font(.system(size: 8, weight: .semibold, design: .rounded))
                 .foregroundStyle(status.widgetColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
@@ -222,7 +252,7 @@ struct QuotaProviderPanel: View {
                 .minimumScaleFactor(0.7)
             if density != .regular {
                 Text("remaining")
-                    .font(.system(size: density == .expanded ? 13 : 9, weight: .semibold, design: .rounded))
+                    .font(.system(size: 9, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white.opacity(0.52))
             }
             Spacer(minLength: 0)
@@ -236,14 +266,13 @@ struct QuotaProviderPanel: View {
             Text(UsageFormatting.resetCountdown(quota?.resetAt, relativeTo: referenceDate))
                 .lineLimit(1)
         }
-        .font(.system(size: density == .expanded ? 11 : 8, weight: .semibold, design: .rounded))
+        .font(.system(size: 8, weight: .semibold, design: .rounded))
         .foregroundStyle(.white.opacity(0.70))
     }
 
     @ViewBuilder
     private var dailyTokenLine: some View {
-        if let dailyTokens {
-            let presentation = CodexDailyTokenPresentation(dailyTokens, relativeTo: referenceDate)
+        if let presentation = dailyTokens {
             HStack(spacing: 3) {
                 Text("Today")
                 Text("\(presentation.value) tok").fontWeight(.semibold).monospacedDigit()
@@ -254,7 +283,7 @@ struct QuotaProviderPanel: View {
                     Text(presentation.warningLabel).foregroundStyle(presentation.status.widgetColor)
                 }
             }
-            .font(.system(size: density == .strip ? 8 : density == .expanded ? 11 : 9, weight: .medium))
+            .font(.system(size: density == .strip ? 8 : 9, weight: .medium))
             .foregroundStyle(.white.opacity(0.78))
             .lineLimit(1)
             .minimumScaleFactor(0.85)

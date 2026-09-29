@@ -51,6 +51,19 @@ final class UsagePresentationTests: XCTestCase {
         XCTAssertTrue(presentation.status.detail.contains("awaiting refresh"))
     }
 
+    func testClaudeTokensShareTheDailyPolicy() {
+        let calendar = Calendar(identifier: .gregorian)
+        let today = UsageSnapshot.preview.claudeTokens
+        let presentation = ClaudeDailyTokenPresentation(today, relativeTo: now, calendar: calendar)
+        XCTAssertEqual(presentation.value, "250K")
+        XCTAssertTrue(presentation.accessibilityText.hasPrefix("Claude today, 250,000 tokens"))
+
+        let yesterday = UsageValue(status: .ready, source: .codexBarLocal,
+                                   measuredAt: now.addingTimeInterval(-2 * 86_400), lastAttemptAt: now,
+                                   message: nil, value: today.value)
+        XCTAssertNil(ClaudeDailyTokenPresentation(yesterday, relativeTo: now, calendar: calendar).data.value)
+    }
+
     func testTokenZeroAndUnavailableRemainDistinct() {
         let zero = UsageValue(status: .ready, source: .codexBarLocal, measuredAt: now,
                               lastAttemptAt: now, message: nil,

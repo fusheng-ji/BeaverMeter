@@ -4,43 +4,58 @@
 
 <h1 align="center">BeaverMeter</h1>
 
-<p align="center">Usage monitoring for Codex, Cursor, and DeepSeek</p>
+<p align="center">Usage monitoring for Codex, Claude Code, Cursor, and DeepSeek</p>
 
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-000000?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
   <a href="https://www.swift.org/"><img src="https://img.shields.io/badge/Swift-5.0%20%2F%206.0-F05138?style=flat-square&amp;logo=swift&amp;logoColor=white" alt="Swift 5.0 / 6.0"></a>
-  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.1.1-4C7CF3?style=flat-square" alt="Version 5.1.1"></a>
+  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.2.0-4C7CF3?style=flat-square" alt="Version 5.2.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square" alt="MIT License"></a>
 </p>
 
 BeaverMeter is a native macOS menu-bar app and WidgetKit extension that keeps
-Codex token activity and quota, Cursor model-call costs and Monthly allowance,
-and DeepSeek monthly usage and wallet balance in one place.
+Codex and Claude Code token activity and quota, Cursor model-call costs and
+Monthly allowance, and DeepSeek monthly usage and wallet balance in one place.
 
 See [CHANGELOG.md](CHANGELOG.md) for the problem addressed by every verifiable
 release.
 
 ## Interface
 
-The menu bar shows Codex tokens, Cursor's latest actual charge and DeepSeek's
-wallet balance in one compact line. The popover expands this into Codex input,
-cached input, output and reasoning totals; Cursor's daily actual charge and the
-latest 20 model calls; and DeepSeek balance, current-month cost, tokens and
-requests.
+The menu bar shows Codex tokens, Claude tokens (`✳︎`), Cursor's latest actual
+charge and DeepSeek's wallet balance in one compact line. The popover expands
+this into Codex input, cached input, output and reasoning totals; Claude input,
+cache write, cache read and output totals with an API-rate cost estimate;
+Cursor's daily actual charge and the latest 20 model calls; and DeepSeek
+balance, current-month cost, tokens and requests.
 
-The Widget adapts the three provider panels to every supported family:
+The Widget adapts the four provider panels to every supported family:
 
-Codex's allowance stays the primary value; its **Today** line shows the same
-local-plus-remote daily token total as the menu. Token freshness is independent
+Codex's and Claude's allowances stay the primary values; their **Today** lines
+show the same daily token totals as the menu. Token freshness is independent
 of quota freshness, so a failed remote scan is visible even when the quota API
 is healthy. Unknown values show `—`, while a successful empty day shows `0`.
 
 | Family | Layout |
 | --- | --- |
-| Small | Three compact Codex, Cursor and DeepSeek rows |
-| Medium | Codex/Cursor side by side, DeepSeek across the bottom |
-| Large | 2×2 layout with DeepSeek across the bottom |
-| Extra Large | Large layout plus real model details when available |
+| Small | One row per service; with one or two services, larger panels |
+| Medium | Services in pairs; an odd service out spans the bottom row |
+| Large | Pairs with reset times, progress and DeepSeek details; one or two services stack full width |
+| Extra Large | Large layout with wider panels |
+
+### Services
+
+Every layout adapts to the services you actually use. Each service is set to
+**Auto** by default and appears once it has produced data on this Mac, so a
+missing Cursor install or an unconnected DeepSeek account leaves no empty
+panel. Open **Services** at the bottom of the popover to force a service
+**On** (for example to connect DeepSeek) or **Off**. Services switched off are
+not contacted at all. The switches are stored in
+`~/Library/Application Support/BeaverMeter/beaver-meter-settings.json`, which
+the Widget and collector read too.
+
+Examples: [three services, Medium](screenshots/widget-medium-three-services.png)
+and [two services, Large](screenshots/widget-large-two-services.png).
 
 <table>
   <tr>
@@ -121,6 +136,22 @@ invalidates that source's old totals.
 The displayed total is `input + output`. Cached input is part of input and
 reasoning is part of output, so neither detail is counted twice.
 
+### Claude tokens
+
+The same CodexBarCore scanner reads Claude Code transcripts from
+`$CLAUDE_CONFIG_DIR/projects` when that variable is set, otherwise from
+`~/.config/claude/projects`, `~/.claude/projects` and Claude Desktop's local
+Claude Code stores. Streamed chunks of one message are counted once by
+message and request ID, and the day follows the local time zone. BeaverMeter
+keeps its own scan index in
+`~/Library/Application Support/BeaverMeter/claude-cost-usage/`.
+
+Claude's `input_tokens` excludes cache traffic, so the displayed total is
+`input + cache write + cache read + output`. The cost is an estimate at API
+list prices from CodexBarCore's bundled price table; it is hidden for models
+the table does not know yet and is not what a Pro or Max subscription is
+billed. A machine without Claude transcripts shows no data rather than `0`.
+
 ### Cursor call costs and Monthly usage
 
 The collector reads Cursor's existing local sign-in token from `state.vscdb`,
@@ -153,6 +184,25 @@ https://chatgpt.com/backend-api/wham/usage
 Windows are identified by `limit_window_seconds`; the window with the least
 remaining allowance becomes the Widget summary. Credits-only responses show a
 balance, unlimited or exhausted state without inventing a percentage.
+
+### Claude quota
+
+The Claude quota reuses Claude Code's own sign-in and requests the windows
+shown by Claude Code's `/usage`:
+
+```text
+https://api.anthropic.com/api/oauth/usage
+```
+
+The five-hour, weekly and model-scoped weekly (Opus or Sonnet) windows are
+compared and the one with the least remaining allowance becomes the Widget
+summary. The access token is read from `~/.claude/.credentials.json` (or
+`$CLAUDE_CONFIG_DIR/.credentials.json`), otherwise from the login Keychain
+item `Claude Code-credentials` through `/usr/bin/security`, which is how
+Claude Code writes it. BeaverMeter never refreshes the token, because that
+would rotate the refresh token Claude Code depends on; an expired sign-in is
+shown as **Sign in** until the `claude` CLI refreshes it. Set
+`CLAUDE_KEYCHAIN_ACCESS=0` in `config.env` to skip the Keychain entirely.
 
 ### DeepSeek usage and balance
 
@@ -191,28 +241,31 @@ BeaverMeter refreshes on launch, whenever the popover opens, on manual refresh
 and every five minutes through its LaunchAgent. The Widget requests a matching
 five-minute timeline, subject to WidgetKit scheduling.
 
-While the app is running, Codex activity refreshes every 45 seconds through the
-same collector service used by full refreshes. These activity polls do not call
+While the app is running, Codex and Claude activity refresh every 45 seconds
+through the same collector service used by full refreshes. These activity polls do not call
 the other providers or the quota APIs. Overlapping app requests are coalesced;
 collectors serialize snapshot writes, and the app reloads Widget timelines only
 when it adopts a newer snapshot.
 
-Codex tokens, Cursor costs, Cursor quota, Codex quota and DeepSeek usage refresh
-independently. If one source fails, its latest successful value stays visible
+Codex tokens, Claude tokens, Cursor costs, Cursor quota, Codex quota, Claude
+quota and DeepSeek usage refresh independently. If one source fails, its latest successful value stays visible
 as stale while the others continue updating. Cache older than three hours gets
 a strong warning; missing live data is never replaced with preview data.
 
-The snapshot remains schema v5. Snapshots from schema v2-v4 are rejected and
-regenerated by the next refresh.
+The snapshot is schema v6, which adds the Claude values. A schema v5 snapshot
+is read with Claude marked unavailable, so upgrades keep the other providers'
+stale fallback. Snapshots from schema v2-v4 are rejected and regenerated by the
+next refresh.
 
 ## Privacy
 
-- Cursor and Codex credentials come from existing local sessions and remain in
-  collector memory. The validated DeepSeek browser token is stored locally with
+- Cursor, Codex and Claude Code credentials come from existing local sessions
+  and remain in collector memory. The validated DeepSeek browser token is stored locally with
   mode `600` for background refresh.
 - The snapshot contains no authentication tokens, cookies, user/team/conversation IDs, prompts
   or response content.
-- HTTP requests use `cursor.com`, `chatgpt.com` and `platform.deepseek.com`,
+- HTTP requests use `cursor.com`, `chatgpt.com`, `api.anthropic.com` and
+  `platform.deepseek.com`,
   require successful responses, validate response shape and use finite timeouts.
   Optional SSH traffic goes only to the configured host, with non-interactive
   authentication, an eight-second connection timeout and a 30-second total timeout.
@@ -226,6 +279,7 @@ regenerated by the next refresh.
 - macOS 14 or newer
 - Cursor signed in locally
 - Codex desktop app or CLI used locally
+- Claude Code used locally (optional; signed in for the quota)
 - Full Xcode at `/Applications/Xcode.app`
 - [XcodeGen](https://github.com/yonaskolb/XcodeGen)
 
@@ -248,6 +302,10 @@ SSH host alias, absolute remote Codex directory and absolute Python executable
 path. Upgrades retain the existing values, including a disabled source. These
 settings are stored in the private `config.env` as `CODEX_REMOTE_SSH_HOST`,
 `CODEX_REMOTE_ROOT` and `CODEX_REMOTE_PYTHON`.
+
+Claude needs no installer questions. To use a non-default Claude Code
+directory, add `CLAUDE_CONFIG_DIR=/path` to `config.env`; upgrades keep it and
+`CLAUDE_KEYCHAIN_ACCESS`.
 
 Building completes before the installer stops the running app or agent. During
 replacement it keeps a rollback copy of the app, agent and data; validation
@@ -307,19 +365,24 @@ Collector fixture overrides:
 ```text
 CODEX_TOKEN_FIXTURE
 CODEX_USAGE_FIXTURE
+CLAUDE_TOKEN_FIXTURE
+CLAUDE_USAGE_FIXTURE
 CURSOR_EVENTS_FIXTURE
 CURSOR_SUMMARY_FIXTURE
 DEEPSEEK_USAGE_FIXTURE
 DEEPSEEK_SUMMARY_FIXTURE
 CURSOR_STATE_DB
 CODEX_TOKEN_CACHE_ROOT
+CLAUDE_TOKEN_CACHE_ROOT
+CLAUDE_CONFIG_DIR
 CODEX_REMOTE_RESPONSE_FIXTURE
 ```
 
-Coverage includes schema v5 round trips, status presentation, refresh request
+Coverage includes schema v6 round trips and v5 upgrades, status presentation, refresh request
 coalescing, private atomic writes, subprocess timeout and large stdio, mixed
 Codex formats and cross-host deduplication, rollover and partial records,
-unreadable sources, remote failure/recovery, quota-window selection, tolerant
+unreadable sources, remote failure/recovery, Codex and Claude quota-window
+selection, Claude transcript deduplication, tolerant
 Cursor number decoding, actual-charge totals, independent stale fallback,
 migration/configuration preservation and installer rollback. Tests use isolated
 fixtures and fake SSH/system commands rather than real account sessions.
@@ -329,6 +392,11 @@ fixtures and fake SSH/system commands rather than real account sessions.
 - **Cursor says Sign in:** open Cursor, confirm the intended account is active,
   then refresh.
 - **Codex has no token data:** run at least one local Codex session and refresh.
+- **Claude has no token data:** run Claude Code once, or set `CLAUDE_CONFIG_DIR`
+  in `config.env` if it uses a non-default directory.
+- **Claude quota says Sign in:** Claude Code's saved token has expired. Run the
+  `claude` CLI once (or `/login` inside it) so it refreshes the token, then
+  refresh BeaverMeter.
 - **Remote Codex is missing:** verify that the configured SSH alias works in a
   non-interactive terminal and that the remote Codex and Python paths still exist.
   If Codex has moved its home, update `CODEX_REMOTE_ROOT` to the new path; active
@@ -337,7 +405,7 @@ fixtures and fake SSH/system commands rather than real account sessions.
   on the official page. Safari may request Automation permission; enable both
   developer settings described above, then use **Check now**.
 - **Data is stale:** inspect `~/Library/Logs/BeaverMeter/` and verify access to
-  `cursor.com`, `chatgpt.com` and `platform.deepseek.com`.
+  `cursor.com`, `chatgpt.com`, `api.anthropic.com` and `platform.deepseek.com`.
 - **Widget is blank, stale, missing or duplicated:** run
   `./scripts/repair_widget.sh`. The script removes conflicting registrations,
   restarts the WidgetKit caches and relaunches BeaverMeter. Add the Widget again
@@ -346,9 +414,9 @@ fixtures and fake SSH/system commands rather than real account sessions.
 ## Project structure
 
 - `App/` — app entry, state and menu popover
-- `Collector/` — Codex, Cursor and DeepSeek clients and snapshot writer
+- `Collector/` — Codex, Claude, Cursor and DeepSeek clients and snapshot writer
 - `Widget/` — timeline provider, adaptive panels and previews
-- `Shared/` — schema v5 models, loading and formatters
+- `Shared/` — schema v6 models, loading and formatters
 - `Tests/` — Swift tests, migration test and network-free fixtures
 - `PreviewRenderer/` — deterministic screenshot generator
 - `Design/Logo/` — BeaverMeter logo master

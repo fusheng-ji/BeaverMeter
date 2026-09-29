@@ -6,7 +6,7 @@ struct BeaverMeterWidgetView: View {
     @Environment(\.widgetFamily) private var family
 
     var body: some View {
-        QuotaWidgetContent(snapshot: entry.snapshot, family: family, referenceDate: entry.date)
+        QuotaWidgetContent(snapshot: entry.snapshot, family: family, providers: entry.providers, referenceDate: entry.date)
             .containerBackground(for: .widget) {
                 QuotaWidgetBackground()
             }
