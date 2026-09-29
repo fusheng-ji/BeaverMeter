@@ -253,3 +253,43 @@ private struct VisibilityControl: View {
         }
     }
 }
+
+/// One quota window, for services whose response has several (Claude).
+struct QuotaWindowRow: View {
+    let window: CompactQuota
+    let tint: Color
+    var referenceDate: Date = .now
+
+    private var percent: Double? { UsageFormatting.clampedPercent(window.remainingPercent) }
+    private var barTint: Color {
+        guard let percent else { return tint }
+        return percent < 20 ? .red : percent < 50 ? .orange : tint
+    }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Text(window.windowTitle)
+                .font(.caption.weight(.semibold))
+                .frame(width: 92, alignment: .leading)
+                .lineLimit(1)
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    Capsule().fill(Color.primary.opacity(0.1))
+                    Capsule().fill(barTint).frame(width: proxy.size.width * (percent ?? 0) / 100)
+                }
+            }
+            .frame(height: 5)
+            .accessibilityHidden(true)
+            Text("\(window.percentLeftText) left")
+                .font(.caption.weight(.semibold))
+                .monospacedDigit()
+                .frame(width: 58, alignment: .trailing)
+            Text(UsageFormatting.resetCountdown(window.resetAt, relativeTo: referenceDate))
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .frame(width: 104, alignment: .trailing)
+                .lineLimit(1)
+        }
+        .accessibilityElement(children: .combine)
+    }
+}

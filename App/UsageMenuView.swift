@@ -41,17 +41,22 @@ struct UsageMenuView: View {
     }
 
     private var fittedHeight: CGFloat {
-        Self.fittedHeight(for: store.visibleProviders, maxHeight: viewHeight, servicesExpanded: servicesExpanded)
+        Self.fittedHeight(
+            for: store.visibleProviders, maxHeight: viewHeight, servicesExpanded: servicesExpanded,
+            claudeWindowCount: store.snapshot.claudeQuota.value?.windows?.count ?? 0
+        )
     }
 
     /// Fewer services shrink the popover instead of leaving an empty scroll area;
     /// larger content keeps the requested height and scrolls.
     static func fittedHeight(
-        for providers: [MeterProvider], maxHeight: CGFloat, servicesExpanded: Bool = false
+        for providers: [MeterProvider], maxHeight: CGFloat, servicesExpanded: Bool = false,
+        claudeWindowCount: Int = 0
     ) -> CGFloat {
         let sections = providers.reduce(CGFloat(0)) { total, provider in
             switch provider {
-            case .codex, .claude: total + 135
+            case .codex: total + 135
+            case .claude: total + 135 + 24 * CGFloat(claudeWindowCount)
             case .cursor: total + 340
             case .deepseek: total + 270
             }
@@ -187,6 +192,14 @@ struct UsageMenuView: View {
                 SectionMessage(message: dailyClaudeTokens.message, status: dailyClaudeTokens.status)
             } else {
                 EmptyState(message: dailyClaudeTokens.message ?? "No Claude token data yet.")
+            }
+            if let windows = store.snapshot.claudeQuota.value?.windows, windows.count > 1 {
+                VStack(spacing: 5) {
+                    ForEach(windows, id: \.label) { window in
+                        QuotaWindowRow(window: window, tint: .orange, referenceDate: presentationDate)
+                    }
+                }
+                .padding(.top, 2)
             }
         }
     }

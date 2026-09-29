@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-000000?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
   <a href="https://www.swift.org/"><img src="https://img.shields.io/badge/Swift-5.0%20%2F%206.0-F05138?style=flat-square&amp;logo=swift&amp;logoColor=white" alt="Swift 5.0 / 6.0"></a>
-  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.2.0-4C7CF3?style=flat-square" alt="Version 5.2.0"></a>
+  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.3.0-4C7CF3?style=flat-square" alt="Version 5.3.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -38,8 +38,9 @@ release.
 
 ## ✨ Features
 
-- **Codex & Claude Code** — today's tokens from local session logs plus the
-  tightest five-hour or weekly quota window, with reset countdowns.
+- **Codex & Claude Code** — today's tokens from local session logs plus quota
+  windows with reset countdowns; Claude shows five-hour, weekly and
+  model-scoped (Fable) limits side by side.
 - **Cursor** — actual per-call charges (not list prices) and Monthly allowance.
 - **DeepSeek** — wallet balance and current-month cost, tokens and requests.
 - **Adaptive** — the menu bar, popover and every Widget size show only the
@@ -114,7 +115,8 @@ The new build settings and script overrides are `BEAVERMETER_*` and
 The menu bar shows Codex tokens, Claude tokens (`✳︎`), Cursor's latest actual
 charge and DeepSeek's wallet balance in one compact line. The popover expands
 this into Codex input, cached input, output and reasoning totals; Claude input,
-cache write, cache read and output totals with an API-rate cost estimate;
+cache write, cache read and output totals with an API-rate cost estimate, plus
+its five-hour, weekly and model-scoped (for example Fable) limits;
 Cursor's daily actual charge and the latest 20 model calls; and DeepSeek
 balance, current-month cost, tokens and requests.
 
@@ -291,9 +293,12 @@ shown by Claude Code's `/usage`:
 https://api.anthropic.com/api/oauth/usage
 ```
 
-The five-hour, weekly and model-scoped weekly (Opus or Sonnet) windows are
-compared and the one with the least remaining allowance becomes the Widget
-summary. The access token is read from `~/.claude/.credentials.json` (or
+It reads the five-hour and all-models weekly windows plus every model-scoped
+weekly limit, such as Fable (from the response's `limits` list) or the older
+Opus and Sonnet fields. The popover lists each window with its reset time;
+Large and Extra Large Widgets add rows for the weekly and model limits, and
+smaller Widgets summarise them as `Wk 88% · Fable 95%`. The window with the
+least remaining allowance becomes the headline value. The access token is read from `~/.claude/.credentials.json` (or
 `$CLAUDE_CONFIG_DIR/.credentials.json`), otherwise from the login Keychain
 item `Claude Code-credentials` through `/usr/bin/security`, which is how
 Claude Code writes it. BeaverMeter never refreshes the token, because that

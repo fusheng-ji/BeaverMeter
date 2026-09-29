@@ -11,16 +11,45 @@ struct ClaudeOAuthUsageResponse: Decodable {
         }
     }
 
+    /// The newer flat list that also carries model-scoped weekly limits such as Fable.
+    struct Limit: Decodable {
+        struct Scope: Decodable {
+            struct Model: Decodable {
+                let displayName: String?
+
+                enum CodingKeys: String, CodingKey {
+                    case displayName = "display_name"
+                }
+            }
+
+            let model: Model?
+        }
+
+        let kind: String?
+        let percent: Double?
+        let resetsAt: String?
+        let scope: Scope?
+
+        enum CodingKeys: String, CodingKey {
+            case kind, percent, scope
+            case resetsAt = "resets_at"
+        }
+
+        var window: Window { Window(utilization: percent, resetsAt: resetsAt) }
+    }
+
     let fiveHour: Window?
     let sevenDay: Window?
     let sevenDayOpus: Window?
     let sevenDaySonnet: Window?
+    let limits: [Limit]?
 
     enum CodingKeys: String, CodingKey {
         case fiveHour = "five_hour"
         case sevenDay = "seven_day"
         case sevenDayOpus = "seven_day_opus"
         case sevenDaySonnet = "seven_day_sonnet"
+        case limits
     }
 }
 
@@ -60,7 +89,7 @@ enum ClaudeQuotaCollector {
     ) async -> UsageValue<CompactQuota> {
         do {
             let response = try await fetchResponse(now: now, environment: environment)
-            guard let quota = tightestQuota(in: response, now: now) else {
+            guard let quota = quota(from: response) else {
                 throw URLError(.cannotParseResponse)
             }
             return UsageValue(
@@ -83,16 +112,37 @@ enum ClaudeQuotaCollector {
         }
     }
 
-    /// The window with the least allowance left, like the Codex quota.
-    static func tightestQuota(in response: ClaudeOAuthUsageResponse, now: Date) -> CompactQuota? {
-        [
-            makeQuota(response.fiveHour, label: "Claude 5h", seconds: 18_000),
-            makeQuota(response.sevenDay, label: "Claude Week", seconds: 604_800),
-            makeQuota(response.sevenDayOpus, label: "Claude Opus Week", seconds: 604_800),
-            makeQuota(response.sevenDaySonnet, label: "Claude Sonnet Week", seconds: 604_800),
-        ]
-        .compactMap { $0 }
-        .min { ($0.remainingPercent ?? 101) < ($1.remainingPercent ?? 101) }
+    /// The tightest window, carrying every window in display order: five hours,
+    /// the all-models week, then model-scoped weeks (for example Fable).
+    static func quota(from response: ClaudeOAuthUsageResponse) -> CompactQuota? {
+        let limits = response.limits ?? []
+        func limit(_ kind: String) -> ClaudeOAuthUsageResponse.Window? {
+            limits.first { $0.kind == kind }?.window
+        }
+        var windows = [
+            makeQuota(response.fiveHour ?? limit("session"), label: "Claude 5h", seconds: 18_000),
+            makeQuota(response.sevenDay ?? limit("weekly_all"), label: "Claude Week", seconds: 604_800),
+        ].compactMap { $0 }
+        // `is_active` is not a filter: enforced scoped limits have been observed reporting false.
+        let scoped = limits.filter { $0.kind == "weekly_scoped" }.compactMap { limit -> (String, ClaudeOAuthUsageResponse.Window)? in
+            guard let name = CodexUsageSupport.nonempty(limit.scope?.model?.displayName),
+                  name.caseInsensitiveCompare("All models") != .orderedSame
+            else { return nil }
+            return (name, limit.window)
+        }
+        for (name, window) in scoped + [("Opus", response.sevenDayOpus), ("Sonnet", response.sevenDaySonnet)]
+            .compactMap({ name, window in window.map { (name, $0) } }) {
+            let label = "Claude \(name) Week"
+            guard !windows.contains(where: { $0.label == label }),
+                  let quota = makeQuota(window, label: label, seconds: 604_800)
+            else { continue }
+            windows.append(quota)
+        }
+        guard var tightest = windows.min(by: { ($0.remainingPercent ?? 101) < ($1.remainingPercent ?? 101) }) else {
+            return nil
+        }
+        tightest.windows = windows.count > 1 ? windows : nil
+        return tightest
     }
 
     static func accessToken(fromCredentials data: Data, now: Date) throws -> String {

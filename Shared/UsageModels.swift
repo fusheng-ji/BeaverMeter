@@ -100,6 +100,8 @@ struct CompactQuota: Codable, Hashable, Sendable {
     let resetAt: Date?
     let windowSeconds: Int?
     let detail: String
+    /// Every window from the same response, display order; nil for single-window services.
+    var windows: [CompactQuota]? = nil
 }
 
 struct DeepSeekMoney: Codable, Hashable, Identifiable, Sendable {

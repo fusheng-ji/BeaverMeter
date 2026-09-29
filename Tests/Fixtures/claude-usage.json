@@ -3,5 +3,9 @@
   "seven_day": {"utilization": 12.5, "resets_at": "2099-01-05T00:00:00.000000+00:00"},
   "seven_day_opus": {"utilization": 71.0, "resets_at": "2099-01-05T00:00:00.000000+00:00"},
   "seven_day_sonnet": null,
-  "extra_usage": {"is_enabled": false, "monthly_limit": null, "used_credits": null, "utilization": null}
+  "extra_usage": {"is_enabled": false, "monthly_limit": null, "used_credits": null, "utilization": null},
+  "limits": [
+    {"kind": "weekly_scoped", "group": "weekly", "percent": 9, "resets_at": "2099-01-05T00:00:00.283070+00:00",
+     "scope": {"model": {"id": null, "display_name": "Fable"}, "surface": null}, "is_active": false}
+  ]
 }

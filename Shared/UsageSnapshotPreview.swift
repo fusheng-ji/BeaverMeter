@@ -122,7 +122,18 @@ extension UsageSnapshot {
                     remainingPercent: 72,
                     resetAt: now.addingTimeInterval(2 * 3_600 + 15 * 60),
                     windowSeconds: 18_000,
-                    detail: "Demo data · 72% left"
+                    detail: "Demo data · 72% left",
+                    windows: [
+                        CompactQuota(label: "Claude 5h", used: nil, limit: nil, remaining: nil, remainingPercent: 72,
+                                     resetAt: now.addingTimeInterval(2 * 3_600 + 15 * 60), windowSeconds: 18_000,
+                                     detail: "72% left"),
+                        CompactQuota(label: "Claude Week", used: nil, limit: nil, remaining: nil, remainingPercent: 88,
+                                     resetAt: now.addingTimeInterval(3 * 86_400 + 5 * 3_600), windowSeconds: 604_800,
+                                     detail: "88% left"),
+                        CompactQuota(label: "Claude Fable Week", used: nil, limit: nil, remaining: nil,
+                                     remainingPercent: 95, resetAt: now.addingTimeInterval(3 * 86_400 + 5 * 3_600),
+                                     windowSeconds: 604_800, detail: "95% left"),
+                    ]
                 )
             ),
             deepseekUsage: UsageValue(

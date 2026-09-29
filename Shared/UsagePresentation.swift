@@ -94,3 +94,39 @@ struct DailyTokenSummary: Equatable {
     let status: UsageStatusPresentation
     let warningLabel: String
 }
+
+extension CompactQuota {
+    /// "Fable" for "Claude Fable Week"; nil for all-model and single-scope windows.
+    var modelScope: String? {
+        guard label.hasPrefix("Claude "), label.hasSuffix(" Week") else { return nil }
+        let name = label.dropFirst("Claude ".count).dropLast(" Week".count)
+        return name.isEmpty ? nil : String(name)
+    }
+
+    /// Row title such as "5-hour", "Weekly" or "Fable weekly".
+    var windowTitle: String {
+        switch windowSeconds {
+        case 18_000: "5-hour"
+        case 604_800: modelScope.map { "\($0) weekly" } ?? "Weekly"
+        default: label
+        }
+    }
+
+    /// Terse name for strips: "5h", "Wk" or the model name.
+    var shortWindowName: String {
+        switch windowSeconds {
+        case 18_000: "5h"
+        case 604_800: modelScope ?? "Wk"
+        default: label
+        }
+    }
+
+    var percentLeftText: String {
+        remainingPercent.map { "\(Int(UsageFormatting.clampedPercent($0)!.rounded()))%" } ?? "—"
+    }
+
+    /// The windows other than this summary one, in display order.
+    var otherWindows: [CompactQuota] {
+        (windows ?? []).filter { $0.label != label }
+    }
+}

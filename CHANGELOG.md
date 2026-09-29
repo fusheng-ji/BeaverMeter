@@ -6,6 +6,17 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [5.3.0] - 2026-09-29
+
+### Added
+
+- Claude now shows every quota window instead of only the tightest one: the
+  five-hour and weekly limits plus model-scoped weekly limits such as Fable,
+  read from the usage response's `limits` list (with the older Opus/Sonnet
+  fields as a fallback). The popover lists each window with its reset time,
+  Large and Extra Large Widgets add window rows, and smaller Widgets show a
+  compact `Wk 88% · Fable 95%` summary. Existing snapshots stay compatible.
+
 ## [5.2.0] - 2026-09-29
 
 ### Added

@@ -54,6 +54,7 @@ jq -e '
   .claudeQuota.value.label == "Claude Opus Week" and
   .claudeQuota.value.remainingPercent == 29 and
   .claudeQuota.value.windowSeconds == 604800 and
+  ([.claudeQuota.value.windows[].label] == ["Claude 5h", "Claude Week", "Claude Fable Week", "Claude Opus Week"]) and
   .codexTokens.status == "ready" and
   .codexTokens.value.totalTokens == 1000 and
   .codexTokens.value.inputTokens == 900 and

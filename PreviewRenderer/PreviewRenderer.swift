@@ -12,7 +12,8 @@ struct PreviewRenderer {
 
         let servicesSnapshot = UsageSnapshot.preview
         let servicesHeight = UsageMenuView.fittedHeight(
-            for: MeterProvider.allCases, maxHeight: 1_300, servicesExpanded: true
+            for: MeterProvider.allCases, maxHeight: 1_400, servicesExpanded: true,
+            claudeWindowCount: servicesSnapshot.claudeQuota.value?.windows?.count ?? 0
         )
         let servicesMenu = UsageMenuView(
             store: UsageStore(snapshot: servicesSnapshot, providerSettings: .default, observesSnapshotChanges: false),
@@ -32,7 +33,8 @@ struct PreviewRenderer {
             let snapshot = scenario.snapshot
             let height = UsageMenuView.fittedHeight(
                 for: scenario.providerSettings.visibleProviders(in: snapshot),
-                maxHeight: scenario == .longList ? 1_850 : scenario == .refreshError ? 1_260 : 1_120
+                maxHeight: scenario == .longList ? 1_950 : scenario == .refreshError ? 1_360 : 1_220,
+                claudeWindowCount: snapshot.claudeQuota.value?.windows?.count ?? 0
             )
             for scheme in [ColorScheme.dark, .light] {
                 let menu = UsageMenuView(
