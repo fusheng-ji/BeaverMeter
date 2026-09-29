@@ -24,7 +24,6 @@
   <a href="#-features">Features</a> ·
   <a href="#-quick-start">Quick start</a> ·
   <a href="#-interface">Interface</a> ·
-  <a href="#-services">Services</a> ·
   <a href="#-data-sources">Data sources</a> ·
   <a href="#-privacy">Privacy</a> ·
   <a href="#-troubleshooting">Troubleshooting</a> ·
@@ -120,8 +119,17 @@ Cursor's daily actual charge and the latest 20 model calls; and DeepSeek
 balance, current-month cost, tokens and requests.
 
 <p align="center">
-  <img src="screenshots/menu-popover.png" alt="BeaverMeter menu-bar popover with Demo data" width="320">
+  <img src="screenshots/menu-popover-services.png" alt="BeaverMeter menu-bar popover with the Services switches expanded" width="320">
 </p>
+
+**Services.** Every layout adapts to the services you actually use. Each
+service is set to **Auto** by default and appears once it has produced data on
+this Mac, so a missing Cursor install or an unconnected DeepSeek account leaves
+no empty panel. Open **Services** at the bottom of the popover to force a
+service **On** (for example to connect DeepSeek) or **Off**. Services switched
+off are not contacted at all. The switches are stored in
+`~/Library/Application Support/BeaverMeter/beaver-meter-settings.json`, which
+the Widget and collector read too.
 
 | Family | Layout |
 | --- | --- |
@@ -198,21 +206,6 @@ publish a quota limit or reset time, BeaverMeter does not invent a percentage
 or progress bar.
 
 </details>
-
-## 🎛 Services
-
-Every layout adapts to the services you actually use. Each service is set to
-**Auto** by default and appears once it has produced data on this Mac, so a
-missing Cursor install or an unconnected DeepSeek account leaves no empty
-panel. Open **Services** at the bottom of the popover to force a service
-**On** (for example to connect DeepSeek) or **Off**. Services switched off are
-not contacted at all. The switches are stored in
-`~/Library/Application Support/BeaverMeter/beaver-meter-settings.json`, which
-the Widget and collector read too.
-
-<p align="center">
-  <img src="screenshots/menu-popover-services.png" alt="BeaverMeter popover with the Services switches expanded" width="320">
-</p>
 
 ## 📊 Data sources
 
