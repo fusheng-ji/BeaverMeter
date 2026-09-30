@@ -70,7 +70,7 @@ enum ClaudeQuotaError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .notLoggedIn: "Claude Code is not signed in."
-        case .expired: "The Claude Code sign-in has expired; run `claude` to refresh it."
+        case .expired: "Claude Code could not renew its sign-in; run `claude` and `/login`."
         case .rateLimited: "Anthropic is rate limiting usage requests; the next refresh will retry."
         }
     }
@@ -85,10 +85,11 @@ enum ClaudeQuotaCollector {
     static func collect(
         previous: UsageValue<CompactQuota>,
         now: Date,
+        stateDirectory: URL = UsageSnapshot.snapshotURL.deletingLastPathComponent(),
         environment: [String: String] = ProcessInfo.processInfo.environment
     ) async -> UsageValue<CompactQuota> {
         do {
-            let response = try await fetchResponse(now: now, environment: environment)
+            let response = try await fetchResponse(now: now, stateDirectory: stateDirectory, environment: environment)
             guard let quota = quota(from: response) else {
                 throw URLError(.cannotParseResponse)
             }
@@ -179,6 +180,7 @@ enum ClaudeQuotaCollector {
 
     private static func fetchResponse(
         now: Date,
+        stateDirectory: URL,
         environment: [String: String]
     ) async throws -> ClaudeOAuthUsageResponse {
         if let fixture = environment["CLAUDE_USAGE_FIXTURE"] {
@@ -188,7 +190,46 @@ enum ClaudeQuotaCollector {
             )
         }
 
-        let token = try accessToken(fromCredentials: credentialsData(environment: environment), now: now)
+        let token: String
+        do {
+            token = try accessToken(fromCredentials: credentialsData(environment: environment), now: now)
+        } catch ClaudeQuotaError.expired {
+            token = try renewedToken(now: now, stateDirectory: stateDirectory, environment: environment)
+        }
+        do {
+            return try await usage(token: token)
+        } catch ClaudeQuotaError.expired {
+            // The token looked valid but was revoked or rotated; one renewal, one retry.
+            return try await usage(
+                token: renewedToken(now: now, stateDirectory: stateDirectory, environment: environment)
+            )
+        }
+    }
+
+    /// Asks Claude Code to renew its sign-in and reads the renewed token.
+    private static func renewedToken(
+        now: Date,
+        stateDirectory: URL,
+        environment: [String: String]
+    ) throws -> String {
+        guard ClaudeSignInRenewer.isAllowed(environment: environment),
+              let cli = ClaudeSignInRenewer.cliURL(environment: environment),
+              ClaudeSignInRenewer.reserveAttempt(
+                  stateURL: stateDirectory.appendingPathComponent("beaver-meter-claude-refresh-v1.json"), now: now
+              )
+        else { throw ClaudeQuotaError.expired }
+        let isRenewed = {
+            (try? accessToken(fromCredentials: credentialsData(environment: environment), now: Date())) != nil
+        }
+        guard ClaudeSignInRenewer.renew(
+            cli: cli,
+            workingDirectory: stateDirectory.appendingPathComponent("claude-sign-in", isDirectory: true),
+            isRenewed: isRenewed
+        ) else { throw ClaudeQuotaError.expired }
+        return try accessToken(fromCredentials: credentialsData(environment: environment), now: Date())
+    }
+
+    private static func usage(token: String) async throws -> ClaudeOAuthUsageResponse {
         var request = URLRequest(url: URL(string: "https://api.anthropic.com/api/oauth/usage")!)
         request.timeoutInterval = 12
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

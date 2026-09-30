@@ -47,7 +47,9 @@ struct BeaverMeterCollector {
             )
             : previous.claudeTokens
         async let claudeQuota = settings.collects(.claude)
-            ? await ClaudeQuotaCollector.collect(previous: previous.claudeQuota, now: now)
+            ? await ClaudeQuotaCollector.collect(
+                previous: previous.claudeQuota, now: now, stateDirectory: outputURL.deletingLastPathComponent()
+            )
             : previous.claudeQuota
         async let cursor = settings.collects(.cursor)
             ? await CursorUsageCollector.collect(

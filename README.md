@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-000000?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
   <a href="https://www.swift.org/"><img src="https://img.shields.io/badge/Swift-5.0%20%2F%206.0-F05138?style=flat-square&amp;logo=swift&amp;logoColor=white" alt="Swift 5.0 / 6.0"></a>
-  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.3.1-4C7CF3?style=flat-square" alt="Version 5.3.1"></a>
+  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.3.2-4C7CF3?style=flat-square" alt="Version 5.3.2"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -301,10 +301,18 @@ one line, for example `Weekly 88% · Fable 95%` (`Wk` where space is short).
 Without a five-hour window, the tightest window becomes the headline. The access token is read from `~/.claude/.credentials.json` (or
 `$CLAUDE_CONFIG_DIR/.credentials.json`), otherwise from the login Keychain
 item `Claude Code-credentials` through `/usr/bin/security`, which is how
-Claude Code writes it. BeaverMeter never refreshes the token, because that
-would rotate the refresh token Claude Code depends on; an expired sign-in is
-shown as **Sign in** until the `claude` CLI refreshes it. Set
-`CLAUDE_KEYCHAIN_ACCESS=0` in `config.env` to skip the Keychain entirely.
+Claude Code writes it.
+
+Claude Code's access token lasts only a few hours and is renewed by the CLI
+itself. BeaverMeter never refreshes the token, because that would rotate the
+refresh token Claude Code depends on. When the token has expired, it briefly
+starts the installed `claude` CLI in a hidden terminal (at most once every five
+minutes), waits until Claude Code has renewed its sign-in, then stops it: no
+prompt is sent, the folder-trust question is never answered and the model is
+never called. The CLI is looked up in `~/.local/bin`, `~/.claude/local`,
+`/opt/homebrew/bin` and `/usr/local/bin`, or set `CLAUDE_CLI_PATH` in
+`config.env`. Set `CLAUDE_CLI_REFRESH=0` to turn this off, or
+`CLAUDE_KEYCHAIN_ACCESS=0` to skip the Keychain entirely.
 
 </details>
 
@@ -442,8 +450,10 @@ non-default directory.
 <details>
 <summary><b>Claude quota says Sign in</b></summary>
 
-Claude Code's saved token has expired. Run the `claude` CLI once (or `/login`
-inside it) so it refreshes the token, then refresh BeaverMeter.
+Claude Code's saved sign-in has expired and could not be renewed
+automatically. Make sure the `claude` CLI is installed (BeaverMeter uses it to
+renew the sign-in; see [Claude quota](#-data-sources)), then run `claude` and
+`/login` once and refresh BeaverMeter.
 
 </details>
 

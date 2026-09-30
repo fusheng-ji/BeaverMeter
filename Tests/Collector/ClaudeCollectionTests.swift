@@ -184,4 +184,42 @@ final class ClaudeCollectionTests: XCTestCase {
         XCTAssertEqual(result.source, .codexBarLocal)
         XCTAssertEqual(result.value, totals)
     }
+
+    func testSignInRenewerFindsTheCLIAndHonoursOptOuts() throws {
+        let home = try workspace()
+        XCTAssertFalse(ClaudeSignInRenewer.cliURL(environment: [:], homeDirectory: home)?.path.hasPrefix(home.path) ?? false)
+        let cli = home.appendingPathComponent(".local/bin/claude")
+        try FileManager.default.createDirectory(at: cli.deletingLastPathComponent(), withIntermediateDirectories: true)
+        FileManager.default.createFile(atPath: cli.path, contents: Data("#!/bin/sh\n".utf8),
+                                       attributes: [.posixPermissions: 0o755])
+        XCTAssertEqual(ClaudeSignInRenewer.cliURL(environment: [:], homeDirectory: home), cli)
+        XCTAssertNil(ClaudeSignInRenewer.cliURL(environment: ["CLAUDE_CLI_PATH": home.appendingPathComponent("none").path],
+                                                homeDirectory: home))
+
+        XCTAssertTrue(ClaudeSignInRenewer.isAllowed(environment: [:]))
+        XCTAssertFalse(ClaudeSignInRenewer.isAllowed(environment: ["CLAUDE_CLI_REFRESH": "0"]))
+        XCTAssertFalse(ClaudeSignInRenewer.isAllowed(environment: ["CLAUDE_KEYCHAIN_ACCESS": "0"]))
+    }
+
+    func testSignInRenewalIsLimitedToOneAttemptPerCooldown() throws {
+        let state = try workspace().appendingPathComponent("refresh.json")
+        XCTAssertTrue(ClaudeSignInRenewer.reserveAttempt(stateURL: state, now: now))
+        XCTAssertFalse(ClaudeSignInRenewer.reserveAttempt(stateURL: state, now: now.addingTimeInterval(60)))
+        XCTAssertTrue(ClaudeSignInRenewer.reserveAttempt(stateURL: state, now: now.addingTimeInterval(301)))
+        // A clock moved backwards does not block renewal indefinitely.
+        XCTAssertTrue(ClaudeSignInRenewer.reserveAttempt(stateURL: state, now: now))
+    }
+
+    func testSignInRenewalStopsTheCLIOnceRenewed() throws {
+        let script = try workspace().appendingPathComponent("fake-claude")
+        FileManager.default.createFile(atPath: script.path, contents: Data("#!/bin/sh\nsleep 30\n".utf8),
+                                       attributes: [.posixPermissions: 0o755])
+        var checks = 0
+        let started = Date()
+        XCTAssertTrue(ClaudeSignInRenewer.renew(cli: script, workingDirectory: script.deletingLastPathComponent(),
+                                                timeout: 10) { checks += 1; return checks >= 2 })
+        XCTAssertLessThan(Date().timeIntervalSince(started), 8)
+        XCTAssertFalse(ClaudeSignInRenewer.renew(cli: script, workingDirectory: script.deletingLastPathComponent(),
+                                                 timeout: 1) { false })
+    }
 }

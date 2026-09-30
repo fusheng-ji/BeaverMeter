@@ -163,6 +163,8 @@ chmod 700 "$config_dir"
   # Optional Claude overrides are edited by hand and kept across upgrades.
   [[ -z "${CLAUDE_CONFIG_DIR:-}" ]] || printf 'CLAUDE_CONFIG_DIR=%q\n' "$CLAUDE_CONFIG_DIR"
   [[ -z "${CLAUDE_KEYCHAIN_ACCESS:-}" ]] || printf 'CLAUDE_KEYCHAIN_ACCESS=%q\n' "$CLAUDE_KEYCHAIN_ACCESS"
+  [[ -z "${CLAUDE_CLI_PATH:-}" ]] || printf 'CLAUDE_CLI_PATH=%q\n' "$CLAUDE_CLI_PATH"
+  [[ -z "${CLAUDE_CLI_REFRESH:-}" ]] || printf 'CLAUDE_CLI_REFRESH=%q\n' "$CLAUDE_CLI_REFRESH"
 } > "$config_path"
 chmod 600 "$config_path"
 

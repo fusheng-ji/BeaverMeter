@@ -12,7 +12,9 @@ test_dir="$(mktemp -d "${TMPDIR:-/tmp}/cursor-codex-tests.XXXXXX")"
 # missing database/file in the individual case below.
 unset CODEX_REMOTE_SSH_HOST CODEX_REMOTE_ROOT CODEX_REMOTE_PYTHON CODEX_REMOTE_RESPONSE_FIXTURE BEAVERMETER_SSH
 unset DEEPSEEK_PLATFORM_TOKEN CODEX_HOME CODEX_TOKEN_FIXTURE CODEX_LEGACY_TOKEN_FIXTURE CURSOR_STATE_DB
-unset CLAUDE_TOKEN_FIXTURE CLAUDE_TOKEN_CACHE_ROOT CLAUDE_KEYCHAIN_ACCESS
+unset CLAUDE_TOKEN_FIXTURE CLAUDE_TOKEN_CACHE_ROOT CLAUDE_KEYCHAIN_ACCESS CLAUDE_CLI_PATH
+# Tests never launch the real Claude Code CLI.
+export CLAUDE_CLI_REFRESH=0
 export CODEX_USAGE_FIXTURE="$fixtures/codex-pro-week.json"
 export CLAUDE_USAGE_FIXTURE="$fixtures/claude-usage.json"
 # A missing Claude home keeps every case away from the real ~/.claude logs.

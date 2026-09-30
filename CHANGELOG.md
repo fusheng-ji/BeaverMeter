@@ -6,6 +6,17 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [5.3.2] - 2026-09-30
+
+### Fixed
+
+- The Claude quota no longer turns into an "Old cache" a few hours after
+  signing in. Claude Code's access token is short-lived and only the CLI
+  renews it; when it has expired, BeaverMeter now briefly starts the installed
+  `claude` CLI in a hidden terminal so Claude Code renews its own sign-in,
+  then stops it (at most every five minutes, no prompt or model call).
+  `CLAUDE_CLI_PATH` and `CLAUDE_CLI_REFRESH=0` configure or disable this.
+
 ## [5.3.1] - 2026-09-29
 
 ### Changed

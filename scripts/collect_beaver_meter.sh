@@ -45,6 +45,8 @@ fi
 [[ -n "${CODEX_REMOTE_PYTHON:-}" ]] && export CODEX_REMOTE_PYTHON
 [[ -n "${CLAUDE_CONFIG_DIR:-}" ]] && export CLAUDE_CONFIG_DIR
 [[ -n "${CLAUDE_KEYCHAIN_ACCESS:-}" ]] && export CLAUDE_KEYCHAIN_ACCESS
+[[ -n "${CLAUDE_CLI_PATH:-}" ]] && export CLAUDE_CLI_PATH
+[[ -n "${CLAUDE_CLI_REFRESH:-}" ]] && export CLAUDE_CLI_REFRESH
 export BEAVERMETER_REMOTE_SCRIPT="$script_dir/remote_codex_usage.py"
 
 collector_override="${BEAVERMETER_COLLECTOR:-${CODEXWEEK_COLLECTOR:-}}"
