@@ -148,13 +148,22 @@ struct QuotaProviderPanel: View {
                 .stroke(.white.opacity(0.08), lineWidth: 1)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(
-            "\(provider.name), \(valueText) remaining, \(detailText), " +
-                "\(UsageFormatting.resetCountdown(quota?.resetAt, relativeTo: referenceDate)), \(status.detail)" +
-                otherWindows.map { ", \($0.windowTitle) \($0.percentLeftText) remaining" }.joined() +
-                (dailyTokens.map { ", " + $0.accessibilityText } ?? "")
-        )
+        .accessibilityLabel(accessibilityDescription)
         .help(status.detail)
+    }
+
+    /// Built in separate steps: one long `+` chain exceeds the compiler's type-check budget.
+    private var accessibilityDescription: String {
+        let reset = UsageFormatting.resetCountdown(quota?.resetAt, relativeTo: referenceDate)
+        var label = "\(provider.name), \(valueText) remaining, \(detailText), "
+        label += "\(reset), \(status.detail)"
+        for window in otherWindows {
+            label += ", \(window.windowTitle) \(window.percentLeftText) remaining"
+        }
+        if let dailyTokens {
+            label += ", " + dailyTokens.accessibilityText
+        }
+        return label
     }
 
     private var stripBody: some View {
