@@ -1,6 +1,7 @@
 import Foundation
 
 enum UsageFormatting {
+    static let locale = Locale(identifier: "en_US")
     static func tokens(_ value: Int?) -> String {
         guard let value else { return "—" }
         if value >= 1_000_000_000 {
@@ -12,12 +13,13 @@ enum UsageFormatting {
         if value >= 1_000 {
             return String(format: value >= 100_000 ? "%.0fK" : "%.1fK", Double(value) / 1_000)
         }
-        return value.formatted()
+        return value.formatted(.number.locale(locale))
     }
 
     static func usd(_ value: Double?, minimumDigits: Int = 2, maximumDigits: Int = 4) -> String {
         guard let value else { return "—" }
         let formatter = NumberFormatter()
+        formatter.locale = locale
         formatter.numberStyle = .currency
         formatter.currencyCode = "USD"
         formatter.currencySymbol = "$"
@@ -28,6 +30,7 @@ enum UsageFormatting {
 
     static func usdCode(_ value: Double) -> String {
         let formatter = NumberFormatter()
+        formatter.locale = locale
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = value.rounded() == value ? 0 : 2
         formatter.maximumFractionDigits = 2
@@ -38,6 +41,7 @@ enum UsageFormatting {
     static func money(_ value: DeepSeekMoney?) -> String {
         guard let value else { return "—" }
         let formatter = NumberFormatter()
+        formatter.locale = locale
         formatter.numberStyle = .currency
         formatter.currencyCode = value.currency
         formatter.minimumFractionDigits = 2
@@ -61,6 +65,7 @@ enum UsageFormatting {
     static func relativeAge(_ date: Date?, relativeTo now: Date = .now) -> String {
         guard let date else { return "never updated" }
         let formatter = RelativeDateTimeFormatter()
+        formatter.locale = locale
         formatter.unitsStyle = .abbreviated
         return formatter.localizedString(for: date, relativeTo: now)
     }
@@ -69,6 +74,7 @@ enum UsageFormatting {
         guard let date else { return nil }
         if date <= .now { return "reset pending" }
         let formatter = RelativeDateTimeFormatter()
+        formatter.locale = locale
         formatter.unitsStyle = .abbreviated
         return "resets " + formatter.localizedString(for: date, relativeTo: .now)
     }
@@ -100,7 +106,7 @@ enum UsageFormatting {
 
     static func source(_ source: UsageDataSource) -> String {
         switch source {
-        case .codexBarLocal: "CodexBar local"
+        case .codexBarLocal: "Local logs"
         case .cursorDashboard: "Cursor Dashboard"
         case .accountAPI: "Account API"
         case .deepSeekPlatform: "DeepSeek Platform"

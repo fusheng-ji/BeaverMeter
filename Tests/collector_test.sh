@@ -13,6 +13,7 @@ test_dir="$(mktemp -d "${TMPDIR:-/tmp}/cursor-codex-tests.XXXXXX")"
 unset CODEX_REMOTE_SSH_HOST CODEX_REMOTE_ROOT CODEX_REMOTE_PYTHON CODEX_REMOTE_RESPONSE_FIXTURE BEAVERMETER_SSH
 unset DEEPSEEK_PLATFORM_TOKEN CODEX_HOME CODEX_TOKEN_FIXTURE CODEX_LEGACY_TOKEN_FIXTURE CURSOR_STATE_DB
 unset CLAUDE_TOKEN_FIXTURE CLAUDE_TOKEN_CACHE_ROOT CLAUDE_KEYCHAIN_ACCESS CLAUDE_CLI_PATH
+unset CODEX_HISTORY_FIXTURE CLAUDE_HISTORY_FIXTURE CODEX_RESET_CARDS_FIXTURE CLAUDE_RESET_CARDS_FIXTURE
 # Tests never launch the real Claude Code CLI.
 export CLAUDE_CLI_REFRESH=0
 export CODEX_USAGE_FIXTURE="$fixtures/codex-pro-week.json"
@@ -48,7 +49,7 @@ DEEPSEEK_USAGE_FIXTURE="$fixtures/deepseek-usage.json" \
   "$collector" --output "$snapshot" >/dev/null
 
 jq -e '
-  .schemaVersion == 6 and
+  .schemaVersion == 7 and
   .claudeTokens.status == "ready" and
   .claudeTokens.value.totalTokens == 2500 and
   .claudeTokens.value.cacheReadTokens == 1900 and
@@ -285,7 +286,7 @@ jq -e '
   .codexTokens.value.outputTokens == 30 and
   .codexTokens.value.sessionCount == 2
 ' "$remote_snapshot" >/dev/null
-remote_cache="$remote_case_dir/beaver-meter-codex-remote-scan-v2.json"
+remote_cache="$remote_case_dir/codex-history-remote-v3.json"
 [[ "$(stat -f '%Lp' "$remote_cache")" == "600" ]]
 if rg -q 'shared-response|shared-session|remote-unique|remote-session|fixture/codex' "$remote_cache"; then
   print -u2 "Remote Codex cache leaked an unhashed identifier."
@@ -347,7 +348,7 @@ for index in 1 2 3; do
   full_pid=$!
   wait "$codex_pid" "$full_pid"
   jq -e '
-    .schemaVersion == 6 and
+    .schemaVersion == 7 and
     .cursorCosts.status == "ready" and
     .cursorQuota.status == "ready" and
     .codexQuota.status == "ready" and
@@ -419,7 +420,7 @@ CLAUDE_CONFIG_DIR="$claude_home" \
 CODEX_HOME="$test_dir/claude-codex-home" \
   "$collector" --local-tokens --output "$claude_snapshot" >/dev/null
 jq -e '
-  .schemaVersion == 6 and
+  .schemaVersion == 7 and
   .claudeTokens.status == "ready" and
   .claudeTokens.value.totalTokens == 440 and
   .claudeTokens.value.inputTokens == 11 and
@@ -449,5 +450,64 @@ DEEPSEEK_USAGE_FIXTURE="$test_dir/missing-deepseek-usage.json" \
 jq '{cursorCosts,cursorQuota,deepseekUsage}' "$hidden_dir/snapshot.json" > "$hidden_dir/after.json"
 cmp "$hidden_dir/before.json" "$hidden_dir/after.json"
 jq -e '.codexTokens.status == "ready" and .claudeQuota.status == "ready"' "$hidden_dir/snapshot.json" >/dev/null
+
+# Full monitoring refresh, independent reset-card states, and no account requests
+# in the frequent local-only refresh. Fixtures cannot fall through to live APIs.
+monitor_dir="$test_dir/monitoring"
+monitor_home="$monitor_dir/default"
+monitor_other="$monitor_dir/work"
+mkdir -p "$monitor_home/sessions" "$monitor_other/sessions"
+print -r -- '{"tokens":{"access_token":"demo-access","refresh_token":"demo-refresh","account_id":"workspace-a"}}' > "$monitor_home/auth.json"
+print -r -- '{"tokens":{"access_token":"demo-access-2","refresh_token":"demo-refresh-2","account_id":"workspace-b"}}' > "$monitor_other/auth.json"
+print -r -- "{\"version\":1,\"providers\":[{\"id\":\"codex\",\"codexProfileHomePaths\":[\"$monitor_other\",\"$monitor_other\"]}]}" > "$monitor_dir/beaver-meter-accounts.json"
+print -r -- '{"availableCount":2,"observedAt":"2026-10-01T00:00:00Z","batches":[]}' > "$monitor_dir/codex-cards.json"
+print -r -- '{"cedar_ember":{"eligible":true,"grants":[{"id":"private-grant","resets_left":1,"ends_at":"2099-10-22T00:00:00Z"}]}}' > "$monitor_dir/claude-cards.json"
+CODEX_HOME="$monitor_home" CODEX_TOKEN_FIXTURE="$fixtures/codex-token-totals.json" \
+CODEX_RESET_CARDS_FIXTURE="$monitor_dir/codex-cards.json" CLAUDE_RESET_CARDS_FIXTURE="$monitor_dir/claude-cards.json" \
+  "$collector" --output "$monitor_dir/snapshot.json" >/dev/null
+jq -e '
+  .schemaVersion == 7 and (.codexAccounts.value | length) == 2 and
+  .codexAccounts.value[0].resetCards.value.availableCount == 2 and
+  .codexAccounts.value[1].quota.status == "ready" and
+  .claudeResetCards.value.availableCount == 1
+' "$monitor_dir/snapshot.json" >/dev/null
+if rg -q 'demo-access|demo-refresh|private-grant' "$monitor_dir/snapshot.json"; then
+  print -u2 "Monitoring snapshot leaked credentials or a raw grant identifier."
+  exit 1
+fi
+jq '{codexAccounts,claudeResetCards,codexQuota,claudeQuota}' "$monitor_dir/snapshot.json" > "$monitor_dir/before.json"
+CODEX_HOME="$monitor_home" CODEX_TOKEN_FIXTURE="$fixtures/codex-token-totals.json" \
+CODEX_USAGE_FIXTURE="$test_dir/missing-quota.json" CODEX_RESET_CARDS_FIXTURE="$test_dir/missing-cards.json" \
+CLAUDE_USAGE_FIXTURE="$test_dir/missing-quota.json" CLAUDE_RESET_CARDS_FIXTURE="$test_dir/missing-cards.json" \
+  "$collector" --local-tokens --output "$monitor_dir/snapshot.json" >/dev/null
+jq '{codexAccounts,claudeResetCards,codexQuota,claudeQuota}' "$monitor_dir/snapshot.json" > "$monitor_dir/after.json"
+cmp "$monitor_dir/before.json" "$monitor_dir/after.json"
+
+# Disabled services preserve monitoring values too.
+print -r -- '{"visibility":{"codex":"hidden","claude":"hidden","cursor":"hidden","deepseek":"hidden"}}' > "$monitor_dir/beaver-meter-settings.json"
+CODEX_HOME="$monitor_home" CODEX_USAGE_FIXTURE="$test_dir/missing-quota.json" \
+CLAUDE_USAGE_FIXTURE="$test_dir/missing-quota.json" \
+  "$collector" --output "$monitor_dir/snapshot.json" >/dev/null
+jq '{codexAccounts,claudeResetCards,codexQuota,claudeQuota}' "$monitor_dir/snapshot.json" > "$monitor_dir/after.json"
+cmp "$monitor_dir/before.json" "$monitor_dir/after.json"
+
+# A single SSH range request supplies both the seven-day and original daily readings.
+ssh_dir="$test_dir/single-ssh"
+mkdir -p "$ssh_dir/home/sessions"
+print -r -- '{"complete":true,"failedFiles":[],"activeFiles":[],"files":{}}' > "$ssh_dir/response.json"
+cat > "$ssh_dir/fake-ssh" <<'EOF'
+#!/bin/sh
+cat >/dev/null
+printf 'request\n' >> "$BEAVERMETER_TEST_SSH_CALLS"
+cat "$BEAVERMETER_TEST_REMOTE_FIXTURE"
+EOF
+chmod +x "$ssh_dir/fake-ssh"
+CODEX_HOME="$ssh_dir/home" CODEX_REMOTE_SSH_HOST="fixture-host" \
+CODEX_REMOTE_ROOT="/fixture" CODEX_REMOTE_PYTHON="/python" \
+BEAVERMETER_SSH="$ssh_dir/fake-ssh" BEAVERMETER_REMOTE_SCRIPT="$project_dir/scripts/remote_codex_usage.py" \
+BEAVERMETER_TEST_SSH_CALLS="$ssh_dir/calls" BEAVERMETER_TEST_REMOTE_FIXTURE="$ssh_dir/response.json" \
+  "$collector" --local-tokens --output "$ssh_dir/snapshot.json" >/dev/null
+[[ "$(wc -l < "$ssh_dir/calls" | tr -d ' ')" == "1" ]]
+jq -e '(.codexHistory.value.days | length) == 7 and .codexTokens.value.totalTokens == 0' "$ssh_dir/snapshot.json" >/dev/null
 
 print "Collector fixture tests passed."

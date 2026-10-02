@@ -8,7 +8,7 @@ enum CodexRemoteUsageCollector {
         let message: String?
     }
 
-    private static let cacheSchemaVersion = 2
+    private static let cacheSchemaVersion = 3
 
     private struct Cache: Codable {
         let schemaVersion: Int
@@ -76,7 +76,8 @@ enum CodexRemoteUsageCollector {
         now: Date,
         calendar: Calendar,
         cacheURL: URL,
-        timeout: TimeInterval = 30
+        timeout: TimeInterval = 30,
+        historyDays: Int = 1
     ) -> Result {
         guard let host = nonempty(environment["CODEX_REMOTE_SSH_HOST"]) else {
             return Result(
@@ -88,7 +89,7 @@ enum CodexRemoteUsageCollector {
         }
         guard let root = nonempty(environment["CODEX_REMOTE_ROOT"]),
               let python = nonempty(environment["CODEX_REMOTE_PYTHON"]),
-              let window = try? CodexDayWindow(now: now, calendar: calendar)
+              let window = try? CodexDayWindow(now: now, calendar: calendar, historyDays: historyDays)
         else {
             return Result(
                 configured: true, complete: false,
@@ -107,7 +108,7 @@ enum CodexRemoteUsageCollector {
             loaded
         } else if let old = loadOldCache(from: cacheURL.deletingLastPathComponent()
             .appendingPathComponent("beaver-meter-codex-remote-scan-v1.json")),
-                  old.schemaVersion == 1, old.dayStart == dayStart, old.sourceHash == sourceHash {
+                  historyDays == 1, old.schemaVersion == 1, old.dayStart == dayStart, old.sourceHash == sourceHash {
             Cache(schemaVersion: cacheSchemaVersion, dayStart: dayStart, sourceHash: sourceHash,
                   roots: [hash(root): RootState(files: old.files)])
         } else {
@@ -191,7 +192,8 @@ enum CodexRemoteUsageCollector {
                                 cachedInputTokens: record.cachedInputTokens,
                                 outputTokens: record.outputTokens,
                                 reasoningTokens: record.reasoningTokens,
-                                sessionHash: record.sessionHash
+                                sessionHash: record.sessionHash,
+                                timestamp: Date(timeIntervalSince1970: record.timestamp)
                             )
                         }
                     }

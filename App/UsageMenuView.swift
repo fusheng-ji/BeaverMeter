@@ -10,8 +10,16 @@ struct UsageMenuView: View {
     var referenceDate: Date?
     var refreshErrorOverride: String?
     var servicesExpanded = false
+    var historyExpanded: Bool?
+    var accountsExpanded: Bool?
+    var resetCardsExpanded: Bool?
+    @Environment(\.isRenderingUsagePreview) private var isRenderingPreview
     private var presentationDate: Date { referenceDate ?? .now }
     private let timer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
+
+    private func disclosureOverride(_ value: Bool?) -> Bool? {
+        value ?? (isRenderingPreview ? false : nil)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -32,6 +40,7 @@ struct UsageMenuView: View {
             actions
         }
         .frame(width: 410, height: fittedHeight)
+        .environment(\.locale, UsageFormatting.locale)
         .onAppear {
             if automaticRefresh { store.refreshIfNeeded() }
         }
@@ -43,7 +52,10 @@ struct UsageMenuView: View {
     private var fittedHeight: CGFloat {
         Self.fittedHeight(
             for: store.visibleProviders, maxHeight: viewHeight, servicesExpanded: servicesExpanded,
-            claudeWindowCount: store.snapshot.claudeQuota.value?.windows?.count ?? 0
+            claudeWindowCount: store.snapshot.claudeQuota.value?.windows?.count ?? 0,
+            expandedMonitoringHeight: (historyExpanded == true ? 120 : 0)
+                + (accountsExpanded == true ? CGFloat(store.snapshot.codexAccounts.value?.count ?? 0) * 280 : 0)
+                + (resetCardsExpanded == true ? 120 : 0)
         )
     }
 
@@ -51,17 +63,17 @@ struct UsageMenuView: View {
     /// larger content keeps the requested height and scrolls.
     static func fittedHeight(
         for providers: [MeterProvider], maxHeight: CGFloat, servicesExpanded: Bool = false,
-        claudeWindowCount: Int = 0
+        claudeWindowCount: Int = 0, expandedMonitoringHeight: CGFloat = 0
     ) -> CGFloat {
         let sections = providers.reduce(CGFloat(0)) { total, provider in
             switch provider {
-            case .codex: total + 135
-            case .claude: total + 135 + 24 * CGFloat(claudeWindowCount)
+            case .codex: total + 195
+            case .claude: total + 210 + 24 * CGFloat(claudeWindowCount)
             case .cursor: total + 340
             case .deepseek: total + 270
             }
         }
-        return min(maxHeight, 235 + sections + (servicesExpanded ? 125 : 0))
+        return min(maxHeight, 235 + sections + (servicesExpanded ? 60 : 0) + expandedMonitoringHeight)
     }
 
     @ViewBuilder
@@ -154,6 +166,14 @@ struct UsageMenuView: View {
             } else {
                 EmptyState(message: dailyCodexTokens.message ?? "No Codex token data yet.")
             }
+            TokenHistorySection(provider: "Codex", data: store.snapshot.codexHistory, tint: .teal,
+                                referenceDate: presentationDate,
+                                metrics: { [("Input", $0.inputTokens), ("Cached", $0.cachedInputTokens),
+                                            ("Output", $0.outputTokens), ("Reasoning", $0.reasoningTokens)] },
+                                expandedOverride: disclosureOverride(historyExpanded))
+            CodexAccountsSection(store: store, referenceDate: presentationDate,
+                                 expandedOverride: disclosureOverride(accountsExpanded),
+                                 cardsExpandedOverride: disclosureOverride(resetCardsExpanded))
         }
     }
 
@@ -201,6 +221,13 @@ struct UsageMenuView: View {
                 }
                 .padding(.top, 2)
             }
+            ResetCardSection(data: store.snapshot.claudeResetCards, provider: "Claude", referenceDate: presentationDate,
+                             expandedOverride: disclosureOverride(resetCardsExpanded))
+            TokenHistorySection(provider: "Claude", data: store.snapshot.claudeHistory, tint: .orange,
+                                referenceDate: presentationDate,
+                                metrics: { [("Input", $0.inputTokens), ("Cache write", $0.cacheCreationTokens),
+                                            ("Cache read", $0.cacheReadTokens), ("Output", $0.outputTokens)] },
+                                expandedOverride: disclosureOverride(historyExpanded))
         }
     }
 

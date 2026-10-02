@@ -178,16 +178,25 @@ enum ClaudeQuotaCollector {
         )
     }
 
-    private static func fetchResponse(
+    static func fetchResponse(
         now: Date,
         stateDirectory: URL,
         environment: [String: String]
     ) async throws -> ClaudeOAuthUsageResponse {
-        if let fixture = environment["CLAUDE_USAGE_FIXTURE"] {
-            return try JSONDecoder().decode(
-                ClaudeOAuthUsageResponse.self,
-                from: Data(contentsOf: URL(fileURLWithPath: fixture))
-            )
+        try JSONDecoder().decode(ClaudeOAuthUsageResponse.self, from: await fetchData(
+            now: now, stateDirectory: stateDirectory, environment: environment
+        ))
+    }
+
+    static func fetchData(
+        now: Date, stateDirectory: URL, environment: [String: String],
+        fixtureKey: String = "CLAUDE_USAGE_FIXTURE", query: String = ""
+    ) async throws -> Data {
+        if let fixture = environment[fixtureKey] {
+            return try Data(contentsOf: URL(fileURLWithPath: fixture))
+        }
+        if fixtureKey != "CLAUDE_USAGE_FIXTURE", environment["CLAUDE_USAGE_FIXTURE"] != nil {
+            throw URLError(.resourceUnavailable)
         }
 
         let token: String
@@ -197,11 +206,12 @@ enum ClaudeQuotaCollector {
             token = try renewedToken(now: now, stateDirectory: stateDirectory, environment: environment)
         }
         do {
-            return try await usage(token: token)
+            return try await usage(token: token, query: query, environment: environment)
         } catch ClaudeQuotaError.expired {
             // The token looked valid but was revoked or rotated; one renewal, one retry.
             return try await usage(
-                token: renewedToken(now: now, stateDirectory: stateDirectory, environment: environment)
+                token: renewedToken(now: now, stateDirectory: stateDirectory, environment: environment),
+                query: query, environment: environment
             )
         }
     }
@@ -229,20 +239,33 @@ enum ClaudeQuotaCollector {
         return try accessToken(fromCredentials: credentialsData(environment: environment), now: Date())
     }
 
-    private static func usage(token: String) async throws -> ClaudeOAuthUsageResponse {
-        var request = URLRequest(url: URL(string: "https://api.anthropic.com/api/oauth/usage")!)
+    static func userAgent(environment: [String: String]) -> String {
+        guard let cli = ClaudeSignInRenewer.cliURL(environment: environment),
+              let result = try? SubprocessRunner.run(executable: cli, arguments: ["--version"], timeout: 5,
+                                                     environment: environment),
+              result.status == 0, !result.timedOut,
+              let text = String(data: result.standardOutput, encoding: .utf8),
+              let range = text.range(of: #"^\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?"#, options: .regularExpression)
+        else { return "BeaverMeter" }
+        return "claude-cli/\(text[range]) (external, cli)"
+    }
+
+    private static func usage(token: String, query: String, environment: [String: String]) async throws -> Data {
+        var request = URLRequest(url: URL(string: "https://api.anthropic.com/api/oauth/usage" + query)!)
         request.timeoutInterval = 12
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("oauth-2025-04-20", forHTTPHeaderField: "anthropic-beta")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("claude-code/2.1.0", forHTTPHeaderField: "User-Agent")
+        // Reset-card availability is gated on both the CLI surface and version.
+        // Read the installed version instead of advertising an outdated client.
+        request.setValue(userAgent(environment: environment), forHTTPHeaderField: "User-Agent")
 
         let (data, urlResponse) = try await URLSession.shared.data(for: request)
         guard let http = urlResponse as? HTTPURLResponse else {
             throw URLError(.badServerResponse)
         }
         switch http.statusCode {
-        case 200: return try JSONDecoder().decode(ClaudeOAuthUsageResponse.self, from: data)
+        case 200: return data
         case 401, 403: throw ClaudeQuotaError.expired
         case 429: throw ClaudeQuotaError.rateLimited
         default: throw URLError(.badServerResponse)

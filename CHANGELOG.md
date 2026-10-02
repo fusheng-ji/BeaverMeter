@@ -6,6 +6,50 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [5.4.0] - 2026-10-02
+
+### Added
+
+- Codex workspaces belonging to the same account show their own plan, quota
+  windows and banked reset cards. Add and reconnect workspaces directly in
+  BeaverMeter; each sign-in stays in its own private profile directory.
+  Existing Codex profile homes can also be configured explicitly.
+- Codex **Banked resets** and Claude **Limit resets** show counts, expiration
+  dates and unavailable/stale states independently of quota requests.
+- Expandable seven-day token totals and daily breakdowns for Codex and Claude.
+  Codex deduplicates configured modern local logs and the optional SSH source,
+  with one remote range scan reused for today's original summary.
+
+### Changed
+
+- Services uses four compact checkboxes in two rows instead of three-way
+  controls and detection labels. Existing automatic detection settings remain intact.
+- Snapshot schema v7 adds monitoring data while preserving v5/v6 readings
+  during upgrades. Widget layouts and menu-bar summary sources are unchanged.
+- The interface uses English labels and formatting with the Mac's local time zone.
+- Seven-day token history uses compact rolling daily bars beside selectable
+  daily counts and categories, with English weekday labels.
+- Reset-card details omit the redundant Live/status badge.
+- The app icon uses rounded corners with a macOS-style margin.
+- Codex workspace rows show separate plans and quota windows for the same
+  login. Add workspace and Sign in actions keep credentials in BeaverMeter's
+  own workspace directories; CodexBar's managed logins are not read automatically.
+  Explicit workspace selections never rewrite an external source login.
+
+### Fixed
+
+- Workspace sign-in uses the effective CLI environment and supports the
+  current desktop app's native CLI location. Failed sign-ins report a safe
+  reason and exit code, with an in-menu retry action.
+- Sign-in completion uses the normal configured refresh path, retaining SSH
+  sources and clearing the waiting message once usage finishes refreshing.
+- Workspace-scoped cache keys and response identity checks prevent a default
+  workspace's usage from being shown as another workspace's quota.
+- Claude reset-card requests use the installed CLI version and request surface.
+  Unsupported responses are unavailable instead of incorrectly showing zero resets.
+- Widget accessibility labels are split into smaller expressions to avoid
+  a compiler type-check timeout in Xcode 26.3.
+
 ## [5.3.2] - 2026-09-30
 
 ### Fixed
@@ -253,7 +297,14 @@ and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added recent Cursor call details, local Codex session aggregation, independent
   stale-data fallback, deterministic previews and network-free fixtures.
 
-[Unreleased]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.0.4...HEAD
+[Unreleased]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.4.0...HEAD
+[5.4.0]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.3.2...v5.4.0
+[5.3.2]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.3.1...v5.3.2
+[5.3.1]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.3.0...v5.3.1
+[5.3.0]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.2.0...v5.3.0
+[5.2.0]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.1.1...v5.2.0
+[5.1.1]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.1.0...v5.1.1
+[5.1.0]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.0.4...v5.1.0
 [5.0.4]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.0.3...v5.0.4
 [5.0.3]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/fusheng-ji/token_quota_widget/compare/v5.0.1...v5.0.2

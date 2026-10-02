@@ -37,24 +37,39 @@ final class UsageStore: ObservableObject {
     @Published private var refreshSchedule = RefreshSchedule()
     @Published private(set) var refreshError: String?
     @Published private(set) var deepSeekConnectionState: DeepSeekConnectionState = .idle
+    @Published private(set) var codexLoginMessage: String?
+    @Published private(set) var isSigningInCodex = false
+    @Published private(set) var canRetryCodexLogin = false
+    private var pendingCodexLogin: (id: UUID, label: String)?
 
     private var lastAutomaticRefresh: Date?
     private var deepSeekConnectionTask: Task<Void, Never>?
     private var snapshotObservationTask: Task<Void, Never>?
     private var codexActivityRefreshTask: Task<Void, Never>?
     private var refreshTask: Task<Void, Never>?
+    private var codexLoginTask: Task<Void, Never>?
+    private var awaitsCodexLoginRefresh = false
     private let allowsLiveUpdates: Bool
+    private let allowsWorkspaceLogin: Bool
+    private let snapshotURL: URL
+    private let collectorScript: URL?
 
     var isRefreshing: Bool { refreshSchedule.showsFullRefresh }
 
     init(
         snapshot: UsageSnapshot = .load(),
         providerSettings: ProviderSettings = .load(),
-        observesSnapshotChanges: Bool = true
+        observesSnapshotChanges: Bool = true,
+        snapshotURL: URL = UsageSnapshot.snapshotURL,
+        allowsWorkspaceLogin: Bool = false,
+        collectorScript: URL? = Bundle.main.url(forResource: "collect_beaver_meter", withExtension: "sh")
     ) {
         self.snapshot = snapshot
         self.providerSettings = providerSettings
         allowsLiveUpdates = observesSnapshotChanges
+        self.snapshotURL = snapshotURL
+        self.collectorScript = collectorScript
+        self.allowsWorkspaceLogin = observesSnapshotChanges || allowsWorkspaceLogin
         if observesSnapshotChanges {
             snapshotObservationTask = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
@@ -84,10 +99,11 @@ final class UsageStore: ObservableObject {
         codexActivityRefreshTask?.cancel()
         refreshTask?.cancel()
         deepSeekConnectionTask?.cancel()
+        codexLoginTask?.cancel()
     }
 
     private func adoptNewerSnapshotFromDisk() {
-        guard let data = try? Data(contentsOf: UsageSnapshot.snapshotURL),
+        guard let data = try? Data(contentsOf: snapshotURL),
               let latest = UsageSnapshot.decode(data),
               latest.generatedAt > snapshot.generatedAt
         else { return }
@@ -98,6 +114,69 @@ final class UsageStore: ObservableObject {
 
     var visibleProviders: [MeterProvider] {
         providerSettings.visibleProviders(in: snapshot)
+    }
+
+    func addCodexWorkspace() {
+        guard allowsWorkspaceLogin, !isSigningInCodex else { return }
+        let alert = NSAlert()
+        alert.messageText = "Add Codex workspace"
+        alert.informativeText = "Name this workspace, then complete sign-in in your browser. Its login is stored separately in BeaverMeter."
+        let field = NSTextField(string: "")
+        field.placeholderString = "Workspace name (for example, Personal or Research)"
+        field.frame = NSRect(x: 0, y: 0, width: 350, height: 24)
+        alert.accessoryView = field
+        alert.addButton(withTitle: "Sign in")
+        alert.addButton(withTitle: "Cancel")
+        alert.window.initialFirstResponder = field
+        guard alert.runModal() == .alertFirstButtonReturn else { return }
+        let name = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        signInCodexWorkspace(id: UUID(), label: name.isEmpty ? "Workspace" : name)
+    }
+
+    func signInCodexWorkspace(id: UUID, label: String) {
+        guard allowsWorkspaceLogin, !isSigningInCodex else { return }
+        isSigningInCodex = true
+        awaitsCodexLoginRefresh = false
+        canRetryCodexLogin = false
+        pendingCodexLogin = (id, label)
+        codexLoginMessage = "Complete Codex sign-in in your browser and select the workspace to monitor…"
+        let helper = Bundle.main.bundleURL.appendingPathComponent("Contents/Helpers/BeaverMeterCollector")
+        let output = snapshotURL.path
+        codexLoginTask = Task { [weak self] in
+            let result = await Task.detached(priority: .userInitiated) {
+                CollectorProcessRunner.loginCodexWorkspace(helper: helper, id: id, label: label, output: output)
+            }.value
+            guard !Task.isCancelled, let self else { return }
+            self.isSigningInCodex = false
+            self.canRetryCodexLogin = result.status != 0
+            self.codexLoginMessage = result.status == 0 ? "Workspace connected. Refreshing usage…" : result.message
+            self.codexLoginTask = nil
+            if result.status == 0 {
+                self.pendingCodexLogin = nil
+                self.awaitsCodexLoginRefresh = true
+                self.refresh()
+            }
+        }
+    }
+
+    func retryCodexWorkspaceSignIn() {
+        guard let pendingCodexLogin else { return }
+        signInCodexWorkspace(id: pendingCodexLogin.id, label: pendingCodexLogin.label)
+    }
+
+    func openAccountConfiguration() {
+        let url = snapshotURL.deletingLastPathComponent().appendingPathComponent("beaver-meter-accounts.json")
+        do {
+            if !FileManager.default.fileExists(atPath: url.path) {
+                let template = """
+                {"version":1,"providers":[{"id":"codex","codexProfileHomePaths":[]}]}
+                """
+                try AtomicFileWriter.write(Data(template.utf8), to: url)
+            }
+            if !NSWorkspace.shared.open(url) { refreshError = "Open beaver-meter-accounts.json in a text editor to configure profile homes." }
+        } catch {
+            refreshError = "Could not open account configuration: \(error.localizedDescription)"
+        }
     }
 
     func setVisibility(_ visibility: ProviderVisibility, for provider: MeterProvider) {
@@ -167,7 +246,8 @@ final class UsageStore: ObservableObject {
     }
 
     private func requestRefresh(_ mode: RefreshSchedule.Mode) {
-        guard allowsLiveUpdates, let next = refreshSchedule.request(mode) else { return }
+        guard allowsLiveUpdates || allowsWorkspaceLogin,
+              let next = refreshSchedule.request(mode) else { return }
         startRefresh(next)
     }
 
@@ -177,8 +257,8 @@ final class UsageStore: ObservableObject {
             lastAutomaticRefresh = .now
         }
         let helper = Bundle.main.bundleURL.appendingPathComponent("Contents/Helpers/BeaverMeterCollector")
-        let script = Bundle.main.url(forResource: "collect_beaver_meter", withExtension: "sh")
-        let output = UsageSnapshot.snapshotURL.path
+        let script = collectorScript
+        let output = snapshotURL.path
         refreshTask = Task { [weak self] in
             let cancellation = SubprocessCancellation()
             let result = await withTaskCancellationHandler {
@@ -207,6 +287,10 @@ final class UsageStore: ObservableObject {
                 : result.message
         } else if mode == .all {
             refreshError = nil
+        }
+        if mode == .all, awaitsCodexLoginRefresh {
+            awaitsCodexLoginRefresh = false
+            codexLoginMessage = result.status == 0 ? nil : "Workspace connected, but usage could not be refreshed."
         }
         if mode == .all, deepSeekConnectionState == .loadingUsage {
             if result.status == 0, snapshot.deepseekUsage.status == .ready {

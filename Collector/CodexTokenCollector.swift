@@ -21,7 +21,8 @@ enum CodexTokenCollector {
         now: Date,
         scanCacheURL: URL? = nil,
         environment: [String: String] = ProcessInfo.processInfo.environment,
-        calendar: Calendar = .current
+        calendar: Calendar = .current,
+        remoteReading: CodexRemoteUsageCollector.Result? = nil
     ) async -> UsageValue<CodexTokenTotals> {
         do {
             // Full-provider fixtures intentionally bypass local and remote IO.
@@ -43,7 +44,8 @@ enum CodexTokenCollector {
                 now: now,
                 environment: environment,
                 localCacheURL: scanCacheURL ?? locations.local,
-                calendar: calendar
+                calendar: calendar,
+                remoteReading: remoteReading
             )
             let window = try CodexDayWindow(now: now, calendar: calendar)
             let homeHash = CodexUsageSupport.hash(CodexUsageSupport.homeURL(environment["CODEX_HOME"]).path)

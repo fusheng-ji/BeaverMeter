@@ -2,12 +2,12 @@ import Foundation
 import XCTest
 
 final class UsageSnapshotTests: XCTestCase {
-    func testVersionSixSnapshotRoundTrips() throws {
+    func testVersionSevenSnapshotRoundTrips() throws {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let decoded = try XCTUnwrap(UsageSnapshot.decode(encoder.encode(UsageSnapshot.preview)))
 
-        XCTAssertEqual(decoded.schemaVersion, 6)
+        XCTAssertEqual(decoded.schemaVersion, 7)
         XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
         XCTAssertEqual(decoded.claudeTokens.value?.cacheReadTokens, 190_000)
         XCTAssertEqual(decoded.claudeQuota.value?.windowSeconds, 18_000)
@@ -27,11 +27,51 @@ final class UsageSnapshotTests: XCTestCase {
         object["claudeQuota"] = nil
 
         let decoded = try XCTUnwrap(UsageSnapshot.decode(JSONSerialization.data(withJSONObject: object)))
-        XCTAssertEqual(decoded.schemaVersion, 6)
+        XCTAssertEqual(decoded.schemaVersion, 7)
         XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
         XCTAssertEqual(decoded.deepseekUsage.value?.monthTokens, 2_400_000)
         XCTAssertEqual(decoded.claudeTokens.status, .unavailable)
         XCTAssertNil(decoded.claudeQuota.value)
+    }
+
+    func testVersionSixSnapshotKeepsValuesAndDefaultsMonitoringFields() throws {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: encoder.encode(UsageSnapshot.preview)) as? [String: Any])
+        object["schemaVersion"] = 6
+        for field in ["codexAccounts", "codexHistory", "claudeHistory", "claudeResetCards"] { object[field] = nil }
+        let decoded = try XCTUnwrap(UsageSnapshot.decode(JSONSerialization.data(withJSONObject: object)))
+        XCTAssertEqual(decoded.schemaVersion, 7)
+        XCTAssertEqual(decoded.codexTokens, UsageSnapshot.preview.codexTokens)
+        XCTAssertEqual(decoded.claudeQuota, UsageSnapshot.preview.claudeQuota)
+        XCTAssertNil(decoded.codexHistory.value)
+        XCTAssertNil(decoded.codexAccounts.value)
+        XCTAssertEqual(decoded.claudeResetCards.status, .unavailable)
+    }
+
+    func testMonitoringSnapshotRoundTripsWithoutCredentials() throws {
+        let encoder = JSONEncoder(); encoder.dateEncodingStrategy = .iso8601
+        let data = try encoder.encode(UsageSnapshot.monitoringPreview)
+        let decoded = try XCTUnwrap(UsageSnapshot.decode(data))
+        XCTAssertEqual(decoded.codexAccounts.value?.count, 2)
+        XCTAssertEqual(decoded.codexHistory.value?.days.count, 7)
+        XCTAssertEqual(decoded.claudeResetCards.value?.availableCount, 3)
+        let text = String(decoding: data, as: UTF8.self)
+        XCTAssertFalse(text.contains("access_token"))
+        XCTAssertFalse(text.contains("refresh_token"))
+    }
+
+    func testResetCardExpirationsNeverInventMissingInventory() {
+        let now = Date(timeIntervalSince1970: 1000)
+        let inventory = ResetCardInventory(availableCount: 4, observedAt: now, batches: [
+            ResetCardBatch(id: "soon", count: 1, startsAt: nil, expiresAt: now.addingTimeInterval(60)),
+            ResetCardBatch(id: "unknown", count: 1, startsAt: nil, expiresAt: nil)
+        ])
+        XCTAssertEqual(inventory.count(at: now), 4)
+        XCTAssertEqual(inventory.count(at: now.addingTimeInterval(60)), 3)
+        XCTAssertEqual(inventory.availableBatches(at: now.addingTimeInterval(60)).map(\.id), ["unknown"])
+        let incomplete = ResetCardInventory(availableCount: 2, observedAt: now, batches: [])
+        XCTAssertEqual(incomplete.count(at: now.addingTimeInterval(100000)), 2)
     }
 
     func testLegacySnapshotVersionsAreRejected() throws {

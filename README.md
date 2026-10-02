@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-000000?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
   <a href="https://www.swift.org/"><img src="https://img.shields.io/badge/Swift-5.0%20%2F%206.0-F05138?style=flat-square&amp;logo=swift&amp;logoColor=white" alt="Swift 5.0 / 6.0"></a>
-  <a href="https://github.com/fusheng-ji/token_quota_widget"><img src="https://img.shields.io/badge/version-5.3.2-4C7CF3?style=flat-square" alt="Version 5.3.2"></a>
+  <a href="https://github.com/fusheng-ji/token_quota_widget/releases/tag/v5.4.0"><img src="https://img.shields.io/badge/version-5.4.0-4C7CF3?style=flat-square" alt="Version 5.4.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2EA44F?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -41,10 +41,14 @@ release.
 - **Codex & Claude Code** — today's tokens from local session logs plus quota
   windows with reset countdowns; Claude shows five-hour, weekly and
   model-scoped (Fable) limits side by side.
+- **Codex workspaces** — monitor separate plans and limits for workspaces
+  belonging to the same account; add sign-ins directly in BeaverMeter.
+- **Reset cards & history** — Codex Banked resets and Claude Limit resets
+  with expiration details, plus compact rolling seven-day token charts.
 - **Cursor** — actual per-call charges (not list prices) and Monthly allowance.
 - **DeepSeek** — wallet balance and current-month cost, tokens and requests.
 - **Adaptive** — the menu bar, popover and every Widget size show only the
-  services you use; switch each one Auto / On / Off.
+  services you use; enable or disable each one from Services.
 - **Local-first** — credentials come from your existing sessions and never
   enter the snapshot; hidden services are never contacted.
 - **Resilient** — every source refreshes independently and falls back to its
@@ -121,14 +125,27 @@ Cursor's daily actual charge and the latest 20 model calls; and DeepSeek
 balance, current-month cost, tokens and requests.
 
 <p align="center">
-  <img src="screenshots/menu-popover-services.png" alt="BeaverMeter menu-bar popover with the Services switches expanded" width="320">
+  <img src="screenshots/menu-monitoring-expanded-dark.png" alt="Separate Codex workspace plans and limits, reset cards and rolling seven-day token charts" width="320">
 </p>
 
+Expand **Codex workspaces** to see each workspace's plan, limits and reset
+cards. **Last 7 days** shows compact daily bars and selectable token details;
+Codex totals combine the configured logs rather than allocating tokens to plans.
+
+<details>
+<summary><b>Compact Services controls</b></summary>
+
+<p align="center">
+  <img src="screenshots/menu-popover-services.png" alt="Four service checkboxes in two rows" width="320">
+</p>
+
+</details>
+
 **Services.** Every layout adapts to the services you actually use. Each
-service is set to **Auto** by default and appears once it has produced data on
+service uses automatic detection by default and appears once it has produced data on
 this Mac, so a missing Cursor install or an unconnected DeepSeek account leaves
-no empty panel. Open **Services** at the bottom of the popover to force a
-service **On** (for example to connect DeepSeek) or **Off**. Services switched
+no empty panel. Open **Services** at the bottom of the popover and use the
+checkboxes to enable a service (for example to connect DeepSeek) or disable it. Services switched
 off are not contacted at all. The switches are stored in
 `~/Library/Application Support/BeaverMeter/beaver-meter-settings.json`, which
 the Widget and collector read too.
@@ -210,6 +227,93 @@ or progress bar.
 </details>
 
 ## 📊 Data sources
+
+<details>
+<summary><b>Codex workspaces, banked resets and seven-day tokens</b></summary>
+
+Expand **Codex workspaces** and choose **Add workspace…**. Name the workspace
+and complete Codex sign-in in your browser. BeaverMeter stores each login
+separately under its own `codex-workspaces/<UUID>` directory in Application
+Support. Choose **Sign in…** on a workspace row to reconnect it. Codex CLI
+must be available; CodexBar does not need to be installed or running.
+
+To reuse an existing Codex directory, choose **Open configuration…** and add profile homes to
+`~/Library/Application Support/BeaverMeter/beaver-meter-accounts.json`:
+
+```json
+{
+  "version": 1,
+  "providers": [{
+    "id": "codex",
+    "codexProfileHomePaths": ["~/.codex-work", "~/.codex-personal"]
+  }]
+}
+```
+
+This uses CodexBarCore's configuration and credential readers. The current
+`CODEX_HOME` (or the default `~/.codex`) is always included; duplicate and
+symlink-equivalent directories are read once. Each added home must already
+have its own Codex sign-in. Save the file and refresh BeaverMeter to see its
+quota windows and banked reset cards. Configuration errors and unavailable
+profiles are shown in the menu. BeaverMeter does not switch logins or redeem
+cards, and caches for a previous account are not reused after a profile's
+account or workspace changes.
+
+Workspaces belonging to the same email remain separate: each row shows its
+own plan, quota windows and banked resets. BeaverMeter reads its own workspace
+registry and explicitly configured profile homes. It does not automatically
+read CodexBar's managed logins. The original widget and menu-bar summary
+continue to use the current Codex home.
+
+For an explicit workspace selection, add a top-level `codexWorkspaces` array
+beside `version` and `providers`:
+
+```json
+"codexWorkspaces": [
+  {"home": "~/.codex-work", "workspaceAccountID": "<ChatGPT workspace UUID>", "workspaceLabel": "Research"}
+]
+```
+
+Use the ChatGPT workspace ID, not an API organization ID (`org-…`). A
+selection differing from the credential's default workspace is accepted only
+when the usage response confirms the selected workspace ID. Otherwise the
+row asks for a separate profile signed in to that workspace. Expired logins
+remain separate error rows; they never borrow another workspace's usage.
+External authentication files are never rewritten to select a workspace. Local token
+history still combines logs and cannot attribute tokens to individual plans.
+
+Codex cards come from CodexBarCore's read-only
+`/wham/rate-limit-reset-credits` request. Claude cards use the existing Claude
+Code sign-in and `/api/oauth/usage?cedar_ember=1&skip_spend=1`, the read path
+in Claude Code 2.1.284. These provider interfaces may change. Missing fields
+or an unsupported request surface mean unavailable, not zero. The request
+uses the installed CLI version and its `claude-cli/<version> (external, cli)`
+User-Agent format; failed requests can retain a clearly marked
+last reading. Expand **Banked resets** (Codex) or **Limit resets** (Claude) to see exact local expiration times,
+unknown expirations and any usage restrictions. Reading cards uses the existing
+service sign-in and never redeems a reset.
+
+**Last 7 days** covers today and the previous six calendar days in the Mac's
+time zone. Compact daily bars roll from oldest to newest without aligning
+to a calendar week, with English weekday labels instead of dates. Bar heights
+show each day's tokens relative to the service's seven-day maximum. Hover or
+click a bar to update the adjacent count and token categories; the last selected
+day stays visible. The summary tooltip describes the configured log sources.
+Codex combines the configured local logs and optional SSH source;
+Claude reads local transcripts. This is recorded token activity, not a
+conversion of subscription quota percentages or a complete cloud-account
+usage report. Cached input and reasoning are subsets of Codex input/output;
+Claude adds cache write and cache read to input/output. Responses are
+deduplicated across modern Codex logs and SSH. Overlapping legacy sessions
+whose per-response history cannot be recovered are excluded and marked
+incomplete. Foldout states are remembered between popover visits.
+The interface uses English labels and date formats while keeping the Mac's
+local time zone for collection and expiration times.
+
+The collector writes schema v7 snapshots and accepts v5/v6 snapshots during
+upgrade. All monitoring values remain credential-free.
+
+</details>
 
 Each service is read from the same official data its own app or dashboard
 uses. Expand a service for exact paths, endpoints and counting rules.
@@ -523,6 +627,20 @@ Run the network-free integration and migration tests:
 ./Tests/migration_test.sh
 ```
 
+For an interactive window with a collected snapshot, build the
+`BeaverMeterPreviewRenderer` scheme, then run:
+
+```bash
+/tmp/beavermeter-preview-derived/Build/Products/Debug/BeaverMeterPreviewRenderer \
+  --interactive "/path/to/beaver-meter-snapshot.json"
+```
+
+Use the binary in your chosen DerivedData directory. This window displays a
+snapshot, supports foldouts and scrolling, and leaves the installed app
+running. Automatic polling is disabled; explicit workspace sign-in and Refresh
+actions can collect usage into the supplied snapshot directory. Workspace sign-in
+requires the collector helper in a preview app bundle.
+
 </details>
 
 <details>
@@ -535,6 +653,10 @@ CODEX_TOKEN_FIXTURE
 CODEX_USAGE_FIXTURE
 CLAUDE_TOKEN_FIXTURE
 CLAUDE_USAGE_FIXTURE
+CODEX_HISTORY_FIXTURE
+CLAUDE_HISTORY_FIXTURE
+CODEX_RESET_CARDS_FIXTURE
+CLAUDE_RESET_CARDS_FIXTURE
 CURSOR_EVENTS_FIXTURE
 CURSOR_SUMMARY_FIXTURE
 DEEPSEEK_USAGE_FIXTURE
@@ -546,7 +668,9 @@ CLAUDE_CONFIG_DIR
 CODEX_REMOTE_RESPONSE_FIXTURE
 ```
 
-Coverage includes schema v6 round trips and v5 upgrades, status presentation,
+Coverage includes schema v7 round trips and v5/v6 upgrades, account and workspace
+cache isolation, reset-card expiration and unknown fields, seven-day boundaries
+and daylight saving time, status presentation,
 service switches and adaptive layout rows, refresh request coalescing, private
 atomic writes, subprocess timeout and large stdio, mixed Codex formats and
 cross-host deduplication, rollover and partial records, unreadable sources,

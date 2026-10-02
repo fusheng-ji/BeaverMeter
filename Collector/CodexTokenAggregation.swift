@@ -23,7 +23,8 @@ enum CodexTokenAggregation {
         now: Date,
         environment: [String: String],
         localCacheURL: URL?,
-        calendar: Calendar = .current
+        calendar: Calendar = .current,
+        remoteReading: CodexRemoteUsageCollector.Result? = nil
     ) throws -> Result {
         let local: CodexUsageRecordScanner.Result
         do {
@@ -40,7 +41,7 @@ enum CodexTokenAggregation {
             )
         }
         let locations = CodexCacheLocations(snapshotURL: localCacheURL ?? UsageSnapshot.snapshotURL)
-        let remote = CodexRemoteUsageCollector.collect(
+        let remote = remoteReading ?? CodexRemoteUsageCollector.collect(
             environment: environment,
             now: now,
             calendar: calendar,

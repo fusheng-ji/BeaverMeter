@@ -66,8 +66,9 @@ extension UsageSnapshot {
     /// A service is present once any of its values exists, even a stale one.
     func isDetected(_ provider: MeterProvider) -> Bool {
         switch provider {
-        case .codex: codexTokens.value != nil || codexQuota.value != nil
-        case .claude: claudeTokens.value != nil || claudeQuota.value != nil
+        case .codex: codexTokens.value != nil || codexQuota.value != nil || codexHistory.value != nil
+            || codexAccounts.value?.contains(where: { $0.quota.value != nil || $0.resetCards.value != nil }) == true
+        case .claude: claudeTokens.value != nil || claudeQuota.value != nil || claudeHistory.value != nil || claudeResetCards.value != nil
         case .cursor: cursorCosts.value != nil || cursorQuota.value != nil
         case .deepseek: deepseekUsage.value != nil
         }

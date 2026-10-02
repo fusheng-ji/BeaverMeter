@@ -14,6 +14,20 @@ struct BeaverMeterCollector {
         }
 
         let outputURL = resolvedOutputURL()
+        if CommandLine.arguments.contains("--codex-workspace-login") {
+            do {
+                let arguments = CommandLine.arguments
+                guard let index = arguments.firstIndex(of: "--profile-id"), arguments.indices.contains(index + 1),
+                      let id = UUID(uuidString: arguments[index + 1]) else {
+                    fail("Invalid workspace profile ID.", status: 2)
+                }
+                let labelIndex = arguments.firstIndex(of: "--workspace-label")
+                let label = labelIndex.flatMap { arguments.indices.contains($0 + 1) ? arguments[$0 + 1] : nil } ?? "Workspace"
+                try CodexWorkspaceLoginCollector.run(id: id, label: label, directory: outputURL.deletingLastPathComponent())
+                print("Workspace connected.")
+            } catch { fail(error.localizedDescription, status: 1) }
+            return
+        }
         do {
             let lock = try SnapshotWriter.lock(for: outputURL)
             defer { lock.unlock() }
@@ -33,14 +47,33 @@ struct BeaverMeterCollector {
         let now = Date()
         let scanCacheURL = codexScanCacheURL(for: outputURL)
         let settings = providerSettings(for: outputURL)
+        let environment = ProcessInfo.processInfo.environment
+        let directory = outputURL.deletingLastPathComponent()
+        let configuration = settings.collects(.codex)
+            ? CodexAccountConfiguration.load(directory: directory, environment: environment)
+            : CodexAccountConfiguration(homes: [], message: nil)
+        let historyReading = settings.collects(.codex)
+            ? await TokenHistoryCollector.codex(previous: previous.codexHistory, configuration: configuration,
+                                                now: now, directory: directory, environment: environment)
+            : TokenHistoryCollector.CodexReading(history: previous.codexHistory, remoteToday: nil)
+        async let claudeHistory = settings.collects(.claude)
+            ? await TokenHistoryCollector.claude(previous: previous.claudeHistory, now: now,
+                                                 directory: directory.appendingPathComponent("claude-history-cost"),
+                                                 environment: environment)
+            : previous.claudeHistory
 
         // Services switched off keep their previous values and are never contacted.
         async let codexTokens = settings.collects(.codex)
-            ? await CodexTokenCollector.collect(previous: previous.codexTokens, now: now, scanCacheURL: scanCacheURL)
+            ? await CodexTokenCollector.collect(previous: previous.codexTokens, now: now, scanCacheURL: scanCacheURL, remoteReading: historyReading.remoteToday)
             : previous.codexTokens
-        async let codexQuota = settings.collects(.codex)
-            ? await CodexQuotaCollector.collect(previous: previous.codexQuota, now: now)
-            : previous.codexQuota
+        async let codexAccounts = settings.collects(.codex)
+            ? await CodexAccountsCollector.collect(configuration: configuration, previous: previous.codexAccounts,
+                                                    now: now, environment: environment)
+            : previous.codexAccounts
+        async let claudeResetCards = settings.collects(.claude)
+            ? await ClaudeResetCardCollector.collect(previous: previous.claudeResetCards, now: now,
+                                                     stateDirectory: directory, environment: environment)
+            : previous.claudeResetCards
         async let claudeTokens = settings.collects(.claude)
             ? await ClaudeTokenCollector.collect(
                 previous: previous.claudeTokens, now: now, cacheRoot: claudeCostCacheRoot(for: outputURL)
@@ -60,9 +93,13 @@ struct BeaverMeterCollector {
             ? await DeepSeekUsageCollector.collect(previous: previous.deepseekUsage, now: now)
             : previous.deepseekUsage
 
-        let (resolvedCodexTokens, resolvedCodexQuota, resolvedCursor, resolvedDeepSeek) = await (
+        let resolvedCodexAccounts = await codexAccounts
+        let resolvedCodexQuota = settings.collects(.codex)
+            ? await CodexAccountsCollector.defaultQuota(accounts: resolvedCodexAccounts, previous: previous.codexQuota,
+                                                       now: now, environment: environment)
+            : previous.codexQuota
+        let (resolvedCodexTokens, resolvedCursor, resolvedDeepSeek) = await (
             codexTokens,
-            codexQuota,
             cursor,
             deepseekUsage
         )
@@ -76,7 +113,9 @@ struct BeaverMeterCollector {
             codexQuota: resolvedCodexQuota,
             claudeTokens: resolvedClaudeTokens,
             claudeQuota: resolvedClaudeQuota,
-            deepseekUsage: resolvedDeepSeek
+            deepseekUsage: resolvedDeepSeek,
+            codexAccounts: resolvedCodexAccounts, codexHistory: historyReading.history,
+            claudeHistory: await claudeHistory, claudeResetCards: await claudeResetCards
         )
 
         try SnapshotWriter.write(snapshot, to: outputURL)
@@ -88,9 +127,23 @@ struct BeaverMeterCollector {
         let previous = SnapshotWriter.loadPrevious(from: outputURL)
         let now = Date()
         let settings = providerSettings(for: outputURL)
+        let environment = ProcessInfo.processInfo.environment
+        let directory = outputURL.deletingLastPathComponent()
+        let configuration = settings.collects(.codex)
+            ? CodexAccountConfiguration.load(directory: directory, environment: environment)
+            : CodexAccountConfiguration(homes: [], message: nil)
+        let historyReading = settings.collects(.codex)
+            ? await TokenHistoryCollector.codex(previous: previous.codexHistory, configuration: configuration,
+                                                now: now, directory: directory, environment: environment)
+            : TokenHistoryCollector.CodexReading(history: previous.codexHistory, remoteToday: nil)
+        async let claudeHistory = settings.collects(.claude)
+            ? await TokenHistoryCollector.claude(previous: previous.claudeHistory, now: now,
+                                                 directory: directory.appendingPathComponent("claude-history-cost"),
+                                                 environment: environment)
+            : previous.claudeHistory
         async let codexTokens = settings.collects(.codex)
             ? await CodexTokenCollector.collect(
-                previous: previous.codexTokens, now: now, scanCacheURL: codexScanCacheURL(for: outputURL)
+                previous: previous.codexTokens, now: now, scanCacheURL: codexScanCacheURL(for: outputURL), remoteReading: historyReading.remoteToday
             )
             : previous.codexTokens
         async let claudeTokens = settings.collects(.claude)
@@ -99,8 +152,11 @@ struct BeaverMeterCollector {
             )
             : previous.claudeTokens
         let (resolvedCodexTokens, resolvedClaudeTokens) = await (codexTokens, claudeTokens)
+        let resolvedClaudeHistory = await claudeHistory
         guard isChanged(previous.codexTokens, resolvedCodexTokens, now: now)
                 || isChanged(previous.claudeTokens, resolvedClaudeTokens, now: now)
+                || isChanged(previous.codexHistory, historyReading.history, now: now)
+                || isChanged(previous.claudeHistory, resolvedClaudeHistory, now: now)
         else {
             print(outputURL.path)
             return
@@ -115,7 +171,9 @@ struct BeaverMeterCollector {
             codexQuota: previous.codexQuota,
             claudeTokens: resolvedClaudeTokens,
             claudeQuota: previous.claudeQuota,
-            deepseekUsage: previous.deepseekUsage
+            deepseekUsage: previous.deepseekUsage,
+            codexAccounts: previous.codexAccounts, codexHistory: historyReading.history,
+            claudeHistory: resolvedClaudeHistory, claudeResetCards: previous.claudeResetCards
         )
         try SnapshotWriter.write(snapshot, to: outputURL)
         print(outputURL.path)

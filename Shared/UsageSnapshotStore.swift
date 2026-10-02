@@ -24,35 +24,43 @@ extension UsageSnapshot {
     static func decode(_ data: Data) -> UsageSnapshot? {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        if let snapshot = try? decoder.decode(UsageSnapshot.self, from: data),
-           snapshot.schemaVersion == Self.currentSchemaVersion {
-            return snapshot
-        }
-        // Version 5 had no Claude fields; keep its provider values as the
-        // stale fallback for the first refresh after an upgrade.
-        if let legacy = try? decoder.decode(SchemaV5.self, from: data), legacy.schemaVersion == 5 {
-            return UsageSnapshot(
-                schemaVersion: Self.currentSchemaVersion,
-                generatedAt: legacy.generatedAt,
-                codexTokens: legacy.codexTokens,
-                cursorCosts: legacy.cursorCosts,
-                cursorQuota: legacy.cursorQuota,
-                codexQuota: legacy.codexQuota,
-                claudeTokens: Self.unavailable.claudeTokens,
-                claudeQuota: Self.unavailable.claudeQuota,
-                deepseekUsage: legacy.deepseekUsage
-            )
-        }
-        return nil
+        guard let snapshot = try? decoder.decode(UsageSnapshot.self, from: data),
+              (5...Self.currentSchemaVersion).contains(snapshot.schemaVersion) else { return nil }
+        return UsageSnapshot(
+            schemaVersion: Self.currentSchemaVersion, generatedAt: snapshot.generatedAt,
+            codexTokens: snapshot.codexTokens, cursorCosts: snapshot.cursorCosts,
+            cursorQuota: snapshot.cursorQuota, codexQuota: snapshot.codexQuota,
+            claudeTokens: snapshot.claudeTokens, claudeQuota: snapshot.claudeQuota,
+            deepseekUsage: snapshot.deepseekUsage, codexAccounts: snapshot.codexAccounts,
+            codexHistory: snapshot.codexHistory, claudeHistory: snapshot.claudeHistory,
+            claudeResetCards: snapshot.claudeResetCards
+        )
     }
+}
 
-    private struct SchemaV5: Decodable {
-        let schemaVersion: Int
-        let generatedAt: Date
-        let codexTokens: UsageValue<CodexTokenTotals>
-        let cursorCosts: UsageValue<CursorCostTotals>
-        let cursorQuota: UsageValue<CompactQuota>
-        let codexQuota: UsageValue<CompactQuota>
-        let deepseekUsage: UsageValue<DeepSeekUsageTotals>
+extension UsageSnapshot {
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(
+            schemaVersion: try c.decode(Int.self, forKey: .schemaVersion),
+            generatedAt: try c.decode(Date.self, forKey: .generatedAt),
+            codexTokens: try c.decode(UsageValue<CodexTokenTotals>.self, forKey: .codexTokens),
+            cursorCosts: try c.decode(UsageValue<CursorCostTotals>.self, forKey: .cursorCosts),
+            cursorQuota: try c.decode(UsageValue<CompactQuota>.self, forKey: .cursorQuota),
+            codexQuota: try c.decode(UsageValue<CompactQuota>.self, forKey: .codexQuota),
+            claudeTokens: try c.decodeIfPresent(UsageValue<ClaudeTokenTotals>.self, forKey: .claudeTokens)
+                ?? Self.unavailable.claudeTokens,
+            claudeQuota: try c.decodeIfPresent(UsageValue<CompactQuota>.self, forKey: .claudeQuota)
+                ?? Self.unavailable.claudeQuota,
+            deepseekUsage: try c.decode(UsageValue<DeepSeekUsageTotals>.self, forKey: .deepseekUsage),
+            codexAccounts: try c.decodeIfPresent(UsageValue<[CodexAccountUsage]>.self, forKey: .codexAccounts)
+                ?? Self.unavailable.codexAccounts,
+            codexHistory: try c.decodeIfPresent(UsageValue<TokenHistory<CodexTokenTotals>>.self, forKey: .codexHistory)
+                ?? Self.unavailable.codexHistory,
+            claudeHistory: try c.decodeIfPresent(UsageValue<TokenHistory<ClaudeTokenTotals>>.self, forKey: .claudeHistory)
+                ?? Self.unavailable.claudeHistory,
+            claudeResetCards: try c.decodeIfPresent(UsageValue<ResetCardInventory>.self, forKey: .claudeResetCards)
+                ?? Self.unavailable.claudeResetCards
+        )
     }
 }

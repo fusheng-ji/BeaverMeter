@@ -15,7 +15,7 @@ enum CodexUsageRecordScanner {
         let message: String?
     }
 
-    private static let cacheSchemaVersion = 2
+    private static let cacheSchemaVersion = 3
     private static let recordMarker = Data(#""token_usage_record""#.utf8)
 
     private struct Record: Decodable {
@@ -77,11 +77,12 @@ enum CodexUsageRecordScanner {
         codexHomePath: String?,
         now: Date,
         calendar: Calendar = .current,
-        cacheURL: URL? = nil
+        cacheURL: URL? = nil,
+        historyDays: Int = 1
     ) throws -> Result {
         let codexHome = CodexUsageSupport.homeURL(codexHomePath)
         let codexHomeHash = hash(codexHome.standardizedFileURL.path)
-        let window = try CodexDayWindow(now: now, calendar: calendar)
+        let window = try CodexDayWindow(now: now, calendar: calendar, historyDays: historyDays)
         let dayStart = window.start
 
         let enumeration = recentlyModifiedRollouts(
@@ -168,7 +169,8 @@ enum CodexUsageRecordScanner {
                         cachedInputTokens: usage.cachedInputTokens ?? 0,
                         outputTokens: usage.outputTokens,
                         reasoningTokens: usage.reasoningOutputTokens ?? 0,
-                        sessionHash: hash(CodexUsageSupport.nonempty(record.payload.sessionID) ?? candidate.identity)
+                        sessionHash: hash(CodexUsageSupport.nonempty(record.payload.sessionID) ?? candidate.identity),
+                        timestamp: timestamp
                     )
                     candidateChanged = true
                 }

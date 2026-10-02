@@ -8,6 +8,7 @@ struct CodexResponseUsage: Codable, Hashable, Sendable {
     let outputTokens: Int
     let reasoningTokens: Int
     let sessionHash: String
+    var timestamp: Date? = nil
 }
 
 struct CodexDayWindow: Sendable {
@@ -15,11 +16,13 @@ struct CodexDayWindow: Sendable {
     let end: Date
     let cutoff: Date
 
-    init(now: Date, calendar: Calendar) throws {
-        start = calendar.startOfDay(for: now)
-        guard let nextDay = calendar.date(byAdding: .day, value: 1, to: start) else {
+    init(now: Date, calendar: Calendar, historyDays: Int = 1) throws {
+        let today = calendar.startOfDay(for: now)
+        guard let firstDay = calendar.date(byAdding: .day, value: 1 - historyDays, to: today),
+              let nextDay = calendar.date(byAdding: .day, value: 1, to: today) else {
             throw CocoaError(.coderReadCorrupt)
         }
+        start = firstDay
         end = nextDay
         cutoff = now
     }

@@ -33,6 +33,7 @@ struct BeaverMeterWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: BeaverMeterProvider()) { entry in
             BeaverMeterWidgetView(entry: entry)
+                .environment(\.locale, UsageFormatting.locale)
         }
         .configurationDisplayName("BeaverMeter")
         .description("AI coding usage and quotas at a glance.")

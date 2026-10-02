@@ -9,6 +9,14 @@ enum CollectorProcessRunner {
     private static let missingCollectorMessage =
         "The bundled usage collector is missing. Reinstall BeaverMeter."
 
+    static func loginCodexWorkspace(helper: URL, id: UUID, label: String, output: String) -> CollectorProcessResult {
+        guard FileManager.default.isExecutableFile(atPath: helper.path) else {
+            return CollectorProcessResult(status: -1, message: missingCollectorMessage)
+        }
+        return run(executable: helper, arguments: ["--codex-workspace-login", "--profile-id", id.uuidString,
+            "--workspace-label", label, "--output", output], timeout: 200, cancellation: nil)
+    }
+
     static func refresh(helper: URL, script: URL?, output: String, cancellation: SubprocessCancellation? = nil) -> CollectorProcessResult {
         runCollector(helper: helper, script: script, output: output, mode: nil, cancellation: cancellation)
     }
@@ -56,11 +64,14 @@ enum CollectorProcessRunner {
     ) -> CollectorProcessResult {
         let collectorArguments = [mode, "--output", output].compactMap { $0 }
         if let script, FileManager.default.fileExists(atPath: script.path) {
+            var environment = ProcessInfo.processInfo.environment
+            environment["BEAVERMETER_COLLECTOR"] = helper.path
             return run(
                 executable: URL(fileURLWithPath: "/bin/zsh"),
                 arguments: [script.path] + collectorArguments,
                 timeout: 180,
-                cancellation: cancellation
+                cancellation: cancellation,
+                environment: environment
             )
         }
         guard FileManager.default.isExecutableFile(atPath: helper.path) else {
@@ -74,7 +85,8 @@ enum CollectorProcessRunner {
         arguments: [String],
         standardInput: Data? = nil,
         timeout: TimeInterval,
-        cancellation: SubprocessCancellation?
+        cancellation: SubprocessCancellation?,
+        environment: [String: String] = ProcessInfo.processInfo.environment
     ) -> CollectorProcessResult {
         do {
             let result = try SubprocessRunner.run(
@@ -82,6 +94,7 @@ enum CollectorProcessRunner {
                 arguments: arguments,
                 standardInput: standardInput,
                 timeout: timeout,
+                environment: environment,
                 captureStandardOutput: false,
                 cancellation: cancellation
             )

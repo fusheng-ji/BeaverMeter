@@ -92,6 +92,7 @@ struct CursorCostTotals: Codable, Hashable, Sendable {
 }
 
 struct CompactQuota: Codable, Hashable, Sendable {
+    var planName: String? = nil
     let label: String
     let used: Double?
     let limit: Double?

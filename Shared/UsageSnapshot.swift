@@ -1,7 +1,11 @@
 import Foundation
 
 struct UsageSnapshot: Codable, Hashable, Sendable {
-    static let currentSchemaVersion = 6
+    static let currentSchemaVersion = 7
+    enum CodingKeys: String, CodingKey {
+        case schemaVersion, generatedAt, codexTokens, cursorCosts, cursorQuota, codexQuota
+        case claudeTokens, claudeQuota, deepseekUsage, codexAccounts, codexHistory, claudeHistory, claudeResetCards
+    }
 
     let schemaVersion: Int
     let generatedAt: Date
@@ -12,6 +16,10 @@ struct UsageSnapshot: Codable, Hashable, Sendable {
     let claudeTokens: UsageValue<ClaudeTokenTotals>
     let claudeQuota: UsageValue<CompactQuota>
     let deepseekUsage: UsageValue<DeepSeekUsageTotals>
+    var codexAccounts: UsageValue<[CodexAccountUsage]> = .unavailable("No Codex accounts collected yet.")
+    var codexHistory: UsageValue<TokenHistory<CodexTokenTotals>> = .unavailable("No seven-day Codex history yet.")
+    var claudeHistory: UsageValue<TokenHistory<ClaudeTokenTotals>> = .unavailable("No seven-day Claude history yet.")
+    var claudeResetCards: UsageValue<ResetCardInventory> = .unavailable("Claude reset cards have not been read yet.")
 
     static let unavailable = UsageSnapshot(
         schemaVersion: Self.currentSchemaVersion,
