@@ -1,0 +1,22 @@
+{
+  "id": "lanternFestival",
+  "name": "元宵",
+  "filename": "beaver-lanternFestival.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied existing picture locally to add seasonal accessories ONLY. Use the supplied A1-v2 image as the direct and sole reference.\nPreserve the original beaver exactly: same head contour, ear positions, tilted viewing angle, eye positions and highlights, nose shape, cream muzzle, gentle smile, short incisors, chestnut/cream colors and soft shading. Preserve its exact scale, position, lower-left emergence, and existing left/bottom cropping. Keep the entire original sage-teal background and its existing tonal appearance unchanged.\nDo not reconstruct cropped anatomy, move the face, straighten its angle, center the character, shrink the head, redraw its face, or remove or replace the background. Treat all areas outside the new accessory locations as protected existing artwork.\nFit the accessories into existing upper background space and outer brown perimeter areas. They may cover a small outer edge of the brown head, but must never cover eyes, nose, cream muzzle, smile or teeth. Keep both ears recognizable. Keep all NEW accessories fully inside the original square canvas, with approximately 24 pixels of clearance, without changing the original head crop.\nKeep accessory shapes soft, simple, compact and rounded, matching the reference's quiet warmth. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment. Do not add extra scenery, body parts, fur, whiskers, blush, eyebrows, strong shadows, fine ornament, watermarks, frames or a new character.\nDeliver one full-resolution square image with the SAME original composition and background.\nAccessories to add: Add one compact rounded red lantern with a short gold suspension loop in the upper-left green space, above the left ear. Add one small cream bowl holding three round tangyuan along the lower-right outer brown edge. Keep the bowl away from the cream muzzle and teeth. No writing.\nPreserve every original feature and only add these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-a8b7381c-7f5a-4735-b4ec-396b00f43dbe.png",
+  "editingPolicy": "Only accessories added directly to A1-v2; no centered or transparent intermediate.",
+  "observation": "Original lower-left crop, scale, tilted face, expression and sage-teal background visibly retained. Lantern suspension cord reaches the top canvas edge; lantern and bowl remain visible. No automatic retry or postprocessing.",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "outputSHA256": "5be32235032de44909c9622cb6d407f768442a391058b98e9e3b55af311f3763"
+}

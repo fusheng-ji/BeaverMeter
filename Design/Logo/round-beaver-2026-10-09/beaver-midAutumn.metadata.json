@@ -1,0 +1,13 @@
+{
+  "id": "midAutumn",
+  "prompt": "Edit the supplied centered transparent beaver head. Keep the exact same character, framing, head scale and face position. Preserve the rounded chestnut head, cream muzzle, full cheeks, small nose, eye spacing, gentle smile, two short front incisors, both ears, and subtle soft graphic shading. Add only the seasonal accessories described below.\nThe beaver itself must not be shrunk, moved or reshaped to make room for props. Fit props into the existing perimeter space and open corners; they may overlap only the outer edge of the cheeks or the top of the head. Never cover the eyes, nose, smile or teeth. Keep both ears recognizable. Simplify accessories into a few broad rounded shapes, with coordinated warm accent colors. Every accessory and every part of the head must remain fully inside the original square canvas, with at least 40 pixels of transparent clearance at all four edges.\nUse the same clean, rounded, adorable graphic style as the reference. Avoid fine texture, tiny lines, busy patterns, sharp tips, dramatic highlights or detailed three-dimensional materials. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nPreserve genuine transparency outside the character and accessories. No background color, scenery, checkerboard pattern, white rectangle, frame, border, body, extra characters or watermark. Keep full original resolution and the exact 1:1 square canvas.\nAccessories: One small warm-gold crescent moon near the upper-right ear, one simple round mooncake beside the lower-left outer cheek, and one tiny sprig with a few round golden osmanthus flowers beside the lower-right outer cheek. Give the moon blunt rounded tips and the mooncake broad simple scallops, no intricate patterns or lettering.\nChange only these accessories; preserve the original face.",
+  "sourcePath": "/Users/jiwenbo/.codex/generated_images/01a11dd9-fbbe-70e3-9eb6-1e50fa3d794b/exec-1b223d58-fc89-4788-9e55-bd46575040db.png",
+  "dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "447c2fae55fb8711bc465394da0c936a7c07b30f8679e3bd2a5d5817ac7ebf14",
+  "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/round-beaver-2026-10-09/beaver-standard.png",
+  "tool": "built-in image_gen.imagegen",
+  "generationCount": 1
+}

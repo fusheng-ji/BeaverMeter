@@ -1,0 +1,98 @@
+{
+  "master": "A1-v2",
+  "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "standardUnmodified": true,
+  "referencePolicy": "All eight use original A1-v2 directly; no centered intermediate.",
+  "records": [
+    {
+      "id": "standard",
+      "filename": "beaver-standard.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "metadata": "beaver-standard.metadata.json"
+    },
+    {
+      "id": "newYear",
+      "filename": "beaver-newYear.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "f3afe1442478d730552be62e9b9f873a673ecfceeb8f3bf383d61b0be942b89a",
+      "metadata": "beaver-newYear.metadata.json"
+    },
+    {
+      "id": "lunarNewYear",
+      "filename": "beaver-lunarNewYear.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5db6434238cf26480d2c980fb12b015742abb48f1e22167baa6b2f1f86e7c7cd",
+      "metadata": "beaver-lunarNewYear.metadata.json"
+    },
+    {
+      "id": "lanternFestival",
+      "filename": "beaver-lanternFestival.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5be32235032de44909c9622cb6d407f768442a391058b98e9e3b55af311f3763",
+      "metadata": "beaver-lanternFestival.metadata.json"
+    },
+    {
+      "id": "dragonBoat",
+      "filename": "beaver-dragonBoat.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "d0cc1c634af3750320b27406a3d35db22849d68526c7925bf712e86206326034",
+      "metadata": "beaver-dragonBoat.metadata.json"
+    },
+    {
+      "id": "midAutumn",
+      "filename": "beaver-midAutumn.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "7aca9e18dba6c54970842fad0f1d71f4c9f4aa371e87641129ff4dceab7ca55b",
+      "metadata": "beaver-midAutumn.metadata.json"
+    },
+    {
+      "id": "programmerDay",
+      "filename": "beaver-programmerDay.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "25055db4bf5ccef881a23413ae156b1f2285cf7499cff06a03ba5a9f71b10b11",
+      "metadata": "beaver-programmerDay.metadata.json"
+    },
+    {
+      "id": "halloween",
+      "filename": "beaver-halloween.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "81bc1ac8ff6e8fcb5900fb255d6915d345097e13201d0a1a331912a16f7e0546",
+      "metadata": "beaver-halloween.metadata.json"
+    },
+    {
+      "id": "christmas",
+      "filename": "beaver-christmas.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "0e26747add1f62b104a4f33323115f00694cac79d085a44cd131fdaeaabe28a5",
+      "metadata": "beaver-christmas.metadata.json"
+    }
+  ]
+}

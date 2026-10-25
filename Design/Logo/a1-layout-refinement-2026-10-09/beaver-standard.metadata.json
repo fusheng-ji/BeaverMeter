@@ -1,0 +1,21 @@
+{
+  "id": "standard",
+  "name": "常规版",
+  "filename": "beaver-standard.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": null,
+  "generationCount": 0,
+  "provider": "Byte-identical copy of approved A1-v2; no generation",
+  "model": "Not applicable",
+  "transparentBackground": false,
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "generatedSource": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "outputSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "editingPolicy": "Standard unchanged during accessory layout refinement."
+}

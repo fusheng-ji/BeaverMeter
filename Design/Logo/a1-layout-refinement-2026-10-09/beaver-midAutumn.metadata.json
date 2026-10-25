@@ -1,0 +1,35 @@
+{
+  "variant": "midAutumn",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "directReferenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "referencedImagePaths": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "sourceGeneratedPath": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-8323a976-adc5-4a7a-a110-5aad53029835.png",
+  "sourceSHA256": "6d50a5023301ed32bdcebb1c61f43b3f83f5f5a614f0e2aae4a7e42011126e0f",
+  "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/a1-layout-refinement-2026-10-09/beaver-midAutumn.png",
+  "outputSHA256": "6d50a5023301ed32bdcebb1c61f43b3f83f5f5a614f0e2aae4a7e42011126e0f",
+  "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place one soft gold crescent in the upper-right background, close to but not touching the right ear. Nest a small osmanthus sprig around the crescent’s lower tip so the moon and flowers form one unified accent, not two separated stickers. Place one compact rounded mooncake at the lower-right brown perimeter, fully visible outside the cream muzzle and smaller than the moon-and-flower accent. Use a few broad flower shapes and a simple mooncake surface. No writing.\nPreserve the original beaver and background; change only these accessories.",
+  "nativeDimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed by built-in tool",
+  "transparentBackground": false,
+  "generationCount": 1,
+  "postProcessing": "None. Byte-for-byte copy of original generated image.",
+  "visualInspectionNotes": "Original beaver framing and background appear retained. Moon and osmanthus are grouped above right ear; mooncake at lower-right, outside cream muzzle, with frame margins. Additional small osmanthus flowers appear beside mooncake.",
+  "id": "midAutumn",
+  "name": "中秋",
+  "filename": "beaver-midAutumn.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-8323a976-adc5-4a7a-a110-5aad53029835.png",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254
+}

@@ -1,0 +1,79 @@
+{
+  "standardByteIdenticalToA1V2": true,
+  "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "eightDirectReferenceEdits": [
+    {
+      "id": "newYear",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "lunarNewYear",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "lanternFestival",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "dragonBoat",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "midAutumn",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "programmerDay",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "halloween",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    },
+    {
+      "id": "christmas",
+      "directMasterReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "masterSha256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84"
+    }
+  ],
+  "fixedExportCanvas": [
+    512,
+    512
+  ],
+  "runtimeInsetPixels": 16,
+  "referencePolicy": "Original A1-v2 only; preserve lower-left composition, scale, viewing angle, crop and background.",
+  "nativeSourceDimensions": [
+    1254,
+    1254
+  ],
+  "visualInspection": "Original lower-left pose, viewing angle, face scale, crop, expression and sage-teal background retained; eyes, nose, smile and teeth visible.",
+  "edgeObservations": [
+    "Lunar New Year scarf, Lantern Festival cord and Programmers Day keyboard meet the original cropped frame.",
+    "Dragon Boat zongzi, Mid-Autumn mooncake and keyboard overlap the outer cream cheek.",
+    "Christmas candy cane is close to the right edge."
+  ],
+  "applicationAndWidgetBuild": "passed",
+  "selectedBrandTests": {
+    "count": 13,
+    "failures": 0
+  },
+  "navigationBundleCheck": "passed",
+  "previewRendererBuild": "passed",
+  "previewAssetCheck": "passed",
+  "previewRenderRuns": 7,
+  "screenshotsRefreshed": 83,
+  "protectedWidgetAndGalleryFiles": {
+    "count": 322,
+    "sha256Unchanged": true
+  },
+  "interfaceLayoutChanged": false,
+  "installedApplicationReplaced": false,
+  "published": false
+}

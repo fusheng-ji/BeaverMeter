@@ -1,0 +1,59 @@
+{
+  "sourceFiles": 9,
+  "nativeDimensions": [
+    1254,
+    1254
+  ],
+  "preservedOriginalBytes": true,
+  "significantAlphaThreshold": 16,
+  "noSignificantPixelsTouchCanvasEdges": true,
+  "minimumSignificantClearancePixels": {
+    "standard": 76,
+    "newYear": 44,
+    "lunarNewYear": 29,
+    "lanternFestival": 25,
+    "dragonBoat": 56,
+    "midAutumn": 47,
+    "programmerDay": 39,
+    "halloween": 30,
+    "christmas": 29
+  },
+  "faceAndAccessories": "All nine visually checked: consistent face, eyes and incisors; no props covering eyes, nose, smile or teeth.",
+  "notes": "A few very low-alpha fringe pixels are present. Export the complete canvas with a shared 16px runtime inset; do not alter originals.",
+  "runtime": {
+    "colorCount": 9,
+    "colorSize": [
+      512,
+      512
+    ],
+    "templateCount": 9,
+    "templateSize": [
+      72,
+      72
+    ],
+    "templatesByteIdentical": true,
+    "outerEdgesTransparent": true,
+    "colorInsetPixels": 16,
+    "templateIntermediateAlphaPixels": 657,
+    "templateCoverageAtAlpha16": 0.3306,
+    "appIconRenditions": 10,
+    "appIconPixelSizes": [
+      16,
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024
+    ]
+  },
+  "checks": {
+    "swiftTests": 125,
+    "pythonTests": 12,
+    "fullTestScriptPassed": true,
+    "cleanDerivedData": "/tmp/beavermeter-round-brand-derived-20261009",
+    "previewBuildPassed": true,
+    "bundledAssetCheckPassed": true,
+    "updatedSoftwareScreenshots": 83
+  }
+}

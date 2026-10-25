@@ -1,0 +1,198 @@
+{
+  "masterSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "standardUnchanged": true,
+  "imagesGenerated": 8,
+  "directA1V2ReferenceOnly": true,
+  "allSourceDimensions": [
+    1254,
+    1254
+  ],
+  "originalsPreserved": true,
+  "exportCanvas": [
+    512,
+    512
+  ],
+  "fullCanvasScale": true,
+  "runtimeInsetPixels": 16,
+  "allMenuTemplatesIdentical": true,
+  "applicationAndWidgetBuild": "passed",
+  "runtimeBundleChecks": [
+    {
+      "filename": "beaver-standard.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "d86cd15cb400164e977235aea793682607711ede2efe63a290b451de005df307",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-standard-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-newYear.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "dc0b141a3b45e4eb38c8e1e00a78289a41743da9b52ef19fd08fdb9f0cda380b",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-newYear-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-lunarNewYear.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "af56e5deb0cd4502add3960bd589f0c625d54d5156cd06cf0ae2196e3a0cfed9",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-lunarNewYear-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-lanternFestival.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "353bfaaf6e78ff36a079fb66676877bab0b02732070ac549800fe1b067491918",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-lanternFestival-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-dragonBoat.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "7336007e1018a40421bc61285a70cec26ec3ce19d36f0ef5ed9daca4a9fbc6eb",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-dragonBoat-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-midAutumn.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "ca805d90fa5e906831baba114aedbe2f857c8c00e462e2ed11989cab6c0285ca",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-midAutumn-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-programmerDay.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "ad2967d7e15f08bb2bf9a56f0cf5b6a9aee89842d7380bcf8b39e7e6aded7978",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-programmerDay-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-halloween.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "41a3274e4e68f9d38756412df2d5015d6612bf44ecc2dfadbe7e3df51a0d4148",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-halloween-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-christmas.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "e12a238f6d6284a78c9810bbb903238c2e944d81af6f07e1ff92bc0e85a12bca",
+      "bundledBytesMatch": true
+    },
+    {
+      "filename": "beaver-christmas-template.png",
+      "size": [
+        72,
+        72
+      ],
+      "sha256": "bb46df78f5776450c6b7e66432a21c9dd7eadc6fc6f86b286ffefd3096887846",
+      "bundledBytesMatch": true
+    }
+  ],
+  "sourceProvenanceCheck": "passed",
+  "independentVisualInspection": "completed; see VALIDATION.md for edge/ear/cheek observations",
+  "navigationProviderBundleCheck": "passed",
+  "previewRendererBuild": "passed",
+  "previewAssetCheck": "passed",
+  "previewRenderRuns": 3,
+  "screenshotsRefreshed": 6,
+  "protectedFiles": {
+    "pngCount": 399,
+    "htmlCount": 1,
+    "sha256Unchanged": true
+  },
+  "interfaceCodeChanged": false,
+  "installedApplicationReplaced": false,
+  "published": false
+}

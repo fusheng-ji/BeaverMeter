@@ -1,0 +1,35 @@
+{
+  "variant": "dragonBoat",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "directReferenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "referencedImagePaths": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "sourceGeneratedPath": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-b61ca6c1-70ed-4964-989d-a38658181ab7.png",
+  "sourceSHA256": "924d330ff5e17263c4bf11e4c858613d133cc3d09e9cae06bc53284aba4c8a64",
+  "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/a1-layout-refinement-2026-10-09/beaver-dragonBoat.png",
+  "outputSHA256": "924d330ff5e17263c4bf11e4c858613d133cc3d09e9cae06bc53284aba4c8a64",
+  "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Tuck two broad green bamboo leaves behind the upper-left ear as a small natural head accessory, following the ear angle and keeping the ear visible. Group a small plump leaf-wrapped zongzi and a short rounded wooden paddle together at the lower-right brown perimeter. Place the paddle diagonally behind the zongzi, with only its broad blade and short handle visible. Keep this foreground cluster fully in frame and completely outside the cream muzzle. No extra objects or intricate string texture.\nPreserve the original beaver and background; change only these accessories.",
+  "nativeDimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed by built-in tool",
+  "transparentBackground": false,
+  "generationCount": 1,
+  "postProcessing": "None. Byte-for-byte copy of original generated image.",
+  "visualInspectionNotes": "Original beaver framing and background appear retained. Leaves grouped behind upper-left ear; paddle and zongzi grouped at lower-right with clear frame margins. Zongzi slightly overlaps the cream right cheek edge despite requested clear muzzle.",
+  "id": "dragonBoat",
+  "name": "端午",
+  "filename": "beaver-dragonBoat.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-b61ca6c1-70ed-4964-989d-a38658181ab7.png",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254
+}

@@ -1,0 +1,22 @@
+{
+  "id": "lunarNewYear",
+  "name": "春节",
+  "filename": "beaver-lunarNewYear.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place a narrow soft red scarf segment below the cream muzzle along the existing lower brown edge, following the existing left/bottom crop without reconstructing a chin. Nest one small red envelope at the lower-right outer brown cheek, angled along the head diagonal. Nest a smaller gold ingot next to the envelope, partly overlapping its bottom corner, so the envelope and ingot form one cohesive foreground cluster. Do not float the ingot above the head. Keep the entire cream muzzle clear. No writing or national symbols.\nPreserve the original beaver and background; change only these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-8c8dcda2-00e8-40b0-a83a-d04f80ac1585.png",
+  "editingPolicy": "Original A1-v2 edited directly for accessory layout refinement; no centered or transparent intermediate.",
+  "observation": "Original face, angle, lower-left crop and background visibly retained. Envelope and ingot form one overlapping lower-right cluster; scarf follows existing lower crop. No automatic retry or postprocessing.",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "outputSHA256": "fe8c3303712d6ecefb1f3cf3025564d83491a80e32068096ecddfb0e87305c02"
+}

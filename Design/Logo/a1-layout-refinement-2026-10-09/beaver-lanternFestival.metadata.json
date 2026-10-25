@@ -1,0 +1,22 @@
+{
+  "id": "lanternFestival",
+  "name": "元宵",
+  "filename": "beaver-lanternFestival.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place one compact red lantern just beside the outer right ear, with a short rounded gold loop attached near the ear base so it belongs to the outfit. Keep the lantern small enough for both the ear and lantern to remain legible and fully in frame; no cord leading to the top canvas edge. Place a small cream bowl containing three tangyuan immediately below it along the lower-right brown perimeter, outside the cream muzzle. The lantern and bowl should form a calm vertical ensemble on the right. No writing.\nPreserve the original beaver and background; change only these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-abe4ce7a-f30e-44e1-8d2e-ff757ba8c2cc.png",
+  "editingPolicy": "Original A1-v2 edited directly for accessory layout refinement; no centered or transparent intermediate.",
+  "observation": "Original face, angle, lower-left crop and background visibly retained. Compact lantern attaches beside right ear with a short loop; tangyuan bowl groups below it, outside cream muzzle. Lantern is fully visible but sits close to right frame. No automatic retry or postprocessing.",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "outputSHA256": "96680b988cf863dfdbbed6ae13e0f8d1686bacec033975c4f49e720cb340a14d"
+}

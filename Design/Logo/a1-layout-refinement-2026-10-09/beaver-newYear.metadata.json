@@ -1,0 +1,22 @@
+{
+  "id": "newYear",
+  "name": "元旦",
+  "filename": "beaver-newYear.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Rest a rounded coral-and-gold party hat naturally on the crown, its base following the head slope and its tip leaning gently toward the upper-right. Place just three small broad confetti pieces close to the hat tip as one compact celebratory group, not at the frame edges. Place a short curled party blower on the lower-right brown cheek perimeter, below and outside the cream muzzle; keep it smaller than the hat and fully inside the frame. No writing.\nPreserve the original beaver and background; change only these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-fe5873ee-7dbb-4285-91ae-b210fc7add09.png",
+  "editingPolicy": "Original A1-v2 edited directly for accessory layout refinement; no centered or transparent intermediate.",
+  "observation": "Original face, angle, lower-left crop and background visibly retained. Party hat follows crown diagonal; three confetti pieces group near its tip; smaller blower sits outside cream muzzle on lower-right brown edge. No automatic retry or postprocessing.",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "outputSHA256": "538631d750fcc2fb8bc8fe0279a4a8ec0be88b9cbcbe5b1bd5b15c3292b15b3d"
+}

@@ -1,0 +1,25 @@
+{
+  "variant": "dragonBoat",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "directReferenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "referencedImagePaths": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "sourceGeneratedPath": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-42900947-8166-4d28-9fc9-888f64760ec9.png",
+  "sourceSHA256": "d0cc1c634af3750320b27406a3d35db22849d68526c7925bf712e86206326034",
+  "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/a1-master-holidays-2026-10-09/beaver-dragonBoat.png",
+  "prompt": "Edit the supplied existing picture locally to add seasonal accessories ONLY. Use the supplied A1-v2 image as the direct and sole reference.\nPreserve the original beaver exactly: same head contour, ear positions, tilted viewing angle, eye positions and highlights, nose shape, cream muzzle, gentle smile, short incisors, chestnut/cream colors and soft shading. Preserve its exact scale, position, lower-left emergence, and existing left/bottom cropping. Keep the entire original sage-teal background and its existing tonal appearance unchanged.\nDo not reconstruct cropped anatomy, move the face, straighten its angle, center the character, shrink the head, redraw its face, or remove or replace the background. Treat all areas outside the new accessory locations as protected existing artwork.\nFit the accessories into existing upper background space and outer brown perimeter areas. They may cover a small outer edge of the brown head, but must never cover eyes, nose, cream muzzle, smile or teeth. Keep both ears recognizable. Keep all NEW accessories fully inside the original square canvas, with approximately 24 pixels of clearance, without changing the original head crop.\nKeep accessory shapes soft, simple, compact and rounded, matching the reference's quiet warmth. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment. Do not add extra scenery, body parts, fur, whiskers, blush, eyebrows, strong shadows, fine ornament, watermarks, frames or a new character.\nDeliver one full-resolution square image with the SAME original composition and background.\nAccessories to add: Add two broad rounded green bamboo leaves in the upper-left green space, one small plump leaf-wrapped zongzi on the lower-left brown outer edge and one short rounded wooden paddle on the far lower-right brown edge. Use simple broad leaf folds and no intricate string texture.\nPreserve every original feature and only add these accessories.",
+  "nativeDimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed by built-in tool",
+  "transparentBackground": false,
+  "generationCount": 1,
+  "postProcessing": "None. Byte-for-byte copy of original generated image.",
+  "visualInspectionNotes": "Original A1-v2 pose, size, crop and background appear retained. Zongzi overlaps a small lower-left part of the cream cheek; two leaves are relatively large."
+}

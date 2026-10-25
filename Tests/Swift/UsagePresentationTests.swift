@@ -1,0 +1,117 @@
+import Foundation
+import XCTest
+
+final class UsagePresentationTests: XCTestCase {
+    private let now = UsageSnapshot.previewDate
+
+    func testStatusSeverityDoesNotDependOnQuotaValue() {
+        let failed = UsagePreviewScenario.error.snapshot.codexQuota
+        let presentation = UsageStatusPresentation(failed, relativeTo: now)
+        XCTAssertEqual(presentation.label, "Error")
+        XCTAssertEqual(presentation.severity, .critical)
+        XCTAssertEqual(presentation.icon, "exclamationmark.triangle.fill")
+    }
+
+    func testOldCacheBoundaryAndCachedSourceAreConsistent() {
+        for (age, expectedLabel, expectedSeverity) in [
+            (10_799.0, "Stale", UsageStatusPresentation.Severity.warning),
+            (10_800.0, "Old cache", .critical)
+        ] {
+            let cached = UsageValue(status: .ready, source: .cache,
+                                    measuredAt: now.addingTimeInterval(-age), lastAttemptAt: now,
+                                    message: "Offline", value: UsageSnapshot.preview.codexQuota.value)
+            let presentation = UsageStatusPresentation(cached, relativeTo: now)
+            XCTAssertEqual(presentation.label, expectedLabel)
+            XCTAssertEqual(presentation.severity, expectedSeverity)
+            XCTAssertTrue(presentation.detail.contains("Offline"))
+        }
+    }
+
+    func testRemoteFailureRetainsTokensWithoutChangingQuotaStatus() {
+        let snapshot = UsagePreviewScenario.remoteUnavailable.snapshot
+        let tokenPresentation = CodexDailyTokenPresentation(snapshot.codexTokens, relativeTo: now)
+        XCTAssertEqual(tokenPresentation.value, "100K")
+        XCTAssertEqual(tokenPresentation.status.label, "Stale")
+        XCTAssertEqual(tokenPresentation.warningLabel, "Remote")
+        XCTAssertEqual(UsageStatusPresentation(snapshot.codexQuota, relativeTo: now).label, "Demo")
+        XCTAssertTrue(tokenPresentation.accessibilityText.contains("cached remote usage"))
+    }
+
+    func testYesterdayTokensAreNotPresentedAsToday() {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Europe/Berlin")!
+        let today = calendar.startOfDay(for: now).addingTimeInterval(30)
+        let yesterday = UsageValue(status: .ready, source: .codexBarLocal,
+                                   measuredAt: today.addingTimeInterval(-60), lastAttemptAt: today,
+                                   message: nil, value: UsageSnapshot.preview.codexTokens.value)
+        let presentation = CodexDailyTokenPresentation(yesterday, relativeTo: today, calendar: calendar)
+        XCTAssertEqual(presentation.value, "—")
+        XCTAssertNil(presentation.data.value)
+        XCTAssertEqual(presentation.status.label, "No data")
+        XCTAssertTrue(presentation.status.detail.contains("awaiting refresh"))
+    }
+
+    func testClaudeTokensShareTheDailyPolicy() {
+        let calendar = Calendar(identifier: .gregorian)
+        let today = UsageSnapshot.preview.claudeTokens
+        let presentation = ClaudeDailyTokenPresentation(today, relativeTo: now, calendar: calendar)
+        XCTAssertEqual(presentation.value, "250K")
+        XCTAssertTrue(presentation.accessibilityText.hasPrefix("Claude today, 250,000 tokens"))
+
+        let yesterday = UsageValue(status: .ready, source: .codexBarLocal,
+                                   measuredAt: now.addingTimeInterval(-2 * 86_400), lastAttemptAt: now,
+                                   message: nil, value: today.value)
+        XCTAssertNil(ClaudeDailyTokenPresentation(yesterday, relativeTo: now, calendar: calendar).data.value)
+    }
+
+    func testTokenZeroAndUnavailableRemainDistinct() {
+        let zero = UsageValue(status: .ready, source: .codexBarLocal, measuredAt: now,
+                              lastAttemptAt: now, message: nil,
+                              value: CodexTokenTotals(totalTokens: 0, inputTokens: 0, cachedInputTokens: 0,
+                                                     outputTokens: 0, reasoningTokens: 0, sessionCount: 0))
+        XCTAssertEqual(CodexDailyTokenPresentation(zero, relativeTo: now).value, "0")
+        XCTAssertEqual(CodexDailyTokenPresentation(UsagePreviewScenario.unavailable.snapshot.codexTokens,
+                                                 relativeTo: now).value, "—")
+    }
+
+    func testLargeTokenValuesUseBillionsAndKeepFullAccessibleCount() {
+        let presentation = CodexDailyTokenPresentation(UsagePreviewScenario.largeValues.snapshot.codexTokens,
+                                                      relativeTo: now)
+        XCTAssertEqual(presentation.value, "9.9B")
+        XCTAssertTrue(presentation.accessibilityText.contains(9_876_543_210.formatted()))
+    }
+
+    func testPreviewScenariosHaveFixedDatesAndPreserveTwentyEvents() {
+        for scenario in UsagePreviewScenario.allCases {
+            XCTAssertEqual(scenario.snapshot.generatedAt, now)
+        }
+        XCTAssertEqual(UsagePreviewScenario.longList.snapshot.cursorCosts.value?.recentEvents.count, 20)
+        XCTAssertEqual(UsageSnapshot.preview.codexQuota.measuredAt, now)
+        XCTAssertEqual(UsageSnapshot.widgetDeepSeekSignedOutPreview.generatedAt, now)
+    }
+
+    func testClaudeWeeklyPriorityDoesNotSubstituteModelSpecificWeeks() {
+        var quota = UsageSnapshot.preview.claudeQuota.value!
+        let windows = quota.windows!
+        quota.windows = [windows[2], windows[1], windows[0]]
+        XCTAssertEqual(quota.claudeWidgetQuota.label, "Claude Week")
+        quota.windows = quota.windows?.filter { $0.windowSeconds != 604_800 || $0.modelScope != nil }
+        XCTAssertEqual(quota.claudeWidgetQuota.label, "Claude 5h")
+        quota.windows = nil
+        XCTAssertEqual(quota.claudeWidgetQuota, quota)
+    }
+
+    func testClaudeWeeklyPriorityPreservesMissingFiveHourWindowAndUnknownWeeklyValue() {
+        var quota = UsageSnapshot.preview.claudeQuota.value!
+        var weekly = quota.windows![1]
+        weekly = CompactQuota(label: weekly.label, used: nil, limit: nil, remaining: nil,
+                              remainingPercent: nil, resetAt: weekly.resetAt, windowSeconds: weekly.windowSeconds,
+                              detail: "Weekly reading unavailable")
+        quota.windows = [weekly]
+        let projected = quota.claudeWidgetQuota
+        XCTAssertEqual(projected.label, "Claude Week")
+        XCTAssertNil(projected.remainingPercent)
+        XCTAssertEqual(projected.otherWindows.map(\.label), ["Claude 5h"])
+        XCTAssertEqual(projected.claudeWidgetQuota, projected)
+    }
+}

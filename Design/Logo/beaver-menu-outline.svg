@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="title">
+  <title id="title">BeaverMeter Classic Beaver outline</title>
+  <!-- A1-v2 family: round ears, full cheeks and short rounded incisors. -->
+  <path d="M15 19
+    C8 19 6 13 10 9 C14 5 21 8 22 13
+    C28 11 36 11 42 13
+    C43 8 50 5 54 9 C58 13 56 19 49 19
+    C54 25 57 31 57 38 C57 41 59 43 59 46
+    C59 54 47 58 32 58 C17 58 5 54 5 46
+    C5 43 7 41 7 38 C7 31 10 25 15 19 Z"/>
+  <path d="M25 43 C25 50 26 52 32 52 C38 52 39 50 39 43 M32 44 V51"/>
+  <path d="M21 40 C24 44 29 44 32 40 C35 44 40 44 43 40 M32 37 V40"/>
+  <g fill="currentColor" stroke="none">
+    <ellipse cx="20" cy="30" rx="2.3" ry="2.6"/>
+    <ellipse cx="44" cy="30" rx="2.3" ry="2.6"/>
+    <path d="M28 35 C28 32 36 32 36 35 C36 37 34 38 32 38 C30 38 28 37 28 35 Z"/>
+  </g>
+</svg>

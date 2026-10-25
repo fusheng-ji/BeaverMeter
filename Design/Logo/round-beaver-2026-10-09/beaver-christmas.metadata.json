@@ -1,0 +1,17 @@
+{
+  "id": "christmas",
+  "prompt": "Edit the supplied centered transparent beaver head. Keep the exact same character, framing, head scale and face position. Preserve the rounded chestnut head, cream muzzle, full cheeks, small nose, eye spacing, gentle smile, two short front incisors, both ears, and subtle soft graphic shading. Add only the seasonal accessories described below.\nThe beaver itself must not be shrunk, moved or reshaped to make room for props. Fit props into the existing perimeter space and open corners; they may overlap only the outer edge of the cheeks or the top of the head. Never cover the eyes, nose, smile or teeth. Keep both ears recognizable. Simplify accessories into a few broad rounded shapes, with coordinated warm accent colors. Every accessory and every part of the head must remain fully inside the original square canvas, with at least 40 pixels of transparent clearance at all four edges.\nUse the same clean, rounded, adorable graphic style as the reference. Avoid fine texture, tiny lines, busy patterns, sharp tips, dramatic highlights or detailed three-dimensional materials. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nPreserve genuine transparency outside the character and accessories. No background color, scenery, checkerboard pattern, white rectangle, frame, border, body, extra characters or watermark. Keep full original resolution and the exact 1:1 square canvas.\nAccessories: One cozy red Santa hat with a cream rounded brim and round pompom on the top of the head between the ears, one simple red-and-cream candy cane with a round hook beside the lower-left outer cheek, and one small sprig of rounded green holly leaves with three round red berries beside the upper-right outer ear. Keep the candy cane stripes broad and few.\nChange only these accessories; preserve the original face.",
+  "sourcePath": "/Users/jiwenbo/.codex/generated_images/01a11dda-0d0a-71e2-b43c-572b55397deb/exec-0006e959-4241-4643-989b-8d522fb32f92.png",
+  "destinationPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/round-beaver-2026-10-09/beaver-christmas.png",
+  "width": 1254,
+  "height": 1254,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "sha256": "5cd3e6c9edd510d60fc98fc269bc9f40ad6e1896bcce213d10a56dd2a57c2d9d",
+  "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/round-beaver-2026-10-09/beaver-standard.png",
+  "tool": "built-in image_gen.imagegen",
+  "transparentBackground": true,
+  "generationCount": 1
+}

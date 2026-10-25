@@ -1,0 +1,96 @@
+{
+  "selectedCandidate": "A1-v2",
+  "count": 9,
+  "records": [
+    {
+      "id": "standard",
+      "path": "beaver-standard.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "51e41e65035fa40dacee0a0bbe7c02340b267f2adc619de277e7ab129b56a936",
+      "metadata": "beaver-standard.metadata.json"
+    },
+    {
+      "id": "newYear",
+      "path": "beaver-newYear.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "69b93edf114bb314bb75538234a1c64163473ff842c491268fa15061fcedc1c9",
+      "metadata": "beaver-newYear.metadata.json"
+    },
+    {
+      "id": "lunarNewYear",
+      "path": "beaver-lunarNewYear.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "15621eab7c266c324f6c7d928a67529f2aaa0beeb56da3dcef1ef541de3a9cf3",
+      "metadata": "beaver-lunarNewYear.metadata.json"
+    },
+    {
+      "id": "lanternFestival",
+      "path": "beaver-lanternFestival.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5e41e4221a00bd8c6754ad442097d1f78063f066152df69e6286502e331ffc4e",
+      "metadata": "beaver-lanternFestival.metadata.json"
+    },
+    {
+      "id": "dragonBoat",
+      "path": "beaver-dragonBoat.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "da7c14f12965a5ea792bd2166efd67a823a6db438bcf5eb32af89fcb6eee6012",
+      "metadata": "beaver-dragonBoat.metadata.json"
+    },
+    {
+      "id": "midAutumn",
+      "path": "beaver-midAutumn.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "447c2fae55fb8711bc465394da0c936a7c07b30f8679e3bd2a5d5817ac7ebf14",
+      "metadata": "beaver-midAutumn.metadata.json"
+    },
+    {
+      "id": "programmerDay",
+      "path": "beaver-programmerDay.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "03805823cce26a3fa700c0f80d462a3e3df0bf5022c88588bcfd0763819ec359",
+      "metadata": "beaver-programmerDay.metadata.json"
+    },
+    {
+      "id": "halloween",
+      "path": "beaver-halloween.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "4bc115cfbcf54e0014dcfd3c604bfea61a00fe9d15b9bce9fdd353def2e41c1c",
+      "metadata": "beaver-halloween.metadata.json"
+    },
+    {
+      "id": "christmas",
+      "path": "beaver-christmas.png",
+      "nativeDimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5cd3e6c9edd510d60fc98fc269bc9f40ad6e1896bcce213d10a56dd2a57c2d9d",
+      "metadata": "beaver-christmas.metadata.json"
+    }
+  ]
+}

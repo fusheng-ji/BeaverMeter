@@ -1,0 +1,35 @@
+.DS_Store
+CodexWeek.xcodeproj/
+BeaverMeter.xcodeproj/
+.build/
+build-*/
+DerivedData/
+.swiftpm/
+*.xcresult
+*.xccovarchive
+*.xccovreport
+xcuserdata/
+*.xcuserstate
+Config.xcconfig
+preview/
+*.logarchive
+*.log
+*.tmp
+node_modules/
+# Private release-key exports and encrypted backup artifacts stay local.
+*.private-key
+*.private-key.enc
+# Machine-local credentials and SSH material.
+.env
+.env.*
+config.env
+auth.json
+id_rsa
+id_ed25519
+id_ecdsa
+known_hosts
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision

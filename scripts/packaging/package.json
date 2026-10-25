@@ -1,0 +1,10 @@
+{
+  "name": "beavermeter-release-packaging",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pinned macOS drag-to-install DMG tooling",
+  "scripts": { "test": "node --test test_reliable_hdiutil.cjs" },
+  "devDependencies": {
+    "create-dmg": "8.1.0"
+  }
+}

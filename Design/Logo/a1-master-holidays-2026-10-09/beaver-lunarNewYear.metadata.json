@@ -1,0 +1,22 @@
+{
+  "id": "lunarNewYear",
+  "name": "春节",
+  "filename": "beaver-lunarNewYear.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied existing picture locally to add seasonal accessories ONLY. Use the supplied A1-v2 image as the direct and sole reference.\nPreserve the original beaver exactly: same head contour, ear positions, tilted viewing angle, eye positions and highlights, nose shape, cream muzzle, gentle smile, short incisors, chestnut/cream colors and soft shading. Preserve its exact scale, position, lower-left emergence, and existing left/bottom cropping. Keep the entire original sage-teal background and its existing tonal appearance unchanged.\nDo not reconstruct cropped anatomy, move the face, straighten its angle, center the character, shrink the head, redraw its face, or remove or replace the background. Treat all areas outside the new accessory locations as protected existing artwork.\nFit the accessories into existing upper background space and outer brown perimeter areas. They may cover a small outer edge of the brown head, but must never cover eyes, nose, cream muzzle, smile or teeth. Keep both ears recognizable. Keep all NEW accessories fully inside the original square canvas, with approximately 24 pixels of clearance, without changing the original head crop.\nKeep accessory shapes soft, simple, compact and rounded, matching the reference's quiet warmth. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment. Do not add extra scenery, body parts, fur, whiskers, blush, eyebrows, strong shadows, fine ornament, watermarks, frames or a new character.\nDeliver one full-resolution square image with the SAME original composition and background.\nAccessories to add: Add a visible short section of a soft red scarf along the brown lower-left edge, following the existing crop: do not reveal or reconstruct the chin. Add one small red envelope at the lower-right outer brown cheek edge and one small gold ingot in the upper-right green space. No Chinese characters, national symbols or writing.\nPreserve every original feature and only add these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-86f766cc-b18d-4724-a3a7-4b0065d5841c.png",
+  "editingPolicy": "Only accessories added directly to A1-v2; no centered or transparent intermediate.",
+  "observation": "Original lower-left crop, scale, tilted face, expression and sage-teal background visibly retained. No automatic retry or postprocessing.",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "outputSHA256": "5db6434238cf26480d2c980fb12b015742abb48f1e22167baa6b2f1f86e7c7cd"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "christmas",
+  "name": "圣诞节",
+  "filename": "beaver-christmas.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied existing picture locally to add seasonal accessories ONLY. Use the supplied A1-v2 image as the direct and sole reference.\nPreserve the original beaver exactly: same head contour, ear positions, tilted viewing angle, eye positions and highlights, nose shape, cream muzzle, gentle smile, short incisors, chestnut/cream colors and soft shading. Preserve its exact scale, position, lower-left emergence, and existing left/bottom cropping. Keep the entire original sage-teal background and its existing tonal appearance unchanged.\nDo not reconstruct cropped anatomy, move the face, straighten its angle, center the character, shrink the head, redraw its face, or remove or replace the background. Treat all areas outside the new accessory locations as protected existing artwork.\nFit the accessories into existing upper background space and outer brown perimeter areas. They may cover a small outer edge of the brown head, but must never cover eyes, nose, cream muzzle, smile or teeth. Keep both ears recognizable. Keep all NEW accessories fully inside the original square canvas, with approximately 24 pixels of clearance, without changing the original head crop.\nKeep accessory shapes soft, simple, compact and rounded, matching the reference's quiet warmth. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment. Do not add extra scenery, body parts, fur, whiskers, blush, eyebrows, strong shadows, fine ornament, watermarks, frames or a new character.\nDeliver one full-resolution square image with the SAME original composition and background.\nAccessories to add: Add one cozy red Santa hat with a soft cream brim and round pompom on the crown between the ears, one compact red-and-cream candy cane with a rounded hook along the far right outer brown cheek edge and one small sprig of rounded green holly with three red berries in the upper-right green space. Use few broad candy-cane stripes.\nPreserve every original feature and only add these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-6d92-79e0-aa8d-8284cd3ad863/exec-60709c26-a027-4e65-a0df-520adb8cd339.png",
+  "outputSHA256": "0e26747add1f62b104a4f33323115f00694cac79d085a44cd131fdaeaabe28a5",
+  "editingPolicy": "Only accessories added directly to A1-v2; no centered or transparent intermediate.",
+  "observation": "Original lower-left crop, head scale, tilted face, expression and sage-teal background visibly retained. No automatic retry or postprocessing."
+}

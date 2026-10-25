@@ -1,0 +1,180 @@
+import Foundation
+
+struct CollectorProcessResult: Sendable {
+    let status: Int32
+    let message: String
+}
+
+enum CollectorProcessRunner {
+    private static let missingCollectorMessage =
+        "The bundled usage collector is missing. Reinstall BeaverMeter."
+
+    static func loginCodexWorkspace(helper: URL, id: UUID, label: String, output: String) -> CollectorProcessResult {
+        guard FileManager.default.isExecutableFile(atPath: helper.path) else {
+            return CollectorProcessResult(status: -1, message: missingCollectorMessage)
+        }
+        return run(executable: helper, arguments: ["--codex-workspace-login", "--profile-id", id.uuidString,
+            "--workspace-label", label, "--output", output], timeout: 200, cancellation: nil)
+    }
+
+    static func refresh(helper: URL, script: URL?, output: String, cancellation: SubprocessCancellation? = nil) -> CollectorProcessResult {
+        runCollector(helper: helper, script: script, output: output, mode: nil, cancellation: cancellation)
+    }
+
+    static func refreshCodexTokens(
+        helper: URL,
+        script: URL?,
+        output: String,
+        cancellation: SubprocessCancellation? = nil
+    ) -> CollectorProcessResult {
+        runCollector(helper: helper, script: script, output: output, mode: "--codex-only", cancellation: cancellation)
+    }
+
+    static func authenticateClaude(
+        helper: URL,
+        script: URL?,
+        output: String,
+        opensBrowser: Bool,
+        cancellation: SubprocessCancellation? = nil
+    ) -> CollectorProcessResult {
+        authenticateClaude(
+            helper: helper, script: script, output: output,
+            mode: opensBrowser ? .signIn : .verify,
+            cancellation: cancellation
+        )
+    }
+
+    static func authorizeClaudeAccess(
+        helper: URL,
+        script: URL?,
+        output: String,
+        cancellation: SubprocessCancellation? = nil
+    ) -> CollectorProcessResult {
+        authenticateClaude(
+            helper: helper, script: script, output: output,
+            mode: .authorizeAccess,
+            cancellation: cancellation
+        )
+    }
+
+    static func repairClaudeKeychainSession(
+        helper: URL,
+        script: URL?,
+        output: String,
+        cancellation: SubprocessCancellation? = nil
+    ) -> CollectorProcessResult {
+        authenticateClaude(
+            helper: helper, script: script, output: output,
+            mode: .repairKeychainSession,
+            cancellation: cancellation
+        )
+    }
+
+    static func authenticateClaude(
+        helper: URL,
+        script: URL?,
+        output: String,
+        mode: ClaudeAuthenticationMode,
+        cancellation: SubprocessCancellation? = nil
+    ) -> CollectorProcessResult {
+        runCollector(
+            helper: helper, script: script, output: output,
+            mode: mode.argument, timeout: mode.timeout,
+            timeoutMessage: mode.timeoutMessage, cancellation: cancellation
+        )
+    }
+
+    static func importBrowserSession(helper: URL, cancellation: SubprocessCancellation? = nil) -> CollectorProcessResult {
+        guard FileManager.default.isExecutableFile(atPath: helper.path) else {
+            return CollectorProcessResult(status: -1, message: missingCollectorMessage)
+        }
+        return run(
+            executable: helper,
+            arguments: ["--import-deepseek-browser-session"],
+            timeout: 60,
+            cancellation: cancellation
+        )
+    }
+
+    static func importToken(helper: URL, token: String, cancellation: SubprocessCancellation? = nil) -> CollectorProcessResult {
+        guard FileManager.default.isExecutableFile(atPath: helper.path) else {
+            return CollectorProcessResult(status: -1, message: missingCollectorMessage)
+        }
+        return run(
+            executable: helper,
+            arguments: ["--import-deepseek-token-stdin"],
+            standardInput: Data(token.utf8),
+            timeout: 60,
+            cancellation: cancellation
+        )
+    }
+
+    private static func runCollector(
+        helper: URL,
+        script: URL?,
+        output: String,
+        mode: String?,
+        timeout: TimeInterval = 180,
+        timeoutMessage: String? = nil,
+        cancellation: SubprocessCancellation?
+    ) -> CollectorProcessResult {
+        let collectorArguments = [mode, "--output", output].compactMap { $0 }
+        if let script, FileManager.default.fileExists(atPath: script.path) {
+            var environment = ProcessInfo.processInfo.environment
+            environment["BEAVERMETER_COLLECTOR"] = helper.path
+            return run(
+                executable: URL(fileURLWithPath: "/bin/zsh"),
+                arguments: [script.path] + collectorArguments,
+                timeout: timeout,
+                timeoutMessage: timeoutMessage,
+                cancellation: cancellation,
+                environment: environment
+            )
+        }
+        guard FileManager.default.isExecutableFile(atPath: helper.path) else {
+            return CollectorProcessResult(status: -1, message: missingCollectorMessage)
+        }
+        return run(
+            executable: helper, arguments: collectorArguments, timeout: timeout,
+            timeoutMessage: timeoutMessage, cancellation: cancellation
+        )
+    }
+
+    private static func run(
+        executable: URL,
+        arguments: [String],
+        standardInput: Data? = nil,
+        timeout: TimeInterval,
+        timeoutMessage: String? = nil,
+        cancellation: SubprocessCancellation?,
+        environment: [String: String] = ProcessInfo.processInfo.environment
+    ) -> CollectorProcessResult {
+        do {
+            let result = try SubprocessRunner.run(
+                executable: executable,
+                arguments: arguments,
+                standardInput: standardInput,
+                timeout: timeout,
+                environment: environment,
+                captureStandardOutput: false,
+                cancellation: cancellation
+            )
+            if result.cancelled {
+                return CollectorProcessResult(status: -1, message: "Refresh cancelled.")
+            }
+            if result.timedOut {
+                return CollectorProcessResult(
+                    status: -1,
+                    message: timeoutMessage ?? "Refresh timed out; cached data is still available. Try again."
+                )
+            }
+            let message = String(
+                data: result.standardError,
+                encoding: .utf8
+            )?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            return CollectorProcessResult(status: result.status, message: message)
+        } catch {
+            return CollectorProcessResult(status: -1, message: error.localizedDescription)
+        }
+    }
+}

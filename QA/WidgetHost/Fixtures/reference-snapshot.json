@@ -1,0 +1,359 @@
+{
+  "claudeHistory": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "days": [
+        {
+          "date": "2026-09-16T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 1200,
+            "cacheReadTokens": 2400,
+            "costUSD": 0.012,
+            "inputTokens": 6000,
+            "outputTokens": 2400,
+            "totalTokens": 12000
+          }
+        },
+        {
+          "date": "2026-09-17T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 2200,
+            "cacheReadTokens": 4400,
+            "costUSD": 0.022,
+            "inputTokens": 11000,
+            "outputTokens": 4400,
+            "totalTokens": 22000
+          }
+        },
+        {
+          "date": "2026-09-18T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 0,
+            "cacheReadTokens": 0,
+            "costUSD": 0.0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          }
+        },
+        {
+          "date": "2026-09-19T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 1700,
+            "cacheReadTokens": 3400,
+            "costUSD": 0.017,
+            "inputTokens": 8500,
+            "outputTokens": 3400,
+            "totalTokens": 17000
+          }
+        },
+        {
+          "date": "2026-09-20T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 3100,
+            "cacheReadTokens": 6200,
+            "costUSD": 0.031,
+            "inputTokens": 15500,
+            "outputTokens": 6200,
+            "totalTokens": 31000
+          }
+        },
+        {
+          "date": "2026-09-21T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 1100,
+            "cacheReadTokens": 2200,
+            "costUSD": 0.011,
+            "inputTokens": 5500,
+            "outputTokens": 2200,
+            "totalTokens": 11000
+          }
+        },
+        {
+          "date": "2026-09-22T00:00:00Z",
+          "totals": {
+            "cacheCreationTokens": 2800,
+            "cacheReadTokens": 5600,
+            "costUSD": 0.028,
+            "inputTokens": 14000,
+            "outputTokens": 5600,
+            "totalTokens": 28000
+          }
+        }
+      ],
+      "sourceID": "synthetic-global-claude",
+      "timeZoneIdentifier": "GMT",
+      "totals": {
+        "cacheCreationTokens": 12100,
+        "cacheReadTokens": 24200,
+        "costUSD": 0.121,
+        "inputTokens": 60500,
+        "outputTokens": 24200,
+        "totalTokens": 121000
+      }
+    }
+  },
+  "claudeQuota": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "detail": "Synthetic QA weekly allowance",
+      "label": "Claude Week",
+      "planName": "Claude Max 20x",
+      "remainingPercent": 76,
+      "resetAt": "2026-09-28T14:00:00Z",
+      "windowSeconds": 604800,
+      "windows": [
+        {
+          "detail": "Synthetic QA five-hour allowance",
+          "label": "Claude 5h",
+          "remainingPercent": 99,
+          "resetAt": "2026-09-22T16:23:00Z",
+          "windowSeconds": 18000
+        },
+        {
+          "detail": "Synthetic QA weekly allowance",
+          "label": "Claude Week",
+          "remainingPercent": 76,
+          "resetAt": "2026-09-28T14:00:00Z",
+          "windowSeconds": 604800
+        }
+      ]
+    }
+  },
+  "claudeResetCards": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "availableCount": 3,
+      "batches": [
+        {
+          "count": 3,
+          "expiresAt": "2026-10-17T12:00:00Z",
+          "id": "qa-card-20",
+          "paused": false,
+          "requiresLimit": false,
+          "startsAt": "2026-09-22T11:00:00Z"
+        }
+      ],
+      "observedAt": "2026-09-22T12:00:00Z"
+    }
+  },
+  "claudeTokens": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "cacheCreationTokens": 5000,
+      "cacheReadTokens": 10000,
+      "costUSD": 0.05,
+      "inputTokens": 25000,
+      "outputTokens": 10000,
+      "totalTokens": 50000
+    }
+  },
+  "codexAccounts": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": []
+  },
+  "codexHistory": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "days": [
+        {
+          "date": "2026-09-16T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 1200,
+            "inputTokens": 9600,
+            "outputTokens": 2400,
+            "reasoningTokens": 600,
+            "sessionCount": 2,
+            "totalTokens": 12000
+          }
+        },
+        {
+          "date": "2026-09-17T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 2200,
+            "inputTokens": 17600,
+            "outputTokens": 4400,
+            "reasoningTokens": 1100,
+            "sessionCount": 2,
+            "totalTokens": 22000
+          }
+        },
+        {
+          "date": "2026-09-18T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "reasoningTokens": 0,
+            "sessionCount": 0,
+            "totalTokens": 0
+          }
+        },
+        {
+          "date": "2026-09-19T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 1700,
+            "inputTokens": 13600,
+            "outputTokens": 3400,
+            "reasoningTokens": 850,
+            "sessionCount": 2,
+            "totalTokens": 17000
+          }
+        },
+        {
+          "date": "2026-09-20T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 3100,
+            "inputTokens": 24800,
+            "outputTokens": 6200,
+            "reasoningTokens": 1550,
+            "sessionCount": 2,
+            "totalTokens": 31000
+          }
+        },
+        {
+          "date": "2026-09-21T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 1100,
+            "inputTokens": 8800,
+            "outputTokens": 2200,
+            "reasoningTokens": 550,
+            "sessionCount": 2,
+            "totalTokens": 11000
+          }
+        },
+        {
+          "date": "2026-09-22T00:00:00Z",
+          "totals": {
+            "cachedInputTokens": 2800,
+            "inputTokens": 22400,
+            "outputTokens": 5600,
+            "reasoningTokens": 1400,
+            "sessionCount": 2,
+            "totalTokens": 28000
+          }
+        }
+      ],
+      "sourceID": "synthetic-global-codex",
+      "timeZoneIdentifier": "GMT",
+      "totals": {
+        "cachedInputTokens": 12100,
+        "inputTokens": 96800,
+        "outputTokens": 24200,
+        "reasoningTokens": 6050,
+        "sessionCount": 2,
+        "totalTokens": 121000
+      }
+    }
+  },
+  "codexQuota": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "detail": "Synthetic QA weekly allowance",
+      "label": "Codex Week",
+      "planName": "Pro",
+      "remainingPercent": 76,
+      "resetAt": "2026-09-28T14:00:00Z",
+      "windowSeconds": 604800,
+      "windows": [
+        {
+          "detail": "Synthetic QA five-hour allowance",
+          "label": "Codex 5h",
+          "remainingPercent": 99,
+          "resetAt": "2026-09-22T16:23:00Z",
+          "windowSeconds": 18000
+        },
+        {
+          "detail": "Synthetic QA weekly allowance",
+          "label": "Codex Week",
+          "remainingPercent": 76,
+          "resetAt": "2026-09-28T14:00:00Z",
+          "windowSeconds": 604800
+        }
+      ]
+    }
+  },
+  "codexTokens": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "cachedInputTokens": 10000,
+      "inputTokens": 80000,
+      "outputTokens": 20000,
+      "reasoningTokens": 5000,
+      "sessionCount": 2,
+      "totalTokens": 100000
+    }
+  },
+  "cursorCosts": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "recentEvents": [],
+      "todayCostUSD": 12.34
+    }
+  },
+  "cursorQuota": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "detail": "Synthetic fixture",
+      "label": "Cursor Monthly",
+      "planName": "Enterprise",
+      "remaining": 122.06
+    }
+  },
+  "deepseekUsage": {
+    "lastAttemptAt": "2026-09-22T12:00:00Z",
+    "measuredAt": "2026-09-22T12:00:00Z",
+    "source": "preview",
+    "status": "ready",
+    "value": {
+      "balances": [
+        {
+          "amount": 18.76,
+          "currency": "USD"
+        }
+      ],
+      "grantedBalances": [],
+      "monthCosts": [
+        {
+          "amount": 3.21,
+          "currency": "USD"
+        }
+      ],
+      "monthRequests": 120,
+      "monthTokens": 4200000,
+      "totalCosts": []
+    }
+  },
+  "generatedAt": "2026-09-22T12:00:00Z",
+  "schemaVersion": 7
+}

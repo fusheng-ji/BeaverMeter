@@ -1,0 +1,45 @@
+{
+  "reason": "Preserve previous production art before the approved A1-v2 redesign.",
+  "files": [
+    {
+      "filename": "beaver-christmas.png",
+      "sha256": "9a8223621c80040b3a0948f2018e55902b4fd511ecf4e4909ccec7e935ce6678"
+    },
+    {
+      "filename": "beaver-dragonBoat.png",
+      "sha256": "e4c8e82324e048db9c5ac5528b25c6b13faf0266cb7ce78aac65ea4257e169e6"
+    },
+    {
+      "filename": "beaver-halloween.png",
+      "sha256": "9dc0e4f5c48f1b5f1847e1bf0d0246ddbb44c90093d38c904bdd5e1370fe27ad"
+    },
+    {
+      "filename": "beaver-lanternFestival.png",
+      "sha256": "a085a0ac2fb3cbfc8155262bec1a413adba91448b49a3f5201151eb6985c6988"
+    },
+    {
+      "filename": "beaver-logo-head-only.png",
+      "sha256": "bf2664eff490b217b13284fa06a16e827c613e44cea6199fbf0fd3784c7a7656"
+    },
+    {
+      "filename": "beaver-lunarNewYear.png",
+      "sha256": "4b064c99eaecec20bdb2a8fc783ece13003067f4737b64dbbbaf123133e823ec"
+    },
+    {
+      "filename": "beaver-midAutumn.png",
+      "sha256": "2d9eb62a7bc3500f64fe6b1d830808a0388155ba3f61bc0ef6e594e9d097b255"
+    },
+    {
+      "filename": "beaver-newYear.png",
+      "sha256": "8c86d56ae9dd3c9f71e51d659360769f2794e063465a9c3aefd89c2e8045537b"
+    },
+    {
+      "filename": "beaver-programmerDay.png",
+      "sha256": "cbd6a4fde0bf80ecbbf0524eedcc329318ce98b289427dbf2089600327be279b"
+    },
+    {
+      "filename": "beaver-standard.png",
+      "sha256": "9e5a8f852fc9ed88dc3640c8de1f65ca77417e44bd808cc6b2349b2b598cb60d"
+    }
+  ]
+}

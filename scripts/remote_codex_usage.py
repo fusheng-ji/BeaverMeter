@@ -1,0 +1,271 @@
+#!/usr/bin/env python3
+"""Read Codex token records without returning prompts or response content."""
+
+import hashlib
+import json
+import math
+import os
+import stat as stat_module
+import sys
+from datetime import datetime
+
+
+def digest(value):
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def parse_timestamp(value):
+    if not isinstance(value, str):
+        return None
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return parsed.timestamp() if parsed.tzinfo is not None else None
+    except (ValueError, OverflowError):
+        return None
+
+
+def candidate_files(root, day_start, failed_files):
+    seen = set()
+    for directory_name in ("sessions", "archived_sessions"):
+        directory = os.path.join(root, directory_name)
+        if not os.path.isdir(directory):
+            continue
+        def on_error(error):
+            failed_files.add(digest(error.filename or directory))
+
+        for current, directories, names in os.walk(directory, onerror=on_error):
+            directories.sort()
+            names.sort()
+            for name in names:
+                if not name.lower().endswith(".jsonl"):
+                    continue
+                path = os.path.join(current, name)
+                try:
+                    stat = os.stat(path, follow_symlinks=False)
+                except OSError:
+                    failed_files.add(digest(path))
+                    continue
+                if not stat_module.S_ISREG(stat.st_mode) or stat.st_mtime < day_start:
+                    continue
+                identity = digest(f"{stat.st_dev}:{stat.st_ino}")
+                if identity in seen:
+                    continue
+                seen.add(identity)
+                yield path, identity, stat.st_size
+
+
+def scan(root, day_start, day_end, cutoff, request):
+    prior_files = request.get("files", {}) if isinstance(request, dict) else {}
+    if not isinstance(prior_files, dict):
+        prior_files = {}
+    prior_contexts = request.get("scopeContexts", {}) if isinstance(request, dict) else {}
+    if not isinstance(prior_contexts, dict):
+        prior_contexts = {}
+    response_files = {}
+    active_files = []
+    failed_files = set()
+    if not os.path.isdir(root):
+        failed_files.add(digest(root))
+
+    for path, identity, size in candidate_files(root, day_start, failed_files):
+        active_files.append(identity)
+        prior_offset = prior_files.get(identity, 0)
+        if type(prior_offset) is not int or prior_offset < 0:
+            prior_offset = 0
+        reset = size < prior_offset
+        offset = 0 if reset else prior_offset
+        if size <= offset and not reset:
+            continue
+        try:
+            context = prior_contexts.get(identity, {}) if not reset else {}
+            context = context if isinstance(context, dict) else {}
+            raw_scopes = context.get("sessionScopes", {})
+            session_scopes = {key: value for key, value in raw_scopes.items()
+                              if is_digest(key) and is_digest(value)} if isinstance(raw_scopes, dict) else {}
+            raw_conflicts = context.get("conflictedSessions", [])
+            conflicts = {value for value in raw_conflicts if is_digest(value)} if isinstance(raw_conflicts, list) else set()
+            with open(path, "rb") as handle:
+                handle.seek(offset)
+                records = []
+                consumed = offset
+                retry_offset = None
+                while True:
+                    line_start = handle.tell()
+                    raw_line = handle.readline()
+                    if not raw_line or not raw_line.endswith(b"\n"):
+                        break  # Leave an unfinished line for the next refresh.
+                    consumed = handle.tell()
+                    line = raw_line.rstrip(b"\r\n")
+                    if b'"token_usage_record"' not in line and b'"session_meta"' not in line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                    except (UnicodeDecodeError, json.JSONDecodeError):
+                        continue
+                    if not isinstance(record, dict):
+                        continue
+                    timestamp = parse_timestamp(record.get("timestamp"))
+                    payload = record.get("payload", {})
+                    if not isinstance(payload, dict):
+                        continue
+                    if record.get("type") == "session_meta":
+                        if timestamp is not None and timestamp > cutoff:
+                            retry_offset = line_start if retry_offset is None else min(retry_offset, line_start)
+                            continue
+                        creator = payload.get("creator_account_id")
+                        if not isinstance(creator, str) or not creator.strip():
+                            continue
+                        workspace_hash = digest(creator.strip().lower())
+                        for key in ("session_id", "id"):
+                            raw_id = payload.get(key)
+                            if isinstance(raw_id, str) and raw_id.strip():
+                                session_hash = digest(raw_id.strip())
+                                if session_hash in session_scopes and session_scopes[session_hash] != workspace_hash:
+                                    conflicts.add(session_hash)
+                                else:
+                                    session_scopes[session_hash] = workspace_hash
+                        continue
+                    if record.get("type") != "token_usage_record":
+                        continue
+                    usage = payload.get("usage", {})
+                    if not isinstance(usage, dict):
+                        continue
+                    values = (
+                        usage.get("input_tokens"),
+                        usage.get("cached_input_tokens", 0),
+                        usage.get("output_tokens"),
+                        usage.get("reasoning_output_tokens", 0),
+                    )
+                    if (
+                        timestamp is None
+                        or timestamp < day_start
+                        or timestamp >= day_end
+                        or any(type(value) is not int or not 0 <= value <= (2**63 - 1) for value in values)
+                    ):
+                        continue
+                    if timestamp > cutoff:
+                        retry_offset = line_start if retry_offset is None else min(retry_offset, line_start)
+                        continue
+                    response_id = payload.get("response_id")
+                    if not isinstance(response_id, str) or not response_id:
+                        response_id = f"{identity}:{line_start}:{record.get('timestamp', '')}"
+                    session_id = payload.get("session_id")
+                    if not isinstance(session_id, str) or not session_id:
+                        session_id = identity
+                    records.append(
+                        {
+                            "responseHash": digest(response_id),
+                            "sessionHash": digest(session_id),
+                            "timestamp": timestamp,
+                            "inputTokens": values[0],
+                            "cachedInputTokens": values[1],
+                            "outputTokens": values[2],
+                            "reasoningTokens": values[3],
+                            "scopeSessionHashes": sorted({digest(payload[key].strip()) for key in ("session_id", "thread_id")
+                                                          if isinstance(payload.get(key), str) and payload[key].strip()}),
+                        }
+                    )
+        except OSError:
+            failed_files.add(identity)
+            continue
+        if consumed == offset and not reset:
+            continue
+        for record in records:
+            identities = record["scopeSessionHashes"]
+            scopes = [session_scopes[key] for key in identities if key in session_scopes]
+            if identities and len(scopes) == len(identities) and not any(key in conflicts for key in identities) and len(set(scopes)) == 1:
+                # Thread creation provenance is diagnostic only; it is not a request billing account.
+                record["creatorWorkspaceHash"] = scopes[0]
+        response_files[identity] = {
+            "offset": retry_offset if retry_offset is not None else consumed,
+            "reset": reset,
+            "records": records,
+            "sessionScopes": session_scopes,
+            "conflictedSessions": sorted(conflicts),
+        }
+
+    return {
+        "complete": not failed_files,
+        "failedFiles": sorted(failed_files),
+        "activeFiles": sorted(active_files),
+        "files": response_files,
+    }
+
+
+def is_digest(value):
+    return isinstance(value, str) and len(value) == 64 and all(char in "0123456789abcdef" for char in value)
+
+
+def active_codex_homes(proc_root="/proc"):
+    """Inspect only this user's Codex app servers; never return their environment."""
+    homes = set()
+    complete = True
+    try:
+        processes = os.scandir(proc_root)
+    except OSError:
+        return homes, False
+    with processes:
+        for process in processes:
+            if not process.name.isdigit():
+                continue
+            try:
+                if process.stat(follow_symlinks=False).st_uid != os.geteuid():
+                    continue
+                with open(os.path.join(process.path, "cmdline"), "rb") as handle:
+                    args = handle.read(8192).split(b"\0")
+                if not args or os.path.basename(os.fsdecode(args[0])) != "codex" or b"app-server" not in args:
+                    continue
+                with open(os.path.join(process.path, "environ"), "rb") as handle:
+                    values = handle.read().split(b"\0")
+                home = next((os.fsdecode(item[len(b"CODEX_HOME="):]) for item in values
+                             if item.startswith(b"CODEX_HOME=")), None)
+                if home and os.path.isabs(home):
+                    homes.add(os.path.realpath(home))
+                else:
+                    complete = False
+            except FileNotFoundError:
+                continue  # A process exited during discovery.
+            except OSError:
+                complete = False
+    return homes, complete
+
+
+def scan_sources(configured_root, day_start, day_end, cutoff, request,
+                 discover=active_codex_homes):
+    active_homes, discovery_complete = discover()
+    active_homes = {os.path.realpath(root) for root in active_homes if os.path.isabs(root)}
+    configured_root = os.path.normpath(configured_root)
+    roots = sorted(active_homes | {configured_root})
+    prior_roots = request.get("roots", {}) if isinstance(request, dict) else {}
+    if not isinstance(prior_roots, dict):
+        prior_roots = {}
+    results = {}
+    for root in roots:
+        root_hash = digest(root)
+        prior = prior_roots.get(root_hash, {})
+        results[root_hash] = scan(root, day_start, day_end, cutoff, prior)
+    return {
+        "schemaVersion": 2,
+        "configuredRootHash": digest(configured_root),
+        "activeRootHashes": sorted(digest(root) for root in active_homes),
+        "discoveryComplete": discovery_complete,
+        "roots": results,
+    }
+
+
+def main():
+    if len(sys.argv) != 5:
+        raise SystemExit("usage: remote_codex_usage.py ROOT DAY_START DAY_END CUTOFF")
+    day_start, day_end, cutoff = map(float, sys.argv[2:])
+    if not all(map(math.isfinite, (day_start, day_end, cutoff))) or not day_start <= cutoff < day_end:
+        raise SystemExit("invalid scan window")
+    json.dump(
+        scan_sources(sys.argv[1], day_start, day_end, cutoff, json.load(sys.stdin)),
+        sys.stdout,
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+
+
+if __name__ == "__main__":
+    main()

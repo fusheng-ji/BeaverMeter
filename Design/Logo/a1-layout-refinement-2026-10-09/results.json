@@ -1,0 +1,251 @@
+{
+  "selectedMaster": "A1-v2",
+  "revision": "User-requested accessory layout refinement",
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool",
+  "nativeDimensions": [
+    1254,
+    1254
+  ],
+  "imagesGenerated": 8,
+  "standardGenerationCount": 0,
+  "allReturnedOriginalsPreserved": true,
+  "records": [
+    {
+      "id": "standard",
+      "name": "常规版",
+      "filename": "beaver-standard.png",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "prompt": null,
+      "generationCount": 0,
+      "provider": "Byte-identical copy of approved A1-v2; no generation",
+      "model": "Not applicable",
+      "transparentBackground": false,
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "generatedSource": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "outputSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "editingPolicy": "Standard unchanged during accessory layout refinement."
+    },
+    {
+      "id": "newYear",
+      "name": "元旦",
+      "filename": "beaver-newYear.png",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Rest a rounded coral-and-gold party hat naturally on the crown, its base following the head slope and its tip leaning gently toward the upper-right. Place just three small broad confetti pieces close to the hat tip as one compact celebratory group, not at the frame edges. Place a short curled party blower on the lower-right brown cheek perimeter, below and outside the cream muzzle; keep it smaller than the hat and fully inside the frame. No writing.\nPreserve the original beaver and background; change only these accessories.",
+      "generationCount": 1,
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed; user-approved built-in tool.",
+      "transparentBackground": false,
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-fe5873ee-7dbb-4285-91ae-b210fc7add09.png",
+      "editingPolicy": "Original A1-v2 edited directly for accessory layout refinement; no centered or transparent intermediate.",
+      "observation": "Original face, angle, lower-left crop and background visibly retained. Party hat follows crown diagonal; three confetti pieces group near its tip; smaller blower sits outside cream muzzle on lower-right brown edge. No automatic retry or postprocessing.",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "outputSHA256": "538631d750fcc2fb8bc8fe0279a4a8ec0be88b9cbcbe5b1bd5b15c3292b15b3d"
+    },
+    {
+      "id": "lunarNewYear",
+      "name": "春节",
+      "filename": "beaver-lunarNewYear.png",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place a narrow soft red scarf segment below the cream muzzle along the existing lower brown edge, following the existing left/bottom crop without reconstructing a chin. Nest one small red envelope at the lower-right outer brown cheek, angled along the head diagonal. Nest a smaller gold ingot next to the envelope, partly overlapping its bottom corner, so the envelope and ingot form one cohesive foreground cluster. Do not float the ingot above the head. Keep the entire cream muzzle clear. No writing or national symbols.\nPreserve the original beaver and background; change only these accessories.",
+      "generationCount": 1,
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed; user-approved built-in tool.",
+      "transparentBackground": false,
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-8c8dcda2-00e8-40b0-a83a-d04f80ac1585.png",
+      "editingPolicy": "Original A1-v2 edited directly for accessory layout refinement; no centered or transparent intermediate.",
+      "observation": "Original face, angle, lower-left crop and background visibly retained. Envelope and ingot form one overlapping lower-right cluster; scarf follows existing lower crop. No automatic retry or postprocessing.",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "outputSHA256": "fe8c3303712d6ecefb1f3cf3025564d83491a80e32068096ecddfb0e87305c02"
+    },
+    {
+      "id": "lanternFestival",
+      "name": "元宵",
+      "filename": "beaver-lanternFestival.png",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place one compact red lantern just beside the outer right ear, with a short rounded gold loop attached near the ear base so it belongs to the outfit. Keep the lantern small enough for both the ear and lantern to remain legible and fully in frame; no cord leading to the top canvas edge. Place a small cream bowl containing three tangyuan immediately below it along the lower-right brown perimeter, outside the cream muzzle. The lantern and bowl should form a calm vertical ensemble on the right. No writing.\nPreserve the original beaver and background; change only these accessories.",
+      "generationCount": 1,
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed; user-approved built-in tool.",
+      "transparentBackground": false,
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-4616-77c0-ba2f-032e9b10308d/exec-abe4ce7a-f30e-44e1-8d2e-ff757ba8c2cc.png",
+      "editingPolicy": "Original A1-v2 edited directly for accessory layout refinement; no centered or transparent intermediate.",
+      "observation": "Original face, angle, lower-left crop and background visibly retained. Compact lantern attaches beside right ear with a short loop; tangyuan bowl groups below it, outside cream muzzle. Lantern is fully visible but sits close to right frame. No automatic retry or postprocessing.",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "outputSHA256": "96680b988cf863dfdbbed6ae13e0f8d1686bacec033975c4f49e720cb340a14d"
+    },
+    {
+      "variant": "dragonBoat",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "directReferenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "referencedImagePaths": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "sourceGeneratedPath": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-b61ca6c1-70ed-4964-989d-a38658181ab7.png",
+      "sourceSHA256": "924d330ff5e17263c4bf11e4c858613d133cc3d09e9cae06bc53284aba4c8a64",
+      "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/a1-layout-refinement-2026-10-09/beaver-dragonBoat.png",
+      "outputSHA256": "924d330ff5e17263c4bf11e4c858613d133cc3d09e9cae06bc53284aba4c8a64",
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Tuck two broad green bamboo leaves behind the upper-left ear as a small natural head accessory, following the ear angle and keeping the ear visible. Group a small plump leaf-wrapped zongzi and a short rounded wooden paddle together at the lower-right brown perimeter. Place the paddle diagonally behind the zongzi, with only its broad blade and short handle visible. Keep this foreground cluster fully in frame and completely outside the cream muzzle. No extra objects or intricate string texture.\nPreserve the original beaver and background; change only these accessories.",
+      "nativeDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed by built-in tool",
+      "transparentBackground": false,
+      "generationCount": 1,
+      "postProcessing": "None. Byte-for-byte copy of original generated image.",
+      "visualInspectionNotes": "Original beaver framing and background appear retained. Leaves grouped behind upper-left ear; paddle and zongzi grouped at lower-right with clear frame margins. Zongzi slightly overlaps the cream right cheek edge despite requested clear muzzle.",
+      "id": "dragonBoat",
+      "name": "端午",
+      "filename": "beaver-dragonBoat.png",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-b61ca6c1-70ed-4964-989d-a38658181ab7.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254
+    },
+    {
+      "variant": "midAutumn",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "directReferenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "referencedImagePaths": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "sourceGeneratedPath": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-8323a976-adc5-4a7a-a110-5aad53029835.png",
+      "sourceSHA256": "6d50a5023301ed32bdcebb1c61f43b3f83f5f5a614f0e2aae4a7e42011126e0f",
+      "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/a1-layout-refinement-2026-10-09/beaver-midAutumn.png",
+      "outputSHA256": "6d50a5023301ed32bdcebb1c61f43b3f83f5f5a614f0e2aae4a7e42011126e0f",
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place one soft gold crescent in the upper-right background, close to but not touching the right ear. Nest a small osmanthus sprig around the crescent’s lower tip so the moon and flowers form one unified accent, not two separated stickers. Place one compact rounded mooncake at the lower-right brown perimeter, fully visible outside the cream muzzle and smaller than the moon-and-flower accent. Use a few broad flower shapes and a simple mooncake surface. No writing.\nPreserve the original beaver and background; change only these accessories.",
+      "nativeDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed by built-in tool",
+      "transparentBackground": false,
+      "generationCount": 1,
+      "postProcessing": "None. Byte-for-byte copy of original generated image.",
+      "visualInspectionNotes": "Original beaver framing and background appear retained. Moon and osmanthus are grouped above right ear; mooncake at lower-right, outside cream muzzle, with frame margins. Additional small osmanthus flowers appear beside mooncake.",
+      "id": "midAutumn",
+      "name": "中秋",
+      "filename": "beaver-midAutumn.png",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-8323a976-adc5-4a7a-a110-5aad53029835.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254
+    },
+    {
+      "variant": "programmerDay",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "directReferenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "referencedImagePaths": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "sourceGeneratedPath": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-312e47cc-ee26-41e6-bbc6-5aa13f894b8d.png",
+      "sourceSHA256": "1a3bcb8b351712d1ab896a443f4358afbc793cdac0e3c1ab9308a0a235c7fe31",
+      "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/a1-layout-refinement-2026-10-09/beaver-programmerDay.png",
+      "outputSHA256": "1a3bcb8b351712d1ab896a443f4358afbc793cdac0e3c1ab9308a0a235c7fe31",
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Place one compact rounded dark-slate keyboard at the lower-right brown perimeter, entirely below and outside the cream muzzle, with a few broad keys only. Lean one smaller mint chip marked exactly 1024 against the keyboard’s upper-right corner. Place one small broad mint pair of code brackets immediately beside the chip, so the keyboard, chip and brackets form a single cohesive right-side desk-prop cluster. No brackets floating above the head and no keyboard on the cream cheek. Preserve the entire face, with ample calm space above it. No other writing.\nPreserve the original beaver and background; change only these accessories.",
+      "nativeDimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed by built-in tool",
+      "transparentBackground": false,
+      "generationCount": 1,
+      "postProcessing": "None. Byte-for-byte copy of original generated image.",
+      "visualInspectionNotes": "Original beaver framing and background appear retained. Keyboard, 1024 chip and brackets form a unified lower-right cluster with frame margins and calm upper space. Keyboard overlaps a portion of the lower-right cream cheek despite requested clear muzzle.",
+      "id": "programmerDay",
+      "name": "程序员日",
+      "filename": "beaver-programmerDay.png",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-5ac2-74d3-9933-b97aad1f1674/exec-312e47cc-ee26-41e6-bbc6-5aa13f894b8d.png",
+      "nativeWidth": 1254,
+      "nativeHeight": 1254
+    },
+    {
+      "id": "halloween",
+      "name": "万圣节",
+      "filename": "beaver-halloween.png",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Rest a rounded plum witch hat naturally on the crown, its brim following the head slope, with a simple gold buckle and a soft bent tip. Place one tiny friendly plum bat close beside the hat’s bent tip as a subordinate accent, with a clear gap from both the tip and frame. Place one compact friendly orange pumpkin lantern on the lower-right outer brown cheek, entirely outside the cream muzzle and fully in frame. Hat is primary; pumpkin is secondary; bat is smallest. No scary details or writing.\nPreserve the original beaver and background; change only these accessories.",
+      "generationCount": 1,
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed; user-approved built-in tool.",
+      "transparentBackground": false,
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-6d92-79e0-aa8d-8284cd3ad863/exec-67bb751e-babe-46d7-b96e-a8daf7fe0b99.png",
+      "outputSHA256": "f38eb330d502dc464fc287cbbc5d49e115135237bc5188a6a57d8b4f09fc8aca",
+      "editingPolicy": "Direct A1-v2 edit for accessory layout refinement; no centered or transparent intermediate.",
+      "observation": "Lower-left head scale, crop, face, tilted expression and background visibly retained. Hat follows head diagonal; small bat sits near bent tip and pumpkin is fully framed beside right outer cheek. Hat nearly reaches the top edge (around 15 pixels). No retry or postprocessing."
+    },
+    {
+      "id": "christmas",
+      "name": "圣诞节",
+      "filename": "beaver-christmas.png",
+      "selectedMaster": "A1-v2",
+      "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+      "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+      "references": [
+        "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+      ],
+      "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Rest one soft red Santa hat naturally on the crown, its cream brim following the head slope and its folded top ending in a round pompom. Attach a small holly sprig with broad green leaves and three red berries directly to one end of the hat brim; no floating holly. Nest one short rounded red-and-cream candy cane along the lower-right outer brown cheek, leaning inward slightly and fully contained inside the frame with a clear right margin. Keep the entire hook visible, keep it away from the cream muzzle, and use just a few broad stripes. Hat is primary, cane is secondary, holly is smallest. No writing.\nPreserve the original beaver and background; change only these accessories.",
+      "generationCount": 1,
+      "provider": "built-in image_gen.imagegen",
+      "model": "Not exposed; user-approved built-in tool.",
+      "transparentBackground": false,
+      "nativeWidth": 1254,
+      "nativeHeight": 1254,
+      "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-6d92-79e0-aa8d-8284cd3ad863/exec-4a89f110-ed21-4af0-ac0f-a613887c436f.png",
+      "outputSHA256": "28e299206709ac776b1f3f4c25d261135c3d9ebf07e9a407e4b6f86574fe538d",
+      "editingPolicy": "Direct A1-v2 edit for accessory layout refinement; no centered or transparent intermediate.",
+      "observation": "Lower-left head scale, crop, face, tilted expression and background visibly retained. Holly attached to hat brim and short candy cane grouped beside right outer cheek with visible frame clearance. Right ear appears slightly lower than original because hat overlaps its upper edge; retained unmodified, no retry."
+    }
+  ]
+}

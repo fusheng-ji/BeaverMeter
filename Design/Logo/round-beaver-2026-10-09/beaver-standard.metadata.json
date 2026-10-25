@@ -1,0 +1,17 @@
+{
+  "id": "standard",
+  "provider": "built-in image_gen.imagegen",
+  "providerModel": "Not exposed",
+  "sourcePath": "/Users/jiwenbo/.codex/generated_images/01a0fe31-146c-76c2-9c08-72c48e99ea24/exec-baed966b-89ef-4823-9365-d9777e24bc57.png",
+  "reference": "../ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "prompt": "Edit the supplied beaver head into a complete centered character on a transparent square canvas. Reconstruct the cropped left cheek and lower head so the entire rounded head is visible, with both round ears and both short rounded incisors fully inside the canvas. Keep the exact A1-v2 character identity: warm chestnut head, broad cream muzzle, soft plump cheeks, small rounded nose, simple dark eyes, gentle smile, shortened front teeth, and extremely soft graphic shading. Preserve the calm adorable baby-beaver appearance. Show a head only.\nMake the character upright and front-facing, with the two eyes level and both ears balanced. Center the complete head horizontally and vertically. The full head including ears should occupy approximately 74% of the square's width and 72% of its height, leaving generous clear perimeter space for future hats and small seasonal props without having to shrink the face. Both cheeks must be complete, with a smooth continuous rounded outer silhouette.\nUse large simple chestnut-and-cream shapes. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment. Keep every visible edge soft and round.\nRemove the sage-teal background completely. The canvas outside the character must be genuinely transparent, not a checkerboard pattern, not a white or colored background. No clothing, hats, props, body, whiskers, hair tuft, eyebrows, blush, extra characters, text, labels, border, frame, scene, external cast shadow, photorealistic materials, or strong three-dimensional rendering. Deliver one full-resolution 1:1 square image.",
+  "transparent_background": true,
+  "generationCount": 1,
+  "nativeDimensions": [
+    1254,
+    1254
+  ],
+  "originalUnmodified": true,
+  "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/round-beaver-2026-10-09/beaver-standard.png",
+  "sha256": "51e41e65035fa40dacee0a0bbe7c02340b267f2adc619de277e7ab129b56a936"
+}

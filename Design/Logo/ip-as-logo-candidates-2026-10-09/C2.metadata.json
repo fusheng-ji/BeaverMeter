@@ -1,0 +1,22 @@
+{
+  "label": "C2",
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed by tool interface",
+  "sourcePath": "/Users/jiwenbo/.codex/generated_images/01a11dc2-ba8a-7820-b8b8-cb13d1e04b4d/exec-25a86e56-2686-4a78-9a5f-1d419e02bba5.png",
+  "savedPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/C2.png",
+  "nativeDimensions": [
+    1254,
+    1254
+  ],
+  "requestedDimensions": [
+    1536,
+    1536
+  ],
+  "generationCount": 1,
+  "transparentBackgroundRequested": false,
+  "imageReferences": [],
+  "prompt": "Create one complete full-bleed 1:1 square image, approximately 1536 × 1536.\nBackground: fill the entire square with solid gently muted lavender #AEAFCD. Keep this background visible in every open area and in the corners not occupied by the character; the assigned emergence corner must be occupied by the character.\nSubject: place one extremely simplified, cute, endearing beaver head on the background, reduced to one soft rounded continuous silhouette and one defining feature: the pair of front incisors. Use a soft pear-shaped head with full rounded lower cheeks, two small round ears and two short, blunt front incisors; a calm curious expression. Keep both ears and both teeth visible.\nComplexity: use only 4–7 large basic shapes and at most two broad internal color regions. Use two simple eyes and one tiny mouth only as needed to express the incisors. Remove every nonessential line, outline, anatomical detail, texture, whisker, fur tuft, eyebrow and decoration. Keep the character readable at 32 × 32.\nColor behavior: use exactly three semantic colors in the complete image: exactly two character base colors, warm terracotta #AB523D and light peach #F8D0B8, plus the background color. Use the first character color as the main head mass and simple facial marks, and the second as one broad muzzle region and the front incisors. Reuse these character colors rather than adding a separate facial color. Keep the head, facial marks and background clearly separated.\nComposition: keep the character upright and emerging from the assigned lower-right, filling about 85–95% of the square so it remains visually dominant. Gentle cropping at the bottom or assigned side is welcome when it strengthens the corner emergence, while keeping both ears and the defining incisors visible. Never center or bottom-center the character. Show only the head, without a body.\nStyle: make simplification, cuteness, and lovable baby-like appeal the strongest qualities. Use large soft forms, compact proportions, thick rounded contours, and an ultra-clean graphic treatment. Prefer one clear shape over several explanatory details. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nFinish: show only the character on the full-canvas background, with clean surfaces and normal square outer corners.\nConstraints: Use no text or watermark. Add no borders, frames, cards, or presentation masks. Include one character only, with no extra subjects or scenery. Use no fragile lines, sharp tips, unnecessary outlines, tiny details, or decorative marks. Add no photorealistic material, dramatic bevel, glossy hotspot, deep occlusion, extrusion, strong three-dimensional rendering, or external cast shadow. Keep the background solid and uniform, with no texture, vignette, or lighting variation.",
+  "copiedUnmodified": true,
+  "sha256": "4c1d9d99751dbd8123c6b600ae0628c4714665393e84024179aca2af804df61b",
+  "recordedAt": "2026-10-08T23:05:29.935456+00:00"
+}

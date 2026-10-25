@@ -1,0 +1,17 @@
+{
+  "id": "lunarNewYear",
+  "name": "春节",
+  "prompt": "Edit the supplied centered transparent beaver head. Keep the exact same character, framing, head scale and face position. Preserve the rounded chestnut head, cream muzzle, full cheeks, small nose, eye spacing, gentle smile, two short front incisors, both ears, and subtle soft graphic shading. Add only the seasonal accessories described below.\nThe beaver itself must not be shrunk, moved or reshaped to make room for props. Fit props into the existing perimeter space and open corners; they may overlap only the outer edge of the cheeks or the top of the head. Never cover the eyes, nose, smile or teeth. Keep both ears recognizable. Simplify accessories into a few broad rounded shapes, with coordinated warm accent colors. Every accessory and every part of the head must remain fully inside the original square canvas, with at least 40 pixels of transparent clearance at all four edges.\nUse the same clean, rounded, adorable graphic style as the reference. Avoid fine texture, tiny lines, busy patterns, sharp tips, dramatic highlights or detailed three-dimensional materials. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nPreserve genuine transparency outside the character and accessories. No background color, scenery, checkerboard pattern, white rectangle, frame, border, body, extra characters or watermark. Keep full original resolution and the exact 1:1 square canvas.\nAccessories: A cozy rounded red scarf wrapping just underneath the chin, one simple red envelope at the lower-left outer cheek, and one small rounded gold ingot at the lower-right outer cheek. Use simple warm red and gold forms, no characters or printed symbols.\nChange only these accessories; preserve the original face.",
+  "sourcePath": "/Users/jiwenbo/.codex/generated_images/01a11dd9-eb71-78b0-9406-cfdf4e0f6f1e/exec-e91cdb07-a2f1-46b9-8de6-ed6e56cf37c9.png",
+  "outputPath": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/round-beaver-2026-10-09/beaver-lunarNewYear.png",
+  "dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "sha256": "15621eab7c266c324f6c7d928a67529f2aaa0beeb56da3dcef1ef541de3a9cf3",
+  "reference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/round-beaver-2026-10-09/beaver-standard.png",
+  "tool": "built-in image_gen.imagegen",
+  "model": "Not exposed; built-in tool approved by user.",
+  "generationCount": 1,
+  "transparentBackgroundRequested": true
+}

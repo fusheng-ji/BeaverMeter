@@ -1,0 +1,22 @@
+{
+  "id": "christmas",
+  "name": "圣诞节",
+  "filename": "beaver-christmas.png",
+  "selectedMaster": "A1-v2",
+  "directReference": "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png",
+  "referenceSHA256": "042ba6424c367007ae01f74e534399986f60b6871a097e070befb17923eb8c84",
+  "references": [
+    "/Users/jiwenbo/Documents/GitHub/codex-week-widget/Design/Logo/ip-as-logo-candidates-2026-10-09/A1-v2.png"
+  ],
+  "prompt": "Edit the supplied A1-v2 picture directly, adding only the specified seasonal accessories. The supplied original is the sole edit reference.\nKeep the original beaver's head contour, ears, tilted face, eyes, nose, cream muzzle, smile, short front teeth, colors, shading, size, position, lower-left emergence and existing left/bottom crop unchanged. Preserve the existing sage-teal background. Do not straighten, center, shrink, redraw or reconstruct the beaver.\nArrange accessories as a deliberate compact ensemble: one primary worn or closely attached accent, with smaller props grouped beside the right outer brown edge. Follow the head's existing diagonal. Leave the face and central forehead visually calm, with both eyes, the entire cream muzzle, smile and teeth unobstructed. Keep both ears recognizable. Avoid placing disconnected stickers at every corner.\nKeep every new freestanding prop fully visible inside the square, with a small clear margin from the frame. The original cropped head remains cropped; do not reduce it to make room. Use gentle overlap between accessories to show how they belong together, but never cover the cream muzzle. Use soft rounded broad shapes with a clear hierarchy, minimal details and no sharp thin elements. Match the existing warm graphic treatment. Add an extremely, extremely subtle, almost imperceptible sense of depth through a barely-there neo-skeuomorphic treatment.\nDeliver a single square picture with the original framing and background. Add only the named props; no scenery, body parts, hands, new facial features, borders, frames or watermarks.\nAccessories and layout: Rest one soft red Santa hat naturally on the crown, its cream brim following the head slope and its folded top ending in a round pompom. Attach a small holly sprig with broad green leaves and three red berries directly to one end of the hat brim; no floating holly. Nest one short rounded red-and-cream candy cane along the lower-right outer brown cheek, leaning inward slightly and fully contained inside the frame with a clear right margin. Keep the entire hook visible, keep it away from the cream muzzle, and use just a few broad stripes. Hat is primary, cane is secondary, holly is smallest. No writing.\nPreserve the original beaver and background; change only these accessories.",
+  "generationCount": 1,
+  "provider": "built-in image_gen.imagegen",
+  "model": "Not exposed; user-approved built-in tool.",
+  "transparentBackground": false,
+  "nativeWidth": 1254,
+  "nativeHeight": 1254,
+  "generatedSource": "/Users/jiwenbo/.codex/generated_images/01a11ded-6d92-79e0-aa8d-8284cd3ad863/exec-4a89f110-ed21-4af0-ac0f-a613887c436f.png",
+  "outputSHA256": "28e299206709ac776b1f3f4c25d261135c3d9ebf07e9a407e4b6f86574fe538d",
+  "editingPolicy": "Direct A1-v2 edit for accessory layout refinement; no centered or transparent intermediate.",
+  "observation": "Lower-left head scale, crop, face, tilted expression and background visibly retained. Holly attached to hat brim and short candy cane grouped beside right outer cheek with visible frame clearance. Right ear appears slightly lower than original because hat overlaps its upper edge; retained unmodified, no retry."
+}

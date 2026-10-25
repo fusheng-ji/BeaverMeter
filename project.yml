@@ -1,0 +1,261 @@
+name: BeaverMeter
+packages:
+  CodexBar:
+    url: https://github.com/steipete/CodexBar.git
+    revision: 07f2a670229bca1a34bb7eda5284c89657b8df9a
+  SweetCookieKit:
+    url: https://github.com/steipete/SweetCookieKit.git
+    revision: d5ea6d92298779ec0c3ddf7d3d99da186a305e14
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle.git
+    exactVersion: 2.10.0
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    macOS: "14.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    BEAVERMETER_MENU_URL_SCHEME: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ${BEAVERMETER_DEVELOPMENT_TEAM}
+    BEAVERMETER_DIRECT_INSTALL: NO
+    BEAVERMETER_UPDATES_ENABLED: NO
+    BEAVERMETER_SPARKLE_PUBLIC_KEY: ""
+targets:
+  BeaverMeter:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+      - path: Shared
+      - path: Design/BrandAssets
+        type: folder
+        buildPhase: resources
+      - path: Design/ProviderAssets
+        type: folder
+        buildPhase: resources
+      - path: scripts/collect_beaver_meter.sh
+        buildPhase: resources
+      - path: scripts/remote_codex_usage.py
+        buildPhase: resources
+      - path: scripts/configure_runtime.sh
+        buildPhase: resources
+      - path: scripts/migrate_beavermeter_data.sh
+        buildPhase: resources
+      - path: scripts/update_runtime.sh
+        buildPhase: resources
+      - path: scripts/lib
+        type: folder
+        buildPhase: resources
+      - path: LICENSE
+        buildPhase: resources
+      - path: THIRD_PARTY_NOTICES.md
+        buildPhase: resources
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: BeaverMeter
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleURLTypes:
+          - CFBundleURLName: $(PRODUCT_BUNDLE_IDENTIFIER)
+            CFBundleURLSchemes:
+              - $(BEAVERMETER_MENU_URL_SCHEME)
+        BeaverMeterMenuURLScheme: $(BEAVERMETER_MENU_URL_SCHEME)
+        BeaverMeterDirectInstall: $(BEAVERMETER_DIRECT_INSTALL)
+        BeaverMeterUpdatesEnabled: $(BEAVERMETER_UPDATES_ENABLED)
+        SUFeedURL: https://github.com/fusheng-ji/BeaverMeter/releases/latest/download/appcast.xml
+        SUPublicEDKey: $(BEAVERMETER_SPARKLE_PUBLIC_KEY)
+        SUEnableAutomaticChecks: true
+        SUScheduledCheckInterval: 43200
+        SUAutomaticallyUpdate: false
+        SUAllowsAutomaticUpdates: false
+        SUEnableSystemProfiling: false
+        SUVerifyUpdateBeforeExtraction: true
+        SURequireSignedFeed: true
+        SUSignedFeedFailureExpirationInterval: 0
+    dependencies:
+      - package: Sparkle
+        product: Sparkle
+      - target: BeaverMeterWidgetExtension
+        embed: true
+      - target: BeaverMeterCollector
+        embed: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter
+        PRODUCT_NAME: BeaverMeter
+        CURRENT_PROJECT_VERSION: 37
+        MARKETING_VERSION: 1.0.0
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: BeaverMeter
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: BeaverMeter reads only the DeepSeek session from the official Safari tab you opened.
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
+        INFOPLIST_KEY_LSUIElement: YES
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    postCompileScripts:
+      - name: Embed usage collector
+        script: |
+          HELPER_DIR="${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Helpers"
+          RESOURCE_DIR="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+          mkdir -p "$HELPER_DIR"
+          ditto "${BUILT_PRODUCTS_DIR}/BeaverMeterCollector" "$HELPER_DIR/BeaverMeterCollector"
+          chmod 755 "$HELPER_DIR/BeaverMeterCollector"
+          if [ "${CODE_SIGNING_ALLOWED}" = "YES" ]; then
+            HELPER_IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:--}"
+            codesign --force --sign "$HELPER_IDENTITY" --timestamp=none "$HELPER_DIR/BeaverMeterCollector"
+          fi
+          for BUNDLE_NAME in CodexBar_CodexBarCore SweetCookieKit_SweetCookieKit swift-crypto_Crypto; do
+            if [ -d "${BUILT_PRODUCTS_DIR}/${BUNDLE_NAME}.bundle" ]; then
+              ditto "${BUILT_PRODUCTS_DIR}/${BUNDLE_NAME}.bundle" "${RESOURCE_DIR}/${BUNDLE_NAME}.bundle"
+            fi
+          done
+        basedOnDependencyAnalysis: false
+        outputFiles:
+          - $(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Helpers/BeaverMeterCollector
+  BeaverMeterCollector:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Collector
+      - path: Shared
+    dependencies:
+      - package: CodexBar
+        product: CodexBarCore
+      - package: SweetCookieKit
+        product: SweetCookieKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter.collector
+        PRODUCT_NAME: BeaverMeterCollector
+        SWIFT_VERSION: "6.0"
+        CODE_SIGNING_ALLOWED: NO
+  BeaverMeterWidgetExtension:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: Widget
+      - path: Shared
+      - path: Design/ProviderAssets
+        type: folder
+        buildPhase: resources
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: BeaverMeter
+        BeaverMeterMenuURLScheme: $(BEAVERMETER_MENU_URL_SCHEME)
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter.widget
+        PRODUCT_NAME: BeaverMeterWidgetExtension
+        CURRENT_PROJECT_VERSION: 37
+        MARKETING_VERSION: 1.0.0
+        SKIP_INSTALL: YES
+        ENABLE_APP_SANDBOX: YES
+        CODE_SIGN_ENTITLEMENTS: Widget/BeaverMeterWidget.entitlements
+  BeaverMeterTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests/Swift
+      - path: Shared
+      - path: App/CollectorProcessRunner.swift
+      - path: App/SnapshotFileReader.swift
+      - path: App/RuntimePerformance.swift
+      - path: App/AppearanceStore.swift
+      - path: App/UpdateStore.swift
+      - path: App/DirectInstallSetup.swift
+      - path: App/RuntimeUpdateCoordinator.swift
+      - path: Design/ProviderAssets
+        type: folder
+        buildPhase: resources
+      - path: Design/BrandAssets
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter.tests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGNING_ALLOWED: NO
+  BeaverMeterPreviewRenderer:
+    type: tool
+    platform: macOS
+    sources:
+      - path: PreviewRenderer
+      - path: Shared
+      - path: App/AppearanceStore.swift
+      - path: App/UpdateStore.swift
+      - path: App/UsageStore.swift
+      - path: App/SnapshotFileReader.swift
+      - path: App/RuntimePerformance.swift
+      - path: App/CollectorProcessRunner.swift
+      - path: App/UsageMenuView.swift
+      - path: App/UsageMenuComponents.swift
+      - path: App/UsageHistoryViews.swift
+      - path: App/DeepSeekSafariSessionReader.swift
+      - path: Widget/QuotaWidgetContent.swift
+      - path: Widget/AdaptiveProviderCard.swift
+      - path: Widget/MultiWorkspaceWidgetContent.swift
+      - path: Widget/WidgetCardComponents.swift
+      - path: Widget/WidgetActivitySummary.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter.preview-renderer
+        PRODUCT_NAME: BeaverMeterPreviewRenderer
+        SWIFT_VERSION: "6.0"
+        CODE_SIGNING_ALLOWED: NO
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    postCompileScripts:
+      - name: Copy preview brand assets
+        script: |
+          ditto "${SRCROOT}/Design/BrandAssets" "${TARGET_BUILD_DIR}/BrandAssets"
+          ditto "${SRCROOT}/Design/ProviderAssets" "${TARGET_BUILD_DIR}/ProviderAssets"
+        basedOnDependencyAnalysis: false
+  BeaverMeterCollectorTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests/Collector
+      - path: Collector
+        excludes:
+          - BeaverMeterCollector.swift
+      - path: Shared
+    dependencies:
+      - package: CodexBar
+        product: CodexBarCore
+      - package: SweetCookieKit
+        product: SweetCookieKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter.collector-tests
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "6.0"
+        CODE_SIGNING_ALLOWED: NO
+schemes:
+  BeaverMeter:
+    build:
+      targets:
+        BeaverMeter: all
+        BeaverMeterWidgetExtension: all
+        BeaverMeterCollector: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - BeaverMeterTests
+        - BeaverMeterCollectorTests
+  BeaverMeterPreviewRenderer:
+    build:
+      targets:
+        BeaverMeterPreviewRenderer: all
+    run:
+      config: Debug
