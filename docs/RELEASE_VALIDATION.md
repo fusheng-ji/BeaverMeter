@@ -22,9 +22,19 @@ public key are unchanged.
 - The **1.0.1/build 38** Universal app and mounted DMG passed validation of all
   **8 signed executable files**, arm64/x86_64 slices, matching App/Widget metadata,
   official identities, production updater settings and runtime/Sparkle resources.
-  The final signed five-asset upload and exact-tag source comparison are enforced
-  again by the publishing workflow.
-  Physical Intel/macOS 14, clean quarantined installation, public
+- [GitHub release validation](https://github.com/fusheng-ji/BeaverMeter/actions/runs/40672386372)
+  passed on both macOS 15 Apple Silicon and Intel runners: **509 Swift tests per
+  architecture**, all **45 Python tests**, and the complete shell/CLI integrations.
+  The Intel virtual GPU required `RB_USE_BINARY_ARCHIVE=0`, forwarded to XCTest
+  with `TEST_RUNNER_`; all **7 WidgetSurface pixel tests** then passed. No tests or
+  Metal error checks were disabled. This setting applies only to the CI process.
+- The publishing job downloaded the actual five draft assets, verified hashes and
+  EdDSA signatures, mounted/validated the Universal DMG, and compared source ZIP
+  contents and file types against the immutable tag. Stable
+  [v1.0.1](https://github.com/fusheng-ji/BeaverMeter/releases/tag/v1.0.1) was published
+  from source commit `f8d30bc4327c344c58b421cbd12e1c996d7c8e90`. The public `latest`
+  appcast was downloaded again and matched the signed local bytes exactly.
+- Physical Intel/macOS 14, clean quarantined installation, public
   upgrade/recovery and the complete native Widget matrix remain outside this
   patch's observed validation. Earlier candidate limitations are retained below.
 
