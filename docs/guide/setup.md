@@ -7,8 +7,8 @@
 BeaverMeter requires macOS 14+. Follow [source installation](development.md#build-and-install)
 to build this checkout. CodexBar does not need to be installed or running.
 
-If you have a Universal DMG package, it supports Apple Silicon and Intel without
-requiring Xcode, XcodeGen or Homebrew to install:
+Download the Universal DMG from [GitHub Releases](https://github.com/fusheng-ji/BeaverMeter/releases/latest).
+It supports Apple Silicon and Intel without Xcode, XcodeGen or Homebrew:
 
 1. Open the DMG and drag BeaverMeter to `/Applications` or `~/Applications`.
 2. Eject the image and open the installed app.
@@ -126,6 +126,14 @@ renewal, secure-storage selection and retry limits.
 Sign in to the intended account in Cursor, then refresh BeaverMeter. The
 collector reuses Cursor’s local sign-in. It reports actual dashboard charges,
 not model list prices; team pools are not individual monthly allowances.
+If macOS blocks the encrypted sign-in, choose **Allow Cursor access…** in the
+Cursor section and allow access to **Cursor Safe Storage** when macOS asks.
+After successful verification, BeaverMeter saves a private session in
+`~/Library/Application Support/BeaverMeter/cursor-session.json` for silent
+refresh. The directory is owner-only (`0700`) and the session file is `0600`.
+A changed or expired Cursor sign-in requires verification again. The Keychain
+encryption key is never saved, and credentials stay out of usage snapshots.
+Background refresh never opens the permission dialog automatically.
 
 ### DeepSeek
 

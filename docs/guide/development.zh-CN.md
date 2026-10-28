@@ -4,7 +4,7 @@
 
 ## 构建元数据
 
-当前基线为 **1.0.0，build 37**，App 与 Widget 元数据必须一致。
+当前基线为 **1.0.1，build 38**，App 与 Widget 元数据必须一致。
 源码提交或本地安装包不会发布正式标签、DMG 或 appcast。
 
 应用采用 SwiftUI，小组件采用 WidgetKit，采集器让各服务读取独立。Shared 模型供三者

@@ -6,8 +6,9 @@
 
 Source builds, local packages and previews intentionally do not contact the
 production updater. Build metadata alone does not make a package an official
-release. Use [source installation](development.md#build-and-install) for this
-checkout, and see [setup](setup.md#updates) for the supported update flow.
+release. Install the official DMG from [GitHub Releases](https://github.com/fusheng-ji/BeaverMeter/releases/latest)
+for in-app updates, or use [source installation](development.md#build-and-install)
+for this checkout. See [setup](setup.md#updates) for the update flow.
 
 ## Codex has no tokens
 
@@ -51,6 +52,10 @@ Custom profile and CLI switches are described in [data](data.md#claude-code).
 ## Cursor says Sign in, or monthly allowance is missing
 
 Open Cursor and confirm the intended account is active, then refresh BeaverMeter.
+If encrypted sign-in is blocked, choose **Allow Cursor access…** and complete the
+macOS prompt once. A verified private session then supports silent refresh; repeat
+verification after changing Cursor sign-in. See [setup](setup.md#cursor).
+
 A team pool or administrator cap is not a personal monthly allowance; if Cursor
 provides no supported individual limit, the value stays unavailable.
 

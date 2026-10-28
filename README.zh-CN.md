@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-31332F?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.0-8B684F?style=flat-square" alt="版本 1.0.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-8B684F?style=flat-square" alt="版本 1.0.1"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-5B7E68?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -80,7 +80,7 @@ BeaverMeter 要求 **macOS 14 或更新版本**。从源码构建安装请按
 
 - **Codex：**展开 **Codex workspaces → Add workspace…**，命名后完成浏览器登录；每个登录独立保存，也能配置已有 profile 目录。
 - **Claude：**在 **Online quota → Sign in to Claude…** 登录；已通过 Claude Code 登录时可用 **Verify login**。本地 transcript 总量与在线额度相互独立。
-- **Cursor：**先在 Cursor 登录目标账户，再刷新 BeaverMeter。
+- **Cursor：**先在 Cursor 登录目标账户，再刷新 BeaverMeter。若需要钥匙串权限，点击 **Allow Cursor access…** 并在 macOS 对话框中允许一次访问。验证后的会话可供静默刷新使用；登录变化后需重新验证。
 - **DeepSeek：**选择 **Connect in browser…**，在官方 Platform 页面完成登录。
 
 同一邮箱下的工作空间也保留各自计划、额度和活动。缺失或身份不匹配时，不借用其他
@@ -171,6 +171,7 @@ Codex 工作空间活动使用已验证的账户账本，原始服务日桶／�
 
 - 服务级 Codex／Claude 活动来自本地日志；可选 SSH 加入指定远端的 Codex 记录。独立 Codex 工作空间活动使用账户 API。
 - 凭据保留在本机，用量快照不含认证 token、Cookie、提示词或回答内容。
+- 验证后的 Cursor 会话保存在本机仅当前用户可访问的 `cursor-session.json` 中，不保存 Cursor 的钥匙串加密密钥。
 - 工作空间身份与缓存范围隔离；认证失败或身份不匹配会清除受影响的受保护读数。
 - 临时失败可在对应来源的期限内保留明确标为过期的值。未知不等于零，缺失实时数据不会由预览值补齐。
 - 关闭的服务不会被请求；可选 SSH 仅连接配置的主机；更新请求访问 GitHub Release 资源，不携带服务凭据。

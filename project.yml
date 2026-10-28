@@ -87,8 +87,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter
         PRODUCT_NAME: BeaverMeter
-        CURRENT_PROJECT_VERSION: 37
-        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 38
+        MARKETING_VERSION: 1.0.1
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: BeaverMeter
@@ -156,8 +156,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: ${BEAVERMETER_BUNDLE_PREFIX}.beavermeter.widget
         PRODUCT_NAME: BeaverMeterWidgetExtension
-        CURRENT_PROJECT_VERSION: 37
-        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 38
+        MARKETING_VERSION: 1.0.1
         SKIP_INSTALL: YES
         ENABLE_APP_SANDBOX: YES
         CODE_SIGN_ENTITLEMENTS: Widget/BeaverMeterWidget.entitlements

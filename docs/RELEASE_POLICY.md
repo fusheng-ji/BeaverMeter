@@ -2,9 +2,9 @@
 
 ## Current baseline
 
-The current version is **1.0.0, build 37**. No new `v1.0.0` tag or official DMG
-has been published. Local packaging keeps production updates off and does not
-publish assets; official publication uses the separate workflow below.
+The current version is **1.0.1, build 38**. This patch repairs Cursor sign-in
+and background refresh. Local packaging keeps production updates off and does
+not publish assets; official publication uses the separate workflow below.
 
 ## Official packages and installation
 
@@ -84,15 +84,18 @@ separate recovery watchdog. A failed installation must not delete account data.
 
 A persistent EdDSA key authenticates the DMG, feed and release notes. Its public
 key is committed in `Config/SparklePublicKey.txt` and embedded as `SUPublicEDKey`.
-Private material belongs in the `BeaverMeter.Release` Keychain account and the
-repository Actions secret `BEAVERMETER_SPARKLE_PRIVATE_KEY`, with an independently
-protected backup. A missing-key error must not automatically generate a new key.
+Private material belongs in the `BeaverMeter.Release` Keychain account, with an
+independently protected backup. Releases can be signed locally without exporting
+the key. CI builds optionally use the repository Actions secret
+`BEAVERMETER_SPARKLE_PRIVATE_KEY`. A missing-key error must not automatically
+generate a new key.
 
 Release-owner provisioning commands, used only with the intended existing key:
 
 ```sh
 zsh scripts/configure_update_signing.sh --check
 zsh scripts/configure_update_signing.sh --backup "$HOME/Documents/BeaverMeter-update.private-key.enc"
+# Optional: provision CI signing instead of keeping release signing local.
 zsh scripts/configure_update_signing.sh --github-secret
 ```
 
@@ -151,6 +154,24 @@ The official packaging command uses an approved existing tag:
 ```sh
 zsh scripts/build_release.sh /tmp/beavermeter-release vX.Y.Z
 ```
+
+The tag workflow runs the complete Apple Silicon and Intel test suites. When the
+Actions signing secret is configured, it also builds, signs and uploads the draft.
+Without that secret, it records that publication is pending and publishes nothing.
+
+For local signing, build the tagged package with the command above, push the tag,
+and upload its five assets to a draft for that exact tag. Then explicitly dispatch
+the workflow on the tag:
+
+```sh
+gh workflow run release.yml --ref vX.Y.Z -f publish_uploaded_assets=true
+```
+
+This route repeats both architecture test suites and keeps the private key local.
+It requires an existing draft, downloads the uploaded bytes, verifies all five
+asset names, hashes and public-key signatures, mounts and validates the Universal
+DMG, and compares source ZIP paths, contents and file types against `git archive`
+of the tag. Only then does it publish. It refuses to replace a published release.
 
 Before the first official updater release, validate real check/download/signature/
 installation/relaunch/recovery/Widget behavior using two actual versions. Test

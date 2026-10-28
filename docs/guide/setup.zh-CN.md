@@ -7,8 +7,8 @@
 BeaverMeter 要求 macOS 14+。构建本 checkout 请按[源码安装](development.zh-CN.md#构建与安装)
 操作，不需要另行安装或运行 CodexBar。
 
-如果已有 Universal DMG 安装包，它支持 Apple Silicon 与 Intel，安装时不需要 Xcode、
-XcodeGen 或 Homebrew：
+从 [GitHub Releases](https://github.com/fusheng-ji/BeaverMeter/releases/latest) 下载 Universal DMG。
+它支持 Apple Silicon 与 Intel，安装时不需要 Xcode、XcodeGen 或 Homebrew：
 
 1. 打开 DMG，拖入 `/Applications` 或 `~/Applications`。
 2. 推出磁盘映像，再打开安装好的应用。
@@ -108,6 +108,12 @@ Mac 密码。取消解锁可能令 Keychain 保持锁定。该操作不删除凭
 
 在 Cursor 中登录目标账户后刷新 BeaverMeter。采集器复用本地登录，展示 Dashboard
 实际扣费，而非模型标价；团队共享池不作为个人月度额度。
+若 macOS 阻止读取加密登录，在 Cursor 区域点击 **Allow Cursor access…**，并允许
+访问 **Cursor Safe Storage**。验证成功后，BeaverMeter 将会话私密保存在
+`~/Library/Application Support/BeaverMeter/cursor-session.json` 中，供静默刷新使用。
+目录仅当前用户可访问（`0700`），会话文件权限为 `0600`。Cursor 登录变化或过期后
+需重新验证；不保存钥匙串加密密钥，凭据也不会写入用量快照。
+后台刷新不会自动弹出权限对话框。
 
 ### DeepSeek
 

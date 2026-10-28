@@ -2,6 +2,12 @@ name: Release BeaverMeter
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      publish_uploaded_assets:
+        description: Publish an existing locally signed draft after validation
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -9,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   test:
-    if: github.event.deleted == false
+    if: github.event_name != 'push' || github.event.deleted == false
     strategy:
       fail-fast: false
       matrix:
@@ -32,18 +38,38 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Select signing route
+        id: route
+        env:
+          SIGNING_KEY_AVAILABLE: ${{ secrets.BEAVERMETER_SPARKLE_PRIVATE_KEY != '' }}
+          PUBLISH_UPLOADED: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_uploaded_assets }}
+        shell: bash
+        run: |
+          if [[ "$PUBLISH_UPLOADED" == true ]]; then
+            echo 'mode=uploaded' >> "$GITHUB_OUTPUT"
+          elif [[ "$SIGNING_KEY_AVAILABLE" == true ]]; then
+            echo 'mode=build' >> "$GITHUB_OUTPUT"
+          else
+            echo 'mode=pending' >> "$GITHUB_OUTPUT"
+            echo 'Tests passed. No release was published: build and sign locally, upload the five draft assets, then dispatch this workflow on the release tag with publish_uploaded_assets=true.' >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/setup-node@v4
+        if: steps.route.outputs.mode == 'build'
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: scripts/packaging/package-lock.json
-      - run: brew install xcodegen
-      - run: echo "DEVELOPER_DIR=$(xcode-select -p)" >> "$GITHUB_ENV"
+      - if: steps.route.outputs.mode == 'build'
+        run: brew install xcodegen
+      - if: steps.route.outputs.mode != 'pending'
+        run: echo "DEVELOPER_DIR=$(xcode-select -p)" >> "$GITHUB_ENV"
       - name: Build universal DMG and signed appcast
+        if: steps.route.outputs.mode == 'build'
         env:
           BEAVERMETER_SPARKLE_PRIVATE_KEY: ${{ secrets.BEAVERMETER_SPARKLE_PRIVATE_KEY }}
         run: zsh scripts/build_release.sh "$RUNNER_TEMP/release" "$GITHUB_REF_NAME"
-      - name: Upload, verify draft assets, then publish
+      - name: Upload built draft assets
+        if: steps.route.outputs.mode == 'build'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -61,9 +87,22 @@ jobs:
             "$RUNNER_TEMP/release/appcast.xml" \
             "$RUNNER_TEMP/release/release-notes.md" \
             "$RUNNER_TEMP/release/SHA256SUMS" --clobber
+      - name: Verify uploaded draft assets, then publish
+        if: steps.route.outputs.mode != 'pending'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          python3 scripts/release_metadata.py --tag "$GITHUB_REF_NAME"
+          gh release view "$GITHUB_REF_NAME" --json isDraft,tagName > "$RUNNER_TEMP/release-state.json"
+          python3 -c 'import json,sys; state=json.load(open(sys.argv[1])); assert state["isDraft"] and state["tagName"] == sys.argv[2], "Expected the exact-tag draft release"' "$RUNNER_TEMP/release-state.json" "$GITHUB_REF_NAME"
           # Downloads the actual uploaded bytes with draft authorization. Public-key verification
           # needs no signing secret and checks all five names, every checksum and every signature.
           mkdir "$RUNNER_TEMP/uploaded-release"
           gh release download "$GITHUB_REF_NAME" --dir "$RUNNER_TEMP/uploaded-release"
           python3 scripts/release_metadata.py --artifacts "$RUNNER_TEMP/uploaded-release"
-          gh release edit "$GITHUB_REF_NAME" --notes-file "$RUNNER_TEMP/release/release-notes.md" --draft=false --latest
+          python3 scripts/release_metadata.py --dmg "$RUNNER_TEMP/uploaded-release/BeaverMeter-${version}-universal.dmg"
+          python3 scripts/verify_release_source.py "$RUNNER_TEMP/uploaded-release/BeaverMeter-${version}-source.zip" "$GITHUB_REF_NAME"
+          gh release edit "$GITHUB_REF_NAME" --notes-file "$RUNNER_TEMP/uploaded-release/release-notes.md" --draft=false --latest

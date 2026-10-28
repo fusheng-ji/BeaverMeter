@@ -9,7 +9,7 @@ Codex, Claude Code, Cursor and DeepSeek usage in your Mac’s menu bar and deskt
 
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-31332F?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.0-8B684F?style=flat-square" alt="Version 1.0.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-8B684F?style=flat-square" alt="Version 1.0.1"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-5B7E68?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -88,7 +88,7 @@ default. Disabled services are not collected.
 
 - **Codex:** expand **Codex workspaces → Add workspace…**, give it a name and finish browser sign-in. Each login is stored separately. Existing profile homes can also be configured.
 - **Claude:** use **Online quota → Sign in to Claude…**, or **Verify login** after signing in through Claude Code. Local transcript totals remain independent of online quota.
-- **Cursor:** sign in to the intended account in Cursor, then refresh BeaverMeter.
+- **Cursor:** sign in to the intended account in Cursor, then refresh BeaverMeter. If Keychain access is needed, choose **Allow Cursor access…** and approve the macOS dialog once. A verified session supports silent refresh; sign-in changes require verification again.
 - **DeepSeek:** choose **Connect in browser…** and finish signing in on the official Platform page.
 
 Workspaces sharing an email keep their own plans, quotas and activity. A missing
@@ -189,6 +189,7 @@ and [six-module examples](docs/guide/setup.md#widget-selection).
 
 - Provider-wide Codex/Claude activity comes from local logs; optional SSH adds configured remote Codex records. Separate Codex workspace activity uses the account API.
 - Credentials stay local. Usage snapshots contain no authentication tokens, cookies, prompts or response content.
+- Verified Cursor sessions are saved in a private, owner-only `cursor-session.json` on this Mac. Cursor's Keychain encryption key is never saved.
 - Workspaces retain separate identity and cache scope. Authentication or identity mismatch clears affected protected readings.
 - Temporary failures can retain a clearly marked stale value within that source’s limit. Unknown is not zero; preview data never fills missing live data.
 - Disabled services are not contacted. Optional SSH goes only to the configured host; update requests use GitHub Release assets without provider credentials.

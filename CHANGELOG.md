@@ -1,5 +1,47 @@
 # Changelog
 
+## [1.0.1] — 2026-10-28
+
+**Build 38.** Cursor sign-in and automatic-refresh fix.
+
+### Fixed
+
+- Read Cursor's newer encrypted macOS sign-in format. Previously the collector
+  parsed the encrypted storage envelope as a JWT and failed before it could
+  request usage data. Older plaintext sign-ins remain supported.
+- Add **Allow Cursor access…** with progress and cancellation when macOS Keychain
+  permission is needed. Only this explicit action may request authorization;
+  scheduled collection stays noninteractive.
+- Reuse an API-verified Cursor session for background refresh. On the affected
+  local installation, selecting **Always Allow** did not make subsequent helper
+  reads succeed. The verified access token is now stored in BeaverMeter's private
+  application-data directory (directory `0700`, file `0600`), bound to the current
+  Cursor database and sign-in. The Cursor Safe Storage key is never cached, and
+  credentials are never written to usage snapshots.
+- Reject expired, changed, malformed or insecure cached sessions. An authentication
+  rejection clears the matching session; temporary network failures preserve it.
+  Changing Cursor sign-in requires verification again.
+
+### Validation
+
+- 509 Swift, 45 Python and 6 Node tests passed locally, together with collector and
+  installation/runtime integrations. The Universal app and mounted DMG passed
+  architecture, metadata, resource and signature validation.
+- A passive five-minute observation and the next scheduled collection confirmed
+  fresh Cursor readings without manual refresh or an authorization request.
+  See the [validation record](docs/RELEASE_VALIDATION.md) for scope and limits.
+
+### 修复说明
+
+- Cursor 新版在 macOS 上加密保存登录信息；旧采集器把加密内容当作 JWT，
+  因而在请求用量前就报错。本版本支持解密读取，同时兼容旧版明文登录信息。
+- 菜单新增 **Allow Cursor access…**，支持授权进度与取消。仅主动授权操作可以
+  请求系统许可，后台采集始终静默运行。
+- 受影响的本机安装在点击「始终允许」后，后续采集进程仍无法读取钥匙串。
+  现在仅在官方用量接口验证成功后，将访问令牌保存在 BeaverMeter 私有目录，
+  绑定当前 Cursor 数据库与登录信息；不保存 Safe Storage 密钥，也不把凭据写入用量快照。
+- 登录变化、令牌过期或接口拒绝认证时重新验证；临时网络故障保留有效会话。
+
 ## [1.0.0]
 
 **Build 37.**

@@ -4,7 +4,7 @@ Run `npm ci --prefix scripts/packaging`, then use:
 
 ```sh
 node scripts/packaging/create_dmg.mjs /path/to/BeaverMeter.app /path/to/output \
-  --no-code-sign '--dmg-title=BeaverMeter 1.0.0'
+  --no-code-sign '--dmg-title=BeaverMeter 1.0.1'
 ```
 
 The launcher runs the locked create-dmg 8.1.0 CLI. Its default background,

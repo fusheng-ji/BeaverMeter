@@ -1,6 +1,34 @@
-# Release validation — 1.0.0 candidate (build 37)
+# Release validation
 
-## Current candidate — 2026-10-25
+## 1.0.1 / build 38 — 2026-10-28
+
+The patch repairs Cursor encrypted sign-in and silent background refresh. App and
+Widget versions/builds advance together; official identities, feed and EdDSA
+public key are unchanged.
+
+- Focused coverage exercises encrypted/legacy token decoding, exact Keychain item
+  selection, explicit authorization/cancellation, private cache permissions and
+  source binding, expiry, verified-only persistence, authentication rejection and
+  transient HTTP failures. Cache placement stays in private application storage
+  even when the snapshot output is redirected.
+- Live verification on the affected local installation recovered both Cursor
+  dashboard readings. A passive five-minute observation and the next natural
+  launchd completion showed fresh ready readings without a manual refresh or an
+  authorization request. This establishes the observed cycle, not indefinite
+  behavior after a future Cursor login or macOS change.
+- Local full regression passed **509 Swift tests (253 app + 256 collector)**,
+  **45 Python tests**, **6 Node packaging tests** and all shell, runtime-lock,
+  workspace-token and account API integrations.
+- The **1.0.1/build 38** Universal app and mounted DMG passed validation of all
+  **8 signed executable files**, arm64/x86_64 slices, matching App/Widget metadata,
+  official identities, production updater settings and runtime/Sparkle resources.
+  The final signed five-asset upload and exact-tag source comparison are enforced
+  again by the publishing workflow.
+  Physical Intel/macOS 14, clean quarantined installation, public
+  upgrade/recovery and the complete native Widget matrix remain outside this
+  patch's observed validation. Earlier candidate limitations are retained below.
+
+## Previous 1.0.0 candidate — 2026-10-25
 
 - App and Widget are **1.0.0 / build 37**. Existing official identifiers, update
   feed and public key are retained. The internal build floor is **37**;

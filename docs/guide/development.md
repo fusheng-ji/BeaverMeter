@@ -4,7 +4,7 @@
 
 ## Build metadata
 
-The current baseline is **1.0.0, build 37**. App and Widget metadata must match.
+The current baseline is **1.0.1, build 38**. App and Widget metadata must match.
 A source commit or local package does not publish an official tag, DMG or appcast.
 
 The app uses SwiftUI, the desktop extension uses WidgetKit, and the collector

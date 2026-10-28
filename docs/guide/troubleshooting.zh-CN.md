@@ -5,8 +5,9 @@
 ## 无法使用自动更新检查
 
 源码、本地安装包和预览构建有意不访问生产 updater，版本元数据本身不会使安装包成为
-正式发布。本 checkout 可按[源码安装](development.zh-CN.md#构建与安装)操作，
-支持的更新流程见[设置](setup.zh-CN.md#更新)。
+正式发布。需要应用内更新时，从 [GitHub Releases](https://github.com/fusheng-ji/BeaverMeter/releases/latest)
+安装官方 DMG；本 checkout 仍可按[源码安装](development.zh-CN.md#构建与安装)操作。
+更新流程见[设置](setup.zh-CN.md#更新)。
 
 ## Codex 没有 token
 
@@ -44,8 +45,11 @@
 
 ## Cursor 提示 Sign in，或缺少月度额度
 
-打开 Cursor，确认目标账户处于登录状态后刷新。团队共享池／管理员 cap 不是个人
-月度额度；没有受支持个人上限时保持不可用。
+打开 Cursor，确认目标账户处于登录状态后刷新。加密登录读取受阻时，点击
+**Allow Cursor access…** 完成系统授权；验证后的私有会话支持静默刷新。
+切换 Cursor 登录后需要重新验证，详见[设置](setup.zh-CN.md#cursor)。
+
+团队共享池／管理员 cap 不是个人月度额度；没有受支持个人上限时保持不可用。
 
 有效零扣费调用保持零，缺少实际扣费则未知，并可隐藏日总额；不能用模型标价代替。
 
