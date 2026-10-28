@@ -80,6 +80,62 @@ jq -e '
   and (.deepseekUsage.value | has("models") | not)
 ' "$snapshot" >/dev/null
 
+# Cursor-only refresh and explicit authorization go through the installed
+# wrapper and preserve every other provider. Authorization also reports failure
+# when either fresh dashboard reading fails.
+cursor_authorize_snapshot="$test_dir/cursor-authorize-snapshot.json"
+jq -S 'del(.generatedAt,.cursorCosts,.cursorQuota)' "$snapshot" > "$test_dir/cursor-other-providers-before.json"
+jq '.usageEventsDisplay[0].chargedCents = 13' "$fixtures/cursor-events-v3.json" > "$test_dir/cursor-authorize-events.json"
+jq '.individualUsage.overall.used = 4500 | .individualUsage.overall.remaining = 5500' \
+  "$fixtures/cursor-summary-v3.json" > "$test_dir/cursor-authorize-summary.json"
+for cursor_mode in --cursor-authorize --cursor-only; do
+  cp "$snapshot" "$cursor_authorize_snapshot"
+  CURSOR_EVENTS_FIXTURE="$test_dir/cursor-authorize-events.json" \
+  CURSOR_SUMMARY_FIXTURE="$test_dir/cursor-authorize-summary.json" \
+  BEAVERMETER_COLLECTOR="$collector" BEAVER_METER_CONFIG="$test_dir/missing-config.env" \
+    zsh "$project_dir/scripts/collect_beaver_meter.sh" "$cursor_mode" --output "$cursor_authorize_snapshot" >/dev/null
+  jq -e '
+    .cursorCosts.status == "ready" and .cursorCosts.source == "cursorDashboard" and
+    .cursorCosts.value.todayCostUSD == 0.25 and .cursorCosts.measuredAt == .generatedAt and
+    .cursorQuota.status == "ready" and .cursorQuota.source == "cursorDashboard" and
+    .cursorQuota.value.used == 45 and .cursorQuota.value.remaining == 55 and
+    .cursorQuota.measuredAt == .generatedAt
+  ' "$cursor_authorize_snapshot" >/dev/null
+  jq -S 'del(.generatedAt,.cursorCosts,.cursorQuota)' "$cursor_authorize_snapshot" > "$test_dir/cursor-other-providers-after.json"
+  cmp "$test_dir/cursor-other-providers-before.json" "$test_dir/cursor-other-providers-after.json"
+done
+jq -S '{cursorCosts:(.cursorCosts | {value,measuredAt}),cursorQuota:(.cursorQuota | {value,measuredAt})}' \
+  "$cursor_authorize_snapshot" > "$test_dir/cursor-measured-before.json"
+
+if CURSOR_EVENTS_FIXTURE="$test_dir/missing-cursor-events.json" \
+   CURSOR_SUMMARY_FIXTURE="$test_dir/missing-cursor-summary.json" \
+   BEAVERMETER_COLLECTOR="$collector" BEAVER_METER_CONFIG="$test_dir/missing-config.env" \
+     zsh "$project_dir/scripts/collect_beaver_meter.sh" --cursor-authorize --output "$cursor_authorize_snapshot" \
+       >"$test_dir/cursor-authorize-failure.stdout" 2>"$test_dir/cursor-authorize-failure.stderr"; then
+  print -u2 "Cursor authorization must fail when both dashboard readings fail."
+  exit 1
+fi
+jq -e '.cursorCosts.status == "stale" and .cursorCosts.source == "cache" and
+       .cursorQuota.status == "stale" and .cursorQuota.source == "cache"' "$cursor_authorize_snapshot" >/dev/null
+jq -S '{cursorCosts:(.cursorCosts | {value,measuredAt}),cursorQuota:(.cursorQuota | {value,measuredAt})}' \
+  "$cursor_authorize_snapshot" > "$test_dir/cursor-measured-after.json"
+cmp "$test_dir/cursor-measured-before.json" "$test_dir/cursor-measured-after.json"
+jq -S 'del(.generatedAt,.cursorCosts,.cursorQuota)' "$cursor_authorize_snapshot" > "$test_dir/cursor-other-providers-after.json"
+cmp "$test_dir/cursor-other-providers-before.json" "$test_dir/cursor-other-providers-after.json"
+
+if CURSOR_EVENTS_FIXTURE="$test_dir/cursor-authorize-events.json" \
+   CURSOR_SUMMARY_FIXTURE="$test_dir/missing-cursor-summary.json" \
+   BEAVERMETER_COLLECTOR="$collector" BEAVER_METER_CONFIG="$test_dir/missing-config.env" \
+     zsh "$project_dir/scripts/collect_beaver_meter.sh" --cursor-authorize --output "$cursor_authorize_snapshot" \
+       >"$test_dir/cursor-authorize-partial.stdout" 2>"$test_dir/cursor-authorize-partial.stderr"; then
+  print -u2 "Cursor authorization must fail when only one dashboard reading succeeds."
+  exit 1
+fi
+jq -e '.cursorCosts.status == "ready" and .cursorCosts.value.todayCostUSD == 0.25 and
+       .cursorQuota.status == "stale" and .cursorQuota.value.remaining == 55' "$cursor_authorize_snapshot" >/dev/null
+jq -S 'del(.generatedAt,.cursorCosts,.cursorQuota)' "$cursor_authorize_snapshot" > "$test_dir/cursor-other-providers-after.json"
+cmp "$test_dir/cursor-other-providers-before.json" "$test_dir/cursor-other-providers-after.json"
+
 # A spending cap alone must not invent a subscription name. Keep the same
 # budget fixture but remove its explicit membership metadata.
 jq 'del(.membershipType)' "$fixtures/cursor-summary-v3.json" > "$test_dir/cursor-summary-no-plan.json"

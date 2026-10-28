@@ -6,7 +6,7 @@ output_path="$HOME/Library/Application Support/BeaverMeter/beaver-meter-snapshot
 collector_arguments=()
 while (( $# > 0 )); do
   case "$1" in
-    --codex-only|--claude-login|--claude-verify|--claude-authorize|--claude-repair-keychain)
+    --codex-only|--claude-login|--claude-verify|--claude-authorize|--claude-repair-keychain|--cursor-authorize|--cursor-only)
       collector_arguments+=("$1")
       shift
       ;;

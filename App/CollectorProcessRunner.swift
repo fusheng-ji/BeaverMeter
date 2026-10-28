@@ -57,6 +57,20 @@ enum CollectorProcessRunner {
         )
     }
 
+    static func authorizeCursorAccess(
+        helper: URL,
+        script: URL?,
+        output: String,
+        cancellation: SubprocessCancellation? = nil
+    ) -> CollectorProcessResult {
+        runCollector(
+            helper: helper, script: script, output: output,
+            mode: "--cursor-authorize", timeout: 90,
+            timeoutMessage: "Cursor access verification timed out. Try allowing access again.",
+            cancellation: cancellation
+        )
+    }
+
     static func repairClaudeKeychainSession(
         helper: URL,
         script: URL?,

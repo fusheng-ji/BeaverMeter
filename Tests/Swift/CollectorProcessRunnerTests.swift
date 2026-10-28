@@ -144,6 +144,73 @@ final class CollectorProcessRunnerTests: XCTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: output.path))
     }
 
+    func testCursorAccessAuthorizationUsesConfiguredWrapperAndOutputPath() throws {
+        let directory = try fixtureDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let helper = directory.appendingPathComponent("collector")
+        let wrapper = directory.appendingPathComponent("refresh.sh")
+        let output = directory.appendingPathComponent("snapshot with spaces.json")
+        try writeExecutable("""
+        #!/bin/zsh
+        [[ "$1" == --cursor-authorize ]] || exit 2
+        [[ "$2" == --output ]] || exit 3
+        print -r -- "$CURSOR_STATE_DB" > "$3"
+        """, to: helper)
+        try """
+        export CURSOR_STATE_DB='/fixture/Cursor profile/state.vscdb'
+        exec "$BEAVERMETER_COLLECTOR" "$@"
+        """.write(to: wrapper, atomically: true, encoding: .utf8)
+
+        let result = CollectorProcessRunner.authorizeCursorAccess(
+            helper: helper, script: wrapper, output: output.path
+        )
+
+        XCTAssertEqual(result.status, 0, result.message)
+        XCTAssertEqual(try String(contentsOf: output, encoding: .utf8), "/fixture/Cursor profile/state.vscdb\n")
+    }
+
+    func testCursorAccessAuthorizationDiscardsStandardOutputAndReportsFailure() throws {
+        let directory = try fixtureDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let helper = directory.appendingPathComponent("collector")
+        try writeExecutable("""
+        #!/bin/zsh
+        [[ "$1" == --cursor-authorize ]] || exit 2
+        print -r -- 'cursor-credential-output-sentinel'
+        print -r -- 'macOS denied access to Cursor Safe Storage.' >&2
+        exit 1
+        """, to: helper)
+
+        let result = CollectorProcessRunner.authorizeCursorAccess(
+            helper: helper, script: nil,
+            output: directory.appendingPathComponent("snapshot.json").path
+        )
+
+        XCTAssertEqual(result.status, 1)
+        XCTAssertEqual(result.message, "macOS denied access to Cursor Safe Storage.")
+        XCTAssertFalse(result.message.contains("cursor-credential-output-sentinel"))
+    }
+
+    func testCancelledCursorAccessAuthorizationDoesNotLaunchHelper() throws {
+        let directory = try fixtureDirectory()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let helper = directory.appendingPathComponent("collector")
+        let output = directory.appendingPathComponent("snapshot.json")
+        try writeExecutable("""
+        #!/bin/zsh
+        print -r -- launched > "$3"
+        """, to: helper)
+        let cancellation = SubprocessCancellation()
+        cancellation.cancel()
+
+        let result = CollectorProcessRunner.authorizeCursorAccess(
+            helper: helper, script: nil, output: output.path, cancellation: cancellation
+        )
+
+        XCTAssertEqual(result.status, -1)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: output.path))
+    }
+
     func testClaudeKeychainRepairUsesConfiguredWrapperAndOutputPath() throws {
         let directory = try fixtureDirectory()
         defer { try? FileManager.default.removeItem(at: directory) }

@@ -139,12 +139,17 @@ enum CursorEventNumber {
 }
 
 struct CursorDashboardClient {
+    typealias Transport = @Sendable (URLRequest) async throws -> (Data, URLResponse)
     private let baseURL = URL(string: "https://cursor.com")!
-    private let session: URLSession
+    private let transport: Transport
     private let pageSize = 1000
     private let maxPages = 200
 
-    init(session: URLSession = .shared) { self.session = session }
+    init(session: URLSession = .shared) {
+        self.transport = { try await session.data(for: $0) }
+    }
+
+    init(transport: @escaping Transport) { self.transport = transport }
 
     func fetchSummary(cookieHeader: String) async throws -> CursorUsageSummary {
         if let fixture = ProcessInfo.processInfo.environment["CURSOR_SUMMARY_FIXTURE"] {
@@ -217,7 +222,7 @@ struct CursorDashboardClient {
     }
 
     private func responseData(for request: URLRequest) async throws -> Data {
-        let (data, response) = try await session.data(for: request)
+        let (data, response) = try await transport(request)
         guard let http = response as? HTTPURLResponse else { throw CursorDashboardError.network("Cursor returned an invalid response.") }
         if http.statusCode == 401 || http.statusCode == 403 { throw CursorDashboardError.notLoggedIn }
         guard http.statusCode == 200 else { throw CursorDashboardError.network("Cursor returned HTTP \(http.statusCode).") }

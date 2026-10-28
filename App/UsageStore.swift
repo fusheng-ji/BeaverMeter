@@ -59,6 +59,29 @@ enum ClaudeAuthenticationState: Equatable {
     }
 }
 
+enum CursorAuthorizationState: Equatable {
+    case idle
+    case authorizing
+    case cancelling
+    case failed(String)
+
+    var isBusy: Bool {
+        switch self {
+        case .authorizing, .cancelling: true
+        default: false
+        }
+    }
+
+    var message: String? {
+        switch self {
+        case .idle: nil
+        case .authorizing: "Allow Cursor Safe Storage in the macOS dialog. A verified session enables automatic refresh."
+        case .cancelling: "Stopping Cursor access verification…"
+        case let .failed(message): message
+        }
+    }
+}
+
 @MainActor
 final class UsageStore: ObservableObject, UpdateRuntimeSession {
     @Published private(set) var snapshot: UsageSnapshot
@@ -67,6 +90,7 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
     @Published private(set) var refreshError: String?
     @Published private(set) var deepSeekConnectionState: DeepSeekConnectionState = .idle
     @Published private(set) var claudeAuthenticationState: ClaudeAuthenticationState = .idle
+    @Published private(set) var cursorAuthorizationState: CursorAuthorizationState = .idle
     @Published private(set) var codexLoginMessage: String?
     @Published private(set) var isSigningInCodex = false
     @Published private(set) var canRetryCodexLogin = false
@@ -80,6 +104,9 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
     private var codexLoginTask: Task<Void, Never>?
     private var claudeAuthenticationTask: Task<Void, Never>?
     private var claudeAuthenticationID: UUID?
+    private var cursorAuthorizationTask: Task<Void, Never>?
+    private var cursorAuthorizationID: UUID?
+    private var cursorAuthorizationCancellation: SubprocessCancellation?
     private var awaitsCodexLoginRefresh = false
     private var runtimeSuspended = false
     private let allowsLiveUpdates: Bool
@@ -94,6 +121,7 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
     var updateInstallationBlockReason: String? {
         if isSigningInCodex { return "Finish signing in to your Codex workspace before installing the update." }
         if claudeAuthenticationState.isBusy { return "Finish Claude login verification before installing the update." }
+        if cursorAuthorizationState.isBusy { return "Finish Cursor access verification before installing the update." }
         switch deepSeekConnectionState {
         case .waitingForLogin, .checkingBrowser:
             return "Finish connecting DeepSeek before installing the update."
@@ -108,6 +136,7 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
         deepSeekConnectionTask?.cancel()
         deepSeekConnectionTask = nil
         cancelClaudeAuthentication()
+        cancelCursorAuthorization()
         refreshSchedule = RefreshSchedule()
     }
 
@@ -163,6 +192,8 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
         deepSeekConnectionTask?.cancel()
         codexLoginTask?.cancel()
         claudeAuthenticationTask?.cancel()
+        cursorAuthorizationCancellation?.cancel()
+        cursorAuthorizationTask?.cancel()
     }
 
     private func adoptNewerSnapshotFromDisk() async {
@@ -180,6 +211,15 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
            latest.claudeQuota.value != nil,
            (latest.claudeQuota.measuredAt ?? .distantPast) >= snapshot.claudeQuota.lastAttemptAt {
             claudeAuthenticationState = .idle
+        }
+        if case .failed = cursorAuthorizationState,
+           latest.cursorCosts.status == .ready, !latest.cursorCosts.isStale,
+           latest.cursorCosts.value != nil,
+           latest.cursorQuota.status == .ready, !latest.cursorQuota.isStale,
+           latest.cursorQuota.value != nil,
+           (latest.cursorCosts.measuredAt ?? .distantPast) >= snapshot.cursorCosts.lastAttemptAt,
+           (latest.cursorQuota.measuredAt ?? .distantPast) >= snapshot.cursorQuota.lastAttemptAt {
+            cursorAuthorizationState = .idle
         }
         snapshot = latest
         RuntimePerformance.event("snapshot_adopted")
@@ -327,6 +367,73 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
                 self.claudeAuthenticationState = .failed(result.message.isEmpty ? fallback : result.message)
             }
         }
+    }
+
+    var canAuthorizeCursorAccess: Bool {
+        allowsLiveUpdates && !runtimeSuspended
+    }
+
+    var isAuthorizingCursorAccess: Bool {
+        cursorAuthorizationState.isBusy
+    }
+
+    var cursorAuthorizationMessage: String? {
+        cursorAuthorizationState.message
+    }
+
+    func authorizeCursorAccess() {
+        guard canAuthorizeCursorAccess, !isAuthorizingCursorAccess else { return }
+        let operationID = UUID()
+        let cancellation = SubprocessCancellation()
+        cursorAuthorizationID = operationID
+        cursorAuthorizationCancellation = cancellation
+        cursorAuthorizationState = .authorizing
+        let startedAt = Date()
+        let helper = Bundle.main.bundleURL.appendingPathComponent("Contents/Helpers/BeaverMeterCollector")
+        let script = collectorScript
+        let output = snapshotURL.path
+        cursorAuthorizationTask = Task { [weak self] in
+            let result = await withTaskCancellationHandler {
+                await Task.detached(priority: .userInitiated) {
+                    CollectorProcessRunner.authorizeCursorAccess(
+                        helper: helper, script: script, output: output, cancellation: cancellation
+                    )
+                }.value
+            } onCancel: {
+                cancellation.cancel()
+            }
+            await self?.adoptNewerSnapshotFromDisk()
+            guard let self, self.cursorAuthorizationID == operationID else { return }
+            self.cursorAuthorizationID = nil
+            self.cursorAuthorizationTask = nil
+            self.cursorAuthorizationCancellation = nil
+            guard !Task.isCancelled, !self.runtimeSuspended else {
+                self.cursorAuthorizationState = .idle
+                return
+            }
+            let costs = self.snapshot.cursorCosts
+            let quota = self.snapshot.cursorQuota
+            let threshold = startedAt.addingTimeInterval(-1)
+            let verified = result.status == 0
+                && costs.status == .ready && !costs.isStale && costs.value != nil
+                && quota.status == .ready && !quota.isStale && quota.value != nil
+                && (costs.measuredAt ?? .distantPast) >= threshold && costs.lastAttemptAt >= threshold
+                && (quota.measuredAt ?? .distantPast) >= threshold && quota.lastAttemptAt >= threshold
+                && self.snapshot.generatedAt >= threshold
+            if verified {
+                self.cursorAuthorizationState = .idle
+            } else {
+                let fallback = costs.message ?? quota.message ?? "Cursor usage could not be verified. Try allowing access again."
+                self.cursorAuthorizationState = .failed(result.message.isEmpty ? fallback : result.message)
+            }
+        }
+    }
+
+    func cancelCursorAuthorization() {
+        guard cursorAuthorizationTask != nil else { return }
+        cursorAuthorizationState = .cancelling
+        cursorAuthorizationCancellation?.cancel()
+        cursorAuthorizationTask?.cancel()
     }
 
     func openAccountConfiguration() {

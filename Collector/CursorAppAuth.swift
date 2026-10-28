@@ -5,6 +5,21 @@ import Foundation
 
 struct CursorAppAuthSession {
     let accessToken: String
+    let sourceFingerprint: String?
+
+    init(accessToken: String, sourceFingerprint: String? = nil) {
+        self.accessToken = accessToken
+        self.sourceFingerprint = sourceFingerprint
+    }
+
+    func isUsableForCache(at now: Date) -> Bool {
+        guard !accessToken.isEmpty, accessToken.utf8.count <= 64 * 1024,
+              !accessToken.unicodeScalars.contains(where: CharacterSet.controlCharacters.contains),
+              (try? userID()) != nil,
+              let payload = try? jwtPayload(), let expiration = payload["exp"] as? Double,
+              expiration.isFinite, expiration > now.timeIntervalSince1970 + 60 else { return false }
+        return true
+    }
 
     var cookieHeader: String {
         get throws {
@@ -54,14 +69,22 @@ struct CursorAppAuthSession {
 
 struct CursorAppAuthStore {
     let databasePath: String
+    private let passwordReader: () throws -> Data
+    private let sessionCache: CursorSessionCache?
 
-    init(databasePath: String? = nil) {
+    init(
+        databasePath: String? = nil,
+        sessionCacheURL: URL? = nil,
+        passwordReader: @escaping () throws -> Data = CursorTokenStorage.readSafeStoragePassword
+    ) {
         self.databasePath = databasePath
             ?? ProcessInfo.processInfo.environment["CURSOR_STATE_DB"]
             ?? NSHomeDirectory() + "/Library/Application Support/Cursor/User/globalStorage/state.vscdb"
+        self.passwordReader = passwordReader
+        self.sessionCache = sessionCacheURL.map(CursorSessionCache.init(url:))
     }
 
-    func loadSession() throws -> CursorAppAuthSession {
+    func loadSession(now: Date = Date(), useCachedSession: Bool = true) throws -> CursorAppAuthSession {
         guard FileManager.default.fileExists(atPath: databasePath) else {
             throw CursorDashboardError.notInstalled
         }
@@ -70,6 +93,8 @@ struct CursorAppAuthStore {
         let errors = Pipe()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/sqlite3")
         process.arguments = [
+            "-readonly",
+            "-cmd", ".timeout 2000",
             databasePath,
             "SELECT value FROM ItemTable WHERE key='cursorAuth/accessToken' LIMIT 1;"
         ]
@@ -91,6 +116,24 @@ struct CursorAppAuthStore {
             encoding: .utf8
         )?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         guard !token.isEmpty else { throw CursorDashboardError.notLoggedIn }
-        return CursorAppAuthSession(accessToken: token)
+        let fingerprint = CursorTokenStorage.isEncrypted(token)
+            ? CursorSessionCache.fingerprint(databasePath: databasePath, storedToken: token) : nil
+        if useCachedSession, let fingerprint,
+           let session = sessionCache?.load(fingerprint: fingerprint, now: now) {
+            return session
+        }
+        return CursorAppAuthSession(
+            accessToken: try CursorTokenStorage.decode(token, passwordReader: passwordReader),
+            sourceFingerprint: fingerprint
+        )
+    }
+
+    func saveVerifiedSession(_ session: CursorAppAuthSession, now: Date) throws {
+        try sessionCache?.save(session: session, now: now)
+    }
+
+    func invalidateCachedSession(_ session: CursorAppAuthSession) {
+        guard let fingerprint = session.sourceFingerprint else { return }
+        sessionCache?.invalidate(fingerprint: fingerprint)
     }
 }

@@ -395,6 +395,35 @@ struct UsageMenuView: View {
             } else {
                 EmptyState(message: store.snapshot.cursorCosts.message ?? "No Cursor cost data yet.")
             }
+            cursorAuthorization
+        }
+    }
+
+    @ViewBuilder
+    private var cursorAuthorization: some View {
+        if store.isAuthorizingCursorAccess {
+            HStack(alignment: .top, spacing: 6) {
+                ProgressView().controlSize(.mini)
+                Text(store.cursorAuthorizationMessage ?? "Verifying Cursor access…")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 4)
+                Button("Cancel") { store.cancelCursorAuthorization() }
+                    .controlSize(.small)
+                    .disabled(store.cursorAuthorizationState == .cancelling)
+            }
+        } else {
+            if store.snapshot.cursorCosts.message?.contains("Cursor Safe Storage") == true
+                || store.snapshot.cursorQuota.message?.contains("Cursor Safe Storage") == true {
+                Button("Allow Cursor access…") { store.authorizeCursorAccess() }
+                    .controlSize(.small)
+                    .help("Ask macOS for access to your existing Cursor login, then verify usage")
+                    .disabled(!store.canAuthorizeCursorAccess || isRenderingPreview)
+            }
+            if let message = store.cursorAuthorizationMessage, message != store.snapshot.cursorCosts.message {
+                SectionMessage(message: message, status: .error)
+            }
         }
     }
 

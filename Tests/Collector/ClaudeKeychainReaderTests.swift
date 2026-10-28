@@ -40,6 +40,27 @@ final class ClaudeKeychainReaderTests: XCTestCase {
         XCTAssertEqual(query[kSecAttrAccount as String] as? String, "selected-user")
     }
 
+    func testCursorOperationPromptIsScopedToExplicitKeychainAccess() throws {
+        for interaction in [ClaudeKeychainReader.Interaction.background, .userInitiated] {
+            var query: ClaudeKeychainReader.Query = [:]
+            _ = try ClaudeKeychainReader.read(
+                service: "Cursor Safe Storage", account: "Cursor Key", interaction: interaction,
+                operationPrompt: "BeaverMeter reads your existing Cursor sign-in to load usage."
+            ) {
+                query = $0
+                return (errSecSuccess, Data("synthetic-safe-storage-key".utf8))
+            }
+            XCTAssertEqual(query[kSecAttrService as String] as? String, "Cursor Safe Storage")
+            XCTAssertEqual(query[kSecAttrAccount as String] as? String, "Cursor Key")
+            if interaction == .userInitiated {
+                XCTAssertEqual(query[kSecUseOperationPrompt as String] as? String,
+                               "BeaverMeter reads your existing Cursor sign-in to load usage.")
+            } else {
+                XCTAssertNil(query[kSecUseOperationPrompt as String])
+            }
+        }
+    }
+
     func testOnlyMissingItemReturnsNil() throws {
         XCTAssertNil(try ClaudeKeychainReader.read(service: "service", account: "account", interaction: .background) { _ in
             (errSecItemNotFound, nil)

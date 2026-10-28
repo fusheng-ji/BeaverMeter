@@ -5,23 +5,35 @@ enum CursorUsageCollector {
     static func collect(
         previousCosts: UsageValue<CursorCostTotals>,
         previousQuota: UsageValue<CompactQuota>,
-        now: Date
+        now: Date,
+        environment: [String: String] = ProcessInfo.processInfo.environment,
+        authenticationStore: CursorAppAuthStore? = nil,
+        dashboardClient: CursorDashboardClient = CursorDashboardClient(),
+        sessionCacheURL: URL? = CursorSessionCache.defaultURL,
+        authorizeKeychain: Bool = false,
+        cancellation: SubprocessCancellation? = nil
     ) async -> (costs: UsageValue<CursorCostTotals>, quota: UsageValue<CompactQuota>) {
         do {
-            let environment = ProcessInfo.processInfo.environment
             let isFixtureRun = environment["CURSOR_EVENTS_FIXTURE"] != nil
                 && environment["CURSOR_SUMMARY_FIXTURE"] != nil
-            let cookie = try isFixtureRun
-                ? "fixture-session"
-                : CursorAppAuthStore().loadSession().cookieHeader
-            let client = CursorDashboardClient()
-            async let eventsResult = client.fetchTodayEvents(cookieHeader: cookie, now: now)
-            async let summaryResult = client.fetchSummary(cookieHeader: cookie)
+            let authStore = authenticationStore ?? CursorAppAuthStore(
+                sessionCacheURL: sessionCacheURL, passwordReader: {
+                    try authorizeKeychain
+                        ? CursorTokenStorage.authorizeKeychainAccess(cancellation: cancellation)
+                        : CursorTokenStorage.readSafeStoragePassword()
+                }
+            )
+            let authSession = try isFixtureRun ? nil : authStore.loadSession(now: now, useCachedSession: !authorizeKeychain)
+            let cookie = try authSession?.cookieHeader ?? "fixture-session"
+            async let eventsResult = dashboardClient.fetchTodayEvents(cookieHeader: cookie, now: now)
+            async let summaryResult = dashboardClient.fetchSummary(cookieHeader: cookie)
 
             let costs: UsageValue<CursorCostTotals>
+            var authenticationRejected = false
             do {
                 costs = try await makeCosts(events: eventsResult, now: now)
             } catch {
+                if case CursorDashboardError.notLoggedIn = error { authenticationRejected = true }
                 costs = CollectorSupport.stale(
                     previous: previousCosts,
                     attemptedAt: now,
@@ -34,12 +46,21 @@ enum CursorUsageCollector {
             do {
                 quota = try await makeQuota(summary: summaryResult, now: now)
             } catch {
+                if case CursorDashboardError.notLoggedIn = error { authenticationRejected = true }
                 quota = CollectorSupport.stale(
                     previous: previousQuota,
                     attemptedAt: now,
                     status: CollectorSupport.status(for: error),
                     message: error.localizedDescription
                 )
+            }
+            if let authSession {
+                if authenticationRejected {
+                    authStore.invalidateCachedSession(authSession)
+                } else if costs.status == .ready, quota.status == .ready {
+                    if cancellation?.isCancelled == true { throw URLError(.cancelled) }
+                    try authStore.saveVerifiedSession(authSession, now: now)
+                }
             }
             return (costs, quota)
         } catch {

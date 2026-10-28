@@ -49,6 +49,18 @@ struct BeaverMeterCollector {
             } catch { fail(error.localizedDescription, status: 1) }
             return
         }
+        if CommandLine.arguments.contains("--cursor-authorize") || CommandLine.arguments.contains("--cursor-only") {
+            let authorizeKeychain = CommandLine.arguments.contains("--cursor-authorize")
+            if !authorizeKeychain { disableKeychainInteraction() }
+            let cancellation = SubprocessCancellation()
+            let termination = ClaudeAuthenticationSignalHandler(cancellation: cancellation)
+            defer { termination.stop() }
+            do {
+                try await verifyCursor(outputURL: outputURL, cancellation: cancellation, authorizeKeychain: authorizeKeychain)
+                print("Cursor usage verified.")
+            } catch { fail(error.localizedDescription, status: 1) }
+            return
+        }
         if CommandLine.arguments.contains("--codex-workspace-login") {
             do {
                 let arguments = CommandLine.arguments
@@ -94,6 +106,36 @@ struct BeaverMeterCollector {
     private static func disableKeychainInteraction() {
         let status = SecKeychainSetUserInteractionAllowed(false)
         guard status == errSecSuccess else { fail("Could not disable background Keychain interaction (\(status)).", status: 1) }
+    }
+
+    /// Explicit access verifies both Cursor endpoints without collecting other
+    /// providers or replacing their cached readings.
+    private static func verifyCursor(outputURL: URL, cancellation: SubprocessCancellation, authorizeKeychain: Bool) async throws {
+        let lock = try SnapshotWriter.lock(for: outputURL)
+        defer { lock.unlock() }
+        let previous = SnapshotWriter.loadPrevious(from: outputURL)
+        let now = Date()
+        let reading = await CursorUsageCollector.collect(
+            previousCosts: previous.cursorCosts, previousQuota: previous.cursorQuota,
+            now: now, authorizeKeychain: authorizeKeychain, cancellation: cancellation
+        )
+        if cancellation.isCancelled { throw URLError(.cancelled) }
+        let snapshot = UsageSnapshot(schemaVersion: UsageSnapshot.currentSchemaVersion, generatedAt: now,
+            codexTokens: previous.codexTokens, cursorCosts: reading.costs, cursorQuota: reading.quota,
+            codexQuota: previous.codexQuota, claudeTokens: previous.claudeTokens, claudeQuota: previous.claudeQuota,
+            deepseekUsage: previous.deepseekUsage, codexAccounts: previous.codexAccounts,
+            codexHistory: previous.codexHistory, claudeHistory: previous.claudeHistory,
+            claudeResetCards: previous.claudeResetCards)
+        try SnapshotWriter.write(snapshot, to: outputURL)
+        guard reading.costs.status == .ready, reading.quota.status == .ready,
+              reading.costs.source == .cursorDashboard, reading.quota.source == .cursorDashboard,
+              reading.costs.value != nil, reading.quota.value != nil,
+              reading.costs.measuredAt == now, reading.quota.measuredAt == now else {
+            let message = reading.costs.status != .ready ? reading.costs.message : reading.quota.message
+            throw NSError(domain: "BeaverMeter.CursorVerification", code: 1,
+                          userInfo: [NSLocalizedDescriptionKey: message
+                            ?? "Cursor usage could not be verified. Try again."])
+        }
     }
 
     /// Only Claude's online quota is replaced; local logs and other accounts

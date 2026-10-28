@@ -34,10 +34,10 @@ enum ClaudeKeychainReader {
     typealias QueryExecutor = (Query) -> QueryResult
     private static let interactionLock = NSLock()
 
-    static func read(service: String, account: String, interaction: Interaction,
+    static func read(service: String, account: String, interaction: Interaction, operationPrompt: String? = nil,
                      cancellation: SubprocessCancellation? = nil) throws -> Data? {
         if cancellation?.isCancelled == true { throw URLError(.cancelled) }
-        let data = try read(service: service, account: account, interaction: interaction,
+        let data = try read(service: service, account: account, interaction: interaction, operationPrompt: operationPrompt,
                            sessionUnavailable: loginKeychainSessionUnavailable,
                            execute: { executeQuery($0, cancellation: cancellation) })
         if cancellation?.isCancelled == true { throw URLError(.cancelled) }
@@ -47,7 +47,7 @@ enum ClaudeKeychainReader {
     /// The executor is injected by tests so they never query a real Keychain or
     /// grant permission while checking status handling and the exact query.
     static func read(
-        service: String, account: String, interaction: Interaction,
+        service: String, account: String, interaction: Interaction, operationPrompt: String? = nil,
         sessionUnavailable: () -> Bool = { false }, execute: QueryExecutor
     ) throws -> Data? {
         var query: Query = [
@@ -60,7 +60,8 @@ enum ClaudeKeychainReader {
                 ? kSecUseAuthenticationUIFail : kSecUseAuthenticationUIAllow,
         ]
         if interaction == .userInitiated {
-            query[kSecUseOperationPrompt as String] = "BeaverMeter verifies your existing Claude Code sign-in to load quota."
+            query[kSecUseOperationPrompt as String] = operationPrompt
+                ?? "BeaverMeter verifies your existing Claude Code sign-in to load quota."
         }
         let result = execute(query)
         switch result.status {
