@@ -155,18 +155,23 @@ The official packaging command uses an approved existing tag:
 zsh scripts/build_release.sh /tmp/beavermeter-release vX.Y.Z
 ```
 
-The tag workflow runs the complete Apple Silicon and Intel test suites. When the
+The release workflow selects stable Xcode 26.3, required by the pinned Swift 6.2
+packages, and installs XcodeGen and ripgrep for the tests. It runs the complete
+Apple Silicon and Intel test suites against the exact release tag. When the
 Actions signing secret is configured, it also builds, signs and uploads the draft.
 Without that secret, it records that publication is pending and publishes nothing.
 
 For local signing, build the tagged package with the command above, push the tag,
 and upload its five assets to a draft for that exact tag. Then explicitly dispatch
-the workflow on the tag:
+the workflow with the immutable source tag:
 
 ```sh
-gh workflow run release.yml --ref vX.Y.Z -f publish_uploaded_assets=true
+gh workflow run release.yml --ref main -f release_tag=vX.Y.Z -f publish_uploaded_assets=true
 ```
 
+The workflow definition can come from `main` while both jobs check out the
+specified tag. This permits CI bootstrap fixes without moving an existing release
+tag or rebuilding its signed assets. Omitting `release_tag` uses the workflow ref.
 This route repeats both architecture test suites and keeps the private key local.
 It requires an existing draft, downloads the uploaded bytes, verifies all five
 asset names, hashes and public-key signatures, mounts and validates the Universal
