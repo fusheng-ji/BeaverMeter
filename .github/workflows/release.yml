@@ -39,6 +39,13 @@ jobs:
           xcodebuild -version
           xcrun swift --version
       - run: python3 scripts/release_metadata.py --tag "$RELEASE_TAG"
+      - name: Configure shader compilation for the Intel virtual GPU
+        if: matrix.os == 'macos-15-intel'
+        run: |
+          # Avoid RenderBox's precompiled shader archive on the virtual Metal device.
+          # Keep every ImageRenderer pixel assertion and normal Metal error handling.
+          echo 'RB_USE_BINARY_ARCHIVE=0' >> "$GITHUB_ENV"
+          echo 'TEST_RUNNER_RB_USE_BINARY_ARCHIVE=0' >> "$GITHUB_ENV"
       - run: zsh scripts/test.sh
   package:
     needs: test
