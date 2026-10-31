@@ -1,0 +1,44 @@
+{
+  "groups": [
+    {
+      "id": "gemini",
+      "windows": [
+        {
+          "label": "Gemini 5h",
+          "remainingPercent": 68,
+          "resetAt": "2099-01-01T05:00:00Z",
+          "windowSeconds": 18000,
+          "detail": "68% left"
+        },
+        {
+          "label": "Gemini Weekly",
+          "remainingPercent": 42,
+          "resetAt": "2099-01-05T00:00:00Z",
+          "windowSeconds": 604800,
+          "detail": "42% left"
+        }
+      ]
+    },
+    {
+      "id": "claude-gpt",
+      "windows": [
+        {
+          "label": "Claude/GPT 5h",
+          "remainingPercent": 100,
+          "resetAt": "2099-01-01T05:00:00Z",
+          "windowSeconds": 18000,
+          "detail": "100% left"
+        },
+        {
+          "label": "Claude/GPT Weekly",
+          "remainingPercent": 0,
+          "resetAt": "2099-01-05T00:00:00Z",
+          "windowSeconds": 604800,
+          "detail": "0% left"
+        }
+      ]
+    }
+  ],
+  "planName": "Google AI Ultra",
+  "accountID": "36d2e89d47f34a0786fbf6fc4ada7fc0fd56d284b568590c9408a086252efee5"
+}

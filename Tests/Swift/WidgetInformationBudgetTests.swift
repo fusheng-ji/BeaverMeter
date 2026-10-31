@@ -31,7 +31,7 @@ final class WidgetInformationBudgetTests: XCTestCase {
     func testLargeFourRowsReserveIdentityAndAlignedQuotaColumns() {
         let budget = plan(.codex, .large, count: 4)
         XCTAssertEqual(budget.layout, .wideRow)
-        XCTAssertEqual(budget.contentWidth, 300)
+        XCTAssertEqual(budget.contentWidth, 304)
         XCTAssertGreaterThanOrEqual(budget.identityColumnWidth, 79)
         XCTAssertGreaterThanOrEqual(budget.metricColumnWidth, 102)
         XCTAssertGreaterThanOrEqual(budget.mergedMetricWidth, 212)
@@ -50,11 +50,11 @@ final class WidgetInformationBudgetTests: XCTestCase {
     }
 
     func testKnownSubscriptionsFitDenseCardsWithoutRemovingQuotaWindows() {
-        for (size, count, width) in [(ProviderWidgetSize.small, 2, 158.0), (.medium, 4, 163.0)] {
+        for (size, count, width, height) in [(ProviderWidgetSize.small, 2, 154.0, 75.0), (.medium, 4, 161.0, 72.0)] {
             let budget = WidgetContentPlan(provider: .codex, size: size, providerCount: count,
-                                           cardSize: CGSize(width: width, height: 75), hasSubscription: true)
+                                           cardSize: CGSize(width: width, height: height), hasSubscription: true)
             XCTAssertEqual(budget.layout, .compact)
-            XCTAssertEqual(budget.verticalPadding, 6)
+            XCTAssertEqual(budget.verticalPadding, 8)
             XCTAssertEqual(budget.spacing, 1)
             XCTAssertLessThanOrEqual(budget.valueSize, 20)
             XCTAssertEqual(budget.windowLimit, 1)
@@ -63,7 +63,7 @@ final class WidgetInformationBudgetTests: XCTestCase {
         }
         let hero = WidgetContentPlan(provider: .codex, size: .small, providerCount: 1,
                                      cardSize: CGSize(width: 158, height: 158), hasSubscription: true)
-        XCTAssertEqual(hero.verticalPadding, 6)
+        XCTAssertEqual(hero.verticalPadding, 10)
     }
 
     func testBothWindowValuesAndPrimaryResetSurviveEveryDensity() {
@@ -72,7 +72,7 @@ final class WidgetInformationBudgetTests: XCTestCase {
                 for provider in MeterProvider.allCases {
                     let budget = plan(provider, size, count: count)
                     XCTAssertTrue(budget.showsPrimaryReset)
-                    XCTAssertEqual(budget.windowLimit, provider == .codex || provider == .claude ? 1 : 0)
+                    XCTAssertEqual(budget.windowLimit, provider == .codex || provider == .claude || provider == .antigravity ? 1 : 0)
                 }
             }
         }
@@ -130,7 +130,7 @@ final class WidgetInformationBudgetTests: XCTestCase {
         XCTAssertEqual(large.layout, .tile)
         XCTAssertGreaterThanOrEqual(large.valueSize, 24)
         XCTAssertEqual(large.spacing, 2)
-        XCTAssertEqual(large.verticalPadding, 4)
+        XCTAssertEqual(large.verticalPadding, 8)
     }
 
     func testLayoutFamiliesFollowApprovedComposition() {

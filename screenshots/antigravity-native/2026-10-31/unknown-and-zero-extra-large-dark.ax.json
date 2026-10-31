@@ -1,0 +1,98 @@
+{
+  "accessibility": [
+    {
+      "AXRole": "AXWindow",
+      "AXTitle": "BeaverMeter QA",
+      "depth": "0"
+    },
+    {
+      "AXRole": "AXGroup",
+      "depth": "1"
+    },
+    {
+      "AXDescription": "BeaverMeter QA",
+      "AXIdentifier": "widget-local:com.jiwenbo.beavermeter.widgetqa:com.jiwenbo.beavermeter.widgetqa.widget:BeaverMeterWidgetQA",
+      "AXRole": "AXGroup",
+      "depth": "2"
+    },
+    {
+      "AXDescription": "QA caseID: antigravity-unknown-and-zero; family: systemExtraLarge; colorScheme: dark; widgetRenderingMode: fullColor",
+      "AXIdentifier": "WidgetQA.case.antigravity-unknown-and-zero",
+      "AXRole": "AXGroup",
+      "depth": "3"
+    },
+    {
+      "AXDescription": "Antigravity · Gemini",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Antigravity · Claude/GPT",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "No data · Preview · updated in 0s · Gemini quota is unavailable.",
+      "AXRole": "AXImage",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Gemini",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "—",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Quota",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Claude/GPT",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "0%",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Weekly, Resets in 1h 0m",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5-hour, 100% remaining, Resets in 1h 0m",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    }
+  ],
+  "bounds": {
+    "height": 360,
+    "width": 720,
+    "x": 424,
+    "y": 401
+  },
+  "captureWindows": [
+    {
+      "kCGWindowAlpha": 1,
+      "kCGWindowIsOnscreen": true,
+      "kCGWindowLayer": -2147483601,
+      "kCGWindowName": "BeaverMeter QA",
+      "kCGWindowNumber": 25245
+    }
+  ],
+  "pid": 11293,
+  "title": "BeaverMeter QA",
+  "environment": "QA caseID: antigravity-unknown-and-zero; family: systemExtraLarge; colorScheme: dark; widgetRenderingMode: fullColor"
+}

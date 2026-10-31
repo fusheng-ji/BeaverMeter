@@ -39,7 +39,9 @@ extension UsageSnapshot {
                                      codexTokens: base.codexTokens, cursorCosts: base.cursorCosts,
                                      cursorQuota: cursorQuota, codexQuota: base.codexQuota,
                                      claudeTokens: base.claudeTokens, claudeQuota: base.claudeQuota,
-                                     deepseekUsage: base.deepseekUsage)
+                                     deepseekUsage: base.deepseekUsage,
+                                     antigravityQuota: base.antigravityQuota,
+                                     antigravityTokens: base.antigravityTokens)
         let cards = ResetCardInventory(availableCount: 3, observedAt: now, batches: [
             ResetCardBatch(id: "demo-card-1", count: 1, startsAt: nil, expiresAt: now.addingTimeInterval(10 * 3600)),
             ResetCardBatch(id: "demo-card-2", count: 1, startsAt: nil, expiresAt: now.addingTimeInterval(10 * 86400))

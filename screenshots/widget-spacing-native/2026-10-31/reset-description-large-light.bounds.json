@@ -1,0 +1,989 @@
+{
+  "kind" : "BeaverMeterWidgetQA",
+  "limitations" : [
+
+  ],
+  "measurement" : "Actual onscreen CG window and visible AX card\/leaf layout frames; not glyph ink bounds or screenshot pixels.",
+  "observedAt" : "2026-10-31T18:23:23Z",
+  "readOnly" : true,
+  "schemaVersion" : 1,
+  "scope" : "private-widgetkit-qa-bounds",
+  "status" : "passed",
+  "windows" : [
+    {
+      "actualWindow" : {
+        "axFrame" : {
+          "height" : 360,
+          "width" : 360,
+          "x" : 64,
+          "y" : 221
+        },
+        "backingScale" : 2,
+        "cgFrame" : {
+          "height" : 360,
+          "width" : 360,
+          "x" : 64,
+          "y" : 221
+        },
+        "displayID" : 1,
+        "id" : 26459,
+        "isOnscreen" : true,
+        "scaleSource" : "NSScreen.backingScaleFactor",
+        "tolerancePhysicalPixels" : 1,
+        "tolerancePoints" : 0.5
+      },
+      "cases" : [
+        {
+          "cards" : [
+            {
+              "bounds" : {
+                "height" : 152,
+                "width" : 312,
+                "x" : 88,
+                "y" : 245
+              },
+              "chosenDetailLevel" : "full",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.antigravity-group:gemini",
+              "label" : "Antigravity · Gemini; safeInsets: 12.0,10.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 100,
+                    "y" : 291.5
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: full",
+                  "nodeID" : 6,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 15,
+                    "width" : 40,
+                    "x" : 100,
+                    "y" : 321.5
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 7,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXStaticText",
+                  "value" : "Antigravity · Gemini"
+                },
+                {
+                  "bounds" : {
+                    "height" : 13,
+                    "width" : 73.5,
+                    "x" : 100,
+                    "y" : 338.5
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 8,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXStaticText",
+                  "value" : "Subscription plan: Google AI Ultra"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 14,
+                    "x" : 184,
+                    "y" : 326.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 17,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 9,
+                  "role" : "AXStaticText",
+                  "value" : "5h"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 94,
+                    "x" : 184,
+                    "y" : 340.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 18,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 9,
+                  "role" : "AXStaticText",
+                  "value" : "Refills in about two hours"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 38.5,
+                    "x" : 290,
+                    "y" : 324.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 20,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 10,
+                  "role" : "AXStaticText",
+                  "value" : "Weekly"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 98,
+                    "x" : 290,
+                    "y" : 338.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 21,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 10,
+                  "role" : "AXStaticText",
+                  "value" : "Refills at the start of the next weekly period"
+                },
+                {
+                  "bounds" : {
+                    "height" : 38,
+                    "width" : 71,
+                    "x" : 184,
+                    "y" : 287.5
+                  },
+                  "depth" : 7,
+                  "insideSafeRect" : true,
+                  "nodeID" : 28,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 16,
+                  "role" : "AXStaticText",
+                  "value" : "62%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 26,
+                    "width" : 49,
+                    "x" : 290,
+                    "y" : 297.5
+                  },
+                  "depth" : 7,
+                  "insideSafeRect" : true,
+                  "nodeID" : 29,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 19,
+                  "role" : "AXStaticText",
+                  "value" : "83%"
+                }
+              ],
+              "nodeID" : 4,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 12,
+                "vertical" : 10
+              },
+              "safeRect" : {
+                "height" : 132,
+                "width" : 288,
+                "x" : 100,
+                "y" : 255
+              },
+              "statusIconPresent" : false
+            },
+            {
+              "bounds" : {
+                "height" : 152,
+                "width" : 312,
+                "x" : 88,
+                "y" : 405
+              },
+              "chosenDetailLevel" : "full",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.antigravity-group:claude-gpt",
+              "label" : "Antigravity · Claude\/GPT; safeInsets: 12.0,10.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 100,
+                    "y" : 451.5
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: full",
+                  "nodeID" : 11,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 15,
+                    "width" : 69.5,
+                    "x" : 100,
+                    "y" : 481.5
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 12,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXStaticText",
+                  "value" : "Antigravity · Claude\/GPT"
+                },
+                {
+                  "bounds" : {
+                    "height" : 13,
+                    "width" : 73.5,
+                    "x" : 100,
+                    "y" : 498.5
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 13,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXStaticText",
+                  "value" : "Subscription plan: Google AI Ultra"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 14,
+                    "x" : 184,
+                    "y" : 486.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 23,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 14,
+                  "role" : "AXStaticText",
+                  "value" : "5h"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 94,
+                    "x" : 184,
+                    "y" : 500.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 24,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 14,
+                  "role" : "AXStaticText",
+                  "value" : "Refills in about two hours"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 38.5,
+                    "x" : 290,
+                    "y" : 484.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 26,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 15,
+                  "role" : "AXStaticText",
+                  "value" : "Weekly"
+                },
+                {
+                  "bounds" : {
+                    "height" : 14,
+                    "width" : 98,
+                    "x" : 290,
+                    "y" : 498.5
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 27,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 15,
+                  "role" : "AXStaticText",
+                  "value" : "Refills at the start of the next weekly period"
+                },
+                {
+                  "bounds" : {
+                    "height" : 38,
+                    "width" : 71,
+                    "x" : 184,
+                    "y" : 447.5
+                  },
+                  "depth" : 7,
+                  "insideSafeRect" : true,
+                  "nodeID" : 30,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 22,
+                  "role" : "AXStaticText",
+                  "value" : "47%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 26,
+                    "width" : 49,
+                    "x" : 290,
+                    "y" : 457.5
+                  },
+                  "depth" : 7,
+                  "insideSafeRect" : true,
+                  "nodeID" : 31,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 25,
+                  "role" : "AXStaticText",
+                  "value" : "65%"
+                }
+              ],
+              "nodeID" : 5,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 12,
+                "vertical" : 10
+              },
+              "safeRect" : {
+                "height" : 132,
+                "width" : 288,
+                "x" : 100,
+                "y" : 415
+              },
+              "statusIconPresent" : false
+            }
+          ],
+          "caseID" : "antigravity-reset-description",
+          "environment" : {
+            "colorScheme" : "light",
+            "family" : "systemLarge",
+            "kind" : "BeaverMeterWidgetQA",
+            "QA caseID" : "antigravity-reset-description",
+            "widgetRenderingMode" : "fullColor"
+          },
+          "node" : {
+            "bounds" : {
+              "height" : 313,
+              "width" : 313,
+              "x" : 79.5,
+              "y" : 236.5
+            },
+            "depth" : 3,
+            "identifier" : "WidgetQA.case.antigravity-reset-description",
+            "label" : "QA caseID: antigravity-reset-description; kind: BeaverMeterWidgetQA; family: systemLarge; colorScheme: light; widgetRenderingMode: fullColor",
+            "nodeID" : 3,
+            "parentNodeID" : 2,
+            "role" : "AXGroup"
+          },
+          "visibleAXTree" : [
+            {
+              "bounds" : {
+                "height" : 313,
+                "width" : 313,
+                "x" : 79.5,
+                "y" : 236.5
+              },
+              "depth" : 3,
+              "identifier" : "WidgetQA.case.antigravity-reset-description",
+              "label" : "QA caseID: antigravity-reset-description; kind: BeaverMeterWidgetQA; family: systemLarge; colorScheme: light; widgetRenderingMode: fullColor",
+              "nodeID" : 3,
+              "parentNodeID" : 2,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 152,
+                "width" : 312,
+                "x" : 88,
+                "y" : 245
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.antigravity-group:gemini",
+              "label" : "Antigravity · Gemini; safeInsets: 12.0,10.0; detailLevel: adaptive",
+              "nodeID" : 4,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 152,
+                "width" : 312,
+                "x" : 88,
+                "y" : 405
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.antigravity-group:claude-gpt",
+              "label" : "Antigravity · Claude\/GPT; safeInsets: 12.0,10.0; detailLevel: adaptive",
+              "nodeID" : 5,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 100,
+                "y" : 291.5
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: full",
+              "nodeID" : 6,
+              "parentNodeID" : 4,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 15,
+                "width" : 40,
+                "x" : 100,
+                "y" : 321.5
+              },
+              "depth" : 5,
+              "nodeID" : 7,
+              "parentNodeID" : 4,
+              "role" : "AXStaticText",
+              "value" : "Antigravity · Gemini"
+            },
+            {
+              "bounds" : {
+                "height" : 13,
+                "width" : 73.5,
+                "x" : 100,
+                "y" : 338.5
+              },
+              "depth" : 5,
+              "nodeID" : 8,
+              "parentNodeID" : 4,
+              "role" : "AXStaticText",
+              "value" : "Subscription plan: Google AI Ultra"
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 94,
+                "x" : 184,
+                "y" : 287.5
+              },
+              "depth" : 5,
+              "label" : "5h, 62% remaining, Refills in about two hours",
+              "nodeID" : 9,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 55,
+                "width" : 98,
+                "x" : 290,
+                "y" : 297.5
+              },
+              "depth" : 5,
+              "label" : "Weekly, 83% remaining, Refills at the start of the next weekly period",
+              "nodeID" : 10,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 100,
+                "y" : 451.5
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: full",
+              "nodeID" : 11,
+              "parentNodeID" : 5,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 15,
+                "width" : 69.5,
+                "x" : 100,
+                "y" : 481.5
+              },
+              "depth" : 5,
+              "nodeID" : 12,
+              "parentNodeID" : 5,
+              "role" : "AXStaticText",
+              "value" : "Antigravity · Claude\/GPT"
+            },
+            {
+              "bounds" : {
+                "height" : 13,
+                "width" : 73.5,
+                "x" : 100,
+                "y" : 498.5
+              },
+              "depth" : 5,
+              "nodeID" : 13,
+              "parentNodeID" : 5,
+              "role" : "AXStaticText",
+              "value" : "Subscription plan: Google AI Ultra"
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 94,
+                "x" : 184,
+                "y" : 447.5
+              },
+              "depth" : 5,
+              "label" : "5h, 47% remaining, Refills in about two hours",
+              "nodeID" : 14,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 55,
+                "width" : 98,
+                "x" : 290,
+                "y" : 457.5
+              },
+              "depth" : 5,
+              "label" : "Weekly, 65% remaining, Refills at the start of the next weekly period",
+              "nodeID" : 15,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 38,
+                "width" : 71,
+                "x" : 184,
+                "y" : 287.5
+              },
+              "depth" : 6,
+              "label" : "62%",
+              "nodeID" : 16,
+              "parentNodeID" : 9,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 14,
+                "x" : 184,
+                "y" : 326.5
+              },
+              "depth" : 6,
+              "nodeID" : 17,
+              "parentNodeID" : 9,
+              "role" : "AXStaticText",
+              "value" : "5h"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 94,
+                "x" : 184,
+                "y" : 340.5
+              },
+              "depth" : 6,
+              "nodeID" : 18,
+              "parentNodeID" : 9,
+              "role" : "AXStaticText",
+              "value" : "Refills in about two hours"
+            },
+            {
+              "bounds" : {
+                "height" : 26,
+                "width" : 49,
+                "x" : 290,
+                "y" : 297.5
+              },
+              "depth" : 6,
+              "label" : "83%",
+              "nodeID" : 19,
+              "parentNodeID" : 10,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 38.5,
+                "x" : 290,
+                "y" : 324.5
+              },
+              "depth" : 6,
+              "nodeID" : 20,
+              "parentNodeID" : 10,
+              "role" : "AXStaticText",
+              "value" : "Weekly"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 98,
+                "x" : 290,
+                "y" : 338.5
+              },
+              "depth" : 6,
+              "nodeID" : 21,
+              "parentNodeID" : 10,
+              "role" : "AXStaticText",
+              "value" : "Refills at the start of the next weekly period"
+            },
+            {
+              "bounds" : {
+                "height" : 38,
+                "width" : 71,
+                "x" : 184,
+                "y" : 447.5
+              },
+              "depth" : 6,
+              "label" : "47%",
+              "nodeID" : 22,
+              "parentNodeID" : 14,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 14,
+                "x" : 184,
+                "y" : 486.5
+              },
+              "depth" : 6,
+              "nodeID" : 23,
+              "parentNodeID" : 14,
+              "role" : "AXStaticText",
+              "value" : "5h"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 94,
+                "x" : 184,
+                "y" : 500.5
+              },
+              "depth" : 6,
+              "nodeID" : 24,
+              "parentNodeID" : 14,
+              "role" : "AXStaticText",
+              "value" : "Refills in about two hours"
+            },
+            {
+              "bounds" : {
+                "height" : 26,
+                "width" : 49,
+                "x" : 290,
+                "y" : 457.5
+              },
+              "depth" : 6,
+              "label" : "65%",
+              "nodeID" : 25,
+              "parentNodeID" : 15,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 38.5,
+                "x" : 290,
+                "y" : 484.5
+              },
+              "depth" : 6,
+              "nodeID" : 26,
+              "parentNodeID" : 15,
+              "role" : "AXStaticText",
+              "value" : "Weekly"
+            },
+            {
+              "bounds" : {
+                "height" : 14,
+                "width" : 98,
+                "x" : 290,
+                "y" : 498.5
+              },
+              "depth" : 6,
+              "nodeID" : 27,
+              "parentNodeID" : 15,
+              "role" : "AXStaticText",
+              "value" : "Refills at the start of the next weekly period"
+            },
+            {
+              "bounds" : {
+                "height" : 38,
+                "width" : 71,
+                "x" : 184,
+                "y" : 287.5
+              },
+              "depth" : 7,
+              "nodeID" : 28,
+              "parentNodeID" : 16,
+              "role" : "AXStaticText",
+              "value" : "62%"
+            },
+            {
+              "bounds" : {
+                "height" : 26,
+                "width" : 49,
+                "x" : 290,
+                "y" : 297.5
+              },
+              "depth" : 7,
+              "nodeID" : 29,
+              "parentNodeID" : 19,
+              "role" : "AXStaticText",
+              "value" : "83%"
+            },
+            {
+              "bounds" : {
+                "height" : 38,
+                "width" : 71,
+                "x" : 184,
+                "y" : 447.5
+              },
+              "depth" : 7,
+              "nodeID" : 30,
+              "parentNodeID" : 22,
+              "role" : "AXStaticText",
+              "value" : "47%"
+            },
+            {
+              "bounds" : {
+                "height" : 26,
+                "width" : 49,
+                "x" : 290,
+                "y" : 457.5
+              },
+              "depth" : 7,
+              "nodeID" : 31,
+              "parentNodeID" : 25,
+              "role" : "AXStaticText",
+              "value" : "65%"
+            }
+          ]
+        }
+      ],
+      "pid" : 58303,
+      "status" : "passed",
+      "title" : "BeaverMeter QA",
+      "violations" : [
+
+      ]
+    }
+  ]
+}

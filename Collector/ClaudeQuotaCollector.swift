@@ -119,7 +119,7 @@ enum ClaudeQuotaCollector {
         ).quota
     }
 
-    /// The five-hour window (the tightest one when there is none), carrying every
+    /// The five-hour window (the all-models week when there is none), carrying every
     /// window in display order: five hours, the all-models week, then
     /// model-scoped weeks (for example Fable).
     static func quota(from response: ClaudeOAuthUsageResponse) -> CompactQuota? {
@@ -147,6 +147,7 @@ enum ClaudeQuotaCollector {
             windows.append(quota)
         }
         guard var headline = windows.first(where: { $0.windowSeconds == 18_000 })
+                ?? windows.first(where: { $0.label == "Claude Week" })
                 ?? windows.min(by: { ($0.remainingPercent ?? 101) < ($1.remainingPercent ?? 101) })
         else { return nil }
         headline.windows = windows.count > 1 ? windows : nil
@@ -169,8 +170,8 @@ enum ClaudeQuotaCollector {
     /// does not imply a free plan or require another credential/profile lookup.
     static func planName(fromCredentials data: Data) -> String? {
         guard let credentials = try? ClaudeOAuthCredentials.parse(data: data) else { return nil }
-        return ClaudePlan.oauthLoginMethod(subscriptionType: credentials.subscriptionType,
-                                          rateLimitTier: credentials.rateLimitTier)
+        return ClaudePlanDisplayName.fromMetadata(subscriptionType: credentials.subscriptionType,
+                                                  rateLimitTier: credentials.rateLimitTier)
     }
 
     /// An absent access token can still be repairable by Claude Code. Never
@@ -187,7 +188,7 @@ enum ClaudeQuotaCollector {
         label: String,
         seconds: Int
     ) -> CompactQuota? {
-        guard let used = window?.utilization else { return nil }
+        guard let used = window?.utilization, used.isFinite else { return nil }
         let remaining = min(max(100 - used, 0), 100)
         return CompactQuota(
             label: label,

@@ -5,7 +5,7 @@ enum UsagePreviewScenario: String, CaseIterable {
     case oneService, codexClaudeOnly, withoutCursor, rateLimited, longWindows
     case missingHistory, previousDay, claudeSignedOut, claudeExpiredCache
 
-    /// Service switches for layouts with fewer than four services.
+    /// Service switches for focused layouts with fewer than five services.
     var providerSettings: ProviderSettings {
         var settings = ProviderSettings.default
         switch self {
@@ -13,9 +13,11 @@ enum UsagePreviewScenario: String, CaseIterable {
             settings[.codex] = .hidden
             settings[.cursor] = .hidden
             settings[.deepseek] = .hidden
+            settings[.antigravity] = .hidden
         case .codexClaudeOnly:
             settings[.cursor] = .hidden
             settings[.deepseek] = .hidden
+            settings[.antigravity] = .hidden
         case .withoutCursor:
             settings[.cursor] = .hidden
         default:
@@ -53,7 +55,8 @@ enum UsagePreviewScenario: String, CaseIterable {
                                  codexHistory: base.codexHistory, claudeHistory: base.claudeHistory,
                                  claudeResetCards: UsageValue(status: limited ? .stale : .ready, source: limited ? .cache : .preview,
                                                              measuredAt: now.addingTimeInterval(-600), lastAttemptAt: now,
-                                                             message: message, value: UsageSnapshot.monitoringPreview.claudeResetCards.value))
+                                                             message: message, value: UsageSnapshot.monitoringPreview.claudeResetCards.value),
+                                 antigravityQuota: base.antigravityQuota, antigravityTokens: base.antigravityTokens)
         case .stale: return .widgetStalePreview
         case .signedOut: return .widgetDeepSeekSignedOutPreview
         case .claudeSignedOut, .claudeExpiredCache:
@@ -70,7 +73,8 @@ enum UsagePreviewScenario: String, CaseIterable {
                 codexHistory: base.codexHistory, claudeHistory: base.claudeHistory,
                 claudeResetCards: UsageValue(status: signedOut ? .unauthenticated : .stale,
                     source: signedOut ? .none : .cache, measuredAt: now.addingTimeInterval(-1800),
-                    lastAttemptAt: now, message: message, value: signedOut ? nil : base.claudeResetCards.value))
+                    lastAttemptAt: now, message: message, value: signedOut ? nil : base.claudeResetCards.value),
+                antigravityQuota: base.antigravityQuota, antigravityTokens: base.antigravityTokens)
         case .unavailable, .error:
             let status: UsageDataStatus = self == .error ? .error : .unavailable
             let message = self == .error ? "Could not refresh. Previous data was preserved." : "No usage data is available yet."
@@ -79,7 +83,8 @@ enum UsagePreviewScenario: String, CaseIterable {
                 codexTokens: empty(status, message: message), cursorCosts: empty(status, message: message),
                 cursorQuota: empty(status, message: message), codexQuota: empty(status, message: message),
                 claudeTokens: empty(status, message: message), claudeQuota: empty(status, message: message),
-                deepseekUsage: empty(status, message: message)
+                deepseekUsage: empty(status, message: message),
+                antigravityQuota: empty(status, message: message), antigravityTokens: empty(status, message: message)
             )
         case .remoteUnavailable:
             return replacing(base, codexTokens: UsageValue(
@@ -127,6 +132,8 @@ enum UsagePreviewScenario: String, CaseIterable {
                                          lastAttemptAt: now, message: message, value: base.claudeTokens.value))
             snapshot.codexHistory = previousDayHistory(base.codexHistory)
             snapshot.claudeHistory = previousDayHistory(base.claudeHistory)
+            snapshot.antigravityTokens = UsageValue(status: .stale, source: .cache, measuredAt: measuredAt,
+                lastAttemptAt: now, message: message, value: base.antigravityTokens.value)
             return snapshot
         }
     }
@@ -147,7 +154,8 @@ enum UsagePreviewScenario: String, CaseIterable {
                       codexHistory: codexTokens?.value.map { updatingCodexToday(base.codexHistory, totals: $0) }
                           ?? base.codexHistory,
                       claudeHistory: base.claudeHistory,
-                      claudeResetCards: base.claudeResetCards)
+                      claudeResetCards: base.claudeResetCards,
+                      antigravityQuota: base.antigravityQuota, antigravityTokens: base.antigravityTokens)
     }
 
     /// Keep the chart's final day and aggregate consistent with zero/large-value
@@ -233,7 +241,11 @@ extension UsageSnapshot {
             ),
             codexAccounts: base.codexAccounts,
             codexHistory: base.codexHistory, claudeHistory: base.claudeHistory,
-            claudeResetCards: base.claudeResetCards
+            claudeResetCards: base.claudeResetCards,
+            antigravityQuota: UsageValue(status: .stale, source: .cache, measuredAt: measuredAt,
+                lastAttemptAt: previewDate, message: "Antigravity is unavailable; this quota cache has expired.",
+                value: base.antigravityQuota.value),
+            antigravityTokens: base.antigravityTokens
         )
     }
 
@@ -303,7 +315,8 @@ extension UsageSnapshot {
                     )
                 }
             ),
-            deepseekUsage: preview.deepseekUsage
+            deepseekUsage: preview.deepseekUsage,
+            antigravityQuota: preview.antigravityQuota, antigravityTokens: preview.antigravityTokens
         )
     }
 
@@ -376,7 +389,8 @@ extension UsageSnapshot {
             codexAccounts: base.codexAccounts,
             codexHistory: base.codexHistory,
             claudeHistory: base.claudeHistory,
-            claudeResetCards: base.claudeResetCards
+            claudeResetCards: base.claudeResetCards,
+            antigravityQuota: base.antigravityQuota, antigravityTokens: base.antigravityTokens
         )
     }
 }

@@ -1,0 +1,9 @@
+{
+  "totalTokens": 1500,
+  "inputTokens": 100,
+  "cacheReadTokens": 200,
+  "cacheCreationTokens": 300,
+  "outputTokens": 400,
+  "reasoningTokens": 500,
+  "requestCount": 7
+}

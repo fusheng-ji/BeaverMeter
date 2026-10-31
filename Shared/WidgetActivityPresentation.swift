@@ -32,7 +32,7 @@ struct WidgetActivityPresentation {
     /// Widget cards use the composition initializer to keep workspace attribution strict.
     init(snapshot: UsageSnapshot, providers: [MeterProvider], referenceDate: Date, calendar: Calendar = .current) {
         var seen: Set<MeterProvider> = []
-        items = providers.filter { seen.insert($0).inserted }.map { provider in
+        items = providers.filter { seen.insert($0).inserted }.compactMap { provider in
             switch provider {
             case .codex:
                 Self.tokens(snapshot.codexTokens, history: snapshot.codexHistory, provider: provider,
@@ -44,6 +44,8 @@ struct WidgetActivityPresentation {
                 Self.cursor(snapshot.cursorCosts, referenceDate: referenceDate, calendar: calendar)
             case .deepseek:
                 Self.deepseek(snapshot.deepseekUsage, referenceDate: referenceDate, calendar: calendar)
+            case .antigravity:
+                nil
             }
         }
     }
@@ -51,7 +53,7 @@ struct WidgetActivityPresentation {
     /// Widget modules never infer workspace activity from provider-wide totals.
     init(snapshot: UsageSnapshot, composition: WidgetComposition, referenceDate: Date, calendar: Calendar = .current) {
         let accounts = WidgetModuleCatalog.accounts(in: snapshot)
-        items = composition.items.map { module in
+        items = composition.items.compactMap { module in
             var item: WidgetActivityItem
             switch module.provider {
             case .codex:
@@ -75,6 +77,8 @@ struct WidgetActivityPresentation {
                 item = Self.cursor(snapshot.cursorCosts, referenceDate: referenceDate, calendar: calendar)
             case .deepseek:
                 item = Self.deepseek(snapshot.deepseekUsage, referenceDate: referenceDate, calendar: calendar)
+            case .antigravity:
+                return nil
             }
             item.moduleID = module.id
             return item

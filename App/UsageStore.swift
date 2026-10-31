@@ -477,6 +477,7 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
             case .claude: ClaudeDailyTokenPresentation(snapshot.claudeTokens).accessibilityText
             case .cursor: "Cursor latest call \(cursorLatestCost)"
             case .deepseek: "DeepSeek balance \(deepSeekBalance)"
+            case .antigravity: DailyTokenPresentation(snapshot.antigravityTokens).accessibilityText
             }
         }.joined(separator: ", ")
     }
@@ -487,6 +488,7 @@ final class UsageStore: ObservableObject, UpdateRuntimeSession {
         case .claude: "✳︎ " + ClaudeDailyTokenPresentation(snapshot.claudeTokens).value
         case .cursor: "C " + cursorLatestCost
         case .deepseek: "D " + deepSeekBalance
+        case .antigravity: "A " + DailyTokenPresentation(snapshot.antigravityTokens).value
         }
     }
 

@@ -1,0 +1,384 @@
+{
+  "schemaVersion": 1,
+  "scope": "native-widget-spacing-visual-review",
+  "status": "passed",
+  "reviewedAt": "2026-10-31T19:30:31.548478+01:00",
+  "reviewer": "Codex visual inspection",
+  "observationCount": 40,
+  "additionalUnfocusedObservations": 2,
+  "method": "Inspected five contact sheets preserving original image proportions (all 40 captures), individual full-capacity/unknown/stress light captures, and both unfocused desktop captures.",
+  "checks": [
+    "Visible outer space and card safety insets remain clear in all sizes and themes.",
+    "No observed text, logo or status clipping, overlap or border contact.",
+    "Main percentages, money amounts/currencies, periods and relevant statuses remain readable.",
+    "Long names and reset prose may use an ellipsis; complete text is retained in help and accessibility.",
+    "Separate Antigravity group readings, unknown and real zero values remain distinct.",
+    "Unfocused reduced-color rendering retains readable content and the same safety insets."
+  ],
+  "limitations": [
+    "Visual assessment is not a contrast-ratio measurement or glyph-ink metrology.",
+    "Native matrix uses frozen synthetic data in the isolated WidgetKit host; production reads and installation are checked separately."
+  ],
+  "observations": [
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "small",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-light.bounds.json",
+      "screenshotSHA256": "ffc7162e482295bc28a7cc52a08e7b3eeb2c886346bcf992a9373e2f2db13af1",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "medium",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-light.bounds.json",
+      "screenshotSHA256": "01e803ed45cc298cb1a18555d11e790525c8a52ea841b95d053e5bf4504df1d4",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-light.bounds.json",
+      "screenshotSHA256": "409296077e0f486001ef1a1953436069cc09f3976478ad7320797c90207317ea",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "extra-large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-light.bounds.json",
+      "screenshotSHA256": "2f7b06a4b3804f2319b28a52b31788ba4784933d6d0ae92dc9760a9133ff81a7",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "small",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-light.bounds.json",
+      "screenshotSHA256": "c1b379c1358d255600c9ccaaf4c8c212944f2b810cb2601d00a373c20b59fb73",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "medium",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-light.bounds.json",
+      "screenshotSHA256": "bd3714a052b2f8fe6c3cda52a556c8deafc2bd92992afe5352f5e77a9cae50cf",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "extra-large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-light.bounds.json",
+      "screenshotSHA256": "b5092f91613509053b25753f45870982fabc21225b1184c7771ac9b73a2c79e2",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "small",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-light.bounds.json",
+      "screenshotSHA256": "7b8f7f4cc33100d9df1a6d8a3eaf8070537483f69a54ecc62778f1a9d3e38f45",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "medium",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-light.bounds.json",
+      "screenshotSHA256": "6369e3129bb3cb4ba99ae1f17639ca3e127c8b7d8f8fd6e5fd2eeef55500827e",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-light.bounds.json",
+      "screenshotSHA256": "9f08afcf7ee3e86770cee4c71cb17d2927422ff5a5d89245f4dea64efe17e3d6",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "extra-large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-light.bounds.json",
+      "screenshotSHA256": "ff1d047f09e7a87d4b4bb619aa5b404013fa3205dfe08ab910ae59e4954ba7d2",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "small",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-light.bounds.json",
+      "screenshotSHA256": "33625809de765ca7f307d9cbe7648e4fc91fb9c0c56b539d00c3624036dc5c12",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "medium",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-light.bounds.json",
+      "screenshotSHA256": "4ff72b5a07b59cbed58bcafde7ebf408df222db7627241cedc8da840d60d5d19",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-light.bounds.json",
+      "screenshotSHA256": "4823e02a56c4ea0f6d5433d2d1e79f18781b993e3782c749f305ea116a4e8d05",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "extra-large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-light.bounds.json",
+      "screenshotSHA256": "ce58fb36451dde779f8928ad17b31b7d2a578ebef936d674879a049bbab4225f",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "small",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-light.bounds.json",
+      "screenshotSHA256": "7f1924a85867fd25f0dd703b604d2ef8282325b9f32a8677bd8d134c6b032dcf",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "medium",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-light.bounds.json",
+      "screenshotSHA256": "d55e00eab631c9f65b5bff20ec303e5dcd941912a615054fd8946753883dbd80",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-light.bounds.json",
+      "screenshotSHA256": "013ee197e623fcc0aae7a9a10a8eec3bd5a1ebf31bd9ade5252daa84426b0204",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "extra-large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-light.bounds.json",
+      "screenshotSHA256": "3494f831f9516e80c62717e2039b1f023214c2a838a2cf009e211b0da8d22b10",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "small",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-dark.bounds.json",
+      "screenshotSHA256": "ea8451661d62adc675b3ccddbd2e49c1d4764d9455df259019d5a30222d5ca46",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "medium",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-dark.bounds.json",
+      "screenshotSHA256": "516d911ad820051f8f8ebb718224ac1ec499b71c4764c0bc207473bf89267627",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "extra-large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-dark.bounds.json",
+      "screenshotSHA256": "98cdc5499cb9c693771395b2b44ce25a7b78e08bfe5a882329bccf957326cd17",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "small",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-dark.bounds.json",
+      "screenshotSHA256": "ea8451661d62adc675b3ccddbd2e49c1d4764d9455df259019d5a30222d5ca46",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "medium",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-dark.bounds.json",
+      "screenshotSHA256": "265cf58439e289b5823a059fda3c864559cad9fecab5bbddb8e6a464494321cf",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-dark.bounds.json",
+      "screenshotSHA256": "7b0ebe70f84cc1c2560411a8c01769c80ee0f765eb96788d90ff5f1cb75e250c",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-full-capacity",
+      "family": "extra-large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-dark.bounds.json",
+      "screenshotSHA256": "2cfbbc78a3af58bf3aa71b8ceef27a53eda90144a924619ecb5a1d8844a34804",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "small",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-dark.bounds.json",
+      "screenshotSHA256": "453acb0512a0cacc24f571a677cd8199bef6be84888019c9518eb2b8a1454f72",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "medium",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-dark.bounds.json",
+      "screenshotSHA256": "75075121956509b9016ecf614621e81cfa26a52f5b79033d5382c0f06251999e",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-dark.bounds.json",
+      "screenshotSHA256": "810a6eae1734f0acaa70f4cf952461d08e86303867e2e78783f9752b086f4374",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "extra-large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-dark.bounds.json",
+      "screenshotSHA256": "5c5ad0b99c027813fd1ef618d0e574b4bcaf69490b3c58dd30785bebb9187c85",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "small",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-dark.bounds.json",
+      "screenshotSHA256": "2b98caff28c5542fc404bb4ae557f33b3effb3b81d515467169d0c901e6912f0",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "medium",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-dark.bounds.json",
+      "screenshotSHA256": "434d728ca6d1cb22e2fbde5d11a683ca4ceed9e2d78d2bca8e3f24def800ba4e",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-dark.bounds.json",
+      "screenshotSHA256": "098063b5cecb9121267fd8a088d3a4e446e80a06970dfba5d419583c44af40b8",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-reset-description",
+      "family": "extra-large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-dark.bounds.json",
+      "screenshotSHA256": "c808536de3f28d93fd6fa8d8217a04161f09a6ecaacb57d48d55b04df52841ee",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "small",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-dark.bounds.json",
+      "screenshotSHA256": "764ebd70dd3a39dae7a4fa160c61c945cad1cc05d8c1d0b4242cbece1907368d",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "medium",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-dark.bounds.json",
+      "screenshotSHA256": "2ca71c51c410ea268bf80e01aabcccb5b601afa8495760c59c3fbca2088324b2",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-dark.bounds.json",
+      "screenshotSHA256": "c2d474844ce1d015cf991b24c393cbcadb83542902f5d0471409af09c418cdfd",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-spacing-stress",
+      "family": "extra-large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-dark.bounds.json",
+      "screenshotSHA256": "d706f194064925d8eecf47d0d0f4e74419420858a2b513ac5626049485595eab",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "large",
+      "appearance": "light",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-light-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-light.bounds.json",
+      "screenshotSHA256": "f7ebc0e5b39ae9927f2e1e51a2efe189389c9e4d7423ebf2615f6d7d7e98c3dd",
+      "status": "passed"
+    },
+    {
+      "caseID": "antigravity-both-groups",
+      "family": "large",
+      "appearance": "dark",
+      "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-dark-window.png",
+      "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-dark.bounds.json",
+      "screenshotSHA256": "2903645a06cc016f1d6fc4cc50d3e1b24b9f94392a5c541c51d790ff2ebe912d",
+      "status": "passed"
+    }
+  ]
+}

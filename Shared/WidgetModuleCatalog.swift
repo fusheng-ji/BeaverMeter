@@ -23,6 +23,12 @@ enum WidgetModuleCatalog {
                                        title: names[index].short, workspaceID: account.id)
                 }
             }
+            if provider == .antigravity {
+                return AntigravityQuotaGroupID.allCases.map { group in
+                    WidgetModuleOption(id: group.moduleID, provider: provider,
+                                       title: "Antigravity · \(group.title)", workspaceID: nil)
+                }
+            }
             return [WidgetModuleOption(id: "service:\(provider.rawValue)", provider: provider,
                                        title: provider.displayName, workspaceID: nil)]
         }

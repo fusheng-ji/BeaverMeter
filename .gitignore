@@ -16,6 +16,10 @@ preview/
 *.log
 *.tmp
 node_modules/
+__pycache__/
+*.pyc
+# Transitional native QA reproductions stay local; final acceptance is tracked.
+screenshots/antigravity-native/2026-10-31/before-centering/
 # Private release-key exports and encrypted backup artifacts stay local.
 *.private-key
 *.private-key.enc

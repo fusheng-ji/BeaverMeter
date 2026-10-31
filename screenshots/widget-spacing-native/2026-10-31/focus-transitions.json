@@ -1,0 +1,36 @@
+[
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "large",
+    "systemAppearance": "light",
+    "desktopFocused": false,
+    "frontmostBundleID": "com.jiwenbo.beavermeter.widgetqa",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; kind: BeaverMeterWidgetQA; family: systemLarge; colorScheme: dark; widgetRenderingMode: accented",
+    "observedAt": "2026-10-31T19:26:03.580299+01:00",
+    "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-light-unfocused-window.png",
+    "desktopScreenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-light-unfocused-desktop.png",
+    "accessibility": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-light-unfocused.ax.json",
+    "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-light-unfocused.bounds.json",
+    "boundsStatus": "passed",
+    "status": "captured-awaiting-visual-review",
+    "visualReviewStatus": "passed",
+    "reviewedAt": "2026-10-31T19:30:31.548478+01:00"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "large",
+    "systemAppearance": "dark",
+    "desktopFocused": false,
+    "frontmostBundleID": "com.jiwenbo.beavermeter.widgetqa",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; kind: BeaverMeterWidgetQA; family: systemLarge; colorScheme: dark; widgetRenderingMode: accented",
+    "observedAt": "2026-10-31T19:26:18.437518+01:00",
+    "screenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-dark-unfocused-window.png",
+    "desktopScreenshot": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-dark-unfocused-desktop.png",
+    "accessibility": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-dark-unfocused.ax.json",
+    "boundsEvidence": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-system-dark-unfocused.bounds.json",
+    "boundsStatus": "passed",
+    "status": "captured-awaiting-visual-review",
+    "visualReviewStatus": "passed",
+    "reviewedAt": "2026-10-31T19:30:31.548478+01:00"
+  }
+]

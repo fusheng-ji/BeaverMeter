@@ -1,0 +1,153 @@
+{
+  "accessibility": [
+    {
+      "AXRole": "AXWindow",
+      "AXTitle": "BeaverMeter QA",
+      "depth": "0"
+    },
+    {
+      "AXRole": "AXGroup",
+      "depth": "1"
+    },
+    {
+      "AXDescription": "BeaverMeter QA",
+      "AXIdentifier": "widget-local:com.jiwenbo.beavermeter.widgetqa:com.jiwenbo.beavermeter.widgetqa.widget:BeaverMeterWidgetQA",
+      "AXRole": "AXGroup",
+      "depth": "2"
+    },
+    {
+      "AXDescription": "QA caseID: antigravity-full-capacity; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor",
+      "AXIdentifier": "WidgetQA.case.antigravity-full-capacity",
+      "AXRole": "AXGroup",
+      "depth": "3"
+    },
+    {
+      "AXDescription": "Antigravity · Gemini",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Antigravity · Claude/GPT",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Personal · personal@example.test",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Claude",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Gemini",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "62%",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h, Resets in 2h 40m",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Weekly, 83% remaining, Resets in 4d 8h",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Claude/GPT",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "47%",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h, Resets in 1h 10m",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Weekly, 65% remaining, Resets in 4d 8h",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Personal · personal@example.test",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Pro",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "60%",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Weekly, Resets in 4d 0h",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5-hour, 80% remaining, Resets in 3h 0m",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "88%",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Weekly, Resets in 3d 5h",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5-hour, 72% remaining, Resets in 2h 15m",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    }
+  ],
+  "bounds": {
+    "height": 180,
+    "width": 360,
+    "x": 424,
+    "y": 401
+  },
+  "captureWindows": [
+    {
+      "kCGWindowAlpha": 1,
+      "kCGWindowIsOnscreen": true,
+      "kCGWindowLayer": -2147483601,
+      "kCGWindowName": "BeaverMeter QA",
+      "kCGWindowNumber": 25245
+    }
+  ],
+  "pid": 11293,
+  "title": "BeaverMeter QA",
+  "environment": "QA caseID: antigravity-full-capacity; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor"
+}

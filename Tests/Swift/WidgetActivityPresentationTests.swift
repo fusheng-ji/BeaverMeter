@@ -192,7 +192,7 @@ final class WidgetActivityPresentationTests: XCTestCase {
 
     func testActivityStatusNeverInheritsQuotaAndHistoryStatusDoesNotPolluteCurrentUsage() {
         let healthy = snapshot(quotaStatus: .error)
-        for provider in MeterProvider.allCases {
+        for provider in MeterProvider.allCases.filter({ $0 != .antigravity }) {
             let result = item(healthy, provider: provider)
             XCTAssertEqual(result.status.severity, .normal)
             XCTAssertFalse(result.accessibilityText.contains("quota-only status"))

@@ -104,6 +104,7 @@ enum UsageFormatting {
         case .cursorDashboard: "Cursor Dashboard"
         case .accountAPI: "Account API"
         case .deepSeekPlatform: "DeepSeek Platform"
+        case .antigravityLocal: "Antigravity local API"
         case .cache: "Cached"
         case .preview: "Preview"
         case .none: "No data"

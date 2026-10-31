@@ -13,6 +13,7 @@ enum UsageDataSource: String, Codable, Hashable, Sendable {
     case cursorDashboard
     case accountAPI
     case deepSeekPlatform
+    case antigravityLocal
     case cache
     case preview
     case none
@@ -103,6 +104,8 @@ struct CompactQuota: Codable, Hashable, Sendable {
     let detail: String
     /// Every window from the same response, display order; nil for single-window services.
     var windows: [CompactQuota]? = nil
+    /// Some local services provide a reset caption without an absolute date.
+    var resetDescription: String? = nil
 }
 
 struct DeepSeekMoney: Codable, Hashable, Identifiable, Sendable {

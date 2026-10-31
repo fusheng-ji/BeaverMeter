@@ -5,11 +5,11 @@
 <h1 align="center">BeaverMeter</h1>
 
 <p align="center"><b>What you’ve used. What you have left.</b><br>
-Codex, Claude Code, Cursor and DeepSeek usage in your Mac’s menu bar and desktop Widgets.</p>
+Codex, Claude Code, Cursor, DeepSeek and Google Antigravity usage in your Mac’s menu bar and desktop Widgets.</p>
 
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-31332F?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-8B684F?style=flat-square" alt="Version 1.0.1"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.2-8B684F?style=flat-square" alt="Version 1.0.2"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-5B7E68?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -48,7 +48,7 @@ when both supported folders contain an official copy, `/Applications` wins.
 
 Official builds check once after startup, then every **12 hours**, respecting
 the automatic-check preference. A newer version adds a small menu-bar dot and
-an **Update 1.0.1** button in the popover (example version).
+an **Update 1.0.2** button in the popover (example version).
 
 Click it for Sparkle’s native release-notes, download, verification and
 **Install and Relaunch** flow. **Check for Updates…** checks manually.
@@ -68,12 +68,16 @@ it; Escape or a click outside closes it. A desktop Widget opens the same menu.
 The menu bar keeps a compact beaver mark; the tooltip and VoiceOver retain usage
 details. The interface uses English labels and follows the system appearance.
 
+The **1.0.2 source update** adds Antigravity, updated Claude plan rules and fixed
+Widget safety insets; see the [changelog](CHANGELOG.md#102--2026-10-31).
+
 | Service | Menu information |
 | --- | --- |
 | Codex | Recorded tokens, allowance windows, reset credits and separate workspaces |
 | Claude Code | Recorded tokens, estimated API list-price cost, quota windows and limit resets |
 | Cursor | Actual call charges, today’s charge, recent calls and monthly allowance |
 | DeepSeek | Wallet balance, current-month cost, tokens and requests |
+| Antigravity | Separate Gemini and Claude/GPT allowance windows, resets and today's local token categories |
 
 <p align="center">
   <img src="screenshots/menu-monitoring-collapsed-light.png" alt="Light menu with synthetic readings" width="320">
@@ -90,6 +94,14 @@ default. Disabled services are not collected.
 - **Claude:** use **Online quota → Sign in to Claude…**, or **Verify login** after signing in through Claude Code. Local transcript totals remain independent of online quota.
 - **Cursor:** sign in to the intended account in Cursor, then refresh BeaverMeter. If Keychain access is needed, choose **Allow Cursor access…** and approve the macOS dialog once. A verified session supports silent refresh; sign-in changes require verification again.
 - **DeepSeek:** choose **Connect in browser…** and finish signing in on the official Platform page.
+- **Antigravity:** sign in through the official Antigravity App or `agy` CLI, then refresh BeaverMeter. Quota reads reuse the official local service; BeaverMeter does not create a separate Google OAuth login. To refresh while the App is closed, install the [official `agy` CLI](https://antigravity.google/docs/cli/install/). Initial setup or authorization belongs in the official App/CLI; background collection does not operate login prompts.
+
+Claude's former **Max 5x** is now **Max**, and **Max 20x** is **Ultra**. The
+weekly allowance leads the summary. A five-hour window appears only when the
+service returns one: verified Ultra accounts may have no such limit, while
+unverified Ultra accounts can retain a temporary session limit. Missing windows
+do not mean 100% remaining or unlimited usage.
+[Official Ultra rules](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)
 
 Workspaces sharing an email keep their own plans, quotas and activity. A missing
 or mismatched workspace never borrows another workspace’s reading.
@@ -109,8 +121,9 @@ explains automatic dates and local preferences.
 ## Desktop Widgets
 
 Choose and order modules independently for each Widget in **Edit Widget**.
-A **module** is one service or one Codex workspace, with its available principal
-allowance windows. Source workspaces do not expand into extra modules.
+A **module** is one service, one Codex workspace or one Antigravity quota pool,
+with its available principal allowance windows. Source workspaces do not expand
+into extra modules.
 
 Connect services in the menu first. Editing Widget modules does not change
 sign-ins or service switches.
@@ -166,6 +179,13 @@ the secondary reset; larger sizes show both window details. Claude leads with
 the all-model weekly allowance when available. Cursor shows remaining monthly
 allowance, and DeepSeek shows its primary wallet balance and currency.
 
+Antigravity offers separate **Antigravity · Gemini** and
+**Antigravity · Claude/GPT** modules. Each uses a slot and shows only its own
+quota, period, reset and status. The most constrained valid window leads; equal
+readings prefer Weekly. Available space adds the other window. Token activity
+stays in the menu at every Widget size, and an unavailable selected pool keeps
+its place rather than borrowing another pool's reading.
+
 Large and Extra Large add activity inside the corresponding identity:
 Codex workspace rows show **tokens today**, Claude its recorded tokens,
 Cursor today’s actual charge and DeepSeek current-month tokens or calls.
@@ -188,10 +208,12 @@ and [six-module examples](docs/guide/setup.md#widget-selection).
 ## Data & privacy
 
 - Provider-wide Codex/Claude activity comes from local logs; optional SSH adds configured remote Codex records. Separate Codex workspace activity uses the account API.
+- Antigravity account quotas come from its official local App/CLI/IDE service. Today's token total comes separately from this Mac's Antigravity logs, not an account allowance ledger. Input, cache read, cache write, output and reasoning use Antigravity's own additive counters; unavailable categories remain unknown. No inferred cost or AI-credit balance is shown.
 - Credentials stay local. Usage snapshots contain no authentication tokens, cookies, prompts or response content.
 - Verified Cursor sessions are saved in a private, owner-only `cursor-session.json` on this Mac. Cursor's Keychain encryption key is never saved.
 - Workspaces retain separate identity and cache scope. Authentication or identity mismatch clears affected protected readings.
 - Temporary failures can retain a clearly marked stale value within that source’s limit. Unknown is not zero; preview data never fills missing live data.
+- Antigravity quota caches expire 30 minutes after their original measurement; reached reset times and authentication failures hide affected old readings. Official CLI sessions started for a read are cleaned up after collection, including failure and cancellation.
 - Disabled services are not contacted. Optional SSH goes only to the configured host; update requests use GitHub Release assets without provider credentials.
 - DeepSeek’s validated browser token is stored privately for background refresh. Sparkle does not enable system profiling.
 

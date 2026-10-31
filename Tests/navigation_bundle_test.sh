@@ -19,7 +19,7 @@ assert app_info['BeaverMeterMenuURLScheme'] == scheme
 assert widget_info['BeaverMeterMenuURLScheme'] == scheme
 assert app_info['CFBundleURLTypes'][0]['CFBundleURLSchemes'] == [scheme]
 for bundle in (app, widget):
-    for provider in ('codex', 'claude', 'cursor', 'deepseek'):
+    for provider in ('codex', 'claude', 'cursor', 'deepseek', 'antigravity'):
         for suffix in ('', '-template'):
             asset = bundle / f'Contents/Resources/ProviderAssets/{provider}{suffix}.png'
             header = asset.read_bytes()[:26]

@@ -5,11 +5,11 @@ final class ProviderSettingsTests: XCTestCase {
     func testAutoShowsDetectedServicesAndSwitchesOverride() {
         let snapshot = UsagePreviewScenario.signedOut.snapshot  // DeepSeek has no value
         var settings = ProviderSettings.default
-        XCTAssertEqual(settings.visibleProviders(in: snapshot), [.codex, .claude, .cursor])
+        XCTAssertEqual(settings.visibleProviders(in: snapshot), [.codex, .claude, .cursor, .antigravity])
 
         settings[.deepseek] = .shown
         settings[.cursor] = .hidden
-        XCTAssertEqual(settings.visibleProviders(in: snapshot), [.codex, .claude, .deepseek])
+        XCTAssertEqual(settings.visibleProviders(in: snapshot), [.codex, .claude, .deepseek, .antigravity])
         XCTAssertFalse(settings.collects(.cursor))
     }
 
@@ -17,7 +17,7 @@ final class ProviderSettingsTests: XCTestCase {
         var settings = ProviderSettings.default
         settings[.cursor] = .hidden
         let snapshot = UsagePreviewScenario.unavailable.snapshot
-        XCTAssertEqual(settings.visibleProviders(in: snapshot), [.codex, .claude, .deepseek])
+        XCTAssertEqual(settings.visibleProviders(in: snapshot), [.codex, .claude, .deepseek, .antigravity])
     }
 
     func testMultipleConfiguredFailedCodexWorkspacesAreDetectedAndStillHonorHiddenSetting() {
@@ -66,18 +66,18 @@ final class ProviderSettingsTests: XCTestCase {
     func testGridRowsPairServicesAndLeaveOddOneFullWidth() {
         XCTAssertEqual(ProviderGridLayout.rows([.codex]), [[.codex]])
         XCTAssertEqual(ProviderGridLayout.rows([.codex, .claude, .deepseek]), [[.codex, .claude], [.deepseek]])
-        XCTAssertEqual(ProviderGridLayout.rows(MeterProvider.allCases).count, 2)
+        XCTAssertEqual(ProviderGridLayout.rows(MeterProvider.allCases).count, 3)
     }
 
     func testAdaptiveLayoutsKeepEveryServiceEqualAndInOrder() {
-        for mask in 0..<16 {
+        for mask in 0..<(1 << MeterProvider.allCases.count) {
             let providers = MeterProvider.allCases.enumerated().compactMap { index, provider in
                 mask & (1 << index) != 0 ? provider : nil
             }
             for size in ProviderWidgetSize.allCases {
                 let rows = ProviderGridLayout.rows(providers, size: size)
                 XCTAssertEqual(rows.flatMap { $0 }, providers)
-                XCTAssertEqual(Set(rows.map(\.count)).count, rows.isEmpty ? 0 : 1)
+                XCTAssertTrue(rows.allSatisfy { !$0.isEmpty })
                 if providers.count == 3 {
                     XCTAssertEqual(rows.count, size == .small || size == .large ? 3 : 1)
                 }

@@ -33,7 +33,7 @@ enum WidgetQAStore {
         guard !fixture.caseID.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             throw Failure("The QA caseID is empty.")
         }
-        guard fixture.snapshot.schemaVersion == UsageSnapshot.currentSchemaVersion else {
+        guard (7...UsageSnapshot.currentSchemaVersion).contains(fixture.snapshot.schemaVersion) else {
             throw Failure("The QA snapshot schema is unsupported.")
         }
         return fixture

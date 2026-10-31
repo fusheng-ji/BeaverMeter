@@ -8,6 +8,7 @@ enum ServiceMatrixGallery {
             "schemes": schemes
         ], options: [.sortedKeys])
         return template.replacingOccurrences(of: "__MATRIX_DATA__", with: String(decoding: data, as: UTF8.self))
+            .replacingOccurrences(of: "__ALL_DIRECTORY__", with: MeterProvider.allCases.map(\.rawValue).joined(separator: "-"))
     }
 
     private static let template = #"""
@@ -69,6 +70,7 @@ enum ServiceMatrixGallery {
           <h1>服务开关组合预览</h1>
           <p id="counts">四种尺寸 Widget 与菜单栏弹窗 · 固定模拟数据</p>
           <p>每个模块是一项服务或一个 Codex 工作空间，内含双窗口。按选中顺序，Small 最多显示前 2 个模块，Medium 前 4 个，Large／Extra Large 前 6 个。服务开关开启不代表该尺寸展示所有模块，不自动展开工作空间，也没有 +N。</p>
+          <p>Antigravity 的 Gemini 与 Claude/GPT 是两个可独立选择的额度模块，各自显示所属周期和重置；今日本地 token 只在菜单中显示，不按 token 推算订阅额度。</p>
           <p>Small 保留主重置和次窗口剩余值；Medium 展开窗口细节；Large 在模块内部增加使用量；Extra Large 恰好 4 个可见模块的 2×2 布局保留额度与当前用量，不显示七日统计／趋势；其他模块数量继续在同一模块内显示可用七日趋势。每个 Codex 工作空间显示各自已验证账号的用量和日期，不借用其他空间或全局统计；没有独立底部摘要区。重置卡库存／到期和 Cursor 月度已用／上限仍在菜单栏弹窗。</p>
         </header>
         <section class="controls" aria-label="选择服务组合">
@@ -86,10 +88,10 @@ enum ServiceMatrixGallery {
         </section>
         <div id="renders"></div>
         <noscript>请启用 JavaScript 筛选组合，也可直接查看：
-          <a href="codex-claude-cursor-deepseek/light/widget-small.png">小号浅色</a>、
-          <a href="codex-claude-cursor-deepseek/dark/widget-small.png">小号深色</a>、
-          <a href="codex-claude-cursor-deepseek/light/menu.png">菜单栏浅色</a>、
-          <a href="codex-claude-cursor-deepseek/dark/menu.png">菜单栏深色</a>。
+          <a href="__ALL_DIRECTORY__/light/widget-small.png">小号浅色</a>、
+          <a href="__ALL_DIRECTORY__/dark/widget-small.png">小号深色</a>、
+          <a href="__ALL_DIRECTORY__/light/menu.png">菜单栏浅色</a>、
+          <a href="__ALL_DIRECTORY__/dark/menu.png">菜单栏深色</a>。
         </noscript>
         <footer>图片由应用共享的 SwiftUI 视图生成，用于比较布局和色阶；离线预览不验证 WidgetKit 桌面宿主的合成效果或焦点切换。服务开关仅切换本地预览，不修改应用设置。所有数据均为模拟数据。</footer>
       </main>
@@ -111,7 +113,7 @@ enum ServiceMatrixGallery {
         const enabled = mask => providers.filter((_, index) => mask & (1 << index));
         const title = mask => enabled(mask).map(provider => provider.name).join(' + ') || '全部关闭';
         const directory = mask => enabled(mask).map(provider => provider.id).join('-') || 'none';
-        document.getElementById('counts').textContent = `${count} 种组合 · ${count * schemes.length * sizes.length} 张 PNG · 固定模拟数据`;
+        document.getElementById('counts').textContent = `${count} 种组合（${count - 1} 种非空）· ${count * schemes.length * sizes.length} 张 PNG · 固定模拟数据`;
         providers.forEach((provider, index) => {
           const label = document.createElement('label');
           label.className = 'switch';

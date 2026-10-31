@@ -23,6 +23,27 @@ struct WidgetQAProvider: TimelineProvider {
 struct WidgetQAView: View {
     let entry: WidgetQAEntry
     @Environment(\.widgetFamily) private var family
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.widgetRenderingMode) private var renderingMode
+
+    private var actualEnvironment: String {
+        let familyName: String
+        switch family {
+        case .systemSmall: familyName = "systemSmall"
+        case .systemMedium: familyName = "systemMedium"
+        case .systemLarge: familyName = "systemLarge"
+        case .systemExtraLarge: familyName = "systemExtraLarge"
+        default: familyName = String(describing: family)
+        }
+        let modeName: String
+        switch renderingMode {
+        case .fullColor: modeName = "fullColor"
+        case .accented: modeName = "accented"
+        case .vibrant: modeName = "vibrant"
+        default: modeName = "unknown"
+        }
+        return "kind: BeaverMeterWidgetQA; family: \(familyName); colorScheme: \(colorScheme == .dark ? "dark" : "light"); widgetRenderingMode: \(modeName)"
+    }
 
     var body: some View {
         Group {
@@ -38,9 +59,9 @@ struct WidgetQAView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .accessibilityElement(children: .contain)
-                .accessibilityLabel("QA caseID: \(fixture.caseID)")
+                .accessibilityLabel("QA caseID: \(fixture.caseID); \(actualEnvironment)")
                 .accessibilityIdentifier("WidgetQA.case.\(fixture.caseID)")
-                .accessibilityValue("QA caseID: \(fixture.caseID)")
+                .accessibilityValue("QA caseID: \(fixture.caseID); \(actualEnvironment)")
             } else {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("QA load failed").font(.headline)

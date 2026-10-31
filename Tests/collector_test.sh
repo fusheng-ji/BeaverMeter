@@ -22,6 +22,8 @@ export CLAUDE_USAGE_FIXTURE="$fixtures/claude-usage.json"
 export CLAUDE_CONFIG_DIR="$test_dir/missing-claude-home"
 export DEEPSEEK_SUMMARY_FIXTURE="$fixtures/deepseek-summary.json"
 export DEEPSEEK_USAGE_FIXTURE="$fixtures/deepseek-usage.json"
+export ANTIGRAVITY_QUOTA_FIXTURE="$fixtures/antigravity-quota.json"
+export ANTIGRAVITY_TOKEN_FIXTURE="$fixtures/antigravity-tokens.json"
 
 cleanup() {
   local failure_status=$?
@@ -49,7 +51,7 @@ DEEPSEEK_USAGE_FIXTURE="$fixtures/deepseek-usage.json" \
   "$collector" --output "$snapshot" >/dev/null
 
 jq -e '
-  .schemaVersion == 7 and
+  .schemaVersion == 8 and
   .claudeTokens.status == "ready" and
   .claudeTokens.value.totalTokens == 2500 and
   .claudeTokens.value.cacheReadTokens == 1900 and
@@ -416,7 +418,7 @@ for index in 1 2 3; do
   full_pid=$!
   wait "$codex_pid" "$full_pid"
   jq -e '
-    .schemaVersion == 7 and
+    .schemaVersion == 8 and
     .cursorCosts.status == "ready" and
     .cursorQuota.status == "ready" and
     .codexQuota.status == "ready" and
@@ -488,7 +490,7 @@ CLAUDE_CONFIG_DIR="$claude_home" \
 CODEX_HOME="$test_dir/claude-codex-home" \
   "$collector" --local-tokens --output "$claude_snapshot" >/dev/null
 jq -e '
-  .schemaVersion == 7 and
+  .schemaVersion == 8 and
   .claudeTokens.status == "ready" and
   .claudeTokens.value.totalTokens == 440 and
   .claudeTokens.value.inputTokens == 11 and
@@ -534,7 +536,7 @@ CODEX_HOME="$monitor_home" CODEX_TOKEN_FIXTURE="$fixtures/codex-token-totals.jso
 CODEX_RESET_CARDS_FIXTURE="$monitor_dir/codex-cards.json" CLAUDE_RESET_CARDS_FIXTURE="$monitor_dir/claude-cards.json" \
   "$collector" --output "$monitor_dir/snapshot.json" >/dev/null
 jq -e '
-  .schemaVersion == 7 and (.codexAccounts.value | length) == 2 and
+  .schemaVersion == 8 and (.codexAccounts.value | length) == 2 and
   .codexAccounts.value[0].resetCards.value.availableCount == 2 and
   .codexAccounts.value[1].quota.status == "ready" and
   .claudeResetCards.value.availableCount == 1

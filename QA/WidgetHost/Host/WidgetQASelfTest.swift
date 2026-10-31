@@ -16,6 +16,21 @@ enum WidgetQASelfTest {
         guard try WidgetQAStore.load(from: current).caseID == fixture.caseID else {
             throw WidgetQAStore.Failure("Valid case failed to round-trip.")
         }
+        var legacy = try JSONSerialization.jsonObject(with: valid) as! [String: Any]
+        legacy["caseID"] = "legacy-schema-7"
+        var legacySnapshot = legacy["snapshot"] as! [String: Any]
+        legacySnapshot["schemaVersion"] = 7
+        legacySnapshot.removeValue(forKey: "antigravityQuota")
+        legacySnapshot.removeValue(forKey: "antigravityTokens")
+        legacy["snapshot"] = legacySnapshot
+        let legacyURL = directory.appendingPathComponent("legacy-case.json")
+        _ = try WidgetQAStore.apply(JSONSerialization.data(withJSONObject: legacy), to: legacyURL)
+        let decodedLegacy = try WidgetQAStore.load(from: legacyURL)
+        guard decodedLegacy.caseID == "legacy-schema-7", decodedLegacy.snapshot.schemaVersion == 7,
+              decodedLegacy.snapshot.antigravityQuota.value == nil,
+              decodedLegacy.snapshot.antigravityTokens.value == nil else {
+            throw WidgetQAStore.Failure("Frozen schema-7 case failed to round-trip without invented Antigravity readings.")
+        }
         var emptyID = try JSONSerialization.jsonObject(with: valid) as! [String: Any]
         emptyID["caseID"] = " "
         var badSchema = emptyID

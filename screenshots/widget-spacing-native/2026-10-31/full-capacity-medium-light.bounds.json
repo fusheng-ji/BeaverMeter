@@ -1,0 +1,1215 @@
+{
+  "kind" : "BeaverMeterWidgetQA",
+  "limitations" : [
+
+  ],
+  "measurement" : "Actual onscreen CG window and visible AX card\/leaf layout frames; not glyph ink bounds or screenshot pixels.",
+  "observedAt" : "2026-10-31T18:22:09Z",
+  "readOnly" : true,
+  "schemaVersion" : 1,
+  "scope" : "private-widgetkit-qa-bounds",
+  "status" : "passed",
+  "windows" : [
+    {
+      "actualWindow" : {
+        "axFrame" : {
+          "height" : 180,
+          "width" : 360,
+          "x" : 8,
+          "y" : 41
+        },
+        "backingScale" : 2,
+        "cgFrame" : {
+          "height" : 180,
+          "width" : 360,
+          "x" : 8,
+          "y" : 41
+        },
+        "displayID" : 1,
+        "id" : 26459,
+        "isOnscreen" : true,
+        "scaleSource" : "NSScreen.backingScaleFactor",
+        "tolerancePhysicalPixels" : 1,
+        "tolerancePoints" : 0.5
+      },
+      "cases" : [
+        {
+          "cards" : [
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 28,
+                "y" : 61
+              },
+              "chosenDetailLevel" : "withoutSubscription",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.antigravity-group:gemini",
+              "label" : "Antigravity · Gemini; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 36,
+                    "y" : 69
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: withoutSubscription",
+                  "nodeID" : 8,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 11,
+                    "width" : 31,
+                    "x" : 36,
+                    "y" : 99
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 9,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXStaticText",
+                  "value" : "Antigravity · Gemini"
+                },
+                {
+                  "bounds" : {
+                    "height" : 24,
+                    "width" : 45,
+                    "x" : 94,
+                    "y" : 69
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 28,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 10,
+                  "role" : "AXStaticText",
+                  "value" : "62%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 55.5,
+                    "x" : 94,
+                    "y" : 94
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 29,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 11,
+                  "role" : "AXStaticText",
+                  "value" : "5h · ↻ 2h40m"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 33.5,
+                    "x" : 94,
+                    "y" : 105
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 30,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 12,
+                  "role" : "AXStaticText",
+                  "value" : "Wk 83%"
+                }
+              ],
+              "nodeID" : 4,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 8,
+                "vertical" : 8
+              },
+              "safeRect" : {
+                "height" : 51,
+                "width" : 141,
+                "x" : 36,
+                "y" : 69
+              },
+              "statusIconPresent" : false
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 191,
+                "y" : 61
+              },
+              "chosenDetailLevel" : "withoutSubscription",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.antigravity-group:claude-gpt",
+              "label" : "Antigravity · Claude\/GPT; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 199,
+                    "y" : 69
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: withoutSubscription",
+                  "nodeID" : 13,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 11,
+                    "width" : 49.5,
+                    "x" : 199,
+                    "y" : 99
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 14,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXStaticText",
+                  "value" : "Antigravity · Claude\/GPT"
+                },
+                {
+                  "bounds" : {
+                    "height" : 24,
+                    "width" : 45,
+                    "x" : 257,
+                    "y" : 69
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 31,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 15,
+                  "role" : "AXStaticText",
+                  "value" : "47%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 53,
+                    "x" : 257,
+                    "y" : 94
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 32,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 16,
+                  "role" : "AXStaticText",
+                  "value" : "5h · ↻ 1h10m"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 33.5,
+                    "x" : 257,
+                    "y" : 105
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 33,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 17,
+                  "role" : "AXStaticText",
+                  "value" : "Wk 65%"
+                }
+              ],
+              "nodeID" : 5,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 8,
+                "vertical" : 8
+              },
+              "safeRect" : {
+                "height" : 51,
+                "width" : 141,
+                "x" : 199,
+                "y" : 69
+              },
+              "statusIconPresent" : false
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 28,
+                "y" : 134
+              },
+              "chosenDetailLevel" : "withoutSubscription",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.codex-workspace:demo-personal",
+              "label" : "Personal · personal@example.test; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 36,
+                    "y" : 142
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: withoutSubscription",
+                  "nodeID" : 18,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 6,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 11,
+                    "width" : 38.5,
+                    "x" : 36,
+                    "y" : 172
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 19,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 6,
+                  "role" : "AXStaticText",
+                  "value" : "Personal · personal@example.test"
+                },
+                {
+                  "bounds" : {
+                    "height" : 24,
+                    "width" : 45,
+                    "x" : 94,
+                    "y" : 142
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 34,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 20,
+                  "role" : "AXStaticText",
+                  "value" : "60%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 50.5,
+                    "x" : 94,
+                    "y" : 167
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 35,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 21,
+                  "role" : "AXStaticText",
+                  "value" : "Wk · ↻ 4d0h"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 31.5,
+                    "x" : 94,
+                    "y" : 178
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 36,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 22,
+                  "role" : "AXStaticText",
+                  "value" : "5h 80%"
+                }
+              ],
+              "nodeID" : 6,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 8,
+                "vertical" : 8
+              },
+              "safeRect" : {
+                "height" : 51,
+                "width" : 141,
+                "x" : 36,
+                "y" : 142
+              },
+              "statusIconPresent" : false
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 191,
+                "y" : 134
+              },
+              "chosenDetailLevel" : "full",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.service:claude",
+              "label" : "Claude; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 199,
+                    "y" : 142
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: full",
+                  "nodeID" : 23,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 7,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 11,
+                    "width" : 31.5,
+                    "x" : 199,
+                    "y" : 172
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 24,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 7,
+                  "role" : "AXStaticText",
+                  "value" : "Claude"
+                },
+                {
+                  "bounds" : {
+                    "height" : 26,
+                    "width" : 49,
+                    "x" : 257,
+                    "y" : 142
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 37,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 25,
+                  "role" : "AXStaticText",
+                  "value" : "88%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 50.5,
+                    "x" : 257,
+                    "y" : 170
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 38,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 26,
+                  "role" : "AXStaticText",
+                  "value" : "Wk · ↻ 3d5h"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 76.5,
+                    "x" : 257,
+                    "y" : 182
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 39,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 27,
+                  "role" : "AXStaticText",
+                  "value" : "5h 72% · ↻ 2h15m"
+                }
+              ],
+              "nodeID" : 7,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 8,
+                "vertical" : 8
+              },
+              "safeRect" : {
+                "height" : 51,
+                "width" : 141,
+                "x" : 199,
+                "y" : 142
+              },
+              "statusIconPresent" : false
+            }
+          ],
+          "caseID" : "antigravity-full-capacity",
+          "environment" : {
+            "colorScheme" : "light",
+            "family" : "systemMedium",
+            "kind" : "BeaverMeterWidgetQA",
+            "QA caseID" : "antigravity-full-capacity",
+            "widgetRenderingMode" : "fullColor"
+          },
+          "node" : {
+            "bounds" : {
+              "height" : 141,
+              "width" : 321,
+              "x" : 19.5,
+              "y" : 52.5
+            },
+            "depth" : 3,
+            "identifier" : "WidgetQA.case.antigravity-full-capacity",
+            "label" : "QA caseID: antigravity-full-capacity; kind: BeaverMeterWidgetQA; family: systemMedium; colorScheme: light; widgetRenderingMode: fullColor",
+            "nodeID" : 3,
+            "parentNodeID" : 2,
+            "role" : "AXGroup"
+          },
+          "visibleAXTree" : [
+            {
+              "bounds" : {
+                "height" : 141,
+                "width" : 321,
+                "x" : 19.5,
+                "y" : 52.5
+              },
+              "depth" : 3,
+              "identifier" : "WidgetQA.case.antigravity-full-capacity",
+              "label" : "QA caseID: antigravity-full-capacity; kind: BeaverMeterWidgetQA; family: systemMedium; colorScheme: light; widgetRenderingMode: fullColor",
+              "nodeID" : 3,
+              "parentNodeID" : 2,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 28,
+                "y" : 61
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.antigravity-group:gemini",
+              "label" : "Antigravity · Gemini; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "nodeID" : 4,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 191,
+                "y" : 61
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.antigravity-group:claude-gpt",
+              "label" : "Antigravity · Claude\/GPT; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "nodeID" : 5,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 28,
+                "y" : 134
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.codex-workspace:demo-personal",
+              "label" : "Personal · personal@example.test; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "nodeID" : 6,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 67,
+                "width" : 157,
+                "x" : 191,
+                "y" : 134
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.service:claude",
+              "label" : "Claude; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "nodeID" : 7,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 36,
+                "y" : 69
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: withoutSubscription",
+              "nodeID" : 8,
+              "parentNodeID" : 4,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 11,
+                "width" : 31,
+                "x" : 36,
+                "y" : 99
+              },
+              "depth" : 5,
+              "nodeID" : 9,
+              "parentNodeID" : 4,
+              "role" : "AXStaticText",
+              "value" : "Antigravity · Gemini"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 94,
+                "y" : 69
+              },
+              "depth" : 5,
+              "label" : "62%",
+              "nodeID" : 10,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 55.5,
+                "x" : 94,
+                "y" : 94
+              },
+              "depth" : 5,
+              "label" : "5h, Resets in 2h 40m",
+              "nodeID" : 11,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 33.5,
+                "x" : 94,
+                "y" : 105
+              },
+              "depth" : 5,
+              "label" : "Weekly, 83% remaining, Resets in 4d 8h",
+              "nodeID" : 12,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 199,
+                "y" : 69
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: withoutSubscription",
+              "nodeID" : 13,
+              "parentNodeID" : 5,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 11,
+                "width" : 49.5,
+                "x" : 199,
+                "y" : 99
+              },
+              "depth" : 5,
+              "nodeID" : 14,
+              "parentNodeID" : 5,
+              "role" : "AXStaticText",
+              "value" : "Antigravity · Claude\/GPT"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 257,
+                "y" : 69
+              },
+              "depth" : 5,
+              "label" : "47%",
+              "nodeID" : 15,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 53,
+                "x" : 257,
+                "y" : 94
+              },
+              "depth" : 5,
+              "label" : "5h, Resets in 1h 10m",
+              "nodeID" : 16,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 33.5,
+                "x" : 257,
+                "y" : 105
+              },
+              "depth" : 5,
+              "label" : "Weekly, 65% remaining, Resets in 4d 8h",
+              "nodeID" : 17,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 36,
+                "y" : 142
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: withoutSubscription",
+              "nodeID" : 18,
+              "parentNodeID" : 6,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 11,
+                "width" : 38.5,
+                "x" : 36,
+                "y" : 172
+              },
+              "depth" : 5,
+              "nodeID" : 19,
+              "parentNodeID" : 6,
+              "role" : "AXStaticText",
+              "value" : "Personal · personal@example.test"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 94,
+                "y" : 142
+              },
+              "depth" : 5,
+              "label" : "60%",
+              "nodeID" : 20,
+              "parentNodeID" : 6,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 50.5,
+                "x" : 94,
+                "y" : 167
+              },
+              "depth" : 5,
+              "label" : "Weekly, Resets in 4d 0h",
+              "nodeID" : 21,
+              "parentNodeID" : 6,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 31.5,
+                "x" : 94,
+                "y" : 178
+              },
+              "depth" : 5,
+              "label" : "5-hour, 80% remaining, Resets in 3h 0m",
+              "nodeID" : 22,
+              "parentNodeID" : 6,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 199,
+                "y" : 142
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: full",
+              "nodeID" : 23,
+              "parentNodeID" : 7,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 11,
+                "width" : 31.5,
+                "x" : 199,
+                "y" : 172
+              },
+              "depth" : 5,
+              "nodeID" : 24,
+              "parentNodeID" : 7,
+              "role" : "AXStaticText",
+              "value" : "Claude"
+            },
+            {
+              "bounds" : {
+                "height" : 26,
+                "width" : 49,
+                "x" : 257,
+                "y" : 142
+              },
+              "depth" : 5,
+              "label" : "88%",
+              "nodeID" : 25,
+              "parentNodeID" : 7,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 50.5,
+                "x" : 257,
+                "y" : 170
+              },
+              "depth" : 5,
+              "label" : "Weekly, Resets in 3d 5h",
+              "nodeID" : 26,
+              "parentNodeID" : 7,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 76.5,
+                "x" : 257,
+                "y" : 182
+              },
+              "depth" : 5,
+              "label" : "5-hour, 72% remaining, Resets in 2h 15m",
+              "nodeID" : 27,
+              "parentNodeID" : 7,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 94,
+                "y" : 69
+              },
+              "depth" : 6,
+              "nodeID" : 28,
+              "parentNodeID" : 10,
+              "role" : "AXStaticText",
+              "value" : "62%"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 55.5,
+                "x" : 94,
+                "y" : 94
+              },
+              "depth" : 6,
+              "nodeID" : 29,
+              "parentNodeID" : 11,
+              "role" : "AXStaticText",
+              "value" : "5h · ↻ 2h40m"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 33.5,
+                "x" : 94,
+                "y" : 105
+              },
+              "depth" : 6,
+              "nodeID" : 30,
+              "parentNodeID" : 12,
+              "role" : "AXStaticText",
+              "value" : "Wk 83%"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 257,
+                "y" : 69
+              },
+              "depth" : 6,
+              "nodeID" : 31,
+              "parentNodeID" : 15,
+              "role" : "AXStaticText",
+              "value" : "47%"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 53,
+                "x" : 257,
+                "y" : 94
+              },
+              "depth" : 6,
+              "nodeID" : 32,
+              "parentNodeID" : 16,
+              "role" : "AXStaticText",
+              "value" : "5h · ↻ 1h10m"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 33.5,
+                "x" : 257,
+                "y" : 105
+              },
+              "depth" : 6,
+              "nodeID" : 33,
+              "parentNodeID" : 17,
+              "role" : "AXStaticText",
+              "value" : "Wk 65%"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 94,
+                "y" : 142
+              },
+              "depth" : 6,
+              "nodeID" : 34,
+              "parentNodeID" : 20,
+              "role" : "AXStaticText",
+              "value" : "60%"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 50.5,
+                "x" : 94,
+                "y" : 167
+              },
+              "depth" : 6,
+              "nodeID" : 35,
+              "parentNodeID" : 21,
+              "role" : "AXStaticText",
+              "value" : "Wk · ↻ 4d0h"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 31.5,
+                "x" : 94,
+                "y" : 178
+              },
+              "depth" : 6,
+              "nodeID" : 36,
+              "parentNodeID" : 22,
+              "role" : "AXStaticText",
+              "value" : "5h 80%"
+            },
+            {
+              "bounds" : {
+                "height" : 26,
+                "width" : 49,
+                "x" : 257,
+                "y" : 142
+              },
+              "depth" : 6,
+              "nodeID" : 37,
+              "parentNodeID" : 25,
+              "role" : "AXStaticText",
+              "value" : "88%"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 50.5,
+                "x" : 257,
+                "y" : 170
+              },
+              "depth" : 6,
+              "nodeID" : 38,
+              "parentNodeID" : 26,
+              "role" : "AXStaticText",
+              "value" : "Wk · ↻ 3d5h"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 76.5,
+                "x" : 257,
+                "y" : 182
+              },
+              "depth" : 6,
+              "nodeID" : 39,
+              "parentNodeID" : 27,
+              "role" : "AXStaticText",
+              "value" : "5h 72% · ↻ 2h15m"
+            }
+          ]
+        }
+      ],
+      "pid" : 58303,
+      "status" : "passed",
+      "title" : "BeaverMeter QA",
+      "violations" : [
+
+      ]
+    }
+  ]
+}

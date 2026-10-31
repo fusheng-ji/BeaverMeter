@@ -33,22 +33,9 @@ struct WidgetContentPlan {
         return hasSubscription && layout == .compact ? min(base, 20) : base
     }
     var secondaryValueSize: CGFloat { layout == .dashboard ? 26 : max(12, (valueSize * 0.7).rounded()) }
-    var horizontalPadding: CGFloat {
-        if layout == .dashboard { return 12 }
-        if size == .small { return providerCount == 1 ? 10 : 8 }
-        if layout == .wideRow { return 12 }
-        if providerCount >= 5 { return 6 }
-        return providerCount == 1 ? 16 : size == .medium && providerCount == 4 ? 8 : 10
-    }
-    var verticalPadding: CGFloat {
-        if layout == .dashboard { return 12 }
-        if layout == .compact { return 6 }
-        if size == .small && layout == .hero { return 6 }
-        if layout == .column { return 8 }
-        if layout == .tile && providerCount >= 4 { return 4 }
-        if layout == .compact || providerCount >= 5 { return 4 }
-        return layout == .wideRow ? 8 : 12
-    }
+    private var spacingPolicy: WidgetSpacingPolicy { WidgetSpacingPolicy(size: size, cardCount: providerCount) }
+    var horizontalPadding: CGFloat { spacingPolicy.horizontalPadding }
+    var verticalPadding: CGFloat { spacingPolicy.verticalPadding }
     var spacing: CGFloat {
         if hasSubscription && layout == .compact { return 1 }
         if size == .small && layout == .hero { return 2 }
@@ -76,17 +63,23 @@ struct WidgetContentPlan {
     }
     /// Reserve name and plan lines so identity and quota baselines stay aligned.
     var identityHeaderHeight: CGFloat {
-        layout == .dashboard ? dashboardQuotaHeight : logoSize + (titleSize + subscriptionSize) * 1.25 + 4
+        layout == .dashboard ? dashboardQuotaHeight : identityHeaderHeight(showsSubscription: true)
+    }
+    /// Removing a subscription line also removes its reserved height.
+    func identityHeaderHeight(showsSubscription: Bool) -> CGFloat {
+        logoSize + (titleSize + (showsSubscription ? subscriptionSize : 0)) * 1.25 + 4
     }
     var cornerRadius: CGFloat { layout == .compact || layout == .wideRow ? 13 : 18 }
     var contentWidth: CGFloat { max(0, cardSize.width - horizontalPadding * 2) }
+    var contentHeight: CGFloat { max(0, cardSize.height - verticalPadding * 2) }
+    var safeContentSize: CGSize { CGSize(width: contentWidth, height: contentHeight) }
     var columnSpacing: CGFloat { min(8, contentWidth / 2) }
     var identityColumnWidth: CGFloat { max(0, contentWidth - columnSpacing * 2) * 0.28 }
     var metricColumnWidth: CGFloat { max(0, contentWidth - columnSpacing * 2 - identityColumnWidth) / 2 }
     var mergedMetricWidth: CGFloat { metricColumnWidth * 2 + columnSpacing }
     var sideColumnSpacing: CGFloat { min(6, contentWidth / 2) }
     var sideIdentityColumnWidth: CGFloat {
-        min(max(0, contentWidth - sideColumnSpacing), min(84, max(70, contentWidth * 0.34)))
+        min(max(0, contentWidth - sideColumnSpacing), min(84, max(52, contentWidth * 0.34)))
     }
     var sideMetricColumnWidth: CGFloat { max(0, contentWidth - sideIdentityColumnWidth - sideColumnSpacing) }
     var dashboardIdentityWidth: CGFloat { min(84, contentWidth * 0.28) }
@@ -100,6 +93,6 @@ struct WidgetContentPlan {
         max(0, cardSize.height - verticalPadding * 2 - dashboardFooterHeight - dashboardSectionSpacing)
     }
     var showsPrimaryReset: Bool { true }
-    var windowLimit: Int { provider == .codex || provider == .claude ? 1 : 0 }
+    var windowLimit: Int { provider == .codex || provider == .claude || provider == .antigravity ? 1 : 0 }
     var showsWindowResets: Bool { size != .small }
 }
