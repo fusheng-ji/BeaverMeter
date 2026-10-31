@@ -10,8 +10,8 @@ now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'
 empty = dict(status='unavailable', source='none', lastAttemptAt=now, message='fixture')
 seed = {key: copy.deepcopy(empty) for key in (
     'codexTokens', 'cursorCosts', 'cursorQuota', 'codexQuota', 'claudeTokens',
-    'deepseekUsage', 'codexAccounts', 'codexHistory', 'claudeHistory')}
-seed.update(schemaVersion=7, generatedAt=now)
+    'deepseekUsage', 'codexAccounts', 'codexHistory', 'claudeHistory', 'antigravityQuota', 'antigravityTokens')}
+seed.update(schemaVersion=8, generatedAt=now)
 seed['claudeQuota'] = dict(status='ready', source='accountAPI', measuredAt=now,
     lastAttemptAt=now, value=dict(label='Claude Week', remainingPercent=42,
     resetAt='2099-01-05T00:00:00Z', windowSeconds=604800, detail='42% left'))

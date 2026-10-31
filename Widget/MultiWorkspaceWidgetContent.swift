@@ -5,7 +5,9 @@ struct WidgetCompositionContent: View {
     let composition: WidgetComposition
     let size: ProviderWidgetSize
     var activityItems: [WidgetActivityItem] = []
-    private var cardSpacing: CGFloat { size == .small ? 3 : size == .medium ? 6 : 8 }
+    private var cardSpacing: CGFloat {
+        WidgetSpacingPolicy(size: size, cardCount: composition.items.count).cardSpacing
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -23,6 +25,7 @@ struct WidgetCompositionContent: View {
                                                  fullWorkspaceName: item.fullWorkspaceName,
                                                  activity: activityItems.first(where: { $0.moduleID == item.id }))
                                 .frame(width: width, height: height)
+                                .modifier(WidgetCardQAIdentity(moduleID: item.id))
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)

@@ -2,7 +2,7 @@
 
 ## Service marks
 
-OpenAI's Blossom, Claude's Spark, Cursor's cube and DeepSeek's whale are owned
+OpenAI's Blossom, Claude's Spark, Cursor's cube, DeepSeek's whale and Google's Antigravity mark are owned
 by their respective companies. They identify services monitored by BeaverMeter
 and do not imply endorsement. They are separate from BeaverMeter's own branding
 and are not licensed under this repository's software license. Primary sources

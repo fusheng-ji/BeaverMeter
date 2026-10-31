@@ -43,8 +43,7 @@ struct WidgetActivitySummary: View {
         }
         .lineLimit(1)
         .monospacedDigit()
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(item.accessibilityText)
+        .modifier(WidgetMetricAccessibility(label: item.accessibilityText))
         .help(item.accessibilityText)
     }
 
@@ -124,8 +123,7 @@ struct WidgetActivitySummary: View {
         }
         .lineLimit(1)
         .monospacedDigit()
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(item.accessibilityText)
+        .modifier(WidgetMetricAccessibility(label: item.accessibilityText))
         .help(item.accessibilityText)
     }
 

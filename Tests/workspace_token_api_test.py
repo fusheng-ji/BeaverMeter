@@ -49,7 +49,7 @@ def write_profile(directory: Path, identity: str, count: int, date: str) -> None
 
 
 def check_globals(snapshot: dict, today: int, history: int, label: str, secrets: list[str]) -> None:
-    require(snapshot.get("schemaVersion") == 7, label + ": snapshot schema changed")
+    require(snapshot.get("schemaVersion") == 8, label + ": snapshot schema changed")
     require(snapshot.get("codexTokens", {}).get("value", {}).get("totalTokens") == today,
             label + ": global current-day counters changed incorrectly")
     require(snapshot.get("codexHistory", {}).get("value", {}).get("totals", {}).get("totalTokens") == history,
@@ -124,6 +124,8 @@ def integration(executable: Path) -> None:
             "CODEX_HOME": str(home_a), "CODEX_USAGE_FIXTURE": str(quota), "CODEX_RESET_CARDS_FIXTURE": str(cards),
             "CODEX_LEGACY_TOKEN_FIXTURE": str(legacy), "CODEX_TOKEN_CACHE_ROOT": str(root / "cache"),
             "CODEX_WORKSPACE_TOKENS_FIXTURE": str(profiles),
+            "ANTIGRAVITY_QUOTA_FIXTURE": str(Path(__file__).resolve().parent / "Fixtures/antigravity-quota.json"),
+            "ANTIGRAVITY_TOKEN_FIXTURE": str(Path(__file__).resolve().parent / "Fixtures/antigravity-tokens.json"),
         }
         require(not any(key.startswith("CODEX_REMOTE") for key in env), "setup: remote source must be disabled")
         # Both local sessions intentionally share the ambient tree. Its global

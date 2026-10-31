@@ -60,7 +60,7 @@ final class WidgetCompositionTests: XCTestCase {
     func testDefaultSelectionKeepsOtherServicesBeforeExtraWorkspaces() {
         let accounts = (1...20).map { account("\($0)") }
         let expected = ["codex-workspace:1", "service:claude", "service:cursor", "service:deepseek",
-                        "codex-workspace:2", "codex-workspace:3"]
+                        "antigravity-group:gemini", "codex-workspace:2"]
         for size in ProviderWidgetSize.allCases {
             let model = composition(accounts, size: size)
             XCTAssertEqual(model.items.map(\.id), Array(expected.prefix(WidgetComposition.capacity(for: size))))

@@ -22,6 +22,7 @@ xcodebuild -project BeaverMeter.xcodeproj -scheme BeaverMeter \
 zsh Tests/navigation_bundle_test.sh "$derived_data/Build/Products/Debug/BeaverMeter.app"
 zsh Tests/collector_test.sh "$derived_data/Build/Products/Debug/BeaverMeterCollector"
 zsh Tests/claude_auth_test.sh "$derived_data/Build/Products/Debug/BeaverMeterCollector"
+zsh Tests/antigravity_test.sh "$derived_data/Build/Products/Debug/BeaverMeterCollector"
 python3 -B Tests/runtime_lock_test.py --collector "$derived_data/Build/Products/Debug/BeaverMeterCollector"
 python3 -B Tests/workspace_token_test.py --collector "$derived_data/Build/Products/Debug/BeaverMeterCollector"
 python3 -B Tests/workspace_token_api_test.py --collector "$derived_data/Build/Products/Debug/BeaverMeterCollector"

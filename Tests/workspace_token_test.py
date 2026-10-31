@@ -90,7 +90,7 @@ def check_unknown_usage(snapshot: dict, global_total: int, label: str) -> dict[s
                     label + ": creator-only account activity is not explicitly unknown")
             require(reading.get("value") is None,
                     label + ": thread creator was incorrectly treated as request-account evidence")
-    require(snapshot.get("schemaVersion") == 7, label + ": snapshot schema changed")
+    require(snapshot.get("schemaVersion") == 8, label + ": snapshot schema changed")
     require(snapshot.get("codexTokens", {}).get("value", {}).get("totalTokens") == global_total,
             label + ": provider summary was not preserved")
     require(snapshot.get("codexHistory", {}).get("value", {}).get("totals", {}).get("totalTokens") == global_total,
@@ -197,6 +197,8 @@ def integration(executable: Path) -> None:
             "XDG_CACHE_HOME": str(root / "cache"), "TZ": "UTC", "LANG": "en_US.UTF-8",
             "CODEX_HOME": str(home), "CODEX_USAGE_FIXTURE": str(quota), "CODEX_RESET_CARDS_FIXTURE": str(cards),
             "CODEX_LEGACY_TOKEN_FIXTURE": str(legacy), "CODEX_TOKEN_CACHE_ROOT": str(root / "cache"),
+            "ANTIGRAVITY_QUOTA_FIXTURE": str(Path(__file__).resolve().parent / "Fixtures/antigravity-quota.json"),
+            "ANTIGRAVITY_TOKEN_FIXTURE": str(Path(__file__).resolve().parent / "Fixtures/antigravity-tokens.json"),
         }
         require(not any(key.startswith("CODEX_REMOTE") for key in env), "setup: remote source must be disabled")
         session_a, session_b = "synthetic-session-a", "synthetic-session-b"

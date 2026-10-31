@@ -176,8 +176,16 @@ struct QuotaLabel: View {
 
     private var presentation: UsageStatusPresentation { UsageStatusPresentation(value, relativeTo: referenceDate) }
 
+    private var title: String {
+        guard let quota = value.value else { return provider.displayName }
+        if provider == .claude { return quota.claudeWidgetQuota.label }
+        if provider == .antigravity { return "Antigravity · \(quota.label)" }
+        return quota.label
+    }
+
     private var detail: String {
         guard let quota = value.value else { return UsageFormatting.status(value.status) }
+        if provider == .claude { return quota.claudeWidgetQuota.detail }
         guard provider == .cursor else { return quota.detail }
         guard let remaining = quota.remaining, remaining.isFinite else { return "—" }
         return "\(UsageFormatting.usdCode(remaining)) left"
@@ -192,7 +200,8 @@ struct QuotaLabel: View {
                     .font(.caption2)
             }
             VStack(alignment: .leading, spacing: 1) {
-                Text(value.value?.label ?? "Quota").font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                Text(title)
+                    .font(.caption2).foregroundStyle(.secondary).lineLimit(1)
                 Text(detail)
                     .font(.caption.weight(.semibold))
                     .lineLimit(1)
@@ -201,7 +210,7 @@ struct QuotaLabel: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .help([provider == .cursor ? value.value?.detail : nil,
-               value.value.flatMap { UsageFormatting.reset($0.resetAt) }, presentation.detail]
+               value.value.flatMap { UsageFormatting.reset(provider == .claude ? $0.claudeWidgetQuota.resetAt : $0.resetAt) }, presentation.detail]
             .compactMap { $0 }.joined(separator: " · "))
         .accessibilityElement(children: .combine)
     }
@@ -340,12 +349,16 @@ struct QuotaWindowRow: View {
                 .font(.caption.weight(.semibold))
                 .monospacedDigit()
                 .frame(width: 58, alignment: .trailing)
-            Text(UsageFormatting.resetCountdown(window.resetAt, relativeTo: referenceDate))
+            Text(window.resetAt.map { UsageFormatting.resetCountdown($0, relativeTo: referenceDate) }
+                 ?? window.resetDescription ?? "Reset unavailable")
                 .font(.caption2)
                 .foregroundStyle(.secondary)
                 .frame(width: 104, alignment: .trailing)
                 .lineLimit(1)
         }
         .accessibilityElement(children: .combine)
+        .help([window.windowTitle, "\(window.percentLeftText) left",
+               window.resetAt.map { UsageFormatting.resetCountdown($0, relativeTo: referenceDate) }
+                ?? window.resetDescription ?? "Reset unavailable"].joined(separator: " · "))
     }
 }

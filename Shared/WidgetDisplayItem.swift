@@ -27,6 +27,14 @@ struct WidgetComposition {
         // Capacity applies to slot positions. Empty/duplicate/hidden slots never pull later slots forward.
         let candidates = selection.prefix(Self.capacity(for: size)).compactMap { id -> WidgetDisplayItem? in
             guard id != WidgetModuleCatalog.noneID, seen.insert(id).inserted else { return nil }
+            if let group = AntigravityQuotaGroupID.allCases.first(where: { $0.moduleID == id }) {
+                guard visible.contains(.antigravity) else { return nil }
+                return WidgetDisplayItem(id: id, provider: .antigravity,
+                    presentation: WidgetProviderPresentation(antigravityGroup: group,
+                        quota: snapshot.antigravityQuota, referenceDate: referenceDate),
+                    workspaceName: group.title, fullWorkspaceName: "Antigravity · \(group.title)",
+                    isCodexWorkspace: false)
+            }
             if id.hasPrefix(WidgetModuleCatalog.workspacePrefix) {
                 let accountID = String(id.dropFirst(WidgetModuleCatalog.workspacePrefix.count))
                 guard visible.contains(.codex), !accountID.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }

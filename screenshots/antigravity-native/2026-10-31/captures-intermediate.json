@@ -1,0 +1,422 @@
+[
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "small",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemSmall; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:20:56.437295+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 180,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-small-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-small-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-small-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "medium",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemMedium; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:20:59.022073+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-medium-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-medium-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-medium-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:01.582648+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "extra-large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemExtraLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:04.155579+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 720,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-extra-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-extra-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-extra-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-full-capacity",
+    "family": "small",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-full-capacity; family: systemSmall; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:07.507812+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 180,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-small-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-small-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/full-capacity-small-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-full-capacity",
+    "family": "medium",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-full-capacity; family: systemMedium; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:10.094528+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-medium-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-medium-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/full-capacity-medium-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-full-capacity",
+    "family": "large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-full-capacity; family: systemLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:13.020128+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/full-capacity-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-full-capacity",
+    "family": "extra-large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-full-capacity; family: systemExtraLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:15.677517+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 720,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-extra-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-extra-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/full-capacity-extra-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-unknown-and-zero",
+    "family": "small",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-unknown-and-zero; family: systemSmall; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:19.495484+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 180,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-small-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-small-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-small-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-unknown-and-zero",
+    "family": "medium",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-unknown-and-zero; family: systemMedium; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:22.086041+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-medium-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-medium-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-medium-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-unknown-and-zero",
+    "family": "large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-unknown-and-zero; family: systemLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:24.615505+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-unknown-and-zero",
+    "family": "extra-large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-unknown-and-zero; family: systemExtraLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:27.149944+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 720,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-extra-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-extra-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/unknown-and-zero-extra-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-reset-description",
+    "family": "small",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-reset-description; family: systemSmall; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:30.413710+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 180,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/reset-description-small-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/reset-description-small-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/reset-description-small-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-reset-description",
+    "family": "medium",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-reset-description; family: systemMedium; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:32.948577+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/reset-description-medium-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/reset-description-medium-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/reset-description-medium-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-reset-description",
+    "family": "large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-reset-description; family: systemLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:35.501547+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/reset-description-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/reset-description-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/reset-description-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-reset-description",
+    "family": "extra-large",
+    "appearance": "light",
+    "actualEnvironment": "QA caseID: antigravity-reset-description; family: systemExtraLarge; colorScheme: light; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:21:38.104810+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 720,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/reset-description-extra-large-light-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/reset-description-extra-large-light-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/reset-description-extra-large-light.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "small",
+    "appearance": "dark",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemSmall; colorScheme: dark; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:22:07.677640+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 180,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-small-dark-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-small-dark-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-small-dark.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "medium",
+    "appearance": "dark",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:22:10.532175+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-medium-dark-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-medium-dark-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-medium-dark.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "large",
+    "appearance": "dark",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemLarge; colorScheme: dark; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:22:13.140978+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 360,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-dark-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-dark-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-large-dark.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "extra-large",
+    "appearance": "dark",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemExtraLarge; colorScheme: dark; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:22:15.780247+01:00",
+    "bounds": {
+      "height": 360,
+      "width": 720,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-extra-large-dark-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-extra-large-dark-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-extra-large-dark.ax.json",
+    "status": "captured-awaiting-visual-review"
+  },
+  {
+    "caseID": "antigravity-full-capacity",
+    "family": "small",
+    "appearance": "dark",
+    "actualEnvironment": "QA caseID: antigravity-full-capacity; family: systemSmall; colorScheme: dark; widgetRenderingMode: fullColor",
+    "desktopFocused": true,
+    "frontmostBundleID": "com.apple.finder",
+    "observedAt": "2026-10-31T17:22:19.378271+01:00",
+    "bounds": {
+      "height": 180,
+      "width": 180,
+      "x": 424,
+      "y": 401
+    },
+    "windowID": 25245,
+    "screenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-small-dark-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/full-capacity-small-dark-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/full-capacity-small-dark.ax.json",
+    "status": "captured-awaiting-visual-review"
+  }
+]

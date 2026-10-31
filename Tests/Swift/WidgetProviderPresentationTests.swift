@@ -179,8 +179,8 @@ final class WidgetProviderPresentationTests: XCTestCase {
         let claudeQuota = quota(60, label: "Claude 5h", windows: [weekly], planName: " \nMax 20x\t")
         let claude = present(snapshot(claudeQuota: reading(claudeQuota)), .claude)
         XCTAssertEqual(claude.period, "Weekly")
-        XCTAssertEqual(claude.planName, "Max 20x")
-        XCTAssertTrue(claude.valueDescription.contains("Max 20x"))
+        XCTAssertEqual(claude.planName, "Claude Ultra")
+        XCTAssertTrue(claude.valueDescription.contains("Claude Ultra"))
 
         let cursorQuota = CompactQuota(planName: " Ultra ", label: "Cursor Monthly", used: 140, limit: 200,
                                        remaining: 60, remainingPercent: 30, resetAt: now.addingTimeInterval(3_600),
@@ -320,6 +320,8 @@ final class WidgetProviderPresentationTests: XCTestCase {
         let source = snapshot(cursorQuota: reading(quota))
         let model = present(source, .cursor)
         XCTAssertEqual(model.value, "$80.00")
+        XCTAssertEqual(model.moneyCurrencyCode, "USD")
+        XCTAssertEqual(model.compactMoneyAmount, "80")
         XCTAssertEqual(model.period, "Monthly")
         XCTAssertEqual(model.reset, "Resets in 1d 0h")
         XCTAssertTrue(model.windows.isEmpty)
@@ -335,12 +337,16 @@ final class WidgetProviderPresentationTests: XCTestCase {
                                 remainingPercent: nil, resetAt: nil, windowSeconds: nil, detail: "")
         let model = present(snapshot(cursorQuota: reading(zero)), .cursor)
         XCTAssertEqual(model.value, "$0.00")
+        XCTAssertEqual(model.moneyCurrencyCode, "USD")
+        XCTAssertEqual(model.compactMoneyAmount, "0.00")
         XCTAssertNil(model.reset)
         let unknown = CompactQuota(label: "Cursor", used: 0, limit: nil, remaining: .nan,
                                    remainingPercent: nil, resetAt: nil, windowSeconds: nil, detail: "")
         let missing = present(snapshot(cursorQuota: reading(unknown)), .cursor)
         XCTAssertEqual(missing.value, "—")
         XCTAssertEqual(missing.compactValue, "—")
+        XCTAssertNil(missing.moneyCurrencyCode)
+        XCTAssertNil(missing.compactMoneyAmount)
     }
 
     func testDeepSeekOnlyUsesFirstValidCurrencyBalanceWithoutSummingOrActivity() {
@@ -355,6 +361,8 @@ final class WidgetProviderPresentationTests: XCTestCase {
         let model = present(snapshot(deepseek: reading(usage)), .deepseek)
         XCTAssertEqual(model.value, "$12,345.00")
         XCTAssertEqual(model.compactValue, "$12.3K")
+        XCTAssertEqual(model.moneyCurrencyCode, "USD")
+        XCTAssertEqual(model.compactMoneyAmount, "12.3K")
         XCTAssertEqual(model.period, "Balance")
         XCTAssertEqual(model.status.severity, .normal)
         XCTAssertNil(model.reset)
@@ -385,7 +393,64 @@ final class WidgetProviderPresentationTests: XCTestCase {
         let model = present(snapshot(deepseek: reading(usage)), .deepseek)
         XCTAssertEqual(model.value, "$690.20")
         XCTAssertEqual(model.compactValue, "$690")
+        XCTAssertEqual(model.moneyCurrencyCode, "USD")
+        XCTAssertEqual(model.compactMoneyAmount, "690")
         XCTAssertTrue(model.valueDescription.contains("$690.20"))
+    }
+
+    func testSeparatedMoneyRetainsCurrencyAndCompactPrecisionAcrossSignedBalances() {
+        let cases: [(String, Double, String)] = [
+            ("USD", 0, "0.00"), ("CNY", 0.123456, "0.1235"),
+            ("USD", -0.123456, "-0.1235"), ("USD", 0.00012, "0.0001"),
+            ("USD", 12_345, "12.3K"), ("CNY", -12_345, "-12.3K"),
+            ("CNY", 1_234_567, "1.2M"), ("CNY", 9_876_543_210, "9.9B")
+        ]
+        for (currency, amount, expected) in cases {
+            let balance = DeepSeekMoney(currency: currency, amount: amount)
+            let usage = DeepSeekUsageTotals(monthTokens: nil, monthRequests: nil, monthCosts: [],
+                balances: [balance], grantedBalances: [], totalCosts: [])
+            let model = present(snapshot(deepseek: reading(usage)), .deepseek)
+            XCTAssertEqual(model.moneyCurrencyCode, currency)
+            XCTAssertEqual(model.compactMoneyAmount, expected)
+            XCTAssertEqual(model.value, UsageFormatting.money(balance))
+            XCTAssertTrue(model.valueDescription.contains(model.value))
+            XCTAssertFalse(model.compactMoneyAmount?.contains(currency) == true)
+        }
+    }
+
+    func testSeparatedCursorMoneyUsesOnlyItsFiniteRemainingAmount() {
+        for (remaining, expected) in [(12_345.0, "12.3K"), (-12.5, "-12.5"), (0.12567, "0.1257")] {
+            let quota = CompactQuota(label: "Cursor Monthly", used: 999_999, limit: 1_000_000,
+                remaining: remaining, remainingPercent: 99, resetAt: nil, windowSeconds: nil,
+                detail: "This display string is not a money source")
+            let model = present(snapshot(cursorQuota: reading(quota)), .cursor)
+            XCTAssertEqual(model.moneyCurrencyCode, "USD")
+            XCTAssertEqual(model.compactMoneyAmount, expected)
+            XCTAssertEqual(model.value, UsageFormatting.money(DeepSeekMoney(currency: "USD", amount: remaining)))
+        }
+        for remaining in [nil, Double.nan, Double.infinity, -Double.infinity] as [Double?] {
+            let quota = CompactQuota(label: "Cursor Monthly", used: 20, limit: 100, remaining: remaining,
+                remainingPercent: 80, resetAt: nil, windowSeconds: nil, detail: "$80 left")
+            let model = present(snapshot(cursorQuota: reading(quota)), .cursor)
+            XCTAssertEqual(model.value, "—")
+            XCTAssertNil(model.moneyCurrencyCode)
+            XCTAssertNil(model.compactMoneyAmount)
+        }
+    }
+
+    func testUnknownAndNonMoneyPresentationsHaveNoSeparatedMoneyParts() {
+        let invalid = DeepSeekUsageTotals(monthTokens: nil, monthRequests: nil, monthCosts: [],
+            balances: [DeepSeekMoney(currency: " ", amount: 123), DeepSeekMoney(currency: "USD", amount: .nan),
+                       DeepSeekMoney(currency: "CNY", amount: .infinity)], grantedBalances: [], totalCosts: [])
+        let unknown = present(snapshot(deepseek: reading(invalid)), .deepseek)
+        XCTAssertEqual(unknown.value, "—")
+        XCTAssertNil(unknown.moneyCurrencyCode)
+        XCTAssertNil(unknown.compactMoneyAmount)
+        for provider in [MeterProvider.codex, .claude, .antigravity] {
+            let model = present(snapshot(), provider)
+            XCTAssertNil(model.moneyCurrencyCode)
+            XCTAssertNil(model.compactMoneyAmount)
+        }
     }
 
     func testHiddenResetInventoryAndExpiryRemainInTheirSourceSnapshots() {

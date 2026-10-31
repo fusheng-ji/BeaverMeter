@@ -93,10 +93,12 @@ struct BeaverMeterCollector {
                 lock = try SnapshotWriter.lock(for: outputURL)
             }
             defer { lock.unlock() }
-            if localTokensOnly {
-                try await refreshLocalTokens(outputURL: outputURL)
-            } else {
-                try await refreshAll(outputURL: outputURL)
+            try await CollectorRefreshLifecycle.run {
+                if localTokensOnly {
+                    try await refreshLocalTokens(outputURL: outputURL)
+                } else {
+                    try await refreshAll(outputURL: outputURL)
+                }
             }
         } catch {
             fail("Failed to refresh usage: \(error.localizedDescription)", status: 1)
@@ -125,7 +127,8 @@ struct BeaverMeterCollector {
             codexQuota: previous.codexQuota, claudeTokens: previous.claudeTokens, claudeQuota: previous.claudeQuota,
             deepseekUsage: previous.deepseekUsage, codexAccounts: previous.codexAccounts,
             codexHistory: previous.codexHistory, claudeHistory: previous.claudeHistory,
-            claudeResetCards: previous.claudeResetCards)
+            claudeResetCards: previous.claudeResetCards,
+            antigravityQuota: previous.antigravityQuota, antigravityTokens: previous.antigravityTokens)
         try SnapshotWriter.write(snapshot, to: outputURL)
         guard reading.costs.status == .ready, reading.quota.status == .ready,
               reading.costs.source == .cursorDashboard, reading.quota.source == .cursorDashboard,
@@ -156,7 +159,8 @@ struct BeaverMeterCollector {
             codexQuota: previous.codexQuota, claudeTokens: previous.claudeTokens, claudeQuota: reading.quota,
             deepseekUsage: previous.deepseekUsage, codexAccounts: previous.codexAccounts,
             codexHistory: previous.codexHistory, claudeHistory: previous.claudeHistory,
-            claudeResetCards: reading.resetCards)
+            claudeResetCards: reading.resetCards,
+            antigravityQuota: previous.antigravityQuota, antigravityTokens: previous.antigravityTokens)
         try SnapshotWriter.write(snapshot, to: outputURL)
         guard reading.quota.status == .ready, reading.quota.source != .cache,
               reading.quota.value != nil, reading.quota.measuredAt == now else {
@@ -167,6 +171,7 @@ struct BeaverMeterCollector {
     }
 
     private static func refreshAll(outputURL: URL) async throws {
+        try Task.checkCancellation()
         let previous = SnapshotWriter.loadPrevious(from: outputURL)
         let now = Date()
         let scanCacheURL = codexScanCacheURL(for: outputURL)
@@ -180,6 +185,7 @@ struct BeaverMeterCollector {
             ? await TokenHistoryCollector.codex(previous: previous.codexHistory, configuration: configuration,
                                                 now: now, directory: directory, environment: environment)
             : TokenHistoryCollector.CodexReading(history: previous.codexHistory, remoteToday: nil)
+        try Task.checkCancellation()
         async let claudeHistory = settings.collects(.claude)
             ? await TokenHistoryCollector.claude(previous: previous.claudeHistory, now: now,
                                                  directory: directory.appendingPathComponent("claude-history-cost"),
@@ -212,8 +218,16 @@ struct BeaverMeterCollector {
         async let deepseekUsage = settings.collects(.deepseek)
             ? await DeepSeekUsageCollector.collect(previous: previous.deepseekUsage, now: now)
             : previous.deepseekUsage
+        async let antigravityQuota = settings.collects(.antigravity)
+            ? await AntigravityQuotaCollector.collect(previous: previous.antigravityQuota, now: now, environment: environment)
+            : previous.antigravityQuota
+        async let antigravityTokens = settings.collects(.antigravity)
+            ? await AntigravityTokenCollector.collect(previous: previous.antigravityTokens, now: now,
+                cacheRoot: directory.appendingPathComponent("antigravity-token-cost"), environment: environment)
+            : previous.antigravityTokens
 
         let collectedCodexAccounts = await codexAccounts
+        try Task.checkCancellation()
         let resolvedCodexAccounts = settings.collects(.codex)
             ? await CodexWorkspaceActivityCollector.collect(
                 accounts: collectedCodexAccounts, previous: previous.codexAccounts, configuration: configuration,
@@ -221,16 +235,22 @@ struct BeaverMeterCollector {
                 scanSummary: historyReading.workspaceSummary,
                 now: now, directory: directory, environment: environment)
             : previous.codexAccounts
+        try Task.checkCancellation()
         let resolvedCodexQuota = settings.collects(.codex)
             ? await CodexAccountsCollector.defaultQuota(accounts: resolvedCodexAccounts, previous: previous.codexQuota,
                                                        now: now, environment: environment)
             : previous.codexQuota
+        try Task.checkCancellation()
         let (resolvedCodexTokens, resolvedCursor, resolvedDeepSeek) = await (
             codexTokens,
             cursor,
             deepseekUsage
         )
         let (resolvedClaudeTokens, resolvedClaudeUsage) = await (claudeTokens, claudeUsage)
+        let resolvedClaudeHistory = await claudeHistory
+        let resolvedAntigravityQuota = await antigravityQuota
+        let resolvedAntigravityTokens = await antigravityTokens
+        try Task.checkCancellation()
         let snapshot = UsageSnapshot(
             schemaVersion: UsageSnapshot.currentSchemaVersion,
             generatedAt: now,
@@ -242,15 +262,18 @@ struct BeaverMeterCollector {
             claudeQuota: resolvedClaudeUsage.quota,
             deepseekUsage: resolvedDeepSeek,
             codexAccounts: resolvedCodexAccounts, codexHistory: historyReading.history,
-            claudeHistory: await claudeHistory, claudeResetCards: resolvedClaudeUsage.resetCards
+            claudeHistory: resolvedClaudeHistory, claudeResetCards: resolvedClaudeUsage.resetCards,
+            antigravityQuota: resolvedAntigravityQuota, antigravityTokens: resolvedAntigravityTokens
         )
 
+        try Task.checkCancellation()
         try SnapshotWriter.write(snapshot, to: outputURL)
         print(outputURL.path)
     }
 
     /// The App's frequent refresh: only the local token scans, never account APIs.
     private static func refreshLocalTokens(outputURL: URL) async throws {
+        try Task.checkCancellation()
         let previous = SnapshotWriter.loadPrevious(from: outputURL)
         let now = Date()
         let settings = providerSettings(for: outputURL)
@@ -263,6 +286,7 @@ struct BeaverMeterCollector {
             ? await TokenHistoryCollector.codex(previous: previous.codexHistory, configuration: configuration,
                                                 now: now, directory: directory, environment: environment)
             : TokenHistoryCollector.CodexReading(history: previous.codexHistory, remoteToday: nil)
+        try Task.checkCancellation()
         async let claudeHistory = settings.collects(.claude)
             ? await TokenHistoryCollector.claude(previous: previous.claudeHistory, now: now,
                                                  directory: directory.appendingPathComponent("claude-history-cost"),
@@ -278,6 +302,10 @@ struct BeaverMeterCollector {
                 previous: previous.claudeTokens, now: now, cacheRoot: claudeCostCacheRoot(for: outputURL)
             )
             : previous.claudeTokens
+        async let antigravityTokens = settings.collects(.antigravity)
+            ? await AntigravityTokenCollector.collect(previous: previous.antigravityTokens, now: now,
+                cacheRoot: directory.appendingPathComponent("antigravity-token-cost"), environment: environment)
+            : previous.antigravityTokens
         async let codexAccounts = settings.collects(.codex)
             ? await CodexWorkspaceActivityCollector.collect(
                 accounts: previous.codexAccounts, previous: previous.codexAccounts, configuration: configuration,
@@ -288,10 +316,13 @@ struct BeaverMeterCollector {
         let (resolvedCodexTokens, resolvedClaudeTokens) = await (codexTokens, claudeTokens)
         let resolvedCodexAccounts = await codexAccounts
         let resolvedClaudeHistory = await claudeHistory
+        let resolvedAntigravityTokens = await antigravityTokens
+        try Task.checkCancellation()
         guard isChanged(previous.codexTokens, resolvedCodexTokens, now: now)
                 || isChanged(previous.claudeTokens, resolvedClaudeTokens, now: now)
                 || isChanged(previous.codexHistory, historyReading.history, now: now)
                 || isChanged(previous.claudeHistory, resolvedClaudeHistory, now: now)
+                || isChanged(previous.antigravityTokens, resolvedAntigravityTokens, now: now)
                 || workspaceActivityChanged(previous.codexAccounts, resolvedCodexAccounts, now: now)
         else {
             print(outputURL.path)
@@ -309,8 +340,10 @@ struct BeaverMeterCollector {
             claudeQuota: previous.claudeQuota,
             deepseekUsage: previous.deepseekUsage,
             codexAccounts: resolvedCodexAccounts, codexHistory: historyReading.history,
-            claudeHistory: resolvedClaudeHistory, claudeResetCards: previous.claudeResetCards
+            claudeHistory: resolvedClaudeHistory, claudeResetCards: previous.claudeResetCards,
+            antigravityQuota: previous.antigravityQuota, antigravityTokens: resolvedAntigravityTokens
         )
+        try Task.checkCancellation()
         try SnapshotWriter.write(snapshot, to: outputURL)
         print(outputURL.path)
     }

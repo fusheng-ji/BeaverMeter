@@ -2,7 +2,7 @@ import Foundation
 
 /// A service BeaverMeter can show. Named to avoid CodexBarCore's `UsageProvider`.
 enum MeterProvider: String, Codable, CaseIterable, Hashable, Sendable {
-    case codex, claude, cursor, deepseek
+    case codex, claude, cursor, deepseek, antigravity
 
     var displayName: String {
         switch self {
@@ -10,6 +10,7 @@ enum MeterProvider: String, Codable, CaseIterable, Hashable, Sendable {
         case .claude: "Claude"
         case .cursor: "Cursor"
         case .deepseek: "DeepSeek"
+        case .antigravity: "Antigravity"
         }
     }
 }
@@ -75,6 +76,8 @@ extension UsageSnapshot {
         case .claude: claudeTokens.value != nil || claudeQuota.value != nil || claudeHistory.value != nil || claudeResetCards.value != nil
         case .cursor: cursorCosts.value != nil || cursorQuota.value != nil
         case .deepseek: deepseekUsage.value != nil
+        case .antigravity: antigravityQuota.value != nil || antigravityTokens.value != nil
+            || antigravityQuota.status == .unauthenticated
         }
     }
 }

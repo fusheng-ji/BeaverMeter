@@ -5,11 +5,11 @@
 <h1 align="center">BeaverMeter</h1>
 
 <p align="center"><b>用了多少，还剩多少。</b><br>
-在 Mac 菜单栏和桌面小组件中查看 Codex、Claude Code、Cursor 与 DeepSeek 用量。</p>
+在 Mac 菜单栏和桌面小组件中查看 Codex、Claude Code、Cursor、DeepSeek 与 Google Antigravity 用量。</p>
 
 <p align="center">
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-14%2B-31332F?style=flat-square&amp;logo=apple&amp;logoColor=white" alt="macOS 14+"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.1-8B684F?style=flat-square" alt="版本 1.0.1"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-1.0.2-8B684F?style=flat-square" alt="版本 1.0.2"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-5B7E68?style=flat-square" alt="MIT License"></a>
 </p>
 
@@ -44,7 +44,7 @@ BeaverMeter 要求 **macOS 14 或更新版本**。从源码构建安装请按
 ### 更新
 
 官方构建在启动后检查一次，此后默认每 **12 小时**检查，并尊重自动检查偏好。
-发现新版本时，菜单栏海狸出现小圆点，弹窗显示 **Update 1.0.1** 按钮（版本示例）。
+发现新版本时，菜单栏海狸出现小圆点，弹窗显示 **Update 1.0.2** 按钮（版本示例）。
 
 点击后进入 Sparkle 原生的发布说明、下载、验证以及 **Install and Relaunch** 流程。
 **Check for Updates…** 用于手动检查。后台检查不会自动弹出更新窗口或自动安装。
@@ -61,12 +61,16 @@ BeaverMeter 要求 **macOS 14 或更新版本**。从源码构建安装请按
 点击桌面小组件则打开同一个菜单。菜单栏只保留紧凑海狸图标，悬停提示和 VoiceOver
 保留用量详情。界面使用英文标签，并跟随系统明暗外观。
 
+**1.0.2 源码更新**新增 Antigravity、适配 Claude 新套餐，并统一小组件安全留白。
+见[更新记录](CHANGELOG.md#102--2026-10-31)。
+
 | 服务 | 菜单中的信息 |
 | --- | --- |
 | Codex | 已记录 token、额度窗口、重置卡与独立工作空间 |
 | Claude Code | 已记录 token、API 标价估算费用、额度窗口与 Limit resets |
 | Cursor | 实际调用扣费、今日扣费、近期调用与月度额度 |
 | DeepSeek | 钱包余额、当月费用、token 与请求数 |
+| Antigravity | Gemini 与 Claude/GPT 独立额度窗口、重置时间及今日本地 token 分项 |
 
 <p align="center">
   <img src="screenshots/menu-monitoring-collapsed-light.png" alt="使用合成读数的浅色菜单" width="320">
@@ -82,6 +86,12 @@ BeaverMeter 要求 **macOS 14 或更新版本**。从源码构建安装请按
 - **Claude：**在 **Online quota → Sign in to Claude…** 登录；已通过 Claude Code 登录时可用 **Verify login**。本地 transcript 总量与在线额度相互独立。
 - **Cursor：**先在 Cursor 登录目标账户，再刷新 BeaverMeter。若需要钥匙串权限，点击 **Allow Cursor access…** 并在 macOS 对话框中允许一次访问。验证后的会话可供静默刷新使用；登录变化后需重新验证。
 - **DeepSeek：**选择 **Connect in browser…**，在官方 Platform 页面完成登录。
+- **Antigravity：**先在官方 Antigravity App 或 `agy` CLI 完成登录，再刷新 BeaverMeter。额度读取复用官方本地服务，不另建 Google OAuth 登录。关闭 App 后仍需刷新时，安装[官方 `agy` CLI](https://antigravity.google/docs/cli/install/)。首次设置或授权在官方 App／CLI 完成，后台采集不会操作登录提示。
+
+Claude 原 **Max 5x** 现名为 **Max**，原 **Max 20x** 现名为 **Ultra**，摘要优先展示
+周额度。只有服务实际返回 5h 窗口时才展示：已验证的 Ultra 可能没有这一限制，
+未验证的 Ultra 仍可能保留临时会话限额。缺少窗口不解释为剩余 100% 或无限额度。
+见[官方 Ultra 规则](https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan)。
 
 同一邮箱下的工作空间也保留各自计划、额度和活动。缺失或身份不匹配时，不借用其他
 工作空间的读数。[设置指南](docs/guide/setup.zh-CN.md)说明 CLI 要求、profile 配置、
@@ -99,7 +109,7 @@ Keychain 访问和浏览器权限。
 ## 桌面小组件
 
 在每个小组件的 **Edit Widget** 中独立选择并排列模块。
-一个**模块**是一项服务或一个 Codex 工作空间，包含其可用的主要额度窗口。
+一个**模块**是一项服务、一个 Codex 工作空间或一个 Antigravity 额度池，包含其可用的主要额度窗口。
 来源中有更多工作空间，也不会自动扩展成额外模块。
 
 先在菜单完成服务连接；编辑小组件模块不会改变登录或服务开关。
@@ -153,6 +163,11 @@ Keychain 访问和浏览器权限。
 详情。Claude 有全模型周额度时优先显示它；Cursor 显示月度剩余额度，DeepSeek 显示
 主钱包余额及币种。
 
+Antigravity 提供 **Antigravity · Gemini** 和 **Antigravity · Claude/GPT** 两个独立模块，
+分别占一个槽位，只显示各自的额度、周期、重置和状态。主值选择当前剩余最少的有效窗口，
+同值时优先 Weekly，空间允许时补另一窗口。所有尺寸都把 token 活动留在菜单；
+已选额度池不可用时保留卡位，不借用另一池的读数。
+
 Large 和 Extra Large 在对应身份内部加入活动：Codex 工作空间显示 **tokens today**，
 Claude 显示已记录 token，Cursor 显示今日实际扣费，DeepSeek 显示当月 token 或调用数。
 Extra Large 恰好显示 4 个模块时，2×2 卡片内并排展示额度，当前用量固定在底部，不显示七日统计／趋势；
@@ -170,10 +185,12 @@ Codex 工作空间活动使用已验证的账户账本，原始服务日桶／�
 ## 数据与隐私
 
 - 服务级 Codex／Claude 活动来自本地日志；可选 SSH 加入指定远端的 Codex 记录。独立 Codex 工作空间活动使用账户 API。
+- Antigravity 账户额度来自官方 App／CLI／IDE 本地服务，今日 token 则单独读取本机 Antigravity 日志，不作为账户额度账本。Input、Cache read、Cache write、Output、Reasoning 按 Antigravity 自身的独立加项统计，缺失分项保持未知；不展示推算费用或 AI-credit 余额。
 - 凭据保留在本机，用量快照不含认证 token、Cookie、提示词或回答内容。
 - 验证后的 Cursor 会话保存在本机仅当前用户可访问的 `cursor-session.json` 中，不保存 Cursor 的钥匙串加密密钥。
 - 工作空间身份与缓存范围隔离；认证失败或身份不匹配会清除受影响的受保护读数。
 - 临时失败可在对应来源的期限内保留明确标为过期的值。未知不等于零，缺失实时数据不会由预览值补齐。
+- Antigravity 额度缓存从原测量时刻起最多保留 30 分钟；窗口已重置或认证失效时隐藏受影响的旧读数。为采集启动的官方 CLI 会话在结束、失败及取消时清理。
 - 关闭的服务不会被请求；可选 SSH 仅连接配置的主机；更新请求访问 GitHub Release 资源，不携带服务凭据。
 - DeepSeek 验证后的浏览器 token 私密保存在本地供后台刷新；Sparkle 不启用系统画像。
 

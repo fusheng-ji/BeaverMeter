@@ -1,0 +1,781 @@
+{
+  "antigravityQuota" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "accountID" : "synthetic-antigravity-account",
+      "groups" : [
+        {
+          "id" : "gemini",
+          "windows" : [
+            {
+              "detail" : "Unknown quota",
+              "label" : "Gemini Weekly",
+              "resetAt" : "2026-09-22T13:00:00Z",
+              "windowSeconds" : 604800
+            }
+          ]
+        },
+        {
+          "id" : "claude-gpt",
+          "windows" : [
+            {
+              "detail" : "100% left",
+              "label" : "Claude\/GPT 5h",
+              "remainingPercent" : 100,
+              "resetAt" : "2026-09-22T13:00:00Z",
+              "windowSeconds" : 18000
+            },
+            {
+              "detail" : "0% left",
+              "label" : "Claude\/GPT Weekly",
+              "remainingPercent" : 0,
+              "resetAt" : "2026-09-22T13:00:00Z",
+              "windowSeconds" : 604800
+            }
+          ]
+        }
+      ],
+      "planName" : "Google AI Ultra"
+    }
+  },
+  "antigravityTokens" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "cacheCreationTokens" : 16000,
+      "cacheReadTokens" : 95000,
+      "inputTokens" : 12000,
+      "outputTokens" : 12000,
+      "reasoningTokens" : 2600,
+      "requestCount" : 64,
+      "totalTokens" : 137600
+    }
+  },
+  "claudeHistory" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "days" : [
+        {
+          "date" : "2026-09-16T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 120000,
+            "cacheReadTokens" : 760000,
+            "costUSD" : 1.68,
+            "inputTokens" : 80000,
+            "outputTokens" : 40000,
+            "totalTokens" : 1000000
+          }
+        },
+        {
+          "date" : "2026-09-17T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 30000,
+            "cacheReadTokens" : 190000,
+            "costUSD" : 0.42,
+            "inputTokens" : 20000,
+            "outputTokens" : 10000,
+            "totalTokens" : 250000
+          }
+        },
+        {
+          "date" : "2026-09-18T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 0,
+            "cacheReadTokens" : 0,
+            "costUSD" : 0,
+            "inputTokens" : 0,
+            "outputTokens" : 0,
+            "totalTokens" : 0
+          }
+        },
+        {
+          "date" : "2026-09-19T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 60000,
+            "cacheReadTokens" : 380000,
+            "costUSD" : 0.84,
+            "inputTokens" : 40000,
+            "outputTokens" : 20000,
+            "totalTokens" : 500000
+          }
+        },
+        {
+          "date" : "2026-09-20T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 90000,
+            "cacheReadTokens" : 570000,
+            "costUSD" : 1.26,
+            "inputTokens" : 60000,
+            "outputTokens" : 30000,
+            "totalTokens" : 750000
+          }
+        },
+        {
+          "date" : "2026-09-21T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 180000,
+            "cacheReadTokens" : 1140000,
+            "costUSD" : 2.52,
+            "inputTokens" : 120000,
+            "outputTokens" : 60000,
+            "totalTokens" : 1500000
+          }
+        },
+        {
+          "date" : "2026-09-22T00:00:00Z",
+          "totals" : {
+            "cacheCreationTokens" : 30000,
+            "cacheReadTokens" : 190000,
+            "costUSD" : 0.42,
+            "inputTokens" : 20000,
+            "outputTokens" : 10000,
+            "totalTokens" : 250000
+          }
+        }
+      ],
+      "sourceID" : "demo-transcripts",
+      "timeZoneIdentifier" : "GMT",
+      "totals" : {
+        "cacheCreationTokens" : 510000,
+        "cacheReadTokens" : 3230000,
+        "costUSD" : 7.14,
+        "inputTokens" : 340000,
+        "outputTokens" : 170000,
+        "totalTokens" : 4250000
+      }
+    }
+  },
+  "claudeQuota" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "detail" : "Demo data · 72% left",
+      "label" : "Claude 5h",
+      "remainingPercent" : 72,
+      "resetAt" : "2026-09-22T14:15:00Z",
+      "windowSeconds" : 18000,
+      "windows" : [
+        {
+          "detail" : "72% left",
+          "label" : "Claude 5h",
+          "remainingPercent" : 72,
+          "resetAt" : "2026-09-22T14:15:00Z",
+          "windowSeconds" : 18000
+        },
+        {
+          "detail" : "88% left",
+          "label" : "Claude Week",
+          "remainingPercent" : 88,
+          "resetAt" : "2026-09-25T17:00:00Z",
+          "windowSeconds" : 604800
+        },
+        {
+          "detail" : "95% left",
+          "label" : "Claude Fable Week",
+          "remainingPercent" : 95,
+          "resetAt" : "2026-09-25T17:00:00Z",
+          "windowSeconds" : 604800
+        }
+      ]
+    }
+  },
+  "claudeResetCards" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "availableCount" : 3,
+      "batches" : [
+        {
+          "count" : 1,
+          "expiresAt" : "2026-09-22T22:00:00Z",
+          "id" : "demo-card-1",
+          "paused" : false,
+          "requiresLimit" : false
+        },
+        {
+          "count" : 1,
+          "expiresAt" : "2026-10-02T12:00:00Z",
+          "id" : "demo-card-2",
+          "paused" : false,
+          "requiresLimit" : false
+        }
+      ],
+      "observedAt" : "2026-09-22T12:00:00Z"
+    }
+  },
+  "claudeTokens" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "cacheCreationTokens" : 30000,
+      "cacheReadTokens" : 190000,
+      "costUSD" : 0.42,
+      "inputTokens" : 20000,
+      "outputTokens" : 10000,
+      "totalTokens" : 250000
+    }
+  },
+  "codexAccounts" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : [
+      {
+        "accountName" : "personal@example.test",
+        "displayName" : "personal@example.test · Personal",
+        "history" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T12:00:00Z",
+          "source" : "preview",
+          "status" : "ready",
+          "value" : {
+            "days" : [
+              {
+                "date" : "2026-09-16T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 3100,
+                  "inputTokens" : 9920,
+                  "outputTokens" : 2480,
+                  "reasoningTokens" : 1240,
+                  "sessionCount" : 1,
+                  "totalTokens" : 12400
+                }
+              },
+              {
+                "date" : "2026-09-17T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 0,
+                  "inputTokens" : 0,
+                  "outputTokens" : 0,
+                  "reasoningTokens" : 0,
+                  "sessionCount" : 0,
+                  "totalTokens" : 0
+                }
+              },
+              {
+                "date" : "2026-09-18T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 7700,
+                  "inputTokens" : 24640,
+                  "outputTokens" : 6160,
+                  "reasoningTokens" : 3080,
+                  "sessionCount" : 1,
+                  "totalTokens" : 30800
+                }
+              },
+              {
+                "date" : "2026-09-19T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 4550,
+                  "inputTokens" : 14560,
+                  "outputTokens" : 3640,
+                  "reasoningTokens" : 1820,
+                  "sessionCount" : 1,
+                  "totalTokens" : 18200
+                }
+              },
+              {
+                "date" : "2026-09-20T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 15500,
+                  "inputTokens" : 49600,
+                  "outputTokens" : 12400,
+                  "reasoningTokens" : 6200,
+                  "sessionCount" : 1,
+                  "totalTokens" : 62000
+                }
+              },
+              {
+                "date" : "2026-09-21T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 6400,
+                  "inputTokens" : 20480,
+                  "outputTokens" : 5120,
+                  "reasoningTokens" : 2560,
+                  "sessionCount" : 1,
+                  "totalTokens" : 25600
+                }
+              },
+              {
+                "date" : "2026-09-22T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 12050,
+                  "inputTokens" : 38560,
+                  "outputTokens" : 9640,
+                  "reasoningTokens" : 4820,
+                  "sessionCount" : 1,
+                  "totalTokens" : 48200
+                }
+              }
+            ],
+            "sourceID" : "demo-personal-sessions",
+            "timeZoneIdentifier" : "GMT",
+            "totals" : {
+              "cachedInputTokens" : 49300,
+              "inputTokens" : 157760,
+              "outputTokens" : 39440,
+              "reasoningTokens" : 19720,
+              "sessionCount" : 6,
+              "totalTokens" : 197200
+            }
+          }
+        },
+        "homeID" : "demo-home-1",
+        "id" : "demo-personal",
+        "planName" : "Pro",
+        "quota" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T12:00:00Z",
+          "source" : "preview",
+          "status" : "ready",
+          "value" : {
+            "detail" : "60% left",
+            "label" : "Codex Week",
+            "remainingPercent" : 60,
+            "resetAt" : "2026-09-26T12:00:00Z",
+            "windowSeconds" : 604800,
+            "windows" : [
+              {
+                "detail" : "80% left",
+                "label" : "Codex 5h",
+                "remainingPercent" : 80,
+                "resetAt" : "2026-09-22T15:00:00Z",
+                "windowSeconds" : 18000
+              },
+              {
+                "detail" : "60% left",
+                "label" : "Codex Week",
+                "remainingPercent" : 60,
+                "resetAt" : "2026-09-26T12:00:00Z",
+                "windowSeconds" : 604800
+              }
+            ]
+          }
+        },
+        "resetCards" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T12:00:00Z",
+          "source" : "preview",
+          "status" : "ready",
+          "value" : {
+            "availableCount" : 3,
+            "batches" : [
+              {
+                "count" : 1,
+                "expiresAt" : "2026-09-22T22:00:00Z",
+                "id" : "demo-card-1",
+                "paused" : false,
+                "requiresLimit" : false
+              },
+              {
+                "count" : 1,
+                "expiresAt" : "2026-10-02T12:00:00Z",
+                "id" : "demo-card-2",
+                "paused" : false,
+                "requiresLimit" : false
+              }
+            ],
+            "observedAt" : "2026-09-22T12:00:00Z"
+          }
+        },
+        "tokens" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T12:00:00Z",
+          "source" : "preview",
+          "status" : "ready",
+          "value" : {
+            "cachedInputTokens" : 12050,
+            "inputTokens" : 38560,
+            "outputTokens" : 9640,
+            "reasoningTokens" : 4820,
+            "sessionCount" : 1,
+            "totalTokens" : 48200
+          }
+        },
+        "workspaceAccountIDHash" : "1111111111111111111111111111111111111111111111111111111111111111",
+        "workspaceName" : "Personal"
+      },
+      {
+        "accountName" : "personal@example.test",
+        "displayName" : "personal@example.test · Research workspace with a longer name",
+        "history" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T12:00:00Z",
+          "source" : "preview",
+          "status" : "ready",
+          "value" : {
+            "days" : [
+              {
+                "date" : "2026-09-16T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 625,
+                  "inputTokens" : 2000,
+                  "outputTokens" : 500,
+                  "reasoningTokens" : 250,
+                  "sessionCount" : 1,
+                  "totalTokens" : 2500
+                }
+              },
+              {
+                "date" : "2026-09-17T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 1300,
+                  "inputTokens" : 4160,
+                  "outputTokens" : 1040,
+                  "reasoningTokens" : 520,
+                  "sessionCount" : 1,
+                  "totalTokens" : 5200
+                }
+              },
+              {
+                "date" : "2026-09-18T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 0,
+                  "inputTokens" : 0,
+                  "outputTokens" : 0,
+                  "reasoningTokens" : 0,
+                  "sessionCount" : 0,
+                  "totalTokens" : 0
+                }
+              },
+              {
+                "date" : "2026-09-19T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 3675,
+                  "inputTokens" : 11760,
+                  "outputTokens" : 2940,
+                  "reasoningTokens" : 1470,
+                  "sessionCount" : 1,
+                  "totalTokens" : 14700
+                }
+              },
+              {
+                "date" : "2026-09-20T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 1725,
+                  "inputTokens" : 5520,
+                  "outputTokens" : 1380,
+                  "reasoningTokens" : 690,
+                  "sessionCount" : 1,
+                  "totalTokens" : 6900
+                }
+              },
+              {
+                "date" : "2026-09-21T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 2575,
+                  "inputTokens" : 8240,
+                  "outputTokens" : 2060,
+                  "reasoningTokens" : 1030,
+                  "sessionCount" : 1,
+                  "totalTokens" : 10300
+                }
+              },
+              {
+                "date" : "2026-09-22T00:00:00Z",
+                "totals" : {
+                  "cachedInputTokens" : 4412,
+                  "inputTokens" : 14120,
+                  "outputTokens" : 3530,
+                  "reasoningTokens" : 1765,
+                  "sessionCount" : 1,
+                  "totalTokens" : 17650
+                }
+              }
+            ],
+            "sourceID" : "demo-research-sessions",
+            "timeZoneIdentifier" : "GMT",
+            "totals" : {
+              "cachedInputTokens" : 14312,
+              "inputTokens" : 45800,
+              "outputTokens" : 11450,
+              "reasoningTokens" : 5725,
+              "sessionCount" : 6,
+              "totalTokens" : 57250
+            }
+          }
+        },
+        "homeID" : "demo-home-2",
+        "id" : "demo-work",
+        "planName" : "Business",
+        "quota" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T11:50:00Z",
+          "message" : "Quota refresh failed; previous reading retained.",
+          "source" : "cache",
+          "status" : "stale",
+          "value" : {
+            "detail" : "30% left",
+            "label" : "Codex 5h",
+            "remainingPercent" : 30,
+            "resetAt" : "2026-09-22T14:00:00Z",
+            "windowSeconds" : 18000,
+            "windows" : [
+              {
+                "detail" : "30% left",
+                "label" : "Codex 5h",
+                "remainingPercent" : 30,
+                "resetAt" : "2026-09-22T14:00:00Z",
+                "windowSeconds" : 18000
+              },
+              {
+                "detail" : "45% left",
+                "label" : "Codex Week",
+                "remainingPercent" : 45,
+                "resetAt" : "2026-09-27T12:00:00Z",
+                "windowSeconds" : 604800
+              }
+            ]
+          }
+        },
+        "resetCards" : {
+          "lastAttemptAt" : "2026-10-31T14:50:43Z",
+          "message" : "Reset-card information is unavailable for this sign-in.",
+          "source" : "none",
+          "status" : "unavailable"
+        },
+        "tokens" : {
+          "lastAttemptAt" : "2026-09-22T12:00:00Z",
+          "measuredAt" : "2026-09-22T12:00:00Z",
+          "source" : "preview",
+          "status" : "ready",
+          "value" : {
+            "cachedInputTokens" : 4412,
+            "inputTokens" : 14120,
+            "outputTokens" : 3530,
+            "reasoningTokens" : 1765,
+            "sessionCount" : 1,
+            "totalTokens" : 17650
+          }
+        },
+        "workspaceAccountIDHash" : "2222222222222222222222222222222222222222222222222222222222222222",
+        "workspaceName" : "Research workspace with a longer name"
+      }
+    ]
+  },
+  "codexHistory" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "days" : [
+        {
+          "date" : "2026-09-16T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 0,
+            "inputTokens" : 0,
+            "outputTokens" : 0,
+            "reasoningTokens" : 0,
+            "sessionCount" : 0,
+            "totalTokens" : 0
+          }
+        },
+        {
+          "date" : "2026-09-17T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 60000,
+            "inputTokens" : 90000,
+            "outputTokens" : 10000,
+            "reasoningTokens" : 2000,
+            "sessionCount" : 3,
+            "totalTokens" : 100000
+          }
+        },
+        {
+          "date" : "2026-09-18T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 120000,
+            "inputTokens" : 180000,
+            "outputTokens" : 20000,
+            "reasoningTokens" : 4000,
+            "sessionCount" : 6,
+            "totalTokens" : 200000
+          }
+        },
+        {
+          "date" : "2026-09-19T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 240000,
+            "inputTokens" : 360000,
+            "outputTokens" : 40000,
+            "reasoningTokens" : 8000,
+            "sessionCount" : 12,
+            "totalTokens" : 400000
+          }
+        },
+        {
+          "date" : "2026-09-20T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 360000,
+            "inputTokens" : 540000,
+            "outputTokens" : 60000,
+            "reasoningTokens" : 12000,
+            "sessionCount" : 18,
+            "totalTokens" : 600000
+          }
+        },
+        {
+          "date" : "2026-09-21T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 180000,
+            "inputTokens" : 270000,
+            "outputTokens" : 30000,
+            "reasoningTokens" : 6000,
+            "sessionCount" : 9,
+            "totalTokens" : 300000
+          }
+        },
+        {
+          "date" : "2026-09-22T00:00:00Z",
+          "totals" : {
+            "cachedInputTokens" : 60000,
+            "inputTokens" : 90000,
+            "outputTokens" : 10000,
+            "reasoningTokens" : 2000,
+            "sessionCount" : 3,
+            "totalTokens" : 100000
+          }
+        }
+      ],
+      "sourceID" : "demo-sources",
+      "timeZoneIdentifier" : "GMT",
+      "totals" : {
+        "cachedInputTokens" : 1020000,
+        "inputTokens" : 1530000,
+        "outputTokens" : 170000,
+        "reasoningTokens" : 34000,
+        "sessionCount" : 51,
+        "totalTokens" : 1700000
+      }
+    }
+  },
+  "codexQuota" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "detail" : "Demo data · 60% left",
+      "label" : "Codex Week",
+      "remainingPercent" : 60,
+      "resetAt" : "2026-09-25T12:00:00Z",
+      "windowSeconds" : 604800
+    }
+  },
+  "codexTokens" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "cachedInputTokens" : 60000,
+      "inputTokens" : 90000,
+      "outputTokens" : 10000,
+      "reasoningTokens" : 2000,
+      "sessionCount" : 3,
+      "totalTokens" : 100000
+    }
+  },
+  "cursorCosts" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "recentEvents" : [
+        {
+          "costUSD" : 0.03,
+          "id" : "one",
+          "kind" : "Included",
+          "model" : "claude-4.5-sonnet",
+          "occurredAt" : "2026-09-22T11:57:00Z",
+          "tokenCount" : 10000
+        },
+        {
+          "costUSD" : 0.07,
+          "id" : "two",
+          "kind" : "On-demand",
+          "model" : "gpt-5.6",
+          "occurredAt" : "2026-09-22T11:47:20Z",
+          "tokenCount" : 20000
+        },
+        {
+          "costUSD" : 0,
+          "id" : "three",
+          "kind" : "Included",
+          "model" : "auto",
+          "occurredAt" : "2026-09-22T11:35:00Z",
+          "tokenCount" : 5000
+        }
+      ],
+      "todayCostUSD" : 0.1
+    }
+  },
+  "cursorQuota" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "detail" : "Demo monthly plan budget",
+      "label" : "Cursor Monthly",
+      "limit" : 790,
+      "remaining" : 690.2,
+      "resetAt" : "2026-10-08T12:00:00Z",
+      "used" : 99.8,
+      "windowSeconds" : 2678400
+    }
+  },
+  "deepseekUsage" : {
+    "lastAttemptAt" : "2026-09-22T12:00:00Z",
+    "measuredAt" : "2026-09-22T12:00:00Z",
+    "source" : "preview",
+    "status" : "ready",
+    "value" : {
+      "balances" : [
+        {
+          "amount" : 18.76,
+          "currency" : "USD"
+        }
+      ],
+      "grantedBalances" : [
+        {
+          "amount" : 3,
+          "currency" : "USD"
+        }
+      ],
+      "monthCosts" : [
+        {
+          "amount" : 1.24,
+          "currency" : "USD"
+        }
+      ],
+      "monthRequests" : 128,
+      "monthTokens" : 2400000,
+      "totalCosts" : [
+        {
+          "amount" : 7.8,
+          "currency" : "USD"
+        }
+      ]
+    }
+  },
+  "generatedAt" : "2026-09-22T12:00:00Z",
+  "schemaVersion" : 8
+}

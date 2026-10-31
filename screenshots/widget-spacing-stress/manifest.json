@@ -1,0 +1,120 @@
+{
+  "caseID" : "antigravity-spacing-stress",
+  "previewOnly" : true,
+  "records" : [
+    {
+      "appearance" : "dark",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "small",
+      "image" : "spacing-stress-small-dark.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "medium",
+      "image" : "spacing-stress-medium-dark.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "large",
+      "image" : "spacing-stress-large-dark.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "extra-large",
+      "image" : "spacing-stress-extra-large-dark.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "small",
+      "image" : "spacing-stress-small-light.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "medium",
+      "image" : "spacing-stress-medium-light.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "large",
+      "image" : "spacing-stress-large-light.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "caseID" : "antigravity-spacing-stress",
+      "family" : "extra-large",
+      "image" : "spacing-stress-extra-large-light.png",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    }
+  ],
+  "sourceFixture" : ".build\/widget-antigravity-qa\/fixtures\/cases\/antigravity-spacing-stress.json",
+  "sourceSHA256" : "6a2f4fcd9dd91d2249db4ae222e3797e8a8baf442bd151b1652fdad313546542"
+}

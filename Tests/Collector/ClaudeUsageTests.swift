@@ -125,13 +125,22 @@ final class ClaudeUsageTests: XCTestCase {
     func testPlanMetadataNormalizesOnlyRecognizedSubscriptionAndTierValues() throws {
         let cases: [(String?, String?, String?)] = [
             ("pro", nil, "Claude Pro"),
-            ("max", "default_claude_max_5x", "Claude Max 5x"),
-            (nil, "default_claude_max_20x", "Claude Max 20x"),
+            ("max", "default_claude_max_5x", "Claude Max"),
+            (nil, "default_claude_max_20x", "Claude Ultra"),
             ("team", nil, "Claude Team"),
             ("enterprise", nil, "Claude Enterprise"),
             ("ultra", nil, "Claude Ultra"),
+            ("max", "default_claude_max_20x", "Claude Ultra"),
+            ("max", "default_claude_ultra", "Claude Ultra"),
+            (nil, "default_claude_ultra", "Claude Ultra"),
+            ("ultra", "default_claude_max_5x", "Claude Ultra"),
+            ("max", nil, "Claude Max"),
+            (nil, "default_claude_max", "Claude Max"),
+            (" MAX ", "DEFAULT_CLAUDE_MAX_20X", "Claude Ultra"),
+            ("pro", "default_claude_max_20x", "Claude Pro"),
             (nil, nil, nil),
             ("unknown", "unknown", nil),
+            ("notpro", "default_claude_max_50x", nil),
         ]
         for (subscription, tier, expected) in cases {
             var oauth: [String: Any] = ["accessToken": "synthetic-plan-token"]
@@ -150,15 +159,71 @@ final class ClaudeUsageTests: XCTestCase {
         let document = try Data(contentsOf: root.appendingPathComponent(".credentials.json"))
         let reads = CredentialSequence([.success(document)])
         let result = await collect(root, server: server, credentialReader: { _ in try reads.read() })
-        XCTAssertEqual(result.quota.value?.planName, "Claude Max 5x")
+        XCTAssertEqual(result.quota.value?.planName, "Claude Max")
         XCTAssertEqual(reads.readCount, 1)
         let requests = await server.count
         XCTAssertEqual(requests, 1)
         let stored = try String(contentsOf: root.appendingPathComponent("beaver-meter-claude-usage-v1.json"), encoding: .utf8)
-        XCTAssertTrue(stored.contains("Claude Max 5x"))
+        XCTAssertTrue(stored.contains("Claude Max"))
+        XCTAssertFalse(stored.contains("Claude Max 5x"))
         XCTAssertFalse(stored.contains("demo-secret"))
         XCTAssertFalse(stored.contains("subscriptionType"))
         XCTAssertFalse(stored.contains("rateLimitTier"))
+    }
+
+    func testLegacyDisplayLabelsUseCurrentNamesWithoutGuessingUnknownPlans() {
+        XCTAssertEqual(ClaudePlanDisplayName.normalizeLabel("Claude Max 5x"), "Claude Max")
+        XCTAssertEqual(ClaudePlanDisplayName.normalizeLabel(" Claude Max 20x \n"), "Claude Ultra")
+        XCTAssertEqual(ClaudePlanDisplayName.normalizeLabel("Max 20x"), "Claude Ultra")
+        XCTAssertEqual(ClaudePlanDisplayName.normalizeLabel("Claude Ultra"), "Claude Ultra")
+        XCTAssertEqual(ClaudePlanDisplayName.normalizeLabel("Custom plan"), "Custom plan")
+        XCTAssertNil(ClaudePlanDisplayName.normalizeLabel(" \n"))
+        XCTAssertNil(ClaudePlanDisplayName.fromMetadata(subscriptionType: "Custom plan", rateLimitTier: nil))
+    }
+
+    func testWeeklyOnlyUltraSuccessRemovesThePreviousFiveHourWindow() async throws {
+        let root = try workspace()
+        try credentials(root, token: "demo-secret", subscriptionType: "max", rateLimitTier: "default_claude_max_20x")
+        let first = await collect(root, server: Server(body: """
+        {"five_hour":{"utilization":75,"resets_at":"2026-09-23T17:00:00Z"},
+         "seven_day":{"utilization":20,"resets_at":"2026-09-29T12:00:00Z"},
+         "cedar_ember":{"eligible":true,"grants":[]}}
+        """))
+        XCTAssertEqual(first.quota.value?.label, "Claude 5h")
+        XCTAssertEqual(first.quota.value?.planName, "Claude Ultra")
+
+        let changed = await collect(root, server: Server(body: """
+        {"five_hour":null,"seven_day":{"utilization":25,"resets_at":"2026-09-29T12:00:00Z"},
+         "limits":[{"kind":"weekly_scoped","percent":80,"scope":{"model":{"display_name":"Fable"}}}],
+         "cedar_ember":{"eligible":true,"grants":[]}}
+        """), at: now.addingTimeInterval(300), previous: first)
+        XCTAssertEqual(changed.quota.status, .ready)
+        XCTAssertNil(changed.quota.message)
+        XCTAssertEqual(changed.quota.value?.label, "Claude Week")
+        XCTAssertEqual(changed.quota.value?.remainingPercent, 75)
+        XCTAssertEqual(changed.quota.value?.planName, "Claude Ultra")
+        XCTAssertEqual(changed.quota.value?.windows?.map(\.label), ["Claude Week", "Claude Fable Week"])
+
+        let cached = await collect(root, server: Server(code: 503, body: ""),
+                                   at: now.addingTimeInterval(301), previous: changed)
+        XCTAssertEqual(cached.quota.status, .ready)
+        XCTAssertEqual(cached.quota.value?.label, "Claude Week")
+        XCTAssertFalse(cached.quota.value?.windows?.contains(where: { $0.windowSeconds == 18_000 }) ?? false)
+    }
+
+    func testUltraKeepsItsTemporarySessionWindowWhenReturnedByTheService() async throws {
+        let root = try workspace()
+        try credentials(root, token: "demo-secret", subscriptionType: "ultra")
+        let reading = await collect(root, server: Server(body: """
+        {"five_hour":{"utilization":100,"resets_at":"2026-09-23T17:00:00Z"},
+         "seven_day":{"utilization":0,"resets_at":"2026-09-29T12:00:00Z"},
+         "cedar_ember":{"eligible":true,"grants":[]}}
+        """))
+        XCTAssertEqual(reading.quota.status, .ready)
+        XCTAssertEqual(reading.quota.value?.planName, "Claude Ultra")
+        XCTAssertEqual(reading.quota.value?.label, "Claude 5h")
+        XCTAssertEqual(reading.quota.value?.remainingPercent, 0)
+        XCTAssertEqual(reading.quota.value?.windows?.map(\.remainingPercent), [0, 100])
     }
 
     func testLegacySuccessfulCacheAddsPlanFromExistingSameCredentialReadWithoutFetching() async throws {
@@ -218,7 +283,7 @@ final class ClaudeUsageTests: XCTestCase {
             planName: "Claude Max 20x")
         let later = ClaudeQuotaVisibility.quota(reading.quota, relativeTo: now.addingTimeInterval(61))
         XCTAssertEqual(later.value?.windowSeconds, 604_800)
-        XCTAssertEqual(later.value?.planName, "Claude Max 20x")
+        XCTAssertEqual(later.value?.planName, "Claude Ultra")
     }
 
     func testAlreadyCancelledCollectionNeverReadsCredentialsOrRequestsQuota() async throws {
@@ -410,7 +475,7 @@ final class ClaudeUsageTests: XCTestCase {
 
         XCTAssertEqual(reading.quota.status, .ready)
         XCTAssertEqual(reading.quota.value?.remainingPercent, 72)
-        XCTAssertEqual(reading.quota.value?.planName, "Claude Max 5x")
+        XCTAssertEqual(reading.quota.value?.planName, "Claude Max")
         XCTAssertEqual(reading.resetCards.value?.availableCount, 1)
         let authorizations = await server.authorizations
         XCTAssertEqual(authorizations, ["Bearer renewed-token"])
@@ -435,7 +500,7 @@ final class ClaudeUsageTests: XCTestCase {
                 transport: { await server.send($0) })
 
             XCTAssertEqual(reading.quota.status, .ready, "HTTP \(rejectedStatus)")
-            XCTAssertEqual(reading.quota.value?.planName, "Claude Max 20x", "HTTP \(rejectedStatus)")
+            XCTAssertEqual(reading.quota.value?.planName, "Claude Ultra", "HTTP \(rejectedStatus)")
             XCTAssertEqual(reading.resetCards.status, .ready, "HTTP \(rejectedStatus)")
             let authorizations = await server.authorizations
             XCTAssertEqual(authorizations, ["Bearer demo-secret", "Bearer replacement-token"], "HTTP \(rejectedStatus)")
@@ -526,7 +591,7 @@ final class ClaudeUsageTests: XCTestCase {
             credentialReader: { _ in try reads.read() }
         )
         XCTAssertEqual(renewed.token, "final-token")
-        XCTAssertEqual(renewed.planName, "Claude Max 20x")
+        XCTAssertEqual(renewed.planName, "Claude Ultra")
         XCTAssertEqual(reads.readCount, 2, "Metadata must reuse the existing polling and final reads.")
     }
 

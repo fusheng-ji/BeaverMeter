@@ -1,0 +1,117 @@
+{
+  "accessibility": [
+    {
+      "AXRole": "AXWindow",
+      "AXTitle": "BeaverMeter QA",
+      "depth": "0"
+    },
+    {
+      "AXRole": "AXGroup",
+      "depth": "1"
+    },
+    {
+      "AXDescription": "BeaverMeter QA",
+      "AXIdentifier": "widget-local:com.jiwenbo.beavermeter.widgetqa:com.jiwenbo.beavermeter.widgetqa.widget:BeaverMeterWidgetQA",
+      "AXRole": "AXGroup",
+      "depth": "2"
+    },
+    {
+      "AXDescription": "QA caseID: antigravity-reset-description; kind: BeaverMeterWidgetQA; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor",
+      "AXIdentifier": "WidgetQA.case.antigravity-reset-description",
+      "AXRole": "AXGroup",
+      "depth": "3"
+    },
+    {
+      "AXDescription": "Antigravity · Gemini; safeInsets: 10.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.antigravity-group:gemini",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Antigravity · Claude/GPT; safeInsets: 10.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.antigravity-group:claude-gpt",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: primaryOnly",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Gemini",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5h, 62% remaining, Refills in about two hours",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: primaryOnly",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Claude/GPT",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5h, 47% remaining, Refills in about two hours",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "62%",
+      "AXRole": "AXGroup",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h · Refills in about two hours",
+      "depth": "6"
+    },
+    {
+      "AXDescription": "47%",
+      "AXRole": "AXGroup",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h · Refills in about two hours",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "62%",
+      "depth": "7"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "47%",
+      "depth": "7"
+    }
+  ],
+  "bounds": {
+    "height": 180,
+    "width": 360,
+    "x": 64,
+    "y": 221
+  },
+  "captureWindows": [
+    {
+      "kCGWindowAlpha": 1,
+      "kCGWindowIsOnscreen": true,
+      "kCGWindowLayer": -2147483601,
+      "kCGWindowName": "BeaverMeter QA",
+      "kCGWindowNumber": 26459
+    }
+  ],
+  "pid": 58303,
+  "title": "BeaverMeter QA",
+  "environment": "QA caseID: antigravity-reset-description; kind: BeaverMeterWidgetQA; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor"
+}

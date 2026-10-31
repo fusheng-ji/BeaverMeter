@@ -13,6 +13,11 @@ synthetic offline renders, not desktop captures. The complete native matrix for
 the current candidate remains pending; offline checks do not establish WidgetKit
 compositing, focus transitions or update smoothness.
 
+The dedicated [2026-10-31 Antigravity acceptance](ANTIGRAVITY_WIDGET_DESKTOP_VALIDATION.md)
+completed 32 actual desktop size/theme/case observations and two unfocused
+comparisons. Its isolated evidence does not pass or replace the legacy matrix
+below.
+
 The runtime profiling record includes user-operated menu cycles and an observed
 main-run-loop awake interval. Animation Hitches exited 139, so no frame-rate or
 hitch-free claim is supported; see [runtime performance](RUNTIME_PERFORMANCE.md).

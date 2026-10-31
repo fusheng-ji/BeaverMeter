@@ -41,6 +41,8 @@ enum BrandStyle {
         case (.cursor, _): Color(red: 0.65, green: 0.60, blue: 1.00)
         case (.deepseek, .light): Color(red: 0.12, green: 0.40, blue: 0.77)
         case (.deepseek, _): Color(red: 0.35, green: 0.65, blue: 1.00)
+        case (.antigravity, .light): Color(red: 0.12, green: 0.48, blue: 0.28)
+        case (.antigravity, _): Color(red: 0.38, green: 0.78, blue: 0.52)
         }
     }
 }

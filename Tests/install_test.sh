@@ -85,7 +85,7 @@ done
 
 # Restore configuration, snapshots, caches and credentials after replacement,
 # including a failure after the new LaunchAgent starts being installed.
-for failure in collector verification bootstrap; do
+for failure in collector schema verification bootstrap; do
   prepare_case "$failure"
   if run_installer "$failure"; then print -u2 "Expected $failure to fail"; exit 1; fi
   assert_original_installation

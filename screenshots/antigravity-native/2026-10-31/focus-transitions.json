@@ -1,0 +1,30 @@
+[
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "large",
+    "systemAppearance": "dark",
+    "desktopFocused": false,
+    "frontmostBundleID": "com.jiwenbo.beavermeter.widgetqa",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemLarge; colorScheme: dark; widgetRenderingMode: accented",
+    "observedAt": "2026-10-31T17:37:33.402669+01:00",
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-system-dark-unfocused-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-system-dark-unfocused-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-large-system-dark-unfocused.ax.json",
+    "status": "passed",
+    "review": "Values and resets remain visually readable in observed accented mode; full color is not claimed while unfocused."
+  },
+  {
+    "caseID": "antigravity-both-groups",
+    "family": "large",
+    "systemAppearance": "light",
+    "desktopFocused": false,
+    "frontmostBundleID": "com.jiwenbo.beavermeter.widgetqa",
+    "actualEnvironment": "QA caseID: antigravity-both-groups; family: systemLarge; colorScheme: dark; widgetRenderingMode: accented",
+    "observedAt": "2026-10-31T17:39:35.004884+01:00",
+    "screenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-system-light-unfocused-window.png",
+    "desktopScreenshot": "screenshots/antigravity-native/2026-10-31/both-groups-large-system-light-unfocused-desktop.png",
+    "accessibility": "screenshots/antigravity-native/2026-10-31/both-groups-large-system-light-unfocused.ax.json",
+    "status": "passed",
+    "review": "Values and resets remain visually readable in observed accented mode; full color is not claimed while unfocused."
+  }
+]

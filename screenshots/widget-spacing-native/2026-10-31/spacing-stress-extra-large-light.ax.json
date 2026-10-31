@@ -1,0 +1,430 @@
+{
+  "accessibility": [
+    {
+      "AXRole": "AXWindow",
+      "AXTitle": "BeaverMeter QA",
+      "depth": "0"
+    },
+    {
+      "AXRole": "AXGroup",
+      "depth": "1"
+    },
+    {
+      "AXDescription": "BeaverMeter QA",
+      "AXIdentifier": "widget-local:com.jiwenbo.beavermeter.widgetqa:com.jiwenbo.beavermeter.widgetqa.widget:BeaverMeterWidgetQA",
+      "AXRole": "AXGroup",
+      "depth": "2"
+    },
+    {
+      "AXDescription": "QA caseID: antigravity-spacing-stress; kind: BeaverMeterWidgetQA; family: systemExtraLarge; colorScheme: light; widgetRenderingMode: fullColor",
+      "AXIdentifier": "WidgetQA.case.antigravity-spacing-stress",
+      "AXRole": "AXGroup",
+      "depth": "3"
+    },
+    {
+      "AXDescription": "Antigravity · Gemini; safeInsets: 12.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.antigravity-group:gemini",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Antigravity · Claude/GPT; safeInsets: 12.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.antigravity-group:claude-gpt",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Synthetic international research workspace with a deliberately long name · personal@example.test; safeInsets: 12.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.codex-workspace:demo-personal",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Claude; safeInsets: 12.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.service:claude",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Cursor; safeInsets: 12.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.service:cursor",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "DeepSeek; safeInsets: 12.0,10.0; detailLevel: adaptive",
+      "AXIdentifier": "WidgetQA.card.service:deepseek",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: full",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Gemini",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "100%",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Weekly, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5-hour, 100% remaining, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: full",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Claude/GPT",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "0%",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5h, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: full",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Synthetic international research workspace with a deliberately long name · personal@example.test",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Synthetic Enterprise Research Demonstration",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "—",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Weekly, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5-hour, — remaining, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Codex activity",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: full",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Claude",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Claude Ultra",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "100%",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Weekly, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5-hour, 100% remaining, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Claude activity",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: full",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Cursor",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "$9,876,543,210.99",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Monthly, Resets after the next scheduled weekly allocation window for this demonstration account",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Cursor activity",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "QA logo; detailLevel: full",
+      "AXIdentifier": "WidgetQA.leaf.logo",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "DeepSeek",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "CN¥9,876,543,210.99",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "Balance",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "DeepSeek activity",
+      "AXRole": "AXGroup",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "100%",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Wk",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Resets after the next scheduled weekly allocation window for this demonstration account",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h 100%",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "0%",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Resets after the next scheduled weekly allocation window for this demonstration account",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "—",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Wk",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Resets after the next scheduled weekly allocation window for this demonstration account",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h —",
+      "depth": "6"
+    },
+    {
+      "AXDescription": "Codex · Synthetic international research workspace with a deliberately long name · personal@example.test · 48,200 tokens today · Demo · Preview · updated in 0s",
+      "AXRole": "AXGroup",
+      "depth": "6"
+    },
+    {
+      "AXDescription": "Last 7 days (GMT); Wed, Sep 16: 12,400 tokens; Thu, Sep 17: 0 tokens; Fri, Sep 18: 30,800 tokens; Sat, Sep 19: 18,200 tokens; Sun, Sep 20: 62,000 tokens; Mon, Sep 21: 25,600 tokens; Tue, Sep 22: 48,200 tokens; Demo · Preview · updated in 0s",
+      "AXRole": "AXUnknown",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "100%",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Wk",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Resets after the next scheduled weekly allocation window for this demonstration account",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "5h 100%",
+      "depth": "6"
+    },
+    {
+      "AXDescription": "Claude · 250,000 tokens today · Demo · Preview · updated in 0s",
+      "AXRole": "AXGroup",
+      "depth": "6"
+    },
+    {
+      "AXDescription": "Last 7 days (GMT); Wed, Sep 16: 1,000,000 tokens; Thu, Sep 17: 250,000 tokens; Fri, Sep 18: 0 tokens; Sat, Sep 19: 500,000 tokens; Sun, Sep 20: 750,000 tokens; Mon, Sep 21: 1,500,000 tokens; Tue, Sep 22: 250,000 tokens; Demo · Preview · updated in 0s",
+      "AXRole": "AXUnknown",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "$9.9B",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Monthly",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Resets after the next scheduled weekly allocation window for this demonstration account",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "$0.10",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "charged today",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "CN¥9.9B",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Balance",
+      "depth": "6"
+    },
+    {
+      "AXDescription": "DeepSeek · 2.4M tokens this month · 128 calls this month · Demo · Preview · updated in 0s",
+      "AXRole": "AXGroup",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "128 calls this month",
+      "depth": "6"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "48.2K",
+      "depth": "7"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "tokens today",
+      "depth": "7"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "250K",
+      "depth": "7"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "tokens today",
+      "depth": "7"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "2.4M",
+      "depth": "7"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "tokens this month",
+      "depth": "7"
+    }
+  ],
+  "bounds": {
+    "height": 360,
+    "width": 720,
+    "x": 64,
+    "y": 401
+  },
+  "captureWindows": [
+    {
+      "kCGWindowAlpha": 1,
+      "kCGWindowIsOnscreen": true,
+      "kCGWindowLayer": -2147483601,
+      "kCGWindowName": "BeaverMeter QA",
+      "kCGWindowNumber": 26459
+    }
+  ],
+  "pid": 58303,
+  "title": "BeaverMeter QA",
+  "environment": "QA caseID: antigravity-spacing-stress; kind: BeaverMeterWidgetQA; family: systemExtraLarge; colorScheme: light; widgetRenderingMode: fullColor"
+}

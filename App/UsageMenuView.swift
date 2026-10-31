@@ -105,6 +105,7 @@ struct UsageMenuView: View {
             case .claude: total + 270 + 24 * CGFloat(claudeWindowCount)
             case .cursor: total + 340
             case .deepseek: total + 270
+            case .antigravity: total + 370
             }
         }
         return min(maxHeight, 265 + sections + (servicesExpanded ? 60 : 0) + expandedMonitoringHeight)
@@ -162,6 +163,8 @@ struct UsageMenuView: View {
         case .claude: claudeSection
         case .cursor: cursorSection
         case .deepseek: deepseekSection
+        case .antigravity:
+            AntigravityUsageSection(snapshot: store.snapshot, referenceDate: presentationDate)
         }
     }
 
@@ -291,7 +294,8 @@ struct UsageMenuView: View {
                 EmptyState(message: dailyClaudeTokens.message ?? "No Claude token data yet.")
             }
             claudeAuthentication
-            if let windows = claudeQuota.value?.windows, windows.count > 1 {
+            if let quota = claudeQuota.value {
+                let windows = quota.windows ?? [quota]
                 VStack(spacing: 5) {
                     ForEach(windows, id: \.label) { window in
                         QuotaWindowRow(window: window, tint: .orange, referenceDate: presentationDate)
@@ -315,6 +319,9 @@ struct UsageMenuView: View {
                 Text("Online quota")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
+                if let plan = ClaudePlanDisplayName.normalizeLabel(claudeQuota.value?.planName) {
+                    Text(plan).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                }
                 Spacer()
                 StatusPill(value: claudeQuota, referenceDate: presentationDate)
             }
@@ -527,10 +534,19 @@ struct UsageMenuView: View {
     private var quotaFooter: some View {
         if !quotaProviders.isEmpty {
             Divider()
-            HStack(spacing: 12) {
-                ForEach(Array(quotaProviders.enumerated()), id: \.element) { index, provider in
-                    if index > 0 { Divider().frame(height: 28) }
-                    quotaLabel(for: provider)
+            Group {
+                if quotaProviders.count >= 4 {
+                    LazyVGrid(columns: [GridItem(.flexible(), alignment: .leading),
+                                        GridItem(.flexible(), alignment: .leading)], alignment: .leading, spacing: 10) {
+                        ForEach(quotaProviders, id: \.self) { quotaLabel(for: $0) }
+                    }
+                } else {
+                    HStack(spacing: 12) {
+                        ForEach(Array(quotaProviders.enumerated()), id: \.element) { index, provider in
+                            if index > 0 { Divider().frame(height: 28) }
+                            quotaLabel(for: provider)
+                        }
+                    }
                 }
             }
             .padding(.horizontal, 14)
@@ -549,6 +565,10 @@ struct UsageMenuView: View {
             QuotaLabel(provider: .cursor, value: store.snapshot.cursorQuota, referenceDate: presentationDate)
         case .deepseek:
             EmptyView()
+        case .antigravity:
+            QuotaLabel(provider: .antigravity,
+                       value: AntigravityQuotaVisibility.summary(store.snapshot.antigravityQuota, relativeTo: presentationDate),
+                       referenceDate: presentationDate)
         }
     }
 

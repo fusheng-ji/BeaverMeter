@@ -2,9 +2,11 @@
 
 ## Current baseline
 
-The current version is **1.0.1, build 38**. This patch repairs Cursor sign-in
-and background refresh. Local packaging keeps production updates off and does
-not publish assets; official publication uses the separate workflow below.
+The source version is **1.0.2, build 39**, prepared as the next small update. It
+adds Claude quota compatibility, Antigravity and fixed Widget safety insets.
+The latest published release remains **1.0.1, build 38** until the separate
+publication workflow below completes. Local packaging keeps production updates
+off and does not publish assets.
 
 ## Official packages and installation
 
@@ -56,7 +58,7 @@ multiple updaters or duplicate launch checks. The user's automatic-check
 preference is respected.
 
 A newer version produces a menu-bar notification dot and a versioned button,
-for example **Update 1.0.1**.
+for example **Update 1.0.2**.
 Clicking it, or **Check for Updates…**, enters Sparkle's native release-notes,
 download, verification and **Install and Relaunch** flow. Automatic checks do
 not open an update window or automatically install. Automatic background download

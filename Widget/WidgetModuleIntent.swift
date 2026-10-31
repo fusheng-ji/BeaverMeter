@@ -27,6 +27,9 @@ struct WidgetModuleEntity: AppEntity, Hashable {
     }
 
     static func unavailable(id: String) -> Self? {
+        if let group = AntigravityQuotaGroupID.allCases.first(where: { $0.moduleID == id }) {
+            return Self(id: id, title: "Antigravity · \(group.title) · Unavailable")
+        }
         if id.hasPrefix(WidgetModuleCatalog.workspacePrefix),
            !id.dropFirst(WidgetModuleCatalog.workspacePrefix.count).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return Self(id: id, title: "Unavailable Codex workspace")
@@ -67,7 +70,7 @@ struct WidgetModuleQuery: EntityQuery {
 
 struct WidgetModuleIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Choose Widget Modules"
-    static var description = IntentDescription("Choose services or Codex workspaces in display order. A module includes its quota windows.")
+    static var description = IntentDescription("Choose services, Codex workspaces or Antigravity model groups in display order. A module includes its quota windows.")
 
     @Parameter(title: "Primary Module 1")
     var module1: WidgetModuleEntity?

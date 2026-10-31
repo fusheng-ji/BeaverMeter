@@ -26,9 +26,9 @@ final class WidgetModuleCatalogTests: XCTestCase {
     func testCatalogOffersEveryWorkspaceButDefaultsNeverExceedSixModules() {
         let source = snapshot((1...20).map(String.init))
         let available = WidgetModuleCatalog.available(snapshot: source, providers: MeterProvider.allCases)
-        XCTAssertEqual(available.count, 23)
+        XCTAssertEqual(available.count, 25)
         XCTAssertEqual(WidgetModuleCatalog.defaults(snapshot: source, providers: MeterProvider.allCases),
-            ["codex-workspace:1", "service:claude", "service:cursor", "service:deepseek", "codex-workspace:2", "codex-workspace:3"])
+            ["codex-workspace:1", "service:claude", "service:cursor", "service:deepseek", "antigravity-group:gemini", "codex-workspace:2"])
         XCTAssertEqual(WidgetModuleCatalog.defaults(snapshot: source, providers: [.codex]).count, 6)
     }
 

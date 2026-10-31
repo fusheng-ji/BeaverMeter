@@ -150,7 +150,32 @@ extension UsageSnapshot {
                     grantedBalances: [DeepSeekMoney(currency: "USD", amount: 3.00)],
                     totalCosts: [DeepSeekMoney(currency: "USD", amount: 7.80)]
                 )
-            )
+            ),
+            antigravityQuota: antigravityPreviewQuota(referenceDate: now),
+            antigravityTokens: UsageValue(status: .ready, source: .preview, measuredAt: now,
+                lastAttemptAt: now, message: nil,
+                value: AntigravityTokenTotals(totalTokens: 137_600, inputTokens: 12_000,
+                    cacheReadTokens: 95_000, cacheCreationTokens: 16_000, outputTokens: 12_000,
+                    reasoningTokens: 2_600, requestCount: 64))
         )
     }()
+
+    static func antigravityPreviewQuota(referenceDate now: Date) -> UsageValue<AntigravityQuotaSnapshot> {
+        func window(_ group: String, weekly: Bool, percent: Double, resetAfter: TimeInterval) -> CompactQuota {
+            CompactQuota(label: "\(group) \(weekly ? "Weekly" : "5h")", used: nil, limit: nil, remaining: nil,
+                         remainingPercent: percent, resetAt: now.addingTimeInterval(resetAfter),
+                         windowSeconds: weekly ? 604_800 : 18_000, detail: "\(Int(percent))% left")
+        }
+        return UsageValue(status: .ready, source: .preview, measuredAt: now, lastAttemptAt: now,
+            message: nil, value: AntigravityQuotaSnapshot(groups: [
+                AntigravityQuotaGroup(id: .gemini, windows: [
+                    window("Gemini", weekly: false, percent: 62, resetAfter: 2 * 3_600 + 40 * 60),
+                    window("Gemini", weekly: true, percent: 83, resetAfter: 4 * 86_400 + 8 * 3_600)
+                ]),
+                AntigravityQuotaGroup(id: .claudeGPT, windows: [
+                    window("Claude/GPT", weekly: false, percent: 47, resetAfter: 70 * 60),
+                    window("Claude/GPT", weekly: true, percent: 65, resetAfter: 4 * 86_400 + 8 * 3_600)
+                ])
+            ], planName: "Google AI Ultra", accountID: "synthetic-antigravity-account"))
+    }
 }

@@ -1,4 +1,4 @@
-// Run: swift scripts/make_provider_assets.swift
+// Run: swift scripts/make_provider_assets.swift [provider ...]
 // Offline rasterization of the checked-in official SVG geometry using WebKit.
 import AppKit
 import WebKit
@@ -23,7 +23,13 @@ final class ProviderAssetRenderer: NSObject, WKNavigationDelegate {
             do {
                 let output = root.appendingPathComponent("Design/ProviderAssets")
                 try FileManager.default.createDirectory(at: output, withIntermediateDirectories: true)
-                for provider in ["codex", "claude", "cursor", "deepseek"] {
+                let supported = ["codex", "claude", "cursor", "deepseek", "antigravity"]
+                let requested = Array(CommandLine.arguments.dropFirst())
+                for provider in requested.isEmpty ? supported : requested {
+                    guard supported.contains(provider) else {
+                        throw NSError(domain: "ProviderAssetRenderer", code: 1,
+                                      userInfo: [NSLocalizedDescriptionKey: "Unknown provider: \(provider)"])
+                    }
                     let source = try String(contentsOf: root.appendingPathComponent("Design/ProviderSources/\(provider).svg"), encoding: .utf8)
                     let script = #"""
                     const markup = source.includes('xmlns=') ? source : source.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
@@ -36,7 +42,9 @@ final class ProviderAssetRenderer: NSObject, WKNavigationDelegate {
                     }
                     svg.style.color = '#000';
                     document.body.replaceChildren(svg);
-                    const bounds = svg.getBBox();
+                    // Antigravity's masked color layers extend beyond its visible
+                    // silhouette. Frame the official outer path, not those layers.
+                    const bounds = provider === 'antigravity' ? svg.querySelector(':scope > path').getBBox() : svg.getBBox();
                     const padding = Math.max(bounds.width, bounds.height) * 0.04;
                     svg.setAttribute('viewBox', `${bounds.x-padding} ${bounds.y-padding} ${bounds.width+2*padding} ${bounds.height+2*padding}`);
                     svg.setAttribute('width', '256'); svg.setAttribute('height', '256');

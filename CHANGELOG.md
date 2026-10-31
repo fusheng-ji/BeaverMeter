@@ -1,5 +1,58 @@
 # Changelog
 
+## [Unreleased]
+
+## [1.0.2] — 2026-10-31
+
+**Build 39.** Claude quota compatibility, Antigravity support and Widget spacing.
+
+### Added
+
+- Google Antigravity service monitoring with independent Gemini and Claude/GPT
+  allowance windows, reset times and statuses. Each quota pool is a selectable
+  Widget module; today's local token total and available categories stay in the menu.
+- Reuse the official Antigravity App/`agy`/IDE local service for quota reads,
+  without a separate Google OAuth flow. Temporary quota caches keep their original
+  measurement and expire after 30 minutes; authentication failures clear them.
+  CLI processes started for collection are cleaned up after completion or cancellation.
+- Antigravity light/dark logo assets from Google's official press kit, five-service
+  combination previews and dedicated pool, capacity, unknown/zero and reset-caption
+  fixtures. Snapshot schema 8 retains compatibility with prior supported snapshots.
+
+### Changed
+
+- Normalize Claude's former Max 5x to Max and Max 20x to Ultra, including legacy
+  metadata and saved display labels. Weekly allowance leads the summary; model
+  windows remain separate.
+- Show Claude's five-hour window only when returned by the current successful
+  response. Verified Ultra accounts can have no session limit, while temporary
+  limits on unverified Ultra accounts remain visible. Successful responses replace
+  prior windows, and a single weekly window is shown in the menu.
+- Use a 2×2 menu footer when four quota summaries are visible, keeping Cursor's
+  remaining-amount-only summary and existing Widget module selections and capacities.
+- Adapt current `agy` local CSRF checks using a temporary nonce bound to the
+  exact CLI process BeaverMeter starts. Local handshake failures remain retryable
+  and do not ask the user to sign in again. Normal refresh cancellation cleans up
+  the owned process group before exiting and does not publish partial readings.
+- Read Antigravity SQLite logs through bounded private DB/WAL snapshots, including
+  cold WAL files and recognized unkeyed error-message steps. Original logs remain
+  unchanged; incomplete scans still cannot publish a guessed zero.
+- Center quota-only Antigravity tiles in sparse Extra Large layouts. Constrain
+  long reset captions to their columns and omit an optional Medium secondary
+  window when needed, fixing clipping found in actual desktop WidgetKit checks.
+- Apply one fixed spacing policy to every Widget family and visible module count.
+  Optional details yield before card padding; long names and reset descriptions
+  stay within their columns, and narrow monetary values retain a separate currency
+  line when necessary. Existing module order and 2/4/6/6 capacities are preserved.
+
+### 中文更新说明
+
+- Claude 套餐名称统一为 Max／Ultra，优先周额度，仅展示本次响应实际返回的 5h 窗口。
+- 新增 Antigravity，Gemini 与 Claude/GPT 额度独立展示；菜单保留本机日志 token 明细。
+- 支持复用官方 `agy` CLI 后台刷新，临时缓存按时过期，关闭服务后停止采集。
+- 四尺寸组件采用统一安全留白，辅助信息按空间收减，保留主额度、币种和重置。
+- 保留账号、工作空间、设置及现有组件模块顺序和容量。
+
 ## [1.0.1] — 2026-10-28
 
 **Build 38.** Cursor sign-in and automatic-refresh fix.

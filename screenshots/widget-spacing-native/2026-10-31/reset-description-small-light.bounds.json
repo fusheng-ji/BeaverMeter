@@ -1,0 +1,547 @@
+{
+  "kind" : "BeaverMeterWidgetQA",
+  "limitations" : [
+
+  ],
+  "measurement" : "Actual onscreen CG window and visible AX card\/leaf layout frames; not glyph ink bounds or screenshot pixels.",
+  "observedAt" : "2026-10-31T18:23:17Z",
+  "readOnly" : true,
+  "schemaVersion" : 1,
+  "scope" : "private-widgetkit-qa-bounds",
+  "status" : "passed",
+  "windows" : [
+    {
+      "actualWindow" : {
+        "axFrame" : {
+          "height" : 180,
+          "width" : 180,
+          "x" : 244,
+          "y" : 221
+        },
+        "backingScale" : 2,
+        "cgFrame" : {
+          "height" : 180,
+          "width" : 180,
+          "x" : 244,
+          "y" : 221
+        },
+        "displayID" : 1,
+        "id" : 26459,
+        "isOnscreen" : true,
+        "scaleSource" : "NSScreen.backingScaleFactor",
+        "tolerancePhysicalPixels" : 1,
+        "tolerancePoints" : 0.5
+      },
+      "cases" : [
+        {
+          "cards" : [
+            {
+              "bounds" : {
+                "height" : 70,
+                "width" : 144,
+                "x" : 262,
+                "y" : 239
+              },
+              "chosenDetailLevel" : "primaryOnly",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.antigravity-group:gemini",
+              "label" : "Antigravity · Gemini; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 270,
+                    "y" : 247
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: primaryOnly",
+                  "nodeID" : 6,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 11,
+                    "width" : 31,
+                    "x" : 270,
+                    "y" : 277
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 7,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 4,
+                  "role" : "AXStaticText",
+                  "value" : "Antigravity · Gemini"
+                },
+                {
+                  "bounds" : {
+                    "height" : 24,
+                    "width" : 45,
+                    "x" : 328,
+                    "y" : 247
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 14,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 8,
+                  "role" : "AXStaticText",
+                  "value" : "62%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 65.5,
+                    "x" : 328,
+                    "y" : 272
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 15,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 9,
+                  "role" : "AXStaticText",
+                  "value" : "5h · Refills in about two hours"
+                }
+              ],
+              "nodeID" : 4,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 8,
+                "vertical" : 8
+              },
+              "safeRect" : {
+                "height" : 54,
+                "width" : 128,
+                "x" : 270,
+                "y" : 247
+              },
+              "statusIconPresent" : false
+            },
+            {
+              "bounds" : {
+                "height" : 70,
+                "width" : 144,
+                "x" : 262,
+                "y" : 313
+              },
+              "chosenDetailLevel" : "primaryOnly",
+              "chosenDetailLevelSource" : "visible-logo",
+              "depth" : 4,
+              "fitNodes" : [
+
+              ],
+              "identifier" : "WidgetQA.card.antigravity-group:claude-gpt",
+              "label" : "Antigravity · Claude\/GPT; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "leaves" : [
+                {
+                  "bounds" : {
+                    "height" : 28,
+                    "width" : 28,
+                    "x" : 270,
+                    "y" : 321
+                  },
+                  "depth" : 5,
+                  "identifier" : "WidgetQA.leaf.logo",
+                  "insideSafeRect" : true,
+                  "label" : "QA logo; detailLevel: primaryOnly",
+                  "nodeID" : 10,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXUnknown"
+                },
+                {
+                  "bounds" : {
+                    "height" : 11,
+                    "width" : 49.5,
+                    "x" : 270,
+                    "y" : 351
+                  },
+                  "depth" : 5,
+                  "insideSafeRect" : true,
+                  "nodeID" : 11,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 5,
+                  "role" : "AXStaticText",
+                  "value" : "Antigravity · Claude\/GPT"
+                },
+                {
+                  "bounds" : {
+                    "height" : 24,
+                    "width" : 45,
+                    "x" : 328,
+                    "y" : 321
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 16,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 12,
+                  "role" : "AXStaticText",
+                  "value" : "47%"
+                },
+                {
+                  "bounds" : {
+                    "height" : 10,
+                    "width" : 65.5,
+                    "x" : 328,
+                    "y" : 346
+                  },
+                  "depth" : 6,
+                  "insideSafeRect" : true,
+                  "nodeID" : 17,
+                  "overflowPhysicalPixels" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "overflowPoints" : {
+                    "bottom" : 0,
+                    "left" : 0,
+                    "right" : 0,
+                    "top" : 0
+                  },
+                  "parentNodeID" : 13,
+                  "role" : "AXStaticText",
+                  "value" : "5h · Refills in about two hours"
+                }
+              ],
+              "nodeID" : 5,
+              "parentNodeID" : 3,
+              "role" : "AXGroup",
+              "safeInsets" : {
+                "horizontal" : 8,
+                "vertical" : 8
+              },
+              "safeRect" : {
+                "height" : 54,
+                "width" : 128,
+                "x" : 270,
+                "y" : 321
+              },
+              "statusIconPresent" : false
+            }
+          ],
+          "caseID" : "antigravity-reset-description",
+          "environment" : {
+            "colorScheme" : "light",
+            "family" : "systemSmall",
+            "kind" : "BeaverMeterWidgetQA",
+            "QA caseID" : "antigravity-reset-description",
+            "widgetRenderingMode" : "fullColor"
+          },
+          "node" : {
+            "bounds" : {
+              "height" : 145,
+              "width" : 145,
+              "x" : 253.5,
+              "y" : 230.5
+            },
+            "depth" : 3,
+            "identifier" : "WidgetQA.case.antigravity-reset-description",
+            "label" : "QA caseID: antigravity-reset-description; kind: BeaverMeterWidgetQA; family: systemSmall; colorScheme: light; widgetRenderingMode: fullColor",
+            "nodeID" : 3,
+            "parentNodeID" : 2,
+            "role" : "AXGroup"
+          },
+          "visibleAXTree" : [
+            {
+              "bounds" : {
+                "height" : 145,
+                "width" : 145,
+                "x" : 253.5,
+                "y" : 230.5
+              },
+              "depth" : 3,
+              "identifier" : "WidgetQA.case.antigravity-reset-description",
+              "label" : "QA caseID: antigravity-reset-description; kind: BeaverMeterWidgetQA; family: systemSmall; colorScheme: light; widgetRenderingMode: fullColor",
+              "nodeID" : 3,
+              "parentNodeID" : 2,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 70,
+                "width" : 144,
+                "x" : 262,
+                "y" : 239
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.antigravity-group:gemini",
+              "label" : "Antigravity · Gemini; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "nodeID" : 4,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 70,
+                "width" : 144,
+                "x" : 262,
+                "y" : 313
+              },
+              "depth" : 4,
+              "identifier" : "WidgetQA.card.antigravity-group:claude-gpt",
+              "label" : "Antigravity · Claude\/GPT; safeInsets: 8.0,8.0; detailLevel: adaptive",
+              "nodeID" : 5,
+              "parentNodeID" : 3,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 270,
+                "y" : 247
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: primaryOnly",
+              "nodeID" : 6,
+              "parentNodeID" : 4,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 11,
+                "width" : 31,
+                "x" : 270,
+                "y" : 277
+              },
+              "depth" : 5,
+              "nodeID" : 7,
+              "parentNodeID" : 4,
+              "role" : "AXStaticText",
+              "value" : "Antigravity · Gemini"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 328,
+                "y" : 247
+              },
+              "depth" : 5,
+              "label" : "62%",
+              "nodeID" : 8,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 65.5,
+                "x" : 328,
+                "y" : 272
+              },
+              "depth" : 5,
+              "label" : "5h, Refills in about two hours",
+              "nodeID" : 9,
+              "parentNodeID" : 4,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 28,
+                "width" : 28,
+                "x" : 270,
+                "y" : 321
+              },
+              "depth" : 5,
+              "identifier" : "WidgetQA.leaf.logo",
+              "label" : "QA logo; detailLevel: primaryOnly",
+              "nodeID" : 10,
+              "parentNodeID" : 5,
+              "role" : "AXUnknown"
+            },
+            {
+              "bounds" : {
+                "height" : 11,
+                "width" : 49.5,
+                "x" : 270,
+                "y" : 351
+              },
+              "depth" : 5,
+              "nodeID" : 11,
+              "parentNodeID" : 5,
+              "role" : "AXStaticText",
+              "value" : "Antigravity · Claude\/GPT"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 328,
+                "y" : 321
+              },
+              "depth" : 5,
+              "label" : "47%",
+              "nodeID" : 12,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 65.5,
+                "x" : 328,
+                "y" : 346
+              },
+              "depth" : 5,
+              "label" : "5h, Refills in about two hours",
+              "nodeID" : 13,
+              "parentNodeID" : 5,
+              "role" : "AXGroup"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 328,
+                "y" : 247
+              },
+              "depth" : 6,
+              "nodeID" : 14,
+              "parentNodeID" : 8,
+              "role" : "AXStaticText",
+              "value" : "62%"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 65.5,
+                "x" : 328,
+                "y" : 272
+              },
+              "depth" : 6,
+              "nodeID" : 15,
+              "parentNodeID" : 9,
+              "role" : "AXStaticText",
+              "value" : "5h · Refills in about two hours"
+            },
+            {
+              "bounds" : {
+                "height" : 24,
+                "width" : 45,
+                "x" : 328,
+                "y" : 321
+              },
+              "depth" : 6,
+              "nodeID" : 16,
+              "parentNodeID" : 12,
+              "role" : "AXStaticText",
+              "value" : "47%"
+            },
+            {
+              "bounds" : {
+                "height" : 10,
+                "width" : 65.5,
+                "x" : 328,
+                "y" : 346
+              },
+              "depth" : 6,
+              "nodeID" : 17,
+              "parentNodeID" : 13,
+              "role" : "AXStaticText",
+              "value" : "5h · Refills in about two hours"
+            }
+          ]
+        }
+      ],
+      "pid" : 58303,
+      "status" : "passed",
+      "title" : "BeaverMeter QA",
+      "violations" : [
+
+      ]
+    }
+  ]
+}

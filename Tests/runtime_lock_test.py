@@ -78,7 +78,7 @@ def integration(executable: Path) -> None:
         output = root / "output/beaver-meter-snapshot.json"
         settings = output.with_name("beaver-meter-settings.json")
         settings.write_text(json.dumps({"visibility": {provider: "hidden" for provider in (
-            "codex", "claude", "cursor", "deepseek")}}) + "\n")
+            "codex", "claude", "cursor", "deepseek", "antigravity")}}) + "\n")
         settings.chmod(0o600)
         environment = {
             "PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "HOME": str(root / "home"),
@@ -86,6 +86,8 @@ def integration(executable: Path) -> None:
             "XDG_CACHE_HOME": str(root / "cache"), "XDG_CONFIG_HOME": str(root / "config"),
             "CODEX_HOME": str(root / "home/codex"), "CLAUDE_CONFIG_DIR": str(root / "home/claude"),
             "TZ": "UTC", "LANG": "en_US.UTF-8",
+            "ANTIGRAVITY_QUOTA_FIXTURE": str(Path(__file__).resolve().parent / "Fixtures/antigravity-quota.json"),
+            "ANTIGRAVITY_TOKEN_FIXTURE": str(Path(__file__).resolve().parent / "Fixtures/antigravity-tokens.json"),
         }
         initial = run(executable, output, environment)
         require(initial.returncode == 0 and output.is_file(), "synthetic all-hidden setup failed")

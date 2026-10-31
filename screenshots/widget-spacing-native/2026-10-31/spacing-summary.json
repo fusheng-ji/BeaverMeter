@@ -1,0 +1,5581 @@
+{
+  "capturedObservationCount": 40,
+  "captures": {
+    "path": "screenshots/widget-spacing-native/2026-10-31/captures.json",
+    "sha256": "4a55ac7dc2e4c4f4bc91e74ddb3c4fa48386387bea3f0685f434738561e0eddf"
+  },
+  "detailLevelSources": {
+    "visible-logo": 120
+  },
+  "detailLevels": {
+    "full": 82,
+    "primaryOnly": 22,
+    "withoutActivity": 8,
+    "withoutSubscription": 8
+  },
+  "duplicates": [],
+  "expectedObservationCount": 40,
+  "fixtureManifest": {
+    "path": ".build/widget-antigravity-qa/fixtures/manifest.json",
+    "sha256": "3178271033e67a1682bb2b6a99e5816d0b364c984b99f1eedf8d74327a4a7e59"
+  },
+  "generatedAt": "2026-10-31T18:49:11.255151+00:00",
+  "geometryFailedObservationCount": 0,
+  "geometryPassedObservationCount": 40,
+  "geometryStatus": "passed",
+  "invalidRecords": [],
+  "leafTypes": {
+    "logo": 120,
+    "status": 8,
+    "text": 596
+  },
+  "maxLeafOverflowPhysicalPixels": 0.0,
+  "missing": [],
+  "observations": [
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-light.ax.json",
+          "sha256": "6a30898772ef58b4034523057e978dcd0adf1fce75a1c12b830a83f3d50b3a02"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-light.bounds.json",
+          "sha256": "810645491178945a9c8664f72d65c399634ff960b7c89d3df501ba3a667c6e67"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-light-desktop.png",
+          "sha256": "e3e5cac01bf2178838851f190a2ae9e639a601606e9b0cce727883d9f1074390"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-light-window.png",
+          "sha256": "ffc7162e482295bc28a7cc52a08e7b3eeb2c886346bcf992a9373e2f2db13af1"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 8.0,
+          "y": 41.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 26.0,
+              "y": 59.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 34.0,
+              "y": 67.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 26.0,
+              "y": 133.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 34.0,
+              "y": 141.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "text": 10
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:22:07.210982+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-light.ax.json",
+          "sha256": "0666dcc4463407b5fc641e7c3e776a8c132083c491e6fd97c01ec94aadb6c20e"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-light.bounds.json",
+          "sha256": "0f209f1704950bb072e49a0e6141eb72b7673ac7c22ebff8cf38a748e101e42a"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-light-desktop.png",
+          "sha256": "0c0fe7aa54983fff11dff55a1d889eaf8ad4e2ec78b0d26d2ba571cd053828ed"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-light-window.png",
+          "sha256": "01e803ed45cc298cb1a18555d11e790525c8a52ea841b95d053e5bf4504df1d4"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "vertical",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 8.0,
+          "y": 41.0
+        },
+        "backingScale": 2,
+        "cardCount": 4,
+        "cards": [
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 28.0,
+              "y": 61.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 36.0,
+              "y": 69.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 191.0,
+              "y": 61.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 199.0,
+              "y": 69.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 28.0,
+              "y": 134.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 36.0,
+              "y": 142.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 191.0,
+              "y": 134.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 199.0,
+              "y": 142.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 4
+        },
+        "detailLevels": {
+          "full": 1,
+          "withoutSubscription": 3
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 8,
+          "outerPadding": 12,
+          "vertical": 8
+        },
+        "leafCount": 20,
+        "leafTypes": {
+          "logo": 4,
+          "text": 16
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:22:10.058232+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-light.ax.json",
+          "sha256": "0636a4c3b0bf257c6be1a59a5e83f1584836f5c421b2a13452263eda5ca8424e"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-light.bounds.json",
+          "sha256": "a7ce2a86f403956e0335192a1b47cd0dc5a293b765ec10205594ee75dd3fc135"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-light-desktop.png",
+          "sha256": "84a0565f4ad89b12502d7e7cbc72514f38cb0a19d8067c1729cd9f93a5885aae"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-light-window.png",
+          "sha256": "409296077e0f486001ef1a1953436069cc09f3976478ad7320797c90207317ea"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 8.0,
+          "y": 41.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 32.0,
+              "y": 65.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 42.0,
+              "y": 73.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 192.0,
+              "y": 65.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 202.0,
+              "y": 73.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 32.0,
+              "y": 171.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 42.0,
+              "y": 179.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 192.0,
+              "y": 171.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 202.0,
+              "y": 179.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 32.0,
+              "y": 278.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 42.0,
+              "y": 286.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 192.0,
+              "y": 278.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 202.0,
+              "y": 286.5
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 4,
+          "withoutActivity": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 10,
+          "outerPadding": 16,
+          "vertical": 8
+        },
+        "leafCount": 40,
+        "leafTypes": {
+          "logo": 6,
+          "text": 34
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:22:12.994531+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-light.ax.json",
+          "sha256": "60970fcdb6c675464da1ea5ea7fa8f5d8f2877bb80fcb9a18000212b5be74e6d"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-light.bounds.json",
+          "sha256": "794b8aad3854c48a88e3a9dba2eaab89fe204fdf8297c7fff7050c51e1fb2dba"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-light-desktop.png",
+          "sha256": "b9c3a17957b495e53a093157767a118c7b59443b87a3c4a1aacf6f546940d0f0"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-light-window.png",
+          "sha256": "2f7b06a4b3804f2319b28a52b31788ba4784933d6d0ae92dc9760a9133ff81a7"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          3,
+          3
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 8,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 595.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 6
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 40,
+        "leafTypes": {
+          "logo": 6,
+          "text": 34
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:22:15.879776+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-light.ax.json",
+          "sha256": "a852be02d678e660f6cd81a23309c91101c28434da614be5e7124bb32034dc69"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-light.bounds.json",
+          "sha256": "662301dc41ea5d935acd27532034aa69611836f037baf8f6c0389ed5fa078946"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-light-desktop.png",
+          "sha256": "5756c25b0ca01615522bf8e18e5956480d011bd1f519d776e671e8afbaefc58b"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-light-window.png",
+          "sha256": "c1b379c1358d255600c9ccaaf4c8c212944f2b810cb2601d00a373c20b59fb73"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "text": 10
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:22:53.667775+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-light.ax.json",
+          "sha256": "a20ac045c299e8ffad1998cfa794e8ad80a29681113f441b7f02bbc2dda60c2c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-light.bounds.json",
+          "sha256": "d7b858387304a199530afc3f00363ba2439b75ebb76ca85a0337e8494aa6a3fa"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-light-desktop.png",
+          "sha256": "78add67897e4f9760127c23af1f8c48bad5e663606fcbd73077406fe0202c8b2"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-light-window.png",
+          "sha256": "bd3714a052b2f8fe6c3cda52a556c8deafc2bd92992afe5352f5e77a9cae50cf"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 94.0,
+              "y": 251.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 257.0,
+              "y": 251.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "primaryOnly": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 10,
+          "outerPadding": 12,
+          "vertical": 10
+        },
+        "leafCount": 8,
+        "leafTypes": {
+          "logo": 2,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:22:56.494446+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-light.ax.json",
+          "sha256": "76f44b9557f7877f388993b5f256fb7929226a9ce8596515ea3f765bc8a00034"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-light.bounds.json",
+          "sha256": "f2b530c4a2712c9b60d311af377efc5168dd68bda64580a5b8a6d0c65bd7e983"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-light-desktop.png",
+          "sha256": "96762ff66942c72e3de584f107d16a3cf45bdf9764dfdb4c4c54053afef89525"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-light-window.png",
+          "sha256": "b5092f91613509053b25753f45870982fabc21225b1184c7771ac9b73a2c79e2"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 100.0,
+              "y": 437.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 428.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 440.0,
+              "y": 437.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 12
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "text": 10
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:02.072566+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-light.ax.json",
+          "sha256": "381edc5c713f52b3064395bb3fbc2ffbba5ad6c5f7c3f191a334d960d0f28a1b"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-light.bounds.json",
+          "sha256": "9fe248561d14692a216642f699cd416e30c5f05fad450e99b28f9a741f58ec30"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-light-desktop.png",
+          "sha256": "3ae2dc3403313de76541632ee6ddb86b73192468d9f4ea8dc3bcc425fcdb344c"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-light-window.png",
+          "sha256": "7b8f7f4cc33100d9df1a6d8a3eaf8070537483f69a54ecc62778f1a9d3e38f45"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 11,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 8
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:05.729202+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-light.ax.json",
+          "sha256": "da844f173615710fd4b9796dc749747db2ac160accb44a0fea7357fd58f3a02c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-light.bounds.json",
+          "sha256": "3a60ac8b34bc3d2d0cbe6558a1de0f4f7c28dc6eb99fa56ac0876a7f4bbb578a"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-light-desktop.png",
+          "sha256": "2185243db58fe38282fb3a73a63165a1cc545cbd5d6baa8eb46da4292aaac76b"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-light-window.png",
+          "sha256": "6369e3129bb3cb4ba99ae1f17639ca3e127c8b7d8f8fd6e5fd2eeef55500827e"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 94.0,
+              "y": 251.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 257.0,
+              "y": 251.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 1,
+          "primaryOnly": 1
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 10,
+          "outerPadding": 12,
+          "vertical": 10
+        },
+        "leafCount": 9,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:08.347511+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-light.ax.json",
+          "sha256": "f94b5407ac72ffbfbe05c35a5a3d04a7df1d5f8982f6ee871bc489392d07c58d"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-light.bounds.json",
+          "sha256": "762cff9d22d53dcb1a85d2afff268b01f100fde75e9c5eb9a506c9dd0e2e295c"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-light-desktop.png",
+          "sha256": "eb1584a7b6bb9e831c3ac90580947bf7501f6f4c43b7dcaa7cf03d5011d73739"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-light-window.png",
+          "sha256": "9f08afcf7ee3e86770cee4c71cb17d2927422ff5a5d89245f4dea64efe17e3d6"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 255.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 405.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 415.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 9
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:11.041398+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-light.ax.json",
+          "sha256": "1cd7d3856240c971b49a14eb7b5e394d95e941feb24da2ebefa8376f112b79e4"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-light.bounds.json",
+          "sha256": "27967032bd07187e6c1bce619c6f20a58a430acbcecbab74d2713caef572e171"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-light-desktop.png",
+          "sha256": "5f380588f6beb0de99bcf690160808d81f8e43f77170b0b4b8772f00fb81f6ec"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-light-window.png",
+          "sha256": "ff1d047f09e7a87d4b4bb619aa5b404013fa3205dfe08ab910ae59e4954ba7d2"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 100.0,
+              "y": 437.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 428.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 440.0,
+              "y": 437.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 12
+        },
+        "leafCount": 11,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 8
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:13.609995+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-light.ax.json",
+          "sha256": "b6ccc3eb905fc9bc3d2f6aa87dde68aa939a6c23bd62f2672f2aa32c512ece20"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-light.bounds.json",
+          "sha256": "84c9103470c6f2755a76e499deb5c0023c26dda3416c749f853745826353b43d"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-light-desktop.png",
+          "sha256": "a10aa147d5f97452eda9226ca4bc8eb9272d8ac66cec7aefeba73058de0eab6b"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-light-window.png",
+          "sha256": "33625809de765ca7f307d9cbe7648e4fc91fb9c0c56b539d00c3624036dc5c12"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "primaryOnly": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 8,
+        "leafTypes": {
+          "logo": 2,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:17.539961+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-light.ax.json",
+          "sha256": "075eedef5a6457109b7e24ede6afe4d445150a265afed872af88332748c1c187"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-light.bounds.json",
+          "sha256": "fc4b4038c8490bb3963b8d64694bb8d205abc2f5f934de852cc6ee14df7bf549"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-light-desktop.png",
+          "sha256": "c264ea747352745a089e049cb4f4269d06a851a6e8d5ac953067866ae98c87e2"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-light-window.png",
+          "sha256": "4ff72b5a07b59cbed58bcafde7ebf408df222db7627241cedc8da840d60d5d19"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 94.0,
+              "y": 251.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 257.0,
+              "y": 251.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "primaryOnly": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 10,
+          "outerPadding": 12,
+          "vertical": 10
+        },
+        "leafCount": 8,
+        "leafTypes": {
+          "logo": 2,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:20.250575+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-light.ax.json",
+          "sha256": "2e9420b30cffb79288f05da01bf593acbc702ae4da491e29142d72338d141228"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-light.bounds.json",
+          "sha256": "2afd8ae3a0c6d847535de75bd8dc554d76a08ed81fb2c2746b9e0e1d9c555105"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-light-desktop.png",
+          "sha256": "157a3cc123ac4ac20a92f7555b01450a85a6079cf7e49c2943b43d5df50de2c5"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-light-window.png",
+          "sha256": "4823e02a56c4ea0f6d5433d2d1e79f18781b993e3782c749f305ea116a4e8d05"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 255.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 405.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 415.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 18,
+        "leafTypes": {
+          "logo": 2,
+          "text": 16
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:23.603155+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-light.ax.json",
+          "sha256": "bd1178f4a87a9e3d7d53259a782c3640ee5ecb9eab5bff96e85bbc5e2a5251cc"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-light.bounds.json",
+          "sha256": "6a5fafa97df62f25b7cbdbb0fa0d0057f00ef7fd784280534731fba1d361a094"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-light-desktop.png",
+          "sha256": "c30a801e73c3819ab6be44c3f5e501b257d75b339a951f992f823ae2e9667c84"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-light-window.png",
+          "sha256": "ce58fb36451dde779f8928ad17b31b7d2a578ebef936d674879a049bbab4225f"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 100.0,
+              "y": 437.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 428.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 440.0,
+              "y": 437.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 12
+        },
+        "leafCount": 14,
+        "leafTypes": {
+          "logo": 2,
+          "text": 12
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:26.383466+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-light.ax.json",
+          "sha256": "bd615df9e4fc872579ee69782f779d1c18e89523c3ca51cc10c91070e6bfa903"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-light.bounds.json",
+          "sha256": "7302deaae1d2a71b8fa1a98af7d3e8d44c53e1ef5d56be8a719c9cf55be58dbf"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-light-desktop.png",
+          "sha256": "7c17703942b63cdd513d1abf9e1a1ed2f2303937ef7565748a17e50371833c11"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-light-window.png",
+          "sha256": "7f1924a85867fd25f0dd703b604d2ef8282325b9f32a8677bd8d134c6b032dcf"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 1,
+          "primaryOnly": 1
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 10,
+        "leafTypes": {
+          "logo": 2,
+          "text": 8
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:31.000891+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-light.ax.json",
+          "sha256": "56fd5793c1e617aee281f2baba9c1798da9b10811912ee765c933ef99dd13a41"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-light.bounds.json",
+          "sha256": "ede93f882edb197b6acd46a1db3b6ec04bf2fd579f13d0a35144a32babd39c4a"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-light-desktop.png",
+          "sha256": "681c4d6d9ec2d5f869f1422f103ecf9bb57b661b783d3c55404e3eb3252105cb"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-light-window.png",
+          "sha256": "d55e00eab631c9f65b5bff20ec303e5dcd941912a615054fd8946753883dbd80"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "vertical",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 4,
+        "cards": [
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 92.0,
+              "y": 249.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 255.0,
+              "y": 249.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 314.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 92.0,
+              "y": 322.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 314.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 255.0,
+              "y": 322.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 4
+        },
+        "detailLevels": {
+          "primaryOnly": 3,
+          "withoutSubscription": 1
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 8,
+          "outerPadding": 12,
+          "vertical": 8
+        },
+        "leafCount": 17,
+        "leafTypes": {
+          "logo": 4,
+          "text": 13
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:33.594009+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-light.ax.json",
+          "sha256": "a42a16abff64a60bab097dd8451b6618b9b010d7af8d9eb146a3cbf5b62bbd3a"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-light.bounds.json",
+          "sha256": "40f003c7a5664f7acd2f7709f4ce206bdf57df1f9e4e6369b5a3fc795d877f54"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-light-desktop.png",
+          "sha256": "86ea8e3549f682d94b863702a3a4517af2ac9f3e7888d947985a6dd6ff279287"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-light-window.png",
+          "sha256": "013ee197e623fcc0aae7a9a10a8eec3bd5a1ebf31bd9ade5252daa84426b0204"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 253.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 253.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 351.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 359.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 351.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 359.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 458.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 466.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 458.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 466.5
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 4,
+          "withoutActivity": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 10,
+          "outerPadding": 16,
+          "vertical": 8
+        },
+        "leafCount": 41,
+        "leafTypes": {
+          "logo": 6,
+          "text": 35
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:36.506707+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-light.ax.json",
+          "sha256": "6a401bc8fc1aec44ced37c32235efd75c4c3d520944bfacb84f38dfb9e5c056d"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-light.bounds.json",
+          "sha256": "2888f66f195147d57ff9a0c1a17b0cbaad9cacfa9deec03df0c054eeeeecaffe"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-light-desktop.png",
+          "sha256": "4e1498111aff3ae301e66e6545892253b2a8c1fdc4c5c045be2809ee6dd262c4"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-light-window.png",
+          "sha256": "3494f831f9516e80c62717e2039b1f023214c2a838a2cf009e211b0da8d22b10"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          3,
+          3
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 595.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 6
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 45,
+        "leafTypes": {
+          "logo": 6,
+          "text": 39
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:39.372272+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-dark.ax.json",
+          "sha256": "d8f5d571a42f6c0763a7f0dec61168c5f2625ff03464934c059eca94c9b6f9e1"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-dark.bounds.json",
+          "sha256": "f02f3dcaed0106ad94cf8dd3d8f2f5055f1bee81d4082bfd09160cbe57b12cdc"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-dark-desktop.png",
+          "sha256": "08ae292e623a24e599ad8061e85479f5b977f11b9316628999c8e723de669756"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-small-dark-window.png",
+          "sha256": "ea8451661d62adc675b3ccddbd2e49c1d4764d9455df259019d5a30222d5ca46"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "text": 10
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:56.505890+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-dark.ax.json",
+          "sha256": "21b62087deb5325abaf9b057a86801530e056e50b8c1e461d43d23d210c7ac0c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-dark.bounds.json",
+          "sha256": "bcfe5885e6c44cb26a4c4a2fa72afc234f88cb2edee6b3d5043e74fae6259e40"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-dark-desktop.png",
+          "sha256": "abbca0950168a6bd390d733c6dd557a49bbd167fd9472dff25f49cd5f70ddf24"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-medium-dark-window.png",
+          "sha256": "516d911ad820051f8f8ebb718224ac1ec499b71c4764c0bc207473bf89267627"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 94.0,
+              "y": 251.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 257.0,
+              "y": 251.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "primaryOnly": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 10,
+          "outerPadding": 12,
+          "vertical": 10
+        },
+        "leafCount": 8,
+        "leafTypes": {
+          "logo": 2,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:23:59.278974+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-dark.ax.json",
+          "sha256": "cea689061de970c09c22e8d41c02db92fded19c6e04dd2f029294c49bd46e090"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-dark.bounds.json",
+          "sha256": "3f7bd5084bd67b2547839f17e3421ec10b975d3f575410dd27231781629567c3"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-dark-desktop.png",
+          "sha256": "606d9cf866bbde6466e5e653121f46e71c51cdef258467e18beb8ff0eba5f861"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-extra-large-dark-window.png",
+          "sha256": "98cdc5499cb9c693771395b2b44ce25a7b78e08bfe5a882329bccf957326cd17"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 100.0,
+              "y": 437.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 428.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 440.0,
+              "y": 437.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 12
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "text": 10
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:05.544652+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-dark.ax.json",
+          "sha256": "706a16f67819938b7b23630957eb61f358c1e4613b6231d1f176e7f82efc592c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-dark.bounds.json",
+          "sha256": "9a209ddd708bd5046b38f30ba14fe560685ab3ddd148e737ff3abb7378407e08"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-dark-desktop.png",
+          "sha256": "08ae292e623a24e599ad8061e85479f5b977f11b9316628999c8e723de669756"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-small-dark-window.png",
+          "sha256": "ea8451661d62adc675b3ccddbd2e49c1d4764d9455df259019d5a30222d5ca46"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "text": 10
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:09.351337+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-dark.ax.json",
+          "sha256": "cc7d6fdd218511c6adc0b0dc21756dac9fc65a8b3c7460faeaa3eb4514e8adfa"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-dark.bounds.json",
+          "sha256": "13c03ba4bded4746527faa617315852b1166590d5473a63cdd4d65f4db4c35a6"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-dark-desktop.png",
+          "sha256": "7c6ae9e8d19def6d3e4b2713dcf551c8cd844686e42143c60c6048cb0baacef4"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-medium-dark-window.png",
+          "sha256": "265cf58439e289b5823a059fda3c864559cad9fecab5bbddb8e6a464494321cf"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "vertical",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 4,
+        "cards": [
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 92.0,
+              "y": 249.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 255.0,
+              "y": 249.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 314.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 92.0,
+              "y": 322.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 314.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 255.0,
+              "y": 322.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 4
+        },
+        "detailLevels": {
+          "full": 1,
+          "withoutSubscription": 3
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 8,
+          "outerPadding": 12,
+          "vertical": 8
+        },
+        "leafCount": 20,
+        "leafTypes": {
+          "logo": 4,
+          "text": 16
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:12.015911+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-dark.ax.json",
+          "sha256": "89a331d7d1ece823a7f72eec89b70d67157785350c40072180a01b9ec3b32c07"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-dark.bounds.json",
+          "sha256": "ec37d0ddbc17e85718440c1072ad00361cb914ef997ebe5709083fcd248c405d"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-dark-desktop.png",
+          "sha256": "a0b976e34875517bf68f48868d581f88e4cb3e77dbf0744baa5dc1443bd3c4db"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-large-dark-window.png",
+          "sha256": "7b0ebe70f84cc1c2560411a8c01769c80ee0f765eb96788d90ff5f1cb75e250c"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 253.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 253.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 351.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 359.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 351.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 359.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 458.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 466.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 458.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 466.5
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 4,
+          "withoutActivity": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 10,
+          "outerPadding": 16,
+          "vertical": 8
+        },
+        "leafCount": 40,
+        "leafTypes": {
+          "logo": 6,
+          "text": 34
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:14.678849+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-dark.ax.json",
+          "sha256": "144288c59dcedbbe674a9b21432e4016e44695f147b8749ae5525f3cf3df871b"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-dark.bounds.json",
+          "sha256": "1c6d671f02d33a86d4cc26c3fa8d77e8c8660e2147c391400c72709392a2ef61"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-dark-desktop.png",
+          "sha256": "0f0e2bc30bb40d5817606e95d858897c4d9b838c848509ba3fff1459bd36424a"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/full-capacity-extra-large-dark-window.png",
+          "sha256": "2cfbbc78a3af58bf3aa71b8ceef27a53eda90144a924619ecb5a1d8844a34804"
+        }
+      },
+      "caseID": "antigravity-full-capacity",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          3,
+          3
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 8,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 595.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 6
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 40,
+        "leafTypes": {
+          "logo": 6,
+          "text": 34
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:17.405822+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-dark.ax.json",
+          "sha256": "3b71c4743780ffd3d8d809fe3566289a1d38de0667b05c014cbeb7ce822799de"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-dark.bounds.json",
+          "sha256": "682d772aecac6011fdd731325c98e8d97a5128587a4a7cff248b5db08df499ef"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-dark-desktop.png",
+          "sha256": "225be18e042cb5beb206869b91323ab69612b845af2789b691b244e84d31ebc4"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-small-dark-window.png",
+          "sha256": "453acb0512a0cacc24f571a677cd8199bef6be84888019c9518eb2b8a1454f72"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 11,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 8
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:21.481325+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-dark.ax.json",
+          "sha256": "01a18cd69a9b9c1232bf6700fc347647b8ab536520077abaed2542c59e28119c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-dark.bounds.json",
+          "sha256": "024ca25cdf9ddc67c7f0b276610ff089f57dc8cbe57ac243fd2f1aca8ef144b3"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-dark-desktop.png",
+          "sha256": "658c60e5f704b46f2f900921b38840ba4d6a8560f6fab27e17a403be87c68c64"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-medium-dark-window.png",
+          "sha256": "75075121956509b9016ecf614621e81cfa26a52f5b79033d5382c0f06251999e"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 94.0,
+              "y": 251.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 257.0,
+              "y": 251.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 1,
+          "primaryOnly": 1
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 10,
+          "outerPadding": 12,
+          "vertical": 10
+        },
+        "leafCount": 9,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:24.086271+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-dark.ax.json",
+          "sha256": "f12ce314dab47488f0fc5370faf0319df58f9a1b1c3cbdf16fddbc8a8e4ffa4c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-dark.bounds.json",
+          "sha256": "fbdb973963717ac82be9476e830bac93a82e540d0e1deed325b32bfe251e7978"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-dark-desktop.png",
+          "sha256": "0f4d6cd22448ba2f52372752d17380a3c811a28ce5aa161eac8894a99d321f9b"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-large-dark-window.png",
+          "sha256": "810a6eae1734f0acaa70f4cf952461d08e86303867e2e78783f9752b086f4374"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 255.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 405.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 415.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 12,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 9
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:26.781816+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-dark.ax.json",
+          "sha256": "3991754cfe0d602442d1a9cba5cd4768e19bcde8adf980ba4fb40606d296b34b"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-dark.bounds.json",
+          "sha256": "7e12129e5052d6857e7956ca261852c5e27529a89ab10ba045ce3f9c086e63f9"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-dark-desktop.png",
+          "sha256": "bcb125b20e10e3bf300f606a40c9cf81edb3fe2cf9cb8dbe7594ca2fcd819e80"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/unknown-and-zero-extra-large-dark-window.png",
+          "sha256": "5c5ad0b99c027813fd1ef618d0e574b4bcaf69490b3c58dd30785bebb9187c85"
+        }
+      },
+      "caseID": "antigravity-unknown-and-zero",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 100.0,
+              "y": 437.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 428.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 440.0,
+              "y": 437.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 12
+        },
+        "leafCount": 11,
+        "leafTypes": {
+          "logo": 2,
+          "status": 1,
+          "text": 8
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:29.390783+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-dark.ax.json",
+          "sha256": "cb826c667a61e41e72a63b38edca678573e59441fbe0c01c8bcc84145a019fc5"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-dark.bounds.json",
+          "sha256": "04d0a06b3eaf32631a63564dd625552692e6ffef97a2ce316c56e1831d2f21b7"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-dark-desktop.png",
+          "sha256": "59d9f0ec3b7d0376e7619f34490eac4ab00059e4337bea42ab154a43c4b9fc1f"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-small-dark-window.png",
+          "sha256": "2b98caff28c5542fc404bb4ae557f33b3effb3b81d515467169d0c901e6912f0"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "primaryOnly": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 8,
+        "leafTypes": {
+          "logo": 2,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:33.320729+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-dark.ax.json",
+          "sha256": "17a5d2500733b4cb5030928c68ea044d42736429e3d98b1a5b2af0d6488aa513"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-dark.bounds.json",
+          "sha256": "0f9a5f9cbfd7badb5072a03dd49dfdac6418082d4208778b28a554f2981d3499"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-dark-desktop.png",
+          "sha256": "ef133e726d3db385190fb49db29d28587941d30672c4a8b1780461764539786a"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-medium-dark-window.png",
+          "sha256": "434d728ca6d1cb22e2fbde5d11a683ca4ceed9e2d78d2bca8e3f24def800ba4e"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 94.0,
+              "y": 251.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 140.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 120.0,
+              "width": 137.0,
+              "x": 257.0,
+              "y": 251.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "primaryOnly": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 10,
+          "outerPadding": 12,
+          "vertical": 10
+        },
+        "leafCount": 8,
+        "leafTypes": {
+          "logo": 2,
+          "text": 6
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:35.935621+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-dark.ax.json",
+          "sha256": "3c8a0f4760203a0c75c302cc9f6c7b3ed2aff00c2cc60cfee8558cab5de2fe81"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-dark.bounds.json",
+          "sha256": "3be7b07ea097c0588f2966c1331e38ea63afee49eb7cc644fdb4323a50493273"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-dark-desktop.png",
+          "sha256": "fddc872b3fc6ef56062aac0d63931cd0148b814be722216a6fb68de5cae410bb"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-large-dark-window.png",
+          "sha256": "098063b5cecb9121267fd8a088d3a4e446e80a06970dfba5d419583c44af40b8"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 255.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 405.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 415.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 18,
+        "leafTypes": {
+          "logo": 2,
+          "text": 16
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:38.701321+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-dark.ax.json",
+          "sha256": "56fef07d5c48210b10dd073216da7cce367d7032f1941dc34af8039eea69d6eb"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-dark.bounds.json",
+          "sha256": "0edde3ea2b74a9e1519599f174f51ec101f63a59cb96692a26aad2412d55a002"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-dark-desktop.png",
+          "sha256": "ac1d3c79342ffcbfcfccb96ccd31c9ccd6fd4a7b59b631c8439abc73c147e235"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/reset-description-extra-large-dark-window.png",
+          "sha256": "c808536de3f28d93fd6fa8d8217a04161f09a6ecaacb57d48d55b04df52841ee"
+        }
+      },
+      "caseID": "antigravity-reset-description",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 100.0,
+              "y": 437.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 312.0,
+              "width": 332.0,
+              "x": 428.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 288.0,
+              "width": 308.0,
+              "x": 440.0,
+              "y": 437.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 12
+        },
+        "leafCount": 14,
+        "leafTypes": {
+          "logo": 2,
+          "text": 12
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:41.489225+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-dark.ax.json",
+          "sha256": "bdcb78b56c0dedb2f98734018d8f65b05e57d262829bd491765756686db5b9d5"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-dark.bounds.json",
+          "sha256": "328b0e0e36cdaff9e91f81c6628093e19235e50f46e1f3685f2ab4269c4524b0"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-dark-desktop.png",
+          "sha256": "961a922d8e6201b5ad6f9a0727e6483ab342d69c8c38f87ab91f5fe819a74300"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-small-dark-window.png",
+          "sha256": "764ebd70dd3a39dae7a4fa160c61c945cad1cc05d8c1d0b4242cbece1907368d"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "small",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 4.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 180.0,
+          "x": 244.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 239.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 247.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 70.0,
+              "width": 144.0,
+              "x": 262.0,
+              "y": 313.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 54.0,
+              "width": 128.0,
+              "x": 270.0,
+              "y": 321.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 1,
+          "primaryOnly": 1
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 4,
+          "horizontal": 8,
+          "outerPadding": 10,
+          "vertical": 8
+        },
+        "leafCount": 10,
+        "leafTypes": {
+          "logo": 2,
+          "text": 8
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 18.0,
+          "left": 18.0,
+          "right": 18.0,
+          "top": 18.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:24:45.817787+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 360
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-dark.ax.json",
+          "sha256": "578bab6e2fb055c24797eb8203bc77ab655e2191d42835407ed364ec8ccf48fe"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-dark.bounds.json",
+          "sha256": "c3d9c24822ca03ec84fdc8c869ae457a336e8a91fc54c0a0b3dd3a6ac78b690a"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-dark-desktop.png",
+          "sha256": "df043fdc79fb4a8dfbe492890838bbc843ea5b69a8721c647a0fd997fe405915"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-medium-dark-window.png",
+          "sha256": "2ca71c51c410ea268bf80e01aabcccb5b601afa8495760c59c3fbca2088324b2"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "medium",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 6.0
+          },
+          {
+            "axis": "vertical",
+            "points": 6.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 180.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 4,
+        "cards": [
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 92.0,
+              "y": 249.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 241.0
+            },
+            "chosenDetailLevel": "withoutSubscription",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 5,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 255.0,
+              "y": 249.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 84.0,
+              "y": 314.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 92.0,
+              "y": 322.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 67.0,
+              "width": 157.0,
+              "x": 247.0,
+              "y": 314.0
+            },
+            "chosenDetailLevel": "primaryOnly",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 4,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 51.0,
+              "width": 141.0,
+              "x": 255.0,
+              "y": 322.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 4
+        },
+        "detailLevels": {
+          "primaryOnly": 3,
+          "withoutSubscription": 1
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 6,
+          "horizontal": 8,
+          "outerPadding": 12,
+          "vertical": 8
+        },
+        "leafCount": 17,
+        "leafTypes": {
+          "logo": 4,
+          "text": 13
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 20.0,
+          "left": 20.0,
+          "right": 20.0,
+          "top": 20.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:25:39.443015+01:00",
+      "screenshotPixels": {
+        "height": 360,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-dark.ax.json",
+          "sha256": "1982bdcf89545e2220bc9e8eeebd0033727d8cf67bc79257ca5328db174a7352"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-dark.bounds.json",
+          "sha256": "7914eee0139d0fcd5eb3ff76547b65d1a2fe6066b0c2a58ee711ac1264668314"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-dark-desktop.png",
+          "sha256": "8394c1718d12b354fd4b836876083f444955aea8d20055f3ff2aa98eb434147d"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-large-dark-window.png",
+          "sha256": "c2d474844ce1d015cf991b24c393cbcadb83542902f5d0471409af09c418cdfd"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          2,
+          2,
+          2
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 253.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 253.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 351.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 359.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 99.0,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 351.5
+            },
+            "chosenDetailLevel": "withoutActivity",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 83.0,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 359.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 88.0,
+              "y": 458.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 98.0,
+              "y": 466.5
+            }
+          },
+          {
+            "bounds": {
+              "height": 98.5,
+              "width": 152.0,
+              "x": 248.0,
+              "y": 458.5
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 82.5,
+              "width": 132.0,
+              "x": 258.0,
+              "y": 466.5
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 4,
+          "withoutActivity": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 10,
+          "outerPadding": 16,
+          "vertical": 8
+        },
+        "leafCount": 41,
+        "leafTypes": {
+          "logo": 6,
+          "text": 35
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:25:42.425858+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-dark.ax.json",
+          "sha256": "75f5234239ad339e2138e0cf0d220dfd9761f3ae8a1a91dc2db438779fd5160c"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-dark.bounds.json",
+          "sha256": "f678b364db4e4c5aa6e826b23175e4e11a5dd0745647a1936df0f5fe772c29e0"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-dark-desktop.png",
+          "sha256": "6c1fa9bb4e1ddc3a30cb3affea1d2f4d0202b2cde544f54db7c9cc92226e1cf5"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/spacing-stress-extra-large-dark-window.png",
+          "sha256": "d706f194064925d8eecf47d0d0f4e74419420858a2b513ac5626049485595eab"
+        }
+      },
+      "caseID": "antigravity-spacing-stress",
+      "family": "extra-large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "horizontal",
+            "points": 8.0
+          },
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          3,
+          3
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 720.0,
+          "x": 64.0,
+          "y": 401.0
+        },
+        "backingScale": 2,
+        "cardCount": 6,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 6,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 425.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "codex-workspace:demo-personal",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 435.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 88.0,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 9,
+            "moduleID": "service:claude",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 100.0,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 219.0,
+              "x": 314.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:cursor",
+            "safeRect": {
+              "height": 132.0,
+              "width": 195.0,
+              "x": 326.5,
+              "y": 595.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 218.5,
+              "x": 541.5,
+              "y": 585.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "service:deepseek",
+            "safeRect": {
+              "height": 132.0,
+              "width": 194.5,
+              "x": 553.5,
+              "y": 595.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 6
+        },
+        "detailLevels": {
+          "full": 6
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 45,
+        "leafTypes": {
+          "logo": 6,
+          "text": 39
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:25:45.449838+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 1440
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "light",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-light.ax.json",
+          "sha256": "a0a36cc2caf0b6ee8a7573084f577f41520aff2d6de52a3d0ff9ca75dd5f57a3"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-light.bounds.json",
+          "sha256": "d5c27007142e3a3c0dcf1a9e0fa37365cf6e0bc71b7b0a2182af54be17af5b25"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-light-desktop.png",
+          "sha256": "9f470f2049bcd58ff266aa029ee8114a0db0dac750d8e418d9ef89df1bc8ce2f"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-light-window.png",
+          "sha256": "f7ebc0e5b39ae9927f2e1e51a2efe189389c9e4d7423ebf2615f6d7d7e98c3dd"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 255.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 405.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 415.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 14,
+        "leafTypes": {
+          "logo": 2,
+          "text": 12
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:26:00.779732+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    },
+    {
+      "appearance": "dark",
+      "artifacts": {
+        "accessibility": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-dark.ax.json",
+          "sha256": "9825b2237088786d1278fd3d027a4664ede847b6bc5a057f19a592f65d60891a"
+        },
+        "boundsEvidence": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-dark.bounds.json",
+          "sha256": "d4b876945615c56e0d033944567373592375bfc14d8346fb1b68c610ff251fb6"
+        },
+        "desktopScreenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-dark-desktop.png",
+          "sha256": "29fed10c55890a0f0e2663e6e07d011cfba6e28ea8621faa9884706dbb9929e5"
+        },
+        "screenshot": {
+          "path": "screenshots/widget-spacing-native/2026-10-31/both-groups-large-dark-window.png",
+          "sha256": "2903645a06cc016f1d6fc4cc50d3e1b24b9f94392a5c541c51d790ff2ebe912d"
+        }
+      },
+      "caseID": "antigravity-both-groups",
+      "family": "large",
+      "geometry": {
+        "actualAdjacentGaps": [
+          {
+            "axis": "vertical",
+            "points": 8.0
+          }
+        ],
+        "actualCardRows": [
+          1,
+          1
+        ],
+        "actualWindowFrame": {
+          "height": 360.0,
+          "width": 360.0,
+          "x": 64.0,
+          "y": 221.0
+        },
+        "backingScale": 2,
+        "cardCount": 2,
+        "cards": [
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 245.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:gemini",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 255.0
+            }
+          },
+          {
+            "bounds": {
+              "height": 152.0,
+              "width": 312.0,
+              "x": 88.0,
+              "y": 405.0
+            },
+            "chosenDetailLevel": "full",
+            "chosenDetailLevelSource": "visible-logo",
+            "leafCount": 7,
+            "moduleID": "antigravity-group:claude-gpt",
+            "safeRect": {
+              "height": 132.0,
+              "width": 288.0,
+              "x": 100.0,
+              "y": 415.0
+            }
+          }
+        ],
+        "detailLevelSources": {
+          "visible-logo": 2
+        },
+        "detailLevels": {
+          "full": 2
+        },
+        "expectedSpacingPolicy": {
+          "cardGap": 8,
+          "horizontal": 12,
+          "outerPadding": 16,
+          "vertical": 10
+        },
+        "leafCount": 14,
+        "leafTypes": {
+          "logo": 2,
+          "text": 12
+        },
+        "maxLeafOverflowPhysicalPixels": 0.0,
+        "observedCGWindowToCardUnionInsets": {
+          "bottom": 24.0,
+          "left": 24.0,
+          "right": 24.0,
+          "top": 24.0
+        },
+        "outerPaddingValidation": "not-inferred: CG window includes system shadow; no independently measured visual Widget edge",
+        "tolerancePhysicalPixels": 1,
+        "windowID": 26459
+      },
+      "geometryStatus": "passed",
+      "issues": [],
+      "observedAt": "2026-10-31T19:26:15.931257+01:00",
+      "screenshotPixels": {
+        "height": 720,
+        "width": 720
+      },
+      "visualReviewStatus": "not-evaluated"
+    }
+  ],
+  "outerPaddingStatus": "not measured against a visual Widget edge; CG-window margins are recorded without subtracting an assumed shadow",
+  "schemaVersion": 1,
+  "scope": "native-widget-spacing-validation",
+  "status": "geometry-complete",
+  "syntheticOnly": true,
+  "totalCards": 120,
+  "totalLeaves": 724,
+  "uniqueExpectedObservationCount": 40,
+  "visualReview": {
+    "note": "Visual review is recorded separately; never inferred from geometry, capture status or gallery generation.",
+    "source": null,
+    "status": "not-evaluated"
+  }
+}

@@ -2,12 +2,12 @@ import Foundation
 import XCTest
 
 final class UsageSnapshotTests: XCTestCase {
-    func testVersionSevenSnapshotRoundTrips() throws {
+    func testCurrentSnapshotRoundTrips() throws {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let decoded = try XCTUnwrap(UsageSnapshot.decode(encoder.encode(UsageSnapshot.preview)))
 
-        XCTAssertEqual(decoded.schemaVersion, 7)
+        XCTAssertEqual(decoded.schemaVersion, UsageSnapshot.currentSchemaVersion)
         XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
         XCTAssertEqual(decoded.claudeTokens.value?.cacheReadTokens, 190_000)
         XCTAssertEqual(decoded.claudeQuota.value?.windowSeconds, 18_000)
@@ -27,7 +27,7 @@ final class UsageSnapshotTests: XCTestCase {
         object["claudeQuota"] = nil
 
         let decoded = try XCTUnwrap(UsageSnapshot.decode(JSONSerialization.data(withJSONObject: object)))
-        XCTAssertEqual(decoded.schemaVersion, 7)
+        XCTAssertEqual(decoded.schemaVersion, UsageSnapshot.currentSchemaVersion)
         XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
         XCTAssertEqual(decoded.deepseekUsage.value?.monthTokens, 2_400_000)
         XCTAssertEqual(decoded.claudeTokens.status, .unavailable)
@@ -41,7 +41,7 @@ final class UsageSnapshotTests: XCTestCase {
         object["schemaVersion"] = 6
         for field in ["codexAccounts", "codexHistory", "claudeHistory", "claudeResetCards"] { object[field] = nil }
         let decoded = try XCTUnwrap(UsageSnapshot.decode(JSONSerialization.data(withJSONObject: object)))
-        XCTAssertEqual(decoded.schemaVersion, 7)
+        XCTAssertEqual(decoded.schemaVersion, UsageSnapshot.currentSchemaVersion)
         XCTAssertEqual(decoded.codexTokens, UsageSnapshot.preview.codexTokens)
         XCTAssertEqual(decoded.claudeQuota, UsageSnapshot.preview.claudeQuota)
         XCTAssertNil(decoded.codexHistory.value)

@@ -7,7 +7,18 @@ struct BeaverMeterEntry: TimelineEntry {
     var settings: ProviderSettings = .default
     var selectedModuleIDs: [String]? = nil
 
-    var providers: [MeterProvider] { settings.visibleProviders(in: snapshot) }
+    var providers: [MeterProvider] {
+        var providers = settings.visibleProviders(in: snapshot)
+        // A saved group selection is evidence of intent even when its latest
+        // reading has no value. A manual service hide still wins.
+        if settings.collects(.antigravity), !providers.contains(.antigravity),
+           selectedModuleIDs?.contains(where: { id in
+               AntigravityQuotaGroupID.allCases.contains { $0.moduleID == id }
+           }) == true {
+            providers.append(.antigravity)
+        }
+        return providers
+    }
 }
 
 struct BeaverMeterProvider: AppIntentTimelineProvider {
@@ -40,11 +51,15 @@ struct BeaverMeterProvider: AppIntentTimelineProvider {
         let now = usesDemoData ? UsageSnapshot.previewDate : .now
         let snapshot: UsageSnapshot = usesDemoData ? .preview : .load()
         let settings: ProviderSettings = usesDemoData ? .default : .load()
-        let expirations = settings.visibleProviders(in: snapshot).contains(.claude)
+        let providers = settings.visibleProviders(in: snapshot)
+        var expirations = providers.contains(.claude)
             ? ClaudeQuotaVisibility.expirationDates(quota: snapshot.claudeQuota, cards: snapshot.claudeResetCards, after: now)
             : []
+        if providers.contains(.antigravity) {
+            expirations += AntigravityQuotaVisibility.expirationDates(quota: snapshot.antigravityQuota, after: now)
+        }
         let selection = configuration.selectedModuleIDs(for: context.family)
-        let entries = ([now] + expirations).map {
+        let entries = Array(Set([now] + expirations)).sorted().map {
             BeaverMeterEntry(date: $0, snapshot: snapshot, settings: settings, selectedModuleIDs: selection)
         }
         return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(5 * 60)))

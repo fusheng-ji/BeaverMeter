@@ -79,11 +79,54 @@ final class ClaudeCollectionTests: XCTestCase {
         XCTAssertEqual(quota.label, "Claude 5h")
     }
 
-    func testTightestWindowIsTheHeadlineWithoutAFiveHourWindow() throws {
+    func testAllModelWeekIsTheHeadlineWithoutAFiveHourWindow() throws {
         let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: usage("""
         {"seven_day":{"utilization":20},"seven_day_opus":{"utilization":60}}
         """)))
+        XCTAssertEqual(quota.label, "Claude Week")
+        XCTAssertEqual(quota.remainingPercent, 80)
+        XCTAssertEqual(quota.windows?.map(\.label), ["Claude Week", "Claude Opus Week"])
+    }
+
+    func testOnlyScopedWeeksRemainUsableWithoutInventingAnAllModelWindow() throws {
+        let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: usage("""
+        {"seven_day_opus":{"utilization":60},"seven_day_sonnet":{"utilization":20}}
+        """)))
         XCTAssertEqual(quota.label, "Claude Opus Week")
+        XCTAssertEqual(quota.windows?.map(\.label), ["Claude Opus Week", "Claude Sonnet Week"])
+    }
+
+    func testSingleWeekIsValidWithoutInventingAFiveHourWindow() throws {
+        for json in [#"{"seven_day":{"utilization":0}}"#,
+                     #"{"five_hour":null,"seven_day":{"utilization":100}}"#] {
+            let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: usage(json)))
+            XCTAssertEqual(quota.label, "Claude Week")
+            XCTAssertEqual(quota.windowSeconds, 604_800)
+            XCTAssertNil(quota.windows)
+        }
+        XCTAssertEqual(ClaudeQuotaCollector.quota(from: try usage(#"{"seven_day":{"utilization":0}}"#))?.remainingPercent, 100)
+        XCTAssertEqual(ClaudeQuotaCollector.quota(from: try usage(#"{"seven_day":{"utilization":100}}"#))?.remainingPercent, 0)
+    }
+
+    func testNewWeeklyListPrefersAllModelsOverExhaustedFableWithoutASession() throws {
+        let quota = try XCTUnwrap(ClaudeQuotaCollector.quota(from: usage("""
+        {"five_hour":null,"limits":[
+          {"kind":"weekly_all","percent":25},
+          {"kind":"weekly_scoped","percent":100,"scope":{"model":{"display_name":"Fable"}}}
+        ]}
+        """)))
+        XCTAssertEqual(quota.label, "Claude Week")
+        XCTAssertEqual(quota.remainingPercent, 75)
+        XCTAssertEqual(quota.windows?.map(\.label), ["Claude Week", "Claude Fable Week"])
+        XCTAssertEqual(quota.windows?.last?.remainingPercent, 0)
+    }
+
+    func testNonfiniteWindowIsUnknownRatherThanAQuota() {
+        for value in [Double.nan, .infinity, -.infinity] {
+            let response = ClaudeOAuthUsageResponse(fiveHour: .init(utilization: value, resetsAt: nil),
+                sevenDay: nil, sevenDayOpus: nil, sevenDaySonnet: nil, limits: nil)
+            XCTAssertNil(ClaudeQuotaCollector.quota(from: response))
+        }
     }
 
     func testSingleWindowHasNoBreakdown() throws {

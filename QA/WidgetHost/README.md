@@ -6,6 +6,14 @@ and `.widget`, Widget kind `BeaverMeterWidgetQA`, and synthetic storage at
 It contains no collector, login, updater or production snapshot loader.
 Missing or invalid input is an explicit QA failure, never a production fallback.
 
+For the current schema-8 Antigravity candidate, use the separate
+[Antigravity native workflow](ANTIGRAVITY.md). Its five cases and pending results
+do not replace or pass the legacy matrix described below. The legacy generator
+still freezes schema 7, which remains valid in this isolated host, and must not
+be used as current Antigravity evidence. The default build/check workflow below
+retains those 35 legacy cases; `build.sh --antigravity` checks the five current
+schema-8 cases separately.
+
 ## Offline contract checks
 
 From a fresh checkout, no previous `.build` export is required:

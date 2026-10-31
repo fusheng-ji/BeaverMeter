@@ -1,0 +1,83 @@
+{
+  "accessibility": [
+    {
+      "AXRole": "AXWindow",
+      "AXTitle": "BeaverMeter QA",
+      "depth": "0"
+    },
+    {
+      "AXRole": "AXGroup",
+      "depth": "1"
+    },
+    {
+      "AXDescription": "BeaverMeter QA",
+      "AXIdentifier": "widget-local:com.jiwenbo.beavermeter.widgetqa:com.jiwenbo.beavermeter.widgetqa.widget:BeaverMeterWidgetQA",
+      "AXRole": "AXGroup",
+      "depth": "2"
+    },
+    {
+      "AXDescription": "QA caseID: antigravity-both-groups; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor",
+      "AXIdentifier": "WidgetQA.case.antigravity-both-groups",
+      "AXRole": "AXGroup",
+      "depth": "3"
+    },
+    {
+      "AXDescription": "Antigravity · Gemini",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXDescription": "Antigravity · Claude/GPT",
+      "AXRole": "AXGroup",
+      "depth": "4"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Gemini",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5h, 62% remaining, Resets in 2h 40m",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Antigravity · Claude/GPT",
+      "depth": "5"
+    },
+    {
+      "AXRole": "AXStaticText",
+      "AXValue": "Subscription plan: Google AI Ultra",
+      "depth": "5"
+    },
+    {
+      "AXDescription": "5h, 47% remaining, Resets in 1h 10m",
+      "AXRole": "AXUnknown",
+      "depth": "5"
+    }
+  ],
+  "bounds": {
+    "height": 180,
+    "width": 360,
+    "x": 424,
+    "y": 401
+  },
+  "captureWindows": [
+    {
+      "kCGWindowAlpha": 1,
+      "kCGWindowIsOnscreen": true,
+      "kCGWindowLayer": -2147483601,
+      "kCGWindowName": "BeaverMeter QA",
+      "kCGWindowNumber": 25245
+    }
+  ],
+  "pid": 11293,
+  "title": "BeaverMeter QA",
+  "environment": "QA caseID: antigravity-both-groups; family: systemMedium; colorScheme: dark; widgetRenderingMode: fullColor"
+}

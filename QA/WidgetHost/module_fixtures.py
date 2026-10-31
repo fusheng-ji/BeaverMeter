@@ -178,6 +178,11 @@ def workspace(number: int) -> str:
     return PREFIX + f"qa-workspace-{number:02}"
 
 
+def claude_plan_label(plan: str | None) -> str | None:
+    # Update display expectations while retaining the frozen legacy source data.
+    return {"Claude Max 5x": "Claude Max", "Claude Max 20x": "Claude Ultra"}.get(plan, plan)
+
+
 def options(snapshot: dict, providers: list[str]) -> list[dict]:
     accounts = snapshot["codexAccounts"].get("value", [])
     names = [a.get("workspaceName", a.get("displayName", "Workspace")).strip() for a in accounts]
@@ -249,7 +254,10 @@ def expectations(contract: dict, family: str) -> dict:
         if provider == "deepseek":
             numeric = next((balance["amount"] for balance in quota.get("balances", [])), None)
         item = {key: option[key] for key in ("id", "provider", "name", "workspaceID") if key in option}
-        item.update(planName=plan.strip() if isinstance(plan, str) and plan.strip() else None,
+        plan = plan.strip() if isinstance(plan, str) and plan.strip() else None
+        if provider == "claude":
+            plan = claude_plan_label(plan)
+        item.update(planName=plan,
                     primaryNumericValue=numeric, primaryResetAt=quota.get("resetAt"),
                     primaryPeriod="Balance" if provider == "deepseek" else "Monthly" if provider == "cursor"
                     else "Weekly" if quota.get("windowSeconds") == 604800 else "5h" if quota.get("windowSeconds") == 18000 else "Quota",

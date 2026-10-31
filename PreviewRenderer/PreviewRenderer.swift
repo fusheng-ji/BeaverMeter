@@ -4,9 +4,10 @@ import SwiftUI
 import WidgetKit
 
 private struct PreviewOptions {
-    enum Mode { case screenshots, canonical, widgets, widgetAppearances, serviceMatrix, workspaceMatrix, holidays, interactive, interactiveDemo }
+    enum Mode { case screenshots, canonical, widgets, widgetAppearances, serviceMatrix, workspaceMatrix, antigravityMatrix, widgetQACase, holidays, interactive, interactiveDemo }
     var mode: Mode = .screenshots
     var path: String?
+    var qaOutputDirectory: String?
     var referenceDate = UsageSnapshot.previewDate
     var timeZone = TimeZone(secondsFromGMT: 0)!
     var selection = AppearanceSelection.automatic
@@ -25,6 +26,11 @@ private struct PreviewOptions {
                                  dark/light and all four widget sizes;
                                  does not simulate WidgetKit host compositing
       --service-matrix DIRECTORY Four Widget sizes, menus and local gallery
+      --antigravity-matrix DIRECTORY
+                                 Four sizes, independent pools/full capacity,
+                                 unknown/zero and reset-caption fixtures in light/dark
+      --widget-qa-case FILE      Eight offscreen Widget images from a schema-8 synthetic QA case
+      --output DIRECTORY        Output directory for --widget-qa-case only
       --workspace-matrix DIRECTORY
                                  Explicit ordered module/identity/failure fixtures,
                                  capacities 2/4/6/6; no workspace expansion or +N;
@@ -59,7 +65,7 @@ private struct PreviewOptions {
         while index < arguments.count {
             let argument = arguments[index]
             switch argument {
-            case "--canonical", "--widgets", "--widget-appearances", "--service-matrix", "--workspace-matrix", "--holidays", "--interactive", "--interactive-demo":
+            case "--canonical", "--widgets", "--widget-appearances", "--service-matrix", "--workspace-matrix", "--antigravity-matrix", "--widget-qa-case", "--holidays", "--interactive", "--interactive-demo":
                 guard !modeWasSet, path == nil else { throw PreviewFailure("Choose one rendering mode.") }
                 modeWasSet = true
                 switch argument {
@@ -68,11 +74,14 @@ private struct PreviewOptions {
                 case "--widget-appearances": mode = .widgetAppearances
                 case "--service-matrix": mode = .serviceMatrix
                 case "--workspace-matrix": mode = .workspaceMatrix
+                case "--antigravity-matrix": mode = .antigravityMatrix
+                case "--widget-qa-case": mode = .widgetQACase
                 case "--holidays": mode = .holidays
                 case "--interactive": mode = .interactive
                 default: mode = .interactiveDemo
                 }
                 if mode != .interactiveDemo { path = try requireValue(argument) }
+            case "--output": qaOutputDirectory = try requireValue(argument)
             case "--date": dateText = try requireValue(argument)
             case "--time-zone":
                 let identifier = try requireValue(argument)
@@ -117,12 +126,16 @@ private struct PreviewOptions {
             }
             referenceDate = date
         }
-        if (mode == .serviceMatrix || mode == .canonical), selection == .automatic { selection = .standard }
+        if qaOutputDirectory != nil, mode != .widgetQACase { throw PreviewFailure("--output requires --widget-qa-case.") }
+        if (mode == .serviceMatrix || mode == .antigravityMatrix || mode == .widgetQACase || mode == .canonical), selection == .automatic { selection = .standard }
     }
 
     var settings: AppearanceSettings { AppearanceSettings(selection: selection) }
     var variant: BrandVariant { settings.resolvedVariant(at: referenceDate, timeZone: timeZone) }
-    var directory: URL { URL(fileURLWithPath: path ?? "screenshots", isDirectory: true) }
+    var directory: URL {
+        URL(fileURLWithPath: mode == .widgetQACase ? qaOutputDirectory ?? "screenshots/widget-qa" : path ?? "screenshots",
+            isDirectory: true)
+    }
     func suffix(for scheme: ColorScheme) -> String { scheme == .dark ? "" : "-light" }
 }
 
@@ -215,7 +228,7 @@ private enum FourRowWidgetPreview {
         var claude = weekly("Claude", percent: 74, resetAfter: 3 * 86_400 + 22 * 3_600,
                             fiveHourResetAfter: 3 * 3_600 + 30 * 60)
         // Synthetic known metadata matches the credential-derived plan format.
-        claude.planName = "Claude Max 20x"
+        claude.planName = "Claude Ultra"
         // Enterprise mirrors cursor-summary-v3.json membership metadata; amounts remain synthetic.
         let cursor = CompactQuota(planName: "Enterprise", label: "Cursor Monthly", used: 667.94, limit: 790, remaining: 122.06,
                                   remainingPercent: nil, resetAt: now.addingTimeInterval(8 * 86_400 + 8 * 3_600),
@@ -248,7 +261,8 @@ private enum FourRowWidgetPreview {
                              claudeTokens: base.claudeTokens, claudeQuota: ready(claude),
                              deepseekUsage: base.deepseekUsage, codexAccounts: ready(accounts),
                              codexHistory: base.codexHistory, claudeHistory: base.claudeHistory,
-                             claudeResetCards: base.claudeResetCards)
+                             claudeResetCards: base.claudeResetCards,
+                             antigravityQuota: base.antigravityQuota, antigravityTokens: base.antigravityTokens)
     }
 }
 
@@ -344,7 +358,8 @@ private struct WorkspacePreviewCase {
                                      claudeTokens: base.claudeTokens, claudeQuota: base.claudeQuota,
                                      deepseekUsage: base.deepseekUsage, codexAccounts: ready(accounts),
                                      codexHistory: base.codexHistory, claudeHistory: base.claudeHistory,
-                                     claudeResetCards: base.claudeResetCards)
+                                     claudeResetCards: base.claudeResetCards,
+                                     antigravityQuota: base.antigravityQuota, antigravityTokens: base.antigravityTokens)
     }
 }
 
@@ -420,6 +435,8 @@ struct PreviewRenderer {
             case .widgetAppearances: try renderWidgetAppearances(options: options)
             case .serviceMatrix: try renderServiceMatrix(options: options)
             case .workspaceMatrix: try renderWorkspaceMatrix(options: options)
+            case .antigravityMatrix: try renderAntigravityMatrix(options: options)
+            case .widgetQACase: try renderWidgetQACase(options: options)
             case .holidays: try renderHolidays(options: options)
             case .interactive:
                 showInteractivePreview(snapshotURL: URL(fileURLWithPath: options.path!), options: options)
@@ -470,6 +487,7 @@ struct PreviewRenderer {
         var settings = ProviderSettings.default
         settings[.cursor] = .hidden
         settings[.deepseek] = .hidden
+        settings[.antigravity] = .hidden
         func makeMenu(_ updateStore: UpdateStore) -> UsageMenuView {
             UsageMenuView(
                 store: UsageStore(snapshot: snapshot, providerSettings: settings, observesSnapshotChanges: false),
@@ -556,6 +574,7 @@ struct PreviewRenderer {
         var monitoringSettings = ProviderSettings.default
         monitoringSettings[.cursor] = .hidden
         monitoringSettings[.deepseek] = .hidden
+        monitoringSettings[.antigravity] = .hidden
         for expanded in [false, true] {
             let height = UsageMenuView.fittedHeight(
                 for: [.codex, .claude], maxHeight: expanded ? 1250 : 650,
@@ -897,7 +916,159 @@ struct PreviewRenderer {
         }
         try ServiceMatrixGallery.html(schemes: options.schemes.map { $0 == .light ? "light" : "dark" })
             .write(to: directory.appendingPathComponent("index.html"), atomically: true, encoding: .utf8)
-        print("Rendered service matrix: \(16 * options.schemes.count * 5) PNGs and index.html")
+        let combinations = 1 << MeterProvider.allCases.count
+        print("Rendered service matrix: \(combinations) combinations (\(combinations - 1) nonempty), \(combinations * options.schemes.count * 5) PNGs and index.html")
+    }
+
+    /// Synthetic Antigravity fixtures only; no official app, CLI or credential is queried.
+    @MainActor
+    private static func renderAntigravityMatrix(options: PreviewOptions) throws {
+        let directory = options.directory
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let now = options.referenceDate
+        var records: [[String: Any]] = []
+        let both = AntigravityQuotaGroupID.allCases.map(\.moduleID)
+        let cases = ["both-groups", "full-capacity", "unknown-and-zero", "reset-description"]
+        for scenario in cases {
+            var snapshot = UsageSnapshot.monitoringPreview
+            snapshot.antigravityQuota = UsageSnapshot.antigravityPreviewQuota(referenceDate: now)
+            if scenario == "unknown-and-zero" {
+                func window(_ label: String, percent: Double?, seconds: Int) -> CompactQuota {
+                    CompactQuota(label: label, used: nil, limit: nil, remaining: nil, remainingPercent: percent,
+                                 resetAt: now.addingTimeInterval(3_600), windowSeconds: seconds,
+                                 detail: percent.map { "\(Int($0))% left" } ?? "Unknown quota")
+                }
+                snapshot.antigravityQuota = UsageValue(status: .ready, source: .preview, measuredAt: now,
+                    lastAttemptAt: now, message: nil,
+                    value: AntigravityQuotaSnapshot(groups: [
+                        AntigravityQuotaGroup(id: .gemini, windows: [window("Gemini Weekly", percent: nil, seconds: 604_800)]),
+                        AntigravityQuotaGroup(id: .claudeGPT, windows: [
+                            window("Claude/GPT 5h", percent: 100, seconds: 18_000),
+                            window("Claude/GPT Weekly", percent: 0, seconds: 604_800)
+                        ])
+                    ], planName: "Google AI Ultra", accountID: "synthetic-antigravity-account"))
+            } else if scenario == "reset-description", let quota = snapshot.antigravityQuota.value {
+                let groups = quota.groups.map { group in
+                    AntigravityQuotaGroup(id: group.id, windows: group.windows.map { window in
+                        CompactQuota(label: window.label, used: window.used, limit: window.limit,
+                                     remaining: window.remaining, remainingPercent: window.remainingPercent,
+                                     resetAt: nil, windowSeconds: window.windowSeconds, detail: window.detail,
+                                     resetDescription: window.windowSeconds == 604_800
+                                        ? "Refills at the start of the next weekly period"
+                                        : "Refills in about two hours")
+                    })
+                }
+                snapshot.antigravityQuota = UsageValue(status: .ready, source: .preview, measuredAt: now,
+                    lastAttemptAt: now, message: nil,
+                    value: AntigravityQuotaSnapshot(groups: groups, planName: quota.planName, accountID: quota.accountID))
+            }
+            let selection = scenario == "full-capacity"
+                ? both + ["codex-workspace:demo-personal", "service:claude", "service:cursor", "service:deepseek"]
+                : both
+            var settings = ProviderSettings.default
+            for provider in MeterProvider.allCases {
+                settings[provider] = scenario == "full-capacity" || provider == .antigravity ? .shown : .hidden
+            }
+            let fixture = directory.appendingPathComponent("\(scenario).json")
+            if FileManager.default.fileExists(atPath: fixture.path) {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                snapshot = try decoder.decode(UsageSnapshot.self, from: Data(contentsOf: fixture))
+                guard snapshot.schemaVersion == UsageSnapshot.currentSchemaVersion,
+                      snapshot.antigravityQuota.source == .preview else {
+                    throw PreviewFailure("Existing Antigravity fixture must be a current-schema synthetic preview.")
+                }
+            } else {
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+                encoder.dateEncodingStrategy = .iso8601
+                try encoder.encode(snapshot).write(to: fixture, options: .atomic)
+            }
+            let providers = settings.visibleProviders(in: snapshot)
+            for scheme in options.schemes {
+                let appearanceName = scheme == .light ? "light" : "dark"
+                for (family, size, name) in widgetSizes {
+                    let outputName = "\(scenario)-\(name)-\(appearanceName).png"
+                    renderWidget(snapshot, family: family, providers: providers, size: size,
+                                 scheme: scheme, options: options, selectedModuleIDs: selection,
+                                 to: directory.appendingPathComponent(outputName))
+                    let capacity = WidgetComposition.capacity(for: family == .systemSmall ? .small
+                        : family == .systemMedium ? .medium : family == .systemLarge ? .large : .extraLarge)
+                    records.append(["scenario": scenario, "family": name, "appearance": appearanceName,
+                                    "selectedModuleIDs": selection, "visibleModuleIDs": Array(selection.prefix(capacity)),
+                                    "image": outputName, "fixture": fixture.lastPathComponent])
+                }
+                let height = UsageMenuView.fittedHeight(for: providers, maxHeight: 2_000,
+                    servicesExpanded: true, claudeWindowCount: snapshot.claudeQuota.value?.windows?.count ?? 0)
+                let menu = UsageMenuView(store: UsageStore(snapshot: snapshot, providerSettings: settings,
+                    observesSnapshotChanges: false, collectorScript: nil), appearance: appearance(options),
+                    automaticRefresh: false, scrollsContent: false, updatedDescriptionOverride: "from demo data",
+                    viewHeight: height, referenceDate: now, servicesExpanded: true)
+                render(menu.background(Color(nsColor: .windowBackgroundColor)), size: CGSize(width: 410, height: height),
+                       scheme: scheme, options: options, naturalHeight: true,
+                       to: directory.appendingPathComponent("\(scenario)-menu-\(appearanceName).png"))
+            }
+        }
+        try JSONSerialization.data(withJSONObject: ["previewOnly": true, "records": records],
+                                   options: [.prettyPrinted, .sortedKeys])
+            .write(to: directory.appendingPathComponent("manifest.json"), options: .atomic)
+        print("Rendered Antigravity matrix: \(cases.count * options.schemes.count * 5) PNGs, \(cases.count) fixtures and manifest.json")
+    }
+
+    /// Imports only the private QA wrapper; no UI, collection or source-fixture writes.
+    @MainActor
+    private static func renderWidgetQACase(options: PreviewOptions) throws {
+        struct Fixture: Decodable {
+            let caseID: String
+            let snapshot: UsageSnapshot
+            let settings: ProviderSettings
+            let referenceDate: Date
+            let selectedModuleIDs: [String]
+        }
+        guard let path = options.path else { throw PreviewFailure("Missing synthetic QA case file.") }
+        let source = URL(fileURLWithPath: path)
+        let raw = try Data(contentsOf: source)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let fixture = try decoder.decode(Fixture.self, from: raw)
+        guard fixture.caseID.hasPrefix("antigravity-"),
+              fixture.snapshot.schemaVersion == UsageSnapshot.currentSchemaVersion,
+              fixture.snapshot.antigravityQuota.source == .preview,
+              MeterProvider.allCases.allSatisfy({ fixture.settings[$0] != .auto }) else {
+            throw PreviewFailure("Only an explicit schema-8 synthetic Antigravity QA case is accepted.")
+        }
+        var rendering = options
+        rendering.referenceDate = fixture.referenceDate
+        rendering.timeZone = TimeZone(identifier: "Europe/Berlin")!
+        let directory = rendering.directory
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let scenario = String(fixture.caseID.dropFirst("antigravity-".count))
+        guard !scenario.isEmpty, scenario.allSatisfy({ $0.isASCII && ($0.isLetter || $0.isNumber || $0 == "-") }) else {
+            throw PreviewFailure("Unsafe synthetic QA case identifier.")
+        }
+        let providers = fixture.settings.visibleProviders(in: fixture.snapshot)
+        var records: [[String: Any]] = []
+        for scheme in rendering.schemes {
+            let appearanceName = scheme == .light ? "light" : "dark"
+            for (family, size, name) in widgetSizes {
+                let outputName = "\(scenario)-\(name)-\(appearanceName).png"
+                renderWidget(fixture.snapshot, family: family, providers: providers, size: size,
+                    scheme: scheme, options: rendering, selectedModuleIDs: fixture.selectedModuleIDs,
+                    to: directory.appendingPathComponent(outputName))
+                records.append(["caseID": fixture.caseID, "family": name, "appearance": appearanceName,
+                                "selectedModuleIDs": fixture.selectedModuleIDs, "image": outputName])
+            }
+        }
+        let digest = SHA256.hash(data: raw).map { String(format: "%02x", $0) }.joined()
+        let repository = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+            .standardizedFileURL.resolvingSymlinksInPath().path
+        let sourcePath = source.standardizedFileURL.resolvingSymlinksInPath().path
+        let recordedSource = sourcePath.hasPrefix(repository + "/")
+            ? String(sourcePath.dropFirst(repository.count + 1)) : sourcePath
+        try JSONSerialization.data(withJSONObject: ["previewOnly": true, "caseID": fixture.caseID,
+            "sourceFixture": recordedSource, "sourceSHA256": digest, "records": records], options: [.prettyPrinted, .sortedKeys])
+            .write(to: directory.appendingPathComponent("manifest.json"), options: .atomic)
+        print("Rendered \(records.count) synthetic QA Widget previews without modifying the source fixture.")
     }
 
     @MainActor

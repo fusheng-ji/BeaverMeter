@@ -64,7 +64,7 @@ final class CodexWorkspaceActivityModelTests: XCTestCase {
         accounts["value"] = values
         object["codexAccounts"] = accounts
         let decoded = try XCTUnwrap(UsageSnapshot.decode(JSONSerialization.data(withJSONObject: object)))
-        XCTAssertEqual(decoded.schemaVersion, 7)
+        XCTAssertEqual(decoded.schemaVersion, UsageSnapshot.currentSchemaVersion)
         XCTAssertEqual(decoded.codexTokens.value?.totalTokens, 100_000)
         for account in try XCTUnwrap(decoded.codexAccounts.value) {
             XCTAssertNil(account.workspaceAccountIDHash)

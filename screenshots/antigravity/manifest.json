@@ -1,0 +1,537 @@
+{
+  "previewOnly" : true,
+  "records" : [
+    {
+      "appearance" : "dark",
+      "family" : "small",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-small-dark.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "medium",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-medium-dark.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "large",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-large-dark.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "extra-large",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-extra-large-dark.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "small",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-small-light.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "medium",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-medium-light.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "large",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-large-light.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "extra-large",
+      "fixture" : "both-groups.json",
+      "image" : "both-groups-extra-large-light.png",
+      "scenario" : "both-groups",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "small",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-small-dark.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "medium",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-medium-dark.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "large",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-large-dark.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "extra-large",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-extra-large-dark.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "small",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-small-light.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "medium",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-medium-light.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "large",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-large-light.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "extra-large",
+      "fixture" : "full-capacity.json",
+      "image" : "full-capacity-extra-large-light.png",
+      "scenario" : "full-capacity",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt",
+        "codex-workspace:demo-personal",
+        "service:claude",
+        "service:cursor",
+        "service:deepseek"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "small",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-small-dark.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "medium",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-medium-dark.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "large",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-large-dark.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "extra-large",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-extra-large-dark.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "small",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-small-light.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "medium",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-medium-light.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "large",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-large-light.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "extra-large",
+      "fixture" : "unknown-and-zero.json",
+      "image" : "unknown-and-zero-extra-large-light.png",
+      "scenario" : "unknown-and-zero",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "small",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-small-dark.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "medium",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-medium-dark.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "large",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-large-dark.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "dark",
+      "family" : "extra-large",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-extra-large-dark.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "small",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-small-light.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "medium",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-medium-light.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "large",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-large-light.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    },
+    {
+      "appearance" : "light",
+      "family" : "extra-large",
+      "fixture" : "reset-description.json",
+      "image" : "reset-description-extra-large-light.png",
+      "scenario" : "reset-description",
+      "selectedModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ],
+      "visibleModuleIDs" : [
+        "antigravity-group:gemini",
+        "antigravity-group:claude-gpt"
+      ]
+    }
+  ]
+}

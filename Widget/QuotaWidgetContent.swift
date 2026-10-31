@@ -50,11 +50,7 @@ struct QuotaWidgetContent: View {
         return calendar
     }
     private var outerPadding: CGFloat {
-        switch family {
-        case .systemSmall: 8
-        case .systemMedium: 10
-        default: 14
-        }
+        WidgetSpacingPolicy(size: widgetSize, cardCount: composition.items.count).outerPadding
     }
 }
 

@@ -214,11 +214,13 @@ enum ClaudeUsageCollector {
     }
 
     private static func quota(_ data: UsageValue<CompactQuota>, withPlanName planName: String?) -> UsageValue<CompactQuota> {
-        guard data.status == .ready, let planName, var value = data.value else { return data }
-        value.planName = planName
+        guard data.status == .ready, var value = data.value else { return data }
+        let label = ClaudePlanDisplayName.normalizeLabel(planName ?? value.planName)
+        guard let label else { return data }
+        value.planName = label
         value.windows = value.windows?.map {
             var window = $0
-            window.planName = planName
+            window.planName = label
             return window
         }
         return UsageValue(status: data.status, source: data.source, measuredAt: data.measuredAt,
